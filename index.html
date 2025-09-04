@@ -1,563 +1,338 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivan Roger NFINDA | SYNAPSE Portfolio Data & IA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #030014;
-            --text: #e0e0e0;
-            --muted: #aab;
-            --violet: #7c3aed;
-            --accent: #a78bfa;
-            --glow-color: rgba(124, 58, 237, 0.5);
-            --cursor-glow-color: rgba(167, 139, 250, 0.8);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ivan Roger NFINDA | Singularity Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Poppins',sans-serif;background:#030014;color:#e0e0e0;cursor:none;overflow-x:hidden}
+    #interactive-bg{position:fixed;inset:0;z-index:-2}
+    .cursor-dot,.cursor-glow{position:fixed;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999}
+    .cursor-dot{width:8px;height:8px;background:#fff;transition:transform .15s ease,background .15s ease}
+    .cursor-glow{width:40px;height:40px;background:radial-gradient(circle,rgba(167,139,250,.8)0%,rgba(167,139,250,0)70%);z-index:9998;transition:transform .2s ease}
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            cursor: none;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 74rem;
-            margin-inline: auto;
-            padding: 1.25rem;
-        }
-        
-        .section {
-            margin-bottom: 5rem;
-        }
-        
-        .block {
-            background: rgba(16, 14, 31, 0.55);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            border-radius: 1.25rem;
-            padding: 1.5rem;
-            box-shadow: 0 0 40px rgba(124, 58, 237, 0.12);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .block:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 30px 60px -12px rgba(124, 58, 237, 0.25);
-        }
-        
-        .sq {
-            aspect-ratio: 1/1;
-            display: grid;
-            place-items: center;
-        }
-        
-        .chips > span {
-            display: inline-block;
-            margin: 0.25rem 0.35rem 0 0;
-            padding: 0.45rem 0.75rem;
-            border-radius: 9999px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-        
-        .chips > span:hover {
-            background: rgba(167, 139, 250, 0.2);
-            transform: translateY(-2px);
-        }
+    header{text-align:center;padding-top:8rem;padding-bottom:8rem;position:relative;overflow:hidden}
+    .welcome-text span{display:inline-block;animation:letterFlow .6s forwards}
+    @keyframes letterFlow{0%{opacity:0;transform:translateY(-20px) scale(1.2)}100%{opacity:1;transform:translateY(0) scale(1)}}
 
-        /* Cursor */
-        .cursor-dot, .cursor-glow {
-            position: fixed;
-            border-radius: 9999px;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-        
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: #fff;
-            transition: transform 0.15s ease, background 0.15s ease;
-        }
-        
-        .cursor-glow {
-            width: 48px;
-            height: 48px;
-            background: radial-gradient(circle, var(--cursor-glow-color) 0%, rgba(167, 139, 250, 0) 70%);
-            z-index: 9998;
-            transition: transform 0.2s ease;
-        }
-        
-        .cursor-dot.big {
-            transform: translate(-50%, -50%) scale(5);
-            background-color: rgba(255, 255, 255, 0.25);
-        }
+    .card{background:rgba(16,14,31,.4);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(16px);transition:.3s;overflow:hidden;position:relative}
+    .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 20px 40px rgba(124,58,237,.25)}
 
-        /* Hero Section avec effet amélioré */
-        header {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-        }
-        
-        #interactive-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-        }
-        
-        .hero-title {
-            font-size: clamp(2.2rem, 7vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-title .shine {
-            background: linear-gradient(120deg, #ffffff 0%, #f0abfc 20%, #a5b4fc 40%, #60a5fa 60%, #f0abfc 80%, #ffffff 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glowShift 6s ease-in-out infinite alternate;
-            filter: drop-shadow(0 0 12px rgba(165, 180, 252, 0.45));
-        }
-        
-        .hero-title .glitch {
-            position: absolute;
-            inset: 0;
-            color: transparent;
-            text-shadow: 1px 0 #60a5fa, -1px 0 #f0abfc;
-            mix-blend-mode: screen;
-            animation: glitch 4s infinite steps(2);
-        }
-        
-        @keyframes glowShift {
-            0% { background-position: 0%; }
-            100% { background-position: 100%; }
-        }
-        
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(1px, -1px); }
-            40% { transform: translate(-1px, 1px); }
-            60% { transform: translate(1px, 1px); }
-            80% { transform: translate(-1px, -1px); }
-        }
-
-        /* Flying words */
-        #flying-words {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-        
-        .flying-word {
-            position: absolute;
-            font-weight: 700;
-            color: #fff;
-            opacity: 0.12;
-            animation: floatWord 12s linear infinite;
-            filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.3));
-        }
-        
-        @keyframes floatWord {
-            0% { transform: translateY(110vh) scale(0.6); opacity: 0; }
-            15% { opacity: 0.3; }
-            50% { opacity: 0.2; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-        }
-
-        /* Animations */
-        @keyframes fade-in-up { 
-            from { opacity: 0; transform: translateY(40px) scale(0.98); } 
-            to { opacity: 1; transform: translateY(0) scale(1); } 
-        }
-        
-        @keyframes draw-line { 
-            from { height: 0; } 
-            to { height: 100%; } 
-        }
-        
-        @keyframes pulse { 
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.7); } 
-            50% { transform: scale(1.1); box-shadow: 0 0 10px 10px rgba(167, 139, 250, 0); } 
-        }
-        
-        .fade-in { 
-            animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-            opacity: 0; 
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 1rem;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .timeline.in-view::after {
-            content: '';
-            position: absolute;
-            left: 1rem;
-            top: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #a5b4fc, #d8b4fe);
-            animation: draw-line 2s ease-out forwards;
-        }
-        
-        .timeline-item-dot {
-            position: absolute;
-            left: 1rem;
-            top: 1rem;
-            transform: translate(-50%, -50%);
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            background-color: #030014;
-            border: 2px solid #a5b4fc;
-            transition: all 0.3s ease;
-        }
-        
-        .timeline-item.in-view .timeline-item-dot {
-            animation: pulse 1.5s infinite;
-        }
-        
-        .skill-item { 
-            transition: all 0.2s ease-in-out; 
-        }
-        
-        .mission-card { 
-            transition: all 0.3s ease-in-out; 
-        }
-        
-        .mission-card.dimmed { 
-            opacity: 0.3; 
-            transform: scale(0.98); 
-        }
-        
-        .animated-role { 
-            display: inline-block; 
-            position: relative; 
-        }
-        
-        .animated-role span { 
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
-            position: absolute; 
-            left: 0; 
-            top:0; 
-            white-space: nowrap;
-        }
-        
-        /* Floating controls */
-        .floating-controls {
-            position: fixed;
-            right: 1rem;
-            top: 1rem;
-            z-index: 58;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .floating-controls button {
-            padding: 0.5rem 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            color: white;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .floating-controls button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Accessibility */
-        @media (pointer: coarse) {
-            body { cursor: auto; }
-            .cursor-dot, .cursor-glow { display: none; }
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition: none !important;
-            }
-            #interactive-bg { display: none; }
-        }
-    </style>
+    #ai-guide{position:fixed;bottom:2rem;left:2rem;z-index:100;display:none;animation:fadeIn .5s ease-out}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  </style>
 </head>
-<body class="antialiased">
-    <!-- Background (Three.js) -->
-    <canvas id="interactive-bg" aria-hidden="true"></canvas>
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-glow" aria-hidden="true"></div>
+<body>
+  <!-- Background (Three.js) -->
+  <canvas id="interactive-bg" aria-hidden="true"></canvas>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-    <!-- Floating controls -->
-    <div class="floating-controls">
-        <button id="cmd-button" class="hidden md:block">⌘K</button>
-        <button id="lang-toggle">FR/EN</button>
+  <!-- Floating controls -->
+  <div class="fixed right-4 top-4 z-[58] flex flex-col gap-2">
+    <div class="flex gap-2">
+      <button id="present-btn" class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-md text-white rounded">Présenter</button>
+      <button id="guide-btn" class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-md text-white rounded">Guide</button>
+      <button id="swipe-btn" class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-md text-white rounded" title="Naviguer section par section">Balayer ↔</button>
+      <button id="lang-toggle" class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-md text-white rounded" title="Changer de langue">FR/EN</button>
+      <button id="cmdk-btn" class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-md text-white rounded">⌘K</button>
     </div>
+  </div>
+  <div id="presenter-progress"></div>
 
-    <!-- HERO SECTION AMÉLIORÉE -->
-    <header class="fade-in">
-        <h1 class="hero-title">
-            <span class="shine">Entrez dans la Matrice</span>
-            <span class="glitch" aria-hidden="true">Entrez dans la Matrice</span>
-        </h1>
-        <p class="text-lg text-white/70 max-w-2xl mx-auto mb-12" data-lang-fr="Je suis Ivan Roger Nfinda. J'architecte des solutions data qui ne se contentent pas de décrire le passé, mais qui prédisent et façonnent l'avenir." data-lang-en="I'm Ivan Roger Nfinda. I architect data solutions that don't just describe the past, but predict and shape the future."></p>
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a href="CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="inline-block bg-violet-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-violet-500 transition-all duration-300 shadow-lg shadow-violet-500/30 transform hover:scale-105" data-lang-fr="Télécharger mon CV" data-lang-en="Download my CV"></a>
-            <a href="#facettes" class="inline-block bg-gray-700/50 text-white font-semibold py-4 px-10 rounded-lg hover:bg-gray-700/80 transition-colors duration-300" data-lang-fr="Découvrir mes facettes" data-lang-en="Discover my facets"></a>
+  <!-- HERO -->
+  <header>
+    <h1 class="hero-title">
+      <span id="title-moving" class="shine" data-text-fr="Bienvenue dans mon univers" data-text-en="Welcome to my universe"></span>
+      <span class="glitch" aria-hidden="true">Bienvenue dans mon univers</span>
+    </h1>
+    <p id="hero-sub" class="mt-3 text-base md:text-lg text-white/70 max-w-2xl" data-lang-fr="Data & IA, effets visuels next‑gen, sections claires et compactes — sans espace perdu." data-lang-en="Data & AI, next‑gen visuals, crystal‑clear single‑column sections — no wasted space.">Data & IA, effets visuels next‑gen, sections claires et compactes — sans espace perdu.</p>
+    <div id="flying-words"></div>
+  </header>
+
+  <main class="container">
+    <!-- FACETTES : 4 carrés en paires (2 par ligne), compacts -->
+    <section id="facettes" class="section">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-lang-fr="Mes Facettes" data-lang-en="My Facets">Mes Facettes</h2>
+      <div class="grid-pairs">
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">Data Analyst</h3>
+          <p class="text-white/70" data-lang-fr="Transformer des données en décisions claires." data-lang-en="Turning data into clear decisions.">Transformer des données en décisions claires.</p>
+        </div></article>
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">Business Analyst</h3>
+          <p class="text-white/70" data-lang-fr="Relier enjeux métier et solutions data." data-lang-en="Bridging business needs and data solutions.">Relier enjeux métier et solutions data.</p>
+        </div></article>
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">ChatGPT</h3>
+          <p class="text-white/70" data-lang-fr="Agents, prompts, automatisations conversationnelles." data-lang-en="Agents, prompts, conversational automations.">Agents, prompts, automatisations conversationnelles.</p>
+        </div></article>
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">DALL·E</h3>
+          <p class="text-white/70" data-lang-fr="Design génératif & illustrations techniques." data-lang-en="Generative design & technical visuals.">Design génératif & illustrations techniques.</p>
+        </div></article>
+      </div>
+    </section>
+
+    <!-- PARCOURS (une seule colonne) -->
+    <section id="parcours" class="section">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey">Parcours Professionnel</h2>
+      <div class="block">
+        <ul class="space-y-2">
+          <li><span class="text-indigo-300 font-semibold">Janv. 2025 – Juin 2025</span> — Data Analyst, LOGWIRE · BI pour pilotage commercial (−20% temps d’analyse)</li>
+          <li><span class="text-indigo-300 font-semibold">Oct. 2023 – Oct. 2024</span> — Data Analyst, ENDO DATA · 30+ cabinets, −10% no-shows</li>
+          <li><span class="text-indigo-300 font-semibold">Août 2021 – Août 2022</span> — Data Analyst, Afriland First Bank · Scoring PME, −8% défaut</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FORMATION & RECHERCHE (une seule colonne) -->
+    <section id="formation" class="section">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-lang-fr="Formation & Recherche" data-lang-en="Education & Research">Formation & Recherche</h2>
+      <div class="block">
+        <ul class="space-y-2">
+          <li><span class="text-indigo-300 font-semibold">2024 – 2025</span> — MBA Big Data & IA (MBA ESG)</li>
+          <li><span class="text-indigo-300 font-semibold">Publication</span> — Influence de WhatsApp sur la communication (Cameroun) · <a class="underline text-indigo-300" target="_blank" rel="noopener" href="https://www.researchgate.net/publication/360497701_WhatsApp's_Influence_on_African_and_Urban_Communication_Satisfaction_The_Case_of_Cameroon">Lire →</a></li>
+          <li><span class="text-indigo-300 font-semibold">2018 – 2020</span> — Master Systèmes d’Information</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- COMPÉTENCES : 4 blocs (catégories) en une seule colonne (mais compacts) -->
+    <section id="competences" class="section">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-lang-fr="Compétences Techniques" data-lang-en="Technical Skills">Compétences Techniques</h2>
+      <article class="block mb-3">
+        <h3 class="text-xl md:text-2xl font-bold mb-2">Cloud & Data Platforms</h3>
+        <div class="chips"><span>Azure</span><span>Azure Data Factory</span><span>Snowflake</span><span>BigQuery</span><span>Databricks</span></div>
+      </article>
+      <article class="block mb-3">
+        <h3 class="text-xl md:text-2xl font-bold mb-2">Data Engineering</h3>
+        <div class="chips"><span>SQL</span><span>ETL/ELT</span><span>Airflow</span><span>Talend</span><span>DBT</span></div>
+      </article>
+      <article class="block mb-3">
+        <h3 class="text-xl md:text-2xl font-bold mb-2">BI & Visualisation</h3>
+        <div class="chips"><span>Power BI</span><span>Tableau</span><span>Qlik Sense</span><span>DAX</span><span>Storytelling</span></div>
+      </article>
+      <article class="block">
+        <h3 class="text-xl md:text-2xl font-bold mb-2">Data Science & Statistiques</h3>
+        <div class="chips"><span>Python</span><span>R</span><span>Machine Learning</span><span>Scikit‑learn</span><span>Expérimentation</span></div>
+      </article>
+    </section>
+
+    <!-- QUALITÉS + Enseignement -->
+    <section id="softskills" class="section">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-lang-fr="Qualités Humaines" data-lang-en="Human Qualities">Qualités Humaines</h2>
+      <div class="block mb-3">
+        <ul class="space-y-1.5">
+          <li><strong class="text-indigo-300">Analyse & Synthèse :</strong> <span data-lang-fr="transformer la complexité en clarté." data-lang-en="turn complexity into clarity.">transformer la complexité en clarté.</span></li>
+          <li><strong class="text-indigo-300">Rigueur & Détail :</strong> <span data-lang-fr="fiabilité à chaque étape." data-lang-en="reliability at every step.">fiabilité à chaque étape.</span></li>
+          <li><strong class="text-indigo-300">Curiosité :</strong> <span data-lang-fr="apprentissage continu et innovation." data-lang-en="continuous learning & innovation.">apprentissage continu et innovation.</span></li>
+          <li><strong class="text-indigo-300">Autonomie & Proactivité :</strong> <span data-lang-fr="anticiper et agir." data-lang-en="anticipate and act.">anticiper et agir.</span></li>
+        </ul>
+      </div>
+      <div id="enseignant" class="block">
+        <h3 class="text-xl md:text-2xl font-bold mb-1" data-lang-fr="Enseignement" data-lang-en="Teaching">Enseignement</h3>
+        <p class="text-white/70" data-lang-fr="Partager les mathématiques et l’informatique — enseigner pour mieux maîtriser." data-lang-en="Sharing math & CS — teaching to master better.">Partager les mathématiques et l’informatique — enseigner pour mieux maîtriser.</p>
+      </div>
+    </section>
+
+    <!-- MISSIONS STRATÉGIQUES : grille 2x2 compacte (gauche/droite, puis bas gauche/droite) -->
+    <section id="missions" class="section">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" data-lang-fr="Missions Stratégiques" data-lang-en="Strategic Missions">Missions Stratégiques</h2>
+      <div class="grid-pairs">
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">Agent IA « ARIA »</h3>
+          <p class="text-white/70 mb-2" data-lang-fr="Insights actionnables en temps réel." data-lang-en="Real‑time actionable insights.">Insights actionnables en temps réel.</p>
+          <a class="underline text-indigo-300" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener">Démo →</a>
+        </div></article>
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">Scoring Prédictif</h3>
+          <p class="text-white/70 mb-2" data-lang-fr="+30% de conversion sur les leads." data-lang-en="+30% conversion on leads.">+30% de conversion sur les leads.</p>
+          <a class="underline text-indigo-300" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener">Démo →</a>
+        </div></article>
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">Data Clean</h3>
+          <p class="text-white/70 mb-2" data-lang-fr="Préparation de données −90% de temps." data-lang-en="Data prep −90% time.">Préparation de données −90% de temps.</p>
+          <a class="underline text-indigo-300" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener">Démo →</a>
+        </div></article>
+        <article class="block sq sq--balanced"><div>
+          <h3 class="text-2xl font-bold mb-1">ContraScope</h3>
+          <p class="text-white/70 mb-2" data-lang-fr="Analyse juridique en minutes." data-lang-en="Contract analysis in minutes.">Analyse juridique en minutes.</p>
+          <a class="underline text-indigo-300" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener">Démo →</a>
+        </div></article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Assistant flottant (conservé) -->
+  <div id="ai-guide" class="fixed bottom-6 left-6 z-[60] card p-4 max-w-xs hidden">
+    <p class="text-sm" id="ai-guide-text"></p>
+  </div>
+
+  <footer class="container text-center text-white/60 pb-10">&copy; 2025 Ivan Roger NFINDA CHOUCHINE</footer>
+
+  <!-- GUIDE OVERLAY -->
+  <div id="guide">
+    <div class="dim"></div>
+    <div id="spotlight"></div>
+    <div class="card">
+      <div class="text-sm opacity-80 mb-1" id="g-count">1/7</div>
+      <div class="text-lg font-semibold mb-1" id="g-title">Bienvenue</div>
+      <p class="text-white/80" id="g-text">Suivez le projecteur et explorez les paires compactes.</p>
+      <div class="mt-3 flex items-center justify-between">
+        <div class="text-xs opacity-70">Astuce: <kbd class="px-1.5 py-0.5 bg-white/10 rounded">P</kbd> = lecture auto</div>
+        <div class="space-x-2">
+          <button id="g-prev" class="px-3 py-2 bg-white/10 border border-white/15 rounded">Précédent</button>
+          <button id="g-next" class="px-3 py-2 bg-violet-600 rounded">Suivant</button>
+          <button id="g-close" class="px-3 py-2 bg-white/10 border border-white/15 rounded">Fermer</button>
         </div>
-        <div id="flying-words"></div>
-    </header>
+      </div>
+    </div>
+  </div>
 
-    <main class="container">
-        <!-- FACETTES : 4 blocs (carrés) EMPILÉS (une seule colonne) -->
-        <section id="facettes" class="section fade-in">
-            <h2 class="text-4xl font-bold text-center mb-6" data-lang-fr="Le Prisme de mes Compétences" data-lang-en="The Prism of my Skills"></h2>
-            <article class="block sq mb-4">
-                <div>
-                    <h3 class="text-2xl font-bold mb-3" data-lang-fr="Data Analyst" data-lang-en="Data Analyst"></h3>
-                    <p class="text-gray-400" data-lang-fr="Je transforme les données brutes en insights clairs. Ma mission : rendre la data compréhensible et actionnable pour tous." data-lang-en="I turn raw data into clear insights. My mission: to make data understandable and actionable for everyone."></p>
-                </div>
-            </article>
-            <article class="block sq mb-4">
-                <div>
-                    <h3 class="text-2xl font-bold mb-3" data-lang-fr="Business Analyst" data-lang-en="Business Analyst"></h3>
-                    <p class="text-gray-400" data-lang-fr="Je fais le pont entre la tech et le métier. Je comprends vos enjeux pour construire les solutions data qui y répondent vraiment." data-lang-en="I bridge the gap between tech and business. I understand your challenges to build data solutions that truly address them."></p>
-                </div>
-            </article>
-            <article class="block sq mb-4">
-                <div>
-                    <h3 class="text-2xl font-bold mb-3" data-lang-fr="Chargé d'Études Statistiques" data-lang-en="Statistical Researcher"></h3>
-                    <p class="text-gray-400" data-lang-fr="Je vais au-delà de la description. J'applique des méthodes statistiques rigoureuses pour valider des hypothèses et quantifier les certitudes." data-lang-en="I go beyond description. I apply rigorous statistical methods to validate hypotheses and quantify certainties."></p>
-                </div>
-            </article>
-            <article class="block sq">
-                <div>
-                    <h3 class="text-2xl font-bold mb-3" data-lang-fr="Architecte IA" data-lang-en="AI Architect"></h3>
-                    <p class="text-gray-400" data-lang-fr="J'imagine et je construis le futur. Je développe des agents et des modèles pour automatiser, prédire et créer de nouvelles opportunités." data-lang-en="I imagine and build the future. I develop agents and models to automate, predict, and create new opportunities."></p>
-                </div>
-            </article>
-        </section>
+  <!-- CMDK Palette -->
+  <div id="cmdk" aria-hidden="true">
+    <div class="panel">
+      <input id="cmdk-input" type="text" placeholder="Aller à… / Présenter / CV" />
+      <ul id="cmdk-list"></ul>
+    </div>
+  </div>
 
-        <!-- Le reste de votre contenu ici -->
-        <!-- ... (sections: parcours, formation, compétences, missions, etc.) ... -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+  (function(){
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = matchMedia('(max-width: 768px)').matches;
 
-    </main>
+    // Cursor
+    const dot=document.querySelector('.cursor-dot');
+    const glow=document.querySelector('.cursor-glow');
+    window.addEventListener('mousemove',e=>{dot.style.left=glow.style.left=e.clientX+'px';dot.style.top=glow.style.top=e.clientY+'px';});
+    document.querySelectorAll('a,button,.block').forEach(el=>{el.addEventListener('mouseenter',()=>dot.classList.add('big'));el.addEventListener('mouseleave',()=>dot.classList.remove('big'));});
 
-    <footer class="container text-center text-white/60 pb-12">
-        &copy; 2025 Ivan Roger NFINDA CHOUCHINE
-    </footer>
+    // Title letters (interactive)
+    const titleEl=document.getElementById('title-moving');
+    function buildTitleLetters(text){
+      titleEl.innerHTML='';
+      [...text].forEach((ch,i)=>{
+        const s=document.createElement('span');
+        s.textContent=ch;
+        s.style.display='inline-block';
+        s.style.animation='letterPop .6s ease both';
+        s.style.animationDelay=(i*40)+'ms';
+        s.style.transition='transform .2s ease, text-shadow .2s ease';
+        s.addEventListener('mouseenter',()=>{ s.style.transform='translateY(-6px) scale(1.08)'; s.style.textShadow='0 6px 22px rgba(167,139,250,.9)'; });
+        s.addEventListener('mouseleave',()=>{ s.style.transform='translateY(0) scale(1)'; s.style.textShadow='none'; });
+        titleEl.appendChild(s);
+      });
+    }
+    const style = document.createElement('style');
+    style.textContent = `@keyframes letterPop{0%{opacity:0;transform:translateY(14px) scale(.9)}100%{opacity:1;transform:translateY(0) scale(1)}}`;
+    document.head.appendChild(style);
+    buildTitleLetters(titleEl.getAttribute('data-text-fr'));
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Configuration initiale
-            let currentLang = 'fr';
-            const langToggle = document.getElementById('lang-toggle');
-            const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const isMobile = matchMedia('(max-width: 768px)').matches;
+    // Flying words (wow effect)
+    const words=['Data','IA','Univers','Innovation','Insights','Futur','ML','Décision','Cloud','BI'];
+    const fw=document.getElementById('flying-words');
+    for(let i=0;i<26;i++){ const s=document.createElement('span'); s.className='flying-word'; s.style.left=(Math.random()*100)+'%'; s.style.animationDelay=(Math.random()*8)+'s'; s.style.fontSize=(Math.random()*1.4+.6)+'rem'; s.textContent=words[(Math.random()*words.length)|0]; fw.appendChild(s); }
 
-            // Curseur personnalisé
-            const dot = document.querySelector('.cursor-dot');
-            const glow = document.querySelector('.cursor-glow');
-            
-            window.addEventListener('mousemove', (e) => {
-                dot.style.left = e.clientX + 'px';
-                dot.style.top = e.clientY + 'px';
-                glow.style.left = e.clientX + 'px';
-                glow.style.top = e.clientY + 'px';
-            });
-            
-            document.querySelectorAll('a, button, .block, .skill-item').forEach(el => {
-                el.addEventListener('mouseenter', () => dot.classList.add('big'));
-                el.addEventListener('mouseleave', () => dot.classList.remove('big'));
-            });
+    // Three.js background: particles + constellations + aurora shader
+    const canvas=document.getElementById('interactive-bg'); let scene,camera,renderer,points,lines,auroraMat,idxPairs;
+    function init3D(){
+      scene=new THREE.Scene();
+      camera=new THREE.PerspectiveCamera(70, innerWidth/innerHeight, .1, 2000);
+      camera.position.z=420;
+      renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+      renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setClearColor(0x000000,0);
+      const count=isMobile?650:1200; const pos=new Float32Array(count*3); for(let i=0;i<count*3;i++){ pos[i]=(Math.random()-.5)*1100 }
+      const pGeo=new THREE.BufferGeometry(); pGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      const pMat=new THREE.PointsMaterial({ size:1.0, color:0x9aa0aa, transparent:true, opacity:.5, blending:THREE.AdditiveBlending });
+      points=new THREE.Points(pGeo,pMat); scene.add(points);
+      // Constellations
+      idxPairs=[]; const maxLinks=3, minDist=40, maxDist=130; const P=pGeo.attributes.position; for(let i=0;i<count;i++){ let links=0; for(let j=i+1;j<Math.min(i+20,count);j++){ const dx=P.getX(i)-P.getX(j), dy=P.getY(i)-P.getY(j), dz=P.getZ(i)-P.getZ(j); const d=Math.sqrt(dx*dx+dy*dy+dz*dz); if(d>minDist&&d<maxDist){ idxPairs.push(i,j); links++; if(links>=maxLinks) break; } } }
+      const lGeo=new THREE.BufferGeometry(); lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(idxPairs.length*3),3));
+      const lMat=new THREE.LineBasicMaterial({ color:0xa5b4fc, transparent:true, opacity:.23 });
+      lines=new THREE.LineSegments(lGeo,lMat); scene.add(lines);
+      // Aurora shader
+      const uniforms={ uTime:{value:0}, uResolution:{value:new THREE.Vector2(innerWidth,innerHeight)} };
+      auroraMat=new THREE.ShaderMaterial({uniforms, blending:THREE.AdditiveBlending, transparent:true, depthWrite:false, vertexShader:`varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`, fragmentShader:`precision highp float; varying vec2 vUv; uniform float uTime; uniform vec2 uResolution; float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);} float noise(vec2 p){ vec2 i=floor(p); vec2 f=fract(p); float a=hash(i); float b=hash(i+vec2(1.0,0.0)); float c=hash(i+vec2(0.0,1.0)); float d=hash(i+vec2(1.0,1.0)); vec2 u=f*f*(3.0-2.0*f); return mix(a,b,u.x)+ (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y; } void main(){ vec2 uv=vUv*3.0; float t=uTime*0.06; float n=0.0; float amp=0.6; float fr=1.0; for(int i=0;i<4;i++){ n += noise(uv*fr + t)*amp; fr*=2.0; amp*=0.5; } vec3 col = mix(vec3(0.08,0.0,0.18), vec3(0.5,0.6,1.0), n); col += vec3(0.6,0.4,1.0)*smoothstep(0.6,1.0,n)*0.6; gl_FragColor = vec4(col, 0.18); }`});
+      const plane=new THREE.Mesh(new THREE.PlaneGeometry(2,2), auroraMat); plane.position.z=-1; scene.add(plane);
+      window.addEventListener('resize', onResize); document.body.addEventListener('mousemove', onMouse); animate();
+    }
+    function onResize(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); auroraMat.uniforms.uResolution.value.set(innerWidth, innerHeight); }
+    let mx=0,my=0; function onMouse(e){ mx=e.clientX-innerWidth/2; my=e.clientY-innerHeight/2; }
+    function animate(){ if(reduce) return; requestAnimationFrame(animate); const t=Date.now()*0.001; camera.position.x+=(mx-camera.position.x)*0.03; camera.position.y+=(-my-camera.position.y)*0.03; camera.lookAt(scene.position); if(points){ points.rotation.y=t*0.06; }
+      const lp=lines.geometry.attributes.position; const pp=points.geometry.attributes.position; for(let k=0;k<idxPairs.length; k+=2){ const a=idxPairs[k], b=idxPairs[k+1]; lp.setXYZ(k, pp.getX(a), pp.getY(a), pp.getZ(a)); lp.setXYZ(k+1, pp.getX(b), pp.getY(b), pp.getZ(b)); } lp.needsUpdate=true; auroraMat.uniforms.uTime.value=t; renderer.render(scene,camera); }
+    try{ init3D(); }catch(e){ console.warn('WebGL disabled',e); canvas.style.display='none'; }
 
-            // Mots volants (effet wow)
-            const words = ['Data', 'IA', 'Python', 'SQL', 'ML', 'BI', 'Azure', 'Analysis', 'Insights', 'Future'];
-            const fw = document.getElementById('flying-words');
-            
-            for (let i = 0; i < 30; i++) {
-                const s = document.createElement('span');
-                s.className = 'flying-word';
-                s.style.left = (Math.random() * 100) + '%';
-                s.style.animationDelay = (Math.random() * 8) + 's';
-                s.style.fontSize = (Math.random() * 1.6 + 0.6) + 'rem';
-                s.textContent = words[Math.floor(Math.random() * words.length)];
-                fw.appendChild(s);
-            }
+    // GUIDE & PRESENTER
+    const steps=[
+      {sel:'header', title:'Bienvenue', text:'Héro compact & scintillant.'},
+      {sel:'#facettes', title:'Facettes en paires', text:'Data Analyst + Business Analyst, puis ChatGPT + DALL·E.'},
+      {sel:'#parcours', title:'Parcours', text:'Expériences clés et impact.'},
+      {sel:'#formation', title:'Formation & Recherche', text:'MBA, publication, fondamentaux.'},
+      {sel:'#competences', title:'Compétences (4 blocs)', text:'Cloud, Engineering, BI, Data Science.'},
+      {sel:'#softskills', title:'Qualités + Enseignement', text:'Soft skills et transmission en bas.'},
+      {sel:'#missions', title:'Missions en grille 2×2', text:'Projets IA gauche/droite, puis bas gauche/droite.'}
+    ];
+    let idx=0, playing=false, voice=false, stepMs=3000; const guide=document.getElementById('guide'); const spot=document.getElementById('spotlight'); const gPrev=document.getElementById('g-prev'); const gNext=document.getElementById('g-next'); const gClose=document.getElementById('g-close'); const gCount=document.getElementById('g-count'); const gTitle=document.getElementById('g-title'); const gText=document.getElementById('g-text'); const bar=document.getElementById('presenter-progress');
+    function speak(s){ try{ const u=new SpeechSynthesisUtterance(s); u.lang=document.documentElement.lang||'fr-FR'; speechSynthesis.cancel(); speechSynthesis.speak(u);}catch{} }
+    function spotlight(sel){ const el=document.querySelector(sel); if(!el) return; const r=el.getBoundingClientRect(); spot.style.boxShadow='0 0 0 9999px rgba(0,0,0,.6), 0 0 0 2px rgba(167,139,250,.8)'; spot.style.clipPath=`inset(${Math.max(r.top-16,0)}px ${Math.max(innerWidth-(r.right+16),0)}px ${Math.max(innerHeight-(r.bottom+16),0)}px ${Math.max(r.left-16,0)}px round 16px)`; el.scrollIntoView({behavior:'smooth', block:'center'}); }
+    function showGuide(){ guide.classList.add('active'); updateStep(); }
+    function hideGuide(){ guide.classList.remove('active'); stopPresent(); }
+    function updateStep(){ const s=steps[idx]; gCount.textContent=`${idx+1}/${steps.length}`; gTitle.textContent=s.title; gText.textContent=s.text; spotlight(s.sel); if(voice){ speak(`${s.title}. ${s.text}`); } }
+    function nextStep(){ idx=Math.min(idx+1, steps.length-1); updateStep(); }
+    function prevStep(){ idx=Math.max(idx-1, 0); updateStep(); }
+    function playPresent(){ playing=true; voice=true; bar.style.width='0%'; animateBar(); (function loop(){ if(!playing) return; setTimeout(()=>{ if(idx<steps.length-1){ idx++; updateStep(); animateBar(); loop(); } else { stopPresent(); } }, stepMs); })(); }
+    function animateBar(){ bar.style.transition='none'; bar.style.width='0%'; requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ bar.style.transition=`width ${stepMs}ms linear`; bar.style.width='100%'; }); }); }
+    function stopPresent(){ playing=false; bar.style.width='0%'; try{ speechSynthesis.cancel(); }catch{} }
+    document.getElementById('guide-btn').addEventListener('click', showGuide);
+    document.getElementById('present-btn').addEventListener('click', ()=>{ if(!guide.classList.contains('active')) showGuide(); playPresent(); });
+    gNext.addEventListener('click', nextStep); gPrev.addEventListener('click', prevStep); gClose.addEventListener('click', hideGuide);
 
-            // Three.js background: particles + constellations
-            const canvas = document.getElementById('interactive-bg');
-            let scene, camera, renderer, points, lines, idxPairs;
-            
-            function init3D() {
-                scene = new THREE.Scene();
-                camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 2000);
-                camera.position.z = 420;
-                renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-                renderer.setClearColor(0x000000, 0);
-                
-                // Particules
-                const count = isMobile ? 650 : 1400;
-                const pos = new Float32Array(count * 3);
-                
-                for (let i = 0; i < count * 3; i++) {
-                    pos[i] = (Math.random() - 0.5) * 1200;
-                }
-                
-                const pGeo = new THREE.BufferGeometry();
-                pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-                
-                const pMat = new THREE.PointsMaterial({
-                    size: 1.1,
-                    color: 0x9aa0aa,
-                    transparent: true,
-                    opacity: 0.55,
-                    blending: THREE.AdditiveBlending
-                });
-                
-                points = new THREE.Points(pGeo, pMat);
-                scene.add(points);
-                
-                // Constellations
-                idxPairs = [];
-                const maxLinks = 3;
-                const minDist = 40;
-                const maxDist = 140;
-                const P = pGeo.attributes.position;
-                
-                for (let i = 0; i < count; i++) {
-                    let links = 0;
-                    for (let j = i + 1; j < Math.min(i + 22, count); j++) {
-                        const dx = P.getX(i) - P.getX(j);
-                        const dy = P.getY(i) - P.getY(j);
-                        const dz = P.getZ(i) - P.getZ(j);
-                        const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
-                        
-                        if (d > minDist && d < maxDist) {
-                            idxPairs.push(i, j);
-                            links++;
-                            if (links >= maxLinks) break;
-                        }
-                    }
-                }
-                
-                const lGeo = new THREE.BufferGeometry();
-                lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(idxPairs.length * 3), 3));
-                
-                const lMat = new THREE.LineBasicMaterial({
-                    color: 0xa5b4fc,
-                    transparent: true,
-                    opacity: 0.25
-                });
-                
-                lines = new THREE.LineSegments(lGeo, lMat);
-                scene.add(lines);
-                
-                window.addEventListener('resize', onResize);
-                document.body.addEventListener('mousemove', onMouse);
-                animate();
-            }
-            
-            function onResize() {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            }
-            
-            let mx = 0, my = 0;
-            
-            function onMouse(e) {
-                mx = e.clientX - window.innerWidth / 2;
-                my = e.clientY - window.innerHeight / 2;
-            }
-            
-            function animate() {
-                if (reduce) return;
-                requestAnimationFrame(animate);
-                
-                const t = Date.now() * 0.001;
-                camera.position.x += (mx - camera.position.x) * 0.03;
-                camera.position.y += (-my - camera.position.y) * 0.03;
-                camera.lookAt(scene.position);
-                
-                if (points) {
-                    points.rotation.y = t * 0.06;
-                }
-                
-                // Mise à jour des lignes de constellation
-                const lp = lines.geometry.attributes.position;
-                const pp = points.geometry.attributes.position;
-                
-                for (let k = 0; k < idxPairs.length; k += 2) {
-                    const a = idxPairs[k];
-                    const b = idxPairs[k + 1];
-                    
-                    lp.setXYZ(k, pp.getX(a), pp.getY(a), pp.getZ(a));
-                    lp.setXYZ(k + 1, pp.getX(b), pp.getY(b), pp.getZ(b));
-                }
-                
-                lp.needsUpdate = true;
-                renderer.render(scene, camera);
-            }
-            
-            try {
-                init3D();
-            } catch(e) {
-                console.warn('WebGL désactivé', e);
-                canvas.style.display = 'none';
-            }
+    // Swipe navigation (section by section)
+    const sections=['header','#facettes','#parcours','#formation','#competences','#softskills','#missions'];
+    function goTo(dir){ const y=scrollY+1; const pos=sections.map(sel=>document.querySelector(sel).getBoundingClientRect().top + scrollY); const idxNow=pos.findIndex(p=>p>y-10); let targetIdx = idxNow; if(dir>0){ targetIdx = Math.min((idxNow<0?0:idxNow)+1, sections.length-1);} else { targetIdx = Math.max((idxNow<=0?0:idxNow)-1, 0);} document.querySelector(sections[targetIdx]).scrollIntoView({behavior:'smooth', block:'start'}); }
+    document.getElementById('swipe-btn').addEventListener('click', ()=>goTo(1));
+    window.addEventListener('keydown', (e)=>{ if(['ArrowRight','PageDown'].includes(e.key)) goTo(1); if(['ArrowLeft','PageUp'].includes(e.key)) goTo(-1); });
 
-            // Gestion de la langue
-            function updateTexts() {
-                document.querySelectorAll('[data-lang-fr]').forEach(el => {
-                    const text = el.getAttribute(`data-lang-${currentLang}`);
-                    if (text !== null) el.innerHTML = text;
-                });
-                langToggle.textContent = currentLang === 'fr' ? 'FR/EN' : 'EN/FR';
-                document.documentElement.lang = currentLang;
-            }
-            
-            langToggle.addEventListener('click', () => {
-                currentLang = currentLang === 'fr' ? 'en' : 'fr';
-                updateTexts();
-            });
-            
-            updateTexts();
+    // CMDK palette
+    const palette=document.getElementById('cmdk'); const input=document.getElementById('cmdk-input'); const list=document.getElementById('cmdk-list');
+    const commands=[
+      {label:'Aller à : Mes Facettes', keywords:'goto facettes', run:()=>document.querySelector('#facettes').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Parcours', keywords:'goto parcours', run:()=>document.querySelector('#parcours').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Formation & Recherche', keywords:'goto formation', run:()=>document.querySelector('#formation').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Compétences', keywords:'goto competences skills', run:()=>document.querySelector('#competences').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Qualités', keywords:'goto soft skills', run:()=>document.querySelector('#softskills').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Missions', keywords:'goto missions projects', run:()=>document.querySelector('#missions').scrollIntoView({behavior:'smooth'})},
+      {label:'Présenter (auto)', keywords:'present autoplay', run:()=>{ if(!guide.classList.contains('active')) showGuide(); playPresent(); }},
+      {label:'Télécharger le CV', keywords:'cv resume', run:()=>window.open('CV+NFINDA-IVAN.pdf','_blank')},
+    ];
+    function openPalette(){ palette.classList.add('active'); input.value=''; renderList(''); setTimeout(()=>input.focus(),10); }
+    function closePalette(){ palette.classList.remove('active'); }
+    function renderList(q){ list.innerHTML=''; const ql=q.toLowerCase(); const res=commands.filter(c=> c.label.toLowerCase().includes(ql)||c.keywords.includes(ql)); res.forEach((c,i)=>{ const li=document.createElement('li'); li.textContent=c.label; li.setAttribute('tabindex','0'); li.setAttribute('role','option'); if(i===0) li.setAttribute('aria-selected','true'); li.addEventListener('click',()=>{ c.run(); closePalette(); }); list.appendChild(li); }); }
+    input.addEventListener('input', e=>renderList(e.target.value));
+    document.addEventListener('keydown', e=>{ if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openPalette(); } });
+    document.getElementById('cmdk-btn').addEventListener('click', openPalette);
+    palette.addEventListener('click', e=>{ if(e.target===palette) closePalette(); });
 
-            // Le reste de votre code JavaScript existant...
-            // [Vos autres fonctions JavaScript]
-        });
-    </script>
+    // Language toggle (FR/EN)
+    const langBtn=document.getElementById('lang-toggle');
+    let currentLang='fr';
+    function applyLang(){ document.documentElement.lang=currentLang; const els=document.querySelectorAll('[data-lang-fr]'); els.forEach(el=>{ const t=el.getAttribute(`data-lang-${currentLang}`); if(t) el.innerHTML=t; }); const titleText = titleEl.getAttribute(currentLang==='fr'? 'data-text-fr' : 'data-text-en'); buildTitleLetters(titleText); const glitch=document.querySelector('.glitch'); glitch.textContent = titleText; }
+    langBtn.addEventListener('click', ()=>{ currentLang = currentLang==='fr' ? 'en' : 'fr'; applyLang(); });
+    applyLang();
+
+    // Assistant flottant (conservé)
+    const aiGuide=document.getElementById('ai-guide'); const aiText=document.getElementById('ai-guide-text');
+    const msgsFR=["Bienvenue. Je suis l’assistant d’Ivan.", "Astuce : utilisez Balayer ↔ ou les flèches.", "Regardez les Missions pour l’impact concret." ];
+    const msgsEN=["Welcome. I'm Ivan’s assistant.", "Tip: use Swipe ↔ or arrows.", "Check Missions for real impact." ];
+    let mi=0; function cycleMsg(){ const arr=currentLang==='fr'?msgsFR:msgsEN; aiText.textContent=arr[mi%arr.length]; aiGuide.classList.remove('hidden'); mi++; }
+    setTimeout(cycleMsg, 1200); setInterval(cycleMsg, 6000);
+
+  })();
+  </script>
 </body>
 </html>
