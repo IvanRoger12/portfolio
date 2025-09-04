@@ -4,430 +4,227 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ivan Roger NFINDA | SYNAPSE – Portfolio Data & IA</title>
-  <meta name="description" content="Portfolio Data & IA d'Ivan Roger Nfinda — BI, Power BI, ML, projets ARIA, Data Clean, ContraScope. Disponible en CDI ou mission." />
-  <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="Ivan Roger NFINDA — Portfolio Data & IA" />
-  <meta property="og:description" content="BI, Power BI, ML, projets concrets et démos en ligne." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ton-domaine.tld/" />
-  <meta property="og:image" content="https://ton-domaine.tld/og-cover.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="/favicon.ico" />
-
+  <meta name="description" content="Portfolio futuriste single-column d'Ivan Roger Nfinda : Data/IA, projets live, guide interactif, constellations, aurora shader, palette de commandes." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
-
   <style>
-    :root{
-      --bg:#030014;
-      --text:#e0e0e0;
-      --muted:#9aa0aa;
-      --violet:#7c3aed;
-      --indigo:#6366f1;
-      --glow: rgba(124,58,237,.5);
-      --cursor-glow: rgba(167,139,250,.8);
-    }
-
-    /* ===== Base ===== */
+    :root { --bg:#030014; --text:#e0e0e0; --muted:#9aa0aa; --violet:#7c3aed; --glow:rgba(124,58,237,.5); --accent: #a78bfa; }
     html,body{height:100%}
-    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);cursor:none;overflow-x:hidden}
-    .container{max-width:80rem;margin-inline:auto;padding:1.25rem}
+    body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;cursor:none;overflow-x:hidden}
+    .container{max-width:74rem;margin-inline:auto;padding:1.25rem}
 
-    /* ===== Custom cursor ===== */
-    .cursor-dot{position:fixed;inset:auto auto 0 0;width:8px;height:8px;background:#fff;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999;transition:transform .15s ease-out,background-color .15s ease-out}
-    .cursor-glow{position:fixed;width:44px;height:44px;background:radial-gradient(circle,var(--cursor-glow) 0%,rgba(167,139,250,0) 70%);border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;transition:transform .2s ease-out}
-    .cursor-dot.is-big{transform:translate(-50%,-50%) scale(5);background-color:rgba(255,255,255,.2)}
+    /* Single-column sections */
+    .section{margin-bottom:5rem}
+    .block{background:rgba(16,14,31,.5);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:1.25rem;padding:2rem;box-shadow:0 0 40px rgba(124,58,237,.12)}
 
-    /* ===== Hero aurora overlay (pure CSS) ===== */
-    .aurora{position:absolute;inset:0;pointer-events:none;filter: blur(60px);opacity:.45;mix-blend-mode:screen}
-    .aurora::before,.aurora::after{content:"";position:absolute;inset:auto;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(closest-side,rgba(99,102,241,.9),transparent 70%)}
+    /* Cursor */
+    .cursor-dot{position:fixed;width:8px;height:8px;background:#fff;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999;transition:transform .15s ease, background-color .15s ease}
+    .cursor-glow{position:fixed;width:44px;height:44px;background:radial-gradient(circle, rgba(167,139,250,.8) 0%, rgba(167,139,250,0) 70%);border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9998;transition:transform .2s ease}
+    .cursor-dot.big{transform:translate(-50%,-50%) scale(5);background-color:rgba(255,255,255,.25)}
+
+    /* Aurora shader overlay placeholder (Three.js canvas sits behind) */
+    #interactive-bg{position:fixed;inset:0;z-index:-2}
+
+    /* Aurora CSS backup */
+    .aurora{position:absolute;inset:0;pointer-events:none;filter: blur(60px);opacity:.35;mix-blend-mode:screen}
+    .aurora::before,.aurora::after{content:"";position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(closest-side,rgba(99,102,241,.9),transparent 70%)}
     .aurora::before{top:-10%;left:-10%;animation:float1 12s ease-in-out infinite alternate}
     .aurora::after{right:-10%;bottom:-20%;animation:float2 14s ease-in-out infinite alternate}
     @keyframes float1{to{transform:translate(8%,6%) rotate(20deg)}}
     @keyframes float2{to{transform:translate(-6%,-4%) rotate(-15deg)}}
 
-    /* ===== Subtle page fade-in ===== */
-    .fade-in{opacity:0;transform:translateY(40px) scale(.98);animation:fadeIn .9s cubic-bezier(.16,1,.3,1) .2s forwards}
+    /* Fade-in */
+    .fade-in{opacity:0;transform:translateY(36px) scale(.98);animation:fadeIn .8s cubic-bezier(.16,1,.3,1) .2s forwards}
     @keyframes fadeIn{to{opacity:1;transform:translateY(0) scale(1)}}
 
-    /* ===== Cards ===== */
-    .card{background:rgba(16,14,31,.45);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);position:relative;transition:transform .35s ease, box-shadow .35s ease, background .35s ease;overflow:hidden}
-    .card::before{content:"";position:absolute;inset:auto;top:var(--gy,50%);left:var(--gx,50%);width:300px;height:300px;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s ease}
-    .card:hover::before{opacity:1}
-    .card:hover{transform:translateY(-12px) scale(1.02);background:rgba(22,19,41,.6);box-shadow:0 25px 50px -12px rgba(124,58,237,.25)}
-
-    /* ===== Timeline line + dots ===== */
-    .timeline{position:relative;padding-left:3rem}
+    /* Timeline visuals (single column) */
+    .timeline{position:relative;padding-left:2.5rem}
     .timeline::before{content:"";position:absolute;left:1rem;top:0;bottom:0;width:2px;background:rgba(255,255,255,.08)}
-    .timeline.in-view::after{content:"";position:absolute;left:1rem;top:0;width:2px;background:linear-gradient(to bottom,#a5b4fc,#d8b4fe);animation:drawLine 2s ease-out forwards}
-    @keyframes drawLine{from{height:0}to{height:100%}}
-    .timeline-dot{position:absolute;left:1rem;top:1rem;transform:translate(-50%,-50%);width:1rem;height:1rem;border-radius:50%;background:var(--bg);border:2px solid #a5b4fc}
-    .pulse{animation:pulse 1.6s infinite}
-    @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 0 rgba(167,139,250,.7)}50%{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 10px 10px rgba(167,139,250,0)}}
+    .t-item{position:relative;margin-bottom:1.5rem}
+    .t-dot{position:absolute;left:1rem;top:.4rem;transform:translate(-50%,-50%);width:.9rem;height:.9rem;border-radius:9999px;background:#030014;border:2px solid #a5b4fc}
 
-    /* ===== Role ticker (auto-resize) ===== */
-    .animated-role{display:inline-block;position:relative}
-    .animated-role span{position:absolute;left:0;top:0;white-space:nowrap;transition:opacity .28s ease, transform .28s ease}
+    /* Command palette */
+    #cmdk{position:fixed;inset:0;display:none;background:rgba(3,0,20,.55);backdrop-filter:blur(6px);z-index:60}
+    #cmdk.active{display:block}
+    #cmdk .panel{position:absolute;left:50%;top:14%;transform:translateX(-50%);width:min(92vw,760px);background:rgba(16,14,31,.9);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.45)}
+    #cmdk input{width:100%;padding:1rem 1.25rem;background:transparent;color:#fff;outline:none;border-bottom:1px solid rgba(255,255,255,.08)}
+    #cmdk ul{max-height:56vh;overflow:auto}
+    #cmdk li{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.25rem;border-bottom:1px dashed rgba(255,255,255,.06);cursor:pointer}
+    #cmdk li[aria-selected="true"]{background:rgba(124,58,237,.18)}
 
-    /* ===== 3D background ===== */
-    #interactive-bg{position:fixed;inset:0;z-index:-2}
+    /* Guide overlay + spotlight */
+    #guide{position:fixed;inset:0;display:none;z-index:55}
+    #guide.active{display:block}
+    #guide .dim{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(2px)}
+    #spotlight{position:absolute;inset:0;pointer-events:none}
+    #guide .card{position:absolute;bottom:7%;left:50%;transform:translateX(-50%);width:min(90vw,720px);background:rgba(16,14,31,.95);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1rem 1.25rem;color:#fff}
 
-    /* ===== Accessibility & motion ===== */
-    @media (pointer: coarse){ body{cursor:auto} .cursor-dot,.cursor-glow{display:none} }
-    @media (prefers-reduced-motion: reduce){
-      *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition:none !important}
-      #interactive-bg{display:none}
-    }
+    /* Presenter progress bar */
+    #presenter-progress{position:fixed;left:0;top:0;height:4px;width:0;background:linear-gradient(90deg,#a78bfa,#60a5fa);z-index:70;transition:width .2s linear}
+
+    /* Buttons */
+    .floating{position:fixed;right:1rem;z-index:58;display:flex;flex-direction:column;gap:.5rem}
+    .floating.top{top:1rem}
+    .btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);color:#fff;padding:.5rem .9rem;border-radius:.75rem;font-weight:600}
+
+    /* Accessibility */
+    @media (pointer: coarse){body{cursor:auto}.cursor-dot,.cursor-glow{display:none}}
+    @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important} #interactive-bg{display:none}}
   </style>
 </head>
 <body>
+  <!-- Animated background (particles + constellations + aurora shader) -->
   <canvas id="interactive-bg" aria-hidden="true"></canvas>
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
 
-  <header class="relative overflow-hidden">
-    <div class="aurora"></div>
-    <div class="container pt-10 md:pt-14">
-      <div class="fixed top-5 right-5 z-50">
-        <button id="lang-toggle" class="bg-white/10 text-white font-semibold py-2 px-4 rounded-lg text-sm backdrop-blur-md border border-white/10 hover:bg-white/15 transition">Switch to English</button>
-      </div>
+  <!-- Floating controls -->
+  <div class="floating top right-4">
+    <button id="lang-btn" class="btn">FR/EN</button>
+    <button id="present-btn" class="btn" title="Mode Présentation (P)">Présenter</button>
+    <button id="guide-btn" class="btn" title="Guide (G)">Guide</button>
+    <button id="cmdk-btn" class="btn" title="Palette (⌘/Ctrl+K)">⌘K</button>
+  </div>
 
-      <div class="text-center py-24 md:py-40 fade-in">
-        <h1 class="text-5xl md:text-8xl font-black leading-[1.05] mb-6">
-          <span data-lang-fr="Je suis " data-lang-en="I am an "></span>
-          <span class="bg-gradient-to-r from-indigo-200 to-fuchsia-200 bg-clip-text text-transparent animated-role"></span>
-        </h1>
-        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-12 text-white/70" data-lang-fr="Je suis Ivan Roger Nfinda. J'architecte des solutions data qui ne se contentent pas de décrire le passé, mais qui prédisent et façonnent l'avenir." data-lang-en="I'm Ivan Roger Nfinda. I architect data solutions that don't just describe the past, but predict and shape the future."></p>
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a href="CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="w-full sm:w-auto inline-block bg-violet-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-violet-500 transition-all duration-300 shadow-lg shadow-violet-500/30 transform hover:scale-105" data-lang-fr="Télécharger mon CV" data-lang-en="Download my CV"></a>
-          <a href="#parcours" class="w-full sm:w-auto inline-block bg-white/10 text-white font-semibold py-4 px-10 rounded-lg hover:bg-white/15 transition-colors duration-300 border border-white/10" data-lang-fr="Découvrir mon parcours" data-lang-en="Discover my journey"></a>
-        </div>
+  <div id="presenter-progress"></div>
+
+  <header class="relative overflow-hidden section">
+    <div class="aurora"></div>
+    <div class="container text-center pt-14">
+      <h1 class="text-5xl md:text-7xl font-black mb-4">Bienvenue dans <span class="bg-gradient-to-r from-indigo-200 to-fuchsia-200 bg-clip-text text-transparent">SYNAPSE</span></h1>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto text-white/70">Le portfolio <em>single-column</em> d’Ivan Roger Nfinda : chaque bloc sur sa propre ligne, animé et interactif.</p>
+      <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-3">
+        <a href="#missions" class="btn">Voir mes projets</a>
+        <a href="CV+NFINDA-IVAN.pdf" download class="btn">Télécharger mon CV</a>
       </div>
     </div>
   </header>
 
-  <main class="container space-y-32 md:space-y-40">
-    <!-- Facets -->
-    <section id="facettes" class="fade-in">
-      <h2 class="text-4xl font-bold text-center mb-12" data-lang-fr="Mes Facettes" data-lang-en="My Facets"></h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-        <article class="card p-8 text-center group">
-          <div class="timeline-dot pulse" aria-hidden="true"></div>
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Data Analyst" data-lang-en="Data Analyst"></h3>
-          <p class="text-white/70" data-lang-fr="Je transforme les données brutes en insights clairs. Ma mission : rendre la data compréhensible et actionnable pour tous." data-lang-en="I turn raw data into clear insights. My mission: to make data understandable and actionable for everyone."></p>
-        </article>
-        <article class="card p-8 text-center group">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Business Analyst" data-lang-en="Business Analyst"></h3>
-          <p class="text-white/70" data-lang-fr="Je fais le pont entre la tech et le métier. Je comprends vos enjeux pour construire les solutions data qui y répondent vraiment." data-lang-en="I bridge the gap between tech and business. I understand your challenges to build data solutions that truly address them."></p>
-        </article>
-        <article class="card p-8 text-center group">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Chargé d'Études Statistiques" data-lang-en="Statistical Researcher"></h3>
-          <p class="text-white/70" data-lang-fr="Je vais au-delà de la description. J'applique des méthodes statistiques rigoureuses pour valider des hypothèses et quantifier les certitudes." data-lang-en="I go beyond description. I apply rigorous statistical methods to validate hypotheses and quantify certainties."></p>
-        </article>
-        <article class="card p-8 text-center group">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Architecte IA" data-lang-en="AI Architect"></h3>
-          <p class="text-white/70" data-lang-fr="J'imagine et je construis le futur. Je développe des agents et des modèles pour automatiser, prédire et créer de nouvelles opportunités." data-lang-en="I imagine and build the future. I develop agents and models to automate, predict, and create new opportunities."></p>
-        </article>
+  <main>
+    <!-- Mes Facettes (une seule colonne, un bloc par ligne) -->
+    <section id="facettes" class="section container">
+      <h2 class="text-4xl font-bold mb-6">Mes Facettes</h2>
+      <article class="block fade-in mb-4"><h3 class="text-2xl font-bold mb-1">Data Analyst</h3><p class="text-white/70">Transformer des données brutes en décisions claires et actionnables.</p></article>
+      <article class="block fade-in mb-4"><h3 class="text-2xl font-bold mb-1">Business Analyst</h3><p class="text-white/70">Faire le pont entre les enjeux métier et la solution data.</p></article>
+      <article class="block fade-in mb-4"><h3 class="text-2xl font-bold mb-1">Architecte IA</h3><p class="text-white/70">Concevoir des agents et systèmes prédictifs à impact mesurable.</p></article>
+      <article class="block fade-in"><h3 class="text-2xl font-bold mb-1">Chargé d'Études Statistiques</h3><p class="text-white/70">Valider les hypothèses avec des méthodes rigoureuses.</p></article>
+    </section>
+
+    <!-- Parcours Professionnel (ligne dédiée) -->
+    <section id="parcours" class="section container">
+      <h2 class="text-4xl font-bold mb-6">Parcours Professionnel</h2>
+      <div class="block timeline">
+        <div class="t-item"><span class="t-dot"></span><p class="text-violet-300 font-semibold">Janv. 2025 – Juin 2025</p><h3 class="text-2xl font-bold">Data Analyst – LOGWIRE</h3><p class="text-white/70">BI pour pilotage commercial, -20% de temps d’analyse mensuel.</p></div>
+        <div class="t-item"><span class="t-dot"></span><p class="text-violet-300 font-semibold">Oct. 2023 – Oct. 2024</p><h3 class="text-2xl font-bold">Data Analyst – ENDO DATA</h3><p class="text-white/70">Dashboards pour 30+ cabinets dentaires, -10% de no-shows.</p></div>
+        <div class="t-item"><span class="t-dot"></span><p class="text-violet-300 font-semibold">Août 2021 – Août 2022</p><h3 class="text-2xl font-bold">Data Analyst – Afriland First Bank</h3><p class="text-white/70">Optimisation scoring PME, -8% de défaut.</p></div>
       </div>
     </section>
 
-    <!-- Journey -->
-    <section id="parcours" class="fade-in">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <div>
-          <h2 class="text-5xl font-bold mb-12" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
-          <div class="timeline">
-            <div class="relative mb-12">
-              <div class="timeline-dot"></div>
-              <p class="text-violet-300 font-semibold" data-lang-fr="Janv. 2025 - Juin 2025" data-lang-en="Jan 2025 - June 2025"></p>
-              <h3 class="text-2xl font-bold mt-1" data-lang-fr="Data Analyst, LOGWIRE" data-lang-en="Data Analyst, LOGWIRE"></h3>
-              <p class="text-white/70 mt-2" data-lang-fr="Conception de solutions BI pour le pilotage commercial. Réduction de 20% du temps d'analyse." data-lang-en="Designed BI solutions for sales steering. Reduced monthly analysis time by 20%."></p>
-            </div>
-            <div class="relative mb-12">
-              <div class="timeline-dot"></div>
-              <p class="text-violet-300 font-semibold" data-lang-fr="Oct. 2023 - Oct. 2024" data-lang-en="Oct 2023 - Oct 2024"></p>
-              <h3 class="text-2xl font-bold mt-1" data-lang-fr="Data Analyst, ENDO DATA" data-lang-en="Data Analyst, ENDO DATA"></h3>
-              <p class="text-white/70 mt-2" data-lang-fr="Déploiement de dashboards pour 30+ cabinets dentaires, réduisant de 10% les rendez-vous annulés." data-lang-en="Deployed dashboards for 30+ dental practices, reducing canceled appointments by 10%."></p>
-            </div>
-            <div class="relative">
-              <div class="timeline-dot"></div>
-              <p class="text-violet-300 font-semibold" data-lang-fr="Août 2021 - Août 2022" data-lang-en="Aug 2021 - Aug 2022"></p>
-              <h3 class="text-2xl font-bold mt-1" data-lang-fr="Data Analyst, Afriland First Bank" data-lang-en="Data Analyst, Afriland First Bank"></h3>
-              <p class="text-white/70 mt-2" data-lang-fr="Optimisation du scoring commercial, contribuant à réduire le taux de défaut de 8% sur le portefeuille PME." data-lang-en="Optimized commercial scoring, helping to reduce the default rate on the SME portfolio by 8%."></p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h2 class="text-5xl font-bold mb-12" data-lang-fr="Formation & Recherche" data-lang-en="Education & Research"></h2>
-          <div class="timeline">
-            <div class="relative mb-12">
-              <div class="timeline-dot"></div>
-              <p class="text-violet-300 font-semibold" data-lang-fr="2024 - 2025" data-lang-en="2024 - 2025"></p>
-              <h3 class="text-2xl font-bold mt-1" data-lang-fr="MBA Big Data & IA, MBA ESG" data-lang-en="MBA Big Data & AI, MBA ESG"></h3>
-              <p class="text-white/70 mt-2" data-lang-fr="Spécialisation en machine learning, analyse prédictive, et gouvernance des données." data-lang-en="Specialization in machine learning, predictive analytics, and data governance."></p>
-            </div>
-            <div class="relative mb-12">
-              <div class="timeline-dot"></div>
-              <p class="text-violet-300 font-semibold" data-lang-fr="Publication Scientifique" data-lang-en="Scientific Publication"></p>
-              <h3 class="text-2xl font-bold mt-1" data-lang-fr="Auteur d'une étude sur l'influence de WhatsApp" data-lang-en="Authored paper on WhatsApp's influence"></h3>
-              <p class="text-white/70 mt-2" data-lang-fr="J'ai co-rédigé une étude sur l'impact de WhatsApp sur la communication, démontrant ma capacité à mener une recherche rigoureuse." data-lang-en="Co-authored a study on the impact of WhatsApp on communication, demonstrating my ability to conduct rigorous research."></p>
-              <a href="https://www.researchgate.net/publication/360497701_WhatsApp's_Influence_on_African_and_Urban_Communication_Satisfaction_The_Case_of_Cameroon" target="_blank" rel="noopener noreferrer" class="font-semibold text-violet-300 hover:text-violet-200 transition-colors mt-2 inline-block" data-lang-fr="Lire la publication →" data-lang-en="Read the publication →"></a>
-            </div>
-            <div class="relative">
-              <div class="timeline-dot"></div>
-              <p class="text-violet-300 font-semibold" data-lang-fr="2018 - 2020" data-lang-en="2018 - 2020"></p>
-              <h3 class="text-2xl font-bold mt-1" data-lang-fr="Master Systèmes d'Information" data-lang-en="Master's in Information Systems"></h3>
-              <p class="text-white/70 mt-2" data-lang-fr="Fondations en bases de données (SQL), BI et conception de systèmes décisionnels." data-lang-en="Foundations in databases (SQL), BI, and decision support system design."></p>
-            </div>
-          </div>
+    <!-- Formation & Recherche (ligne dédiée) -->
+    <section id="formation" class="section container">
+      <h2 class="text-4xl font-bold mb-6">Formation & Recherche</h2>
+      <div class="block timeline">
+        <div class="t-item"><span class="t-dot"></span><p class="text-violet-300 font-semibold">2024 – 2025</p><h3 class="text-2xl font-bold">MBA Big Data & IA – MBA ESG</h3><p class="text-white/70">ML, analytique prédictive, gouvernance data.</p></div>
+        <div class="t-item"><span class="t-dot"></span><p class="text-violet-300 font-semibold">Publication scientifique</p><h3 class="text-2xl font-bold">Influence de WhatsApp sur la communication (Cameroun)</h3><p class="text-white/70">Étude co-rédigée démontrant une démarche de recherche rigoureuse. <a class="text-indigo-300 underline" target="_blank" rel="noopener" href="https://www.researchgate.net/publication/360497701_WhatsApp's_Influence_on_African_and_Urban_Communication_Satisfaction_The_Case_of_Cameroon">Lire →</a></p></div>
+        <div class="t-item"><span class="t-dot"></span><p class="text-violet-300 font-semibold">2018 – 2020</p><h3 class="text-2xl font-bold">Master Systèmes d'Information</h3><p class="text-white/70">Bases de données (SQL), BI, systèmes décisionnels.</p></div>
+      </div>
+    </section>
+
+    <!-- Enseignant (ligne dédiée) -->
+    <section id="enseignant" class="section container">
+      <h2 class="text-4xl font-bold mb-6">Enseignant</h2>
+      <div class="block"><p class="text-white/70">Transmission des mathématiques et de l’informatique : la meilleure façon de maîtriser, c’est d’enseigner.</p></div>
+    </section>
+
+    <!-- Compétences Techniques (carré unique, ligne dédiée) -->
+    <section id="competences" class="section container">
+      <h2 class="text-4xl font-bold mb-6">Compétences Techniques</h2>
+      <div class="block">
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 rounded-full bg-white/10">Power BI</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Tableau</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Qlik</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">SAS</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Python</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">R</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Machine Learning</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Azure Data Factory</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Talend</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Airflow</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">SQL</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">BigQuery</span>
+          <span class="px-3 py-1 rounded-full bg-white/10">Snowflake</span>
         </div>
       </div>
     </section>
 
-    <!-- Arsenal -->
-    <section id="arsenal" class="fade-in">
-      <h2 class="text-5xl font-bold text-center mb-12" data-lang-fr="Mon Arsenal" data-lang-en="My Arsenal"></h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div>
-          <h3 class="text-3xl font-bold mb-6" data-lang-fr="Compétences Techniques" data-lang-en="Hard Skills"></h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="card p-6">
-              <h4 class="font-bold text-xl mb-3" data-lang-fr="BI & Reporting" data-lang-en="BI & Reporting"></h4>
-              <div class="flex flex-wrap gap-2 text-sm">
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="power-bi">Power BI</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="tableau">Tableau</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="qlik">Qlik Sense</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="sas">SAS</span>
-              </div>
-            </div>
-            <div class="card p-6">
-              <h4 class="font-bold text-xl mb-3" data-lang-fr="Data Science & Statistique" data-lang-en="Data Science & Statistics"></h4>
-              <div class="flex flex-wrap gap-2 text-sm">
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="python">Python</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="r">R</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="ml">Machine Learning</span>
-              </div>
-            </div>
-            <div class="card p-6">
-              <h4 class="font-bold text-xl mb-3" data-lang-fr="Data Engineering" data-lang-en="Data Engineering"></h4>
-              <div class="flex flex-wrap gap-2 text-sm">
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="azure">Azure Data Factory</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="talend">Talend</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="airflow">Airflow</span>
-              </div>
-            </div>
-            <div class="card p-6">
-              <h4 class="font-bold text-xl mb-3" data-lang-fr="Bases de Données" data-lang-en="Databases"></h4>
-              <div class="flex flex-wrap gap-2 text-sm">
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="sql">SQL</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="bigquery">BigQuery</span>
-                <span class="skill-item bg-white/10 py-1 px-3 rounded-full cursor-pointer" data-skill="snowflake">Snowflake</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="text-3xl font-bold mb-6" data-lang-fr="Qualités Humaines" data-lang-en="Soft Skills"></h3>
-          <div class="space-y-4">
-            <div class="card p-4"><p><strong class="text-violet-300" data-lang-fr="Analyse & Synthèse :" data-lang-en="Analysis & Synthesis:"></strong> <span data-lang-fr="Transformer la complexité en clarté." data-lang-en="Transforming complexity into clarity."></span></p></div>
-            <div class="card p-4"><p><strong class="text-violet-300" data-lang-fr="Rigueur & Sens du Détail :" data-lang-en="Rigor & Attention to Detail:"></strong> <span data-lang-fr="Assurer la fiabilité à chaque étape." data-lang-en="Ensuring reliability at every step."></span></p></div>
-            <div class="card p-4"><p><strong class="text-violet-300" data-lang-fr="Curiosité Intellectuelle :" data-lang-en="Intellectual Curiosity:"></strong> <span data-lang-fr="Apprendre et innover en continu." data-lang-en="Continuously learning and innovating."></span></p></div>
-            <div class="card p-4"><p><strong class="text-violet-300" data-lang-fr="Autonomie & Proactivité :" data-lang-en="Autonomy & Proactivity:"></strong> <span data-lang-fr="Anticiper les besoins et prendre l'initiative." data-lang-en="Anticipating needs and taking initiative."></span></p></div>
-          </div>
-        </div>
+    <!-- Qualités Humaines (carré unique, ligne dédiée) -->
+    <section id="softskills" class="section container">
+      <h2 class="text-4xl font-bold mb-6">Qualités Humaines</h2>
+      <div class="block">
+        <ul class="space-y-3">
+          <li><strong class="text-indigo-300">Analyse & Synthèse :</strong> transformer la complexité en clarté.</li>
+          <li><strong class="text-indigo-300">Rigueur & Détail :</strong> fiabilité à chaque étape.</li>
+          <li><strong class="text-indigo-300">Curiosité :</strong> apprentissage continu et innovation.</li>
+          <li><strong class="text-indigo-300">Autonomie & Proactivité :</strong> anticiper et agir.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="missions-projets" class="fade-in">
-      <h2 class="text-5xl font-bold text-center mb-12" data-lang-fr="Missions Stratégiques" data-lang-en="Strategic Missions"></h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <article class="card mission-card p-8" data-missions="python ml">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Agent d'Analyse Stratégique IA" data-lang-en="Strategic Analysis AI Agent"></h3>
-          <p class="text-white/70 mb-4" data-lang-fr="Création de l'agent IA 'ARIA' pour transformer les données brutes en insights actionnables et accélérer la prise de décision." data-lang-en="Created the 'ARIA' AI agent to transform raw data into actionable insights and accelerate decision-making."></p>
-          <a href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener noreferrer" class="font-semibold text-violet-300 hover:text-violet-200 transition-colors" data-lang-fr="Explorer l'agent →" data-lang-en="Explore the agent →"></a>
-          <p class="text-xs text-white/40 mt-3">Preuve: logs de sessions, rapports exportés, vidéos démo.</p>
-        </article>
-        <article class="card mission-card p-8" data-missions="ml python sql">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Scoring Prédictif des Leads" data-lang-en="Predictive Lead Scoring"></h3>
-          <p class="text-white/70 mb-4" data-lang-fr="Développement d'un modèle de Machine Learning pour prioriser les leads commerciaux, augmentant le taux de conversion de 30%." data-lang-en="Developed a Machine Learning model to prioritize sales leads, increasing the conversion rate by 30%."></p>
-          <a href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener noreferrer" class="font-semibold text-violet-300 hover:text-violet-200 transition-colors" data-lang-fr="Explorer le modèle →" data-lang-en="Explore the model →"></a>
-          <p class="text-xs text-white/40 mt-3">Preuve: A/B 12 semaines, n=4 200 leads.</p>
-        </article>
-        <article class="card mission-card p-8" data-missions="python">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Automatisation du Nettoyage de Données" data-lang-en="Data Cleaning Automation"></h3>
-          <p class="text-white/70 mb-4" data-lang-fr="Création de l'app 'Data Clean' qui réduit le temps de préparation des données de 90% grâce à l'automatisation intelligente." data-lang-en="Created the 'Data Clean' app, which reduces data preparation time by 90% through intelligent automation."></p>
-          <a href="https://data-clean2.vercel.app/" target="_blank" rel="noopener noreferrer" class="font-semibold text-violet-300 hover:text-violet-200 transition-colors" data-lang-fr="Explorer l'outil →" data-lang-en="Explore the tool →"></a>
-          <p class="text-xs text-white/40 mt-3">Preuve: temps moyen de préparation avant/après (15 min → 1 min).</p>
-        </article>
-        <article class="card mission-card p-8" data-missions="python ml">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Accélération de l'Analyse Juridique" data-lang-en="Legal Analysis Acceleration"></h3>
-          <p class="text-white/70 mb-4" data-lang-fr="Développement de 'ContraScope', une IA pour dialoguer avec les contrats et réduire le temps d'analyse de plusieurs heures à quelques minutes." data-lang-en="Developed 'ContraScope', an AI to converse with contracts, reducing analysis time from hours to minutes."></p>
-          <a href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener noreferrer" class="font-semibold text-violet-300 hover:text-violet-200 transition-colors" data-lang-fr="Explorer l'IA →" data-lang-en="Explore the AI →"></a>
-          <p class="text-xs text-white/40 mt-3">Preuve: benchmark interne, 20 contrats, réduction x15.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Passion -->
-    <section id="passion" class="fade-in">
-      <h2 class="text-5xl font-bold text-center mb-12" data-lang-fr="Un Écosystème de Passion" data-lang-en="An Ecosystem of Passion"></h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card p-8 text-center">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Membre Actif" data-lang-en="Active Member"></h3>
-          <p class="text-white/70" data-lang-fr="Impliqué dans la communauté DATA-IB (Paris) pour échanger, apprendre et partager sur les dernières innovations du secteur." data-lang-en="Involved in the DATA-IB community (Paris) to exchange, learn, and share about the latest industry innovations."></p>
-        </div>
-        <div class="card p-8 text-center">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Enseignant" data-lang-en="Teacher"></h3>
-          <p class="text-white/70" data-lang-fr="Je transmets ma passion pour les mathématiques et l'informatique, car la meilleure façon de maîtriser un sujet est de l'enseigner." data-lang-en="I share my passion for mathematics and computer science, because the best way to master a subject is to teach it."></p>
-        </div>
-        <div class="card p-8 text-center">
-          <h3 class="text-2xl font-bold mb-3" data-lang-fr="Veille Continue" data-lang-en="Continuous Watch"></h3>
-          <p class="text-white/70" data-lang-fr="Passionné par les nouvelles technologies et les projets open-source, je suis constamment à la recherche des prochains outils qui révolutionneront la data." data-lang-en="Passionate about new technologies and open-source projects, I am constantly looking for the next tools that will revolutionize data."></p>
-        </div>
-      </div>
+    <!-- Missions Stratégiques (en bas) -->
+    <section id="missions" class="section container">
+      <h2 class="text-4xl font-bold mb-6">Missions Stratégiques</h2>
+      <article class="block fade-in mb-4"><h3 class="text-2xl font-bold mb-1">Agent IA « ARIA »</h3><p class="text-white/70">De la donnée brute aux insights actionnables (décision accélérée).</p><a class="underline text-indigo-300" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener">Démo →</a></article>
+      <article class="block fade-in mb-4"><h3 class="text-2xl font-bold mb-1">Scoring Prédictif des Leads</h3><p class="text-white/70">Priorisation ML des leads (+30% conversion).</p><a class="underline text-indigo-300" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener">Démo →</a></article>
+      <article class="block fade-in mb-4"><h3 class="text-2xl font-bold mb-1">Data Clean</h3><p class="text-white/70">Préparation des données -90% de temps via automatisation.</p><a class="underline text-indigo-300" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener">Démo →</a></article>
+      <article class="block fade-in"><h3 class="text-2xl font-bold mb-1">ContraScope</h3><p class="text-white/70">Dialogue avec les contrats, analyse de plusieurs heures → minutes.</p><a class="underline text-indigo-300" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener">Démo →</a></article>
     </section>
   </main>
 
-  <footer class="container text-center mt-10 md:mt-20 py-10 fade-in">
-    <h3 class="text-5xl font-bold mb-6" data-lang-fr="Construisons le futur de la data." data-lang-en="Let's build the future of data."></h3>
-    <p class="text-lg text-white/70 mb-10 max-w-xl mx-auto" data-lang-fr="Je suis prêt à relever vos défis les plus complexes. Discutons de la manière dont je peux apporter de la valeur à votre entreprise." data-lang-en="I am ready to tackle your most complex challenges. Let's discuss how I can bring value to your company."></p>
-    <a id="contact-btn" href="mailto:nfindaroger@gmail.com" class="inline-block bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold py-4 px-12 rounded-lg hover:from-violet-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-violet-500/30 transform hover:scale-105" data-lang-fr="Me Contacter" data-lang-en="Contact Me"></a>
-    <div class="flex justify-center space-x-6 text-white/60 mt-12">
-      <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener noreferrer" class="hover:text-violet-300 transition-colors" aria-label="GitHub">GitHub</a>
-      <span>|</span>
-      <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener noreferrer" class="hover:text-violet-300 transition-colors" aria-label="LinkedIn">LinkedIn</a>
+  <footer class="container text-center text-white/60 pb-12">&copy; 2025 Ivan Roger NFINDA CHOUCHINE</footer>
+
+  <!-- Guide overlay with spotlight -->
+  <div id="guide">
+    <div class="dim"></div>
+    <div id="spotlight"></div>
+    <div class="card">
+      <div class="text-sm opacity-80 mb-1" id="g-count">1/6</div>
+      <div class="text-lg font-semibold mb-1" id="g-title">Bienvenue</div>
+      <p class="text-white/80" id="g-text">Je vais vous guider dans ce portfolio. Suivez le projecteur ✨</p>
+      <div class="mt-3 flex items-center justify-between">
+        <div class="text-xs opacity-70">Astuce: <kbd class="px-1.5 py-0.5 bg-white/10 rounded">P</kbd> pour lecture auto</div>
+        <div class="space-x-2">
+          <button id="g-prev" class="btn">Précédent</button>
+          <button id="g-next" class="btn">Suivant</button>
+          <button id="g-close" class="btn">Fermer</button>
+        </div>
+      </div>
     </div>
-    <p class="text-sm text-white/50 mt-4">&copy; 2025 Ivan Roger NFINDA CHOUCHINE</p>
-  </footer>
+  </div>
+
+  <!-- Command palette -->
+  <div id="cmdk" aria-hidden="true">
+    <div class="panel">
+      <input id="cmdk-input" type="text" placeholder="Rechercher une commande… (Aller à, Présenter, Langue, Thème, CV)" />
+      <ul id="cmdk-list"></ul>
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-  // ===== Language =====
-  let currentLang = localStorage.getItem('lang') || 'fr';
-  const $ = (sel, root=document) => root.querySelector(sel);
-  const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-
-  function updateTexts(){
-    $$('[data-lang-fr]').forEach(el=>{
-      const text = el.getAttribute(`data-lang-${currentLang}`);
-      if(text !== null) el.innerHTML = text;
-    });
-    const toggle = $('#lang-toggle');
-    if(toggle){toggle.textContent = currentLang==='fr' ? 'Switch to English' : 'Passer en Français'}
-    document.documentElement.lang = currentLang;
-  }
-  function setLang(lang){ currentLang = lang; localStorage.setItem('lang', lang); updateTexts(); animateRoles(); }
-
-  document.addEventListener('DOMContentLoaded',()=>{
-    const langToggle = $('#lang-toggle');
-    if(langToggle){ langToggle.addEventListener('click',()=> setLang(currentLang==='fr' ? 'en' : 'fr')); }
-    updateTexts();
-
-    // ===== Cursor follow =====
-    const cursorDot = $('.cursor-dot');
-    const cursorGlow = $('.cursor-glow');
-    const hoverables = $$('a, button, .skill-item');
-    hoverables.forEach(el=>{
-      el.addEventListener('mouseenter', ()=> cursorDot.classList.add('is-big'));
-      el.addEventListener('mouseleave', ()=> cursorDot.classList.remove('is-big'));
-    });
-    window.addEventListener('mousemove', e=>{
-      const {clientX:x, clientY:y} = e;
-      cursorDot.style.left = x+'px';
-      cursorDot.style.top  = y+'px';
-      cursorGlow.style.left = x+'px';
-      cursorGlow.style.top  = y+'px';
-    });
-
-    // ===== Card glow track & tilt =====
-    $$('.card').forEach(card=>{
-      card.addEventListener('mousemove', e=>{
-        const r = card.getBoundingClientRect();
-        const x = e.clientX - r.left;
-        const y = e.clientY - r.top;
-        card.style.setProperty('--gx', x+'px');
-        card.style.setProperty('--gy', y+'px');
-        // tilt
-        const rx = ((y/r.height)-.5)*6;
-        const ry = ((x/r.width)-.5)*-6;
-        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-      });
-      card.addEventListener('mouseleave', ()=>{
-        card.style.transform = '';
-      });
-    });
-
-    // ===== One IntersectionObserver for fades + timeline =====
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(!e.isIntersecting) return;
-        e.target.classList.add('in-view');
-        io.unobserve(e.target);
-      })
-    },{threshold:.2});
-    $$('.fade-in, .timeline, .timeline > div').forEach(el=> io.observe(el));
-
-    // ===== Role ticker =====
-    const rolesContainer = $('.animated-role');
-    const roles_fr = ["Data Analyst","Business Analyst","Architecte IA","Chargé d'Études Statistiques"];
-    const roles_en = ["Data Analyst","Business Analyst","AI Architect","Statistical Researcher"];
-    let roleIndex = 0, roleTimer;
-    function animateRoles(){
-      clearInterval(roleTimer);
-      const list = currentLang==='fr'?roles_fr:roles_en;
-      // measure widest
-      const probe = document.createElement('span');
-      probe.style.position='absolute';probe.style.visibility='hidden';probe.style.whiteSpace='nowrap';
-      document.body.appendChild(probe);
-      let maxW = 0; list.forEach(t=>{ probe.textContent=t; maxW = Math.max(maxW, probe.clientWidth); });
-      document.body.removeChild(probe);
-      rolesContainer.style.width = maxW+'px';
-      rolesContainer.style.height = '1.2em';
-      rolesContainer.innerHTML = '';
-      const span = document.createElement('span'); span.textContent = list[roleIndex]; span.style.opacity = '1'; rolesContainer.appendChild(span);
-      roleTimer = setInterval(()=>{
-        const cur = rolesContainer.querySelector('span');
-        if(cur){ cur.style.opacity='0'; cur.style.transform='translateY(-10px)'; }
-        setTimeout(()=>{
-          roleIndex = (roleIndex+1)%list.length;
-          rolesContainer.innerHTML = '';
-          const next = document.createElement('span');
-          next.textContent = list[roleIndex]; next.style.opacity='0'; next.style.transform='translateY(10px)';
-          rolesContainer.appendChild(next);
-          setTimeout(()=>{ next.style.opacity='1'; next.style.transform='translateY(0)'; },50);
-        },300);
-      }, 2000);
-    }
-    animateRoles();
-
-    // ===== Confetti on contact click (tiny, canvas-free) =====
-    const contact = $('#contact-btn');
-    contact?.addEventListener('click', ()=>{
-      for(let i=0;i<16;i++){
-        const dot=document.createElement('i');
-        dot.style.position='fixed';dot.style.width='6px';dot.style.height='6px';dot.style.borderRadius='9999px';
-        dot.style.background=`hsl(${Math.random()*360},80%,70%)`;
-        dot.style.left = (innerWidth/2 + (Math.random()-0.5)*80)+'px';
-        dot.style.top = (innerHeight/2)+'px';
-        dot.style.pointerEvents='none';dot.style.zIndex=9999;document.body.appendChild(dot);
-        const dx=(Math.random()-0.5)*2, dy=-Math.random()*2-1; let yv=dy, xv=dx;
-        let life=0; const id = setInterval(()=>{
-          const x = parseFloat(dot.style.left); const y = parseFloat(dot.style.top);
-          dot.style.left = (x + xv*6)+'px'; dot.style.top = (y + yv*6)+'px';
-          yv += .15; life++; if(life>30){ clearInterval(id); dot.remove(); }
-        },16);
-      }
-    });
-
-    // ===== Three.js background =====
-    const canvas = document.getElementById('interactive-bg');
+  (function(){
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = matchMedia('(max-width: 768px)').matches;
 
-    let scene, camera, renderer, points, lines;
+    // ===== Cursor =====
+    const dot = document.querySelector('.cursor-dot');
+    const glow = document.querySelector('.cursor-glow');
+    window.addEventListener('mousemove', e=>{ dot.style.left=e.clientX+'px'; dot.style.top=e.clientY+'px'; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
+    document.querySelectorAll('a,button').forEach(el=>{ el.addEventListener('mouseenter',()=>dot.classList.add('big')); el.addEventListener('mouseleave',()=>dot.classList.remove('big')); });
+
+    // ===== Three.js: particles + constellations + aurora shader =====
+    const canvas = document.getElementById('interactive-bg');
+    let scene, camera, renderer, points, lines, aurora;
     function init3D(){
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.1, 2000);
@@ -437,40 +234,161 @@
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
       renderer.setClearColor(0x000000, 0);
 
-      const count = isMobile ? 700 : 1600;
+      // Particles
+      const count = isMobile? 600 : 1400;
       const positions = new Float32Array(count*3);
-      for(let i=0;i<count*3;i++){ positions[i] = (Math.random()-.5)*1200 }
-      const geo = new THREE.BufferGeometry();
-      geo.setAttribute('position', new THREE.BufferAttribute(positions,3));
-      const mat = new THREE.PointsMaterial({ size: 1.1, color: 0x9aa0aa, transparent: true, opacity:.55, blending: THREE.AdditiveBlending });
-      points = new THREE.Points(geo, mat);
+      for(let i=0;i<count*3;i++){ positions[i] = (Math.random()-.5)*1200; }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(positions,3));
+      const pMat = new THREE.PointsMaterial({ size: 1.1, color: 0x9aa0aa, transparent:true, opacity:.55, blending:THREE.AdditiveBlending });
+      points = new THREE.Points(pGeo, pMat);
       scene.add(points);
 
-      // faint horizon gradient plane
-      const gradGeo = new THREE.PlaneGeometry(4000, 4000);
-      const gradMat = new THREE.MeshBasicMaterial({color:0x0a0720, transparent:true, opacity:.5});
-      const grad = new THREE.Mesh(gradGeo, gradMat); grad.position.z = -800; scene.add(grad);
+      // Constellations (dynamic short-range links)
+      const maxLinks = 3, minDist=40, maxDist=140;
+      const lGeo = new THREE.BufferGeometry();
+      const idxPairs = [];
+      const pos = pGeo.attributes.position;
+      for(let i=0;i<count;i++){
+        let links=0;
+        for(let j=i+1;j<Math.min(i+22,count);j++){ // local neighborhood only for perf
+          const dx=pos.getX(i)-pos.getX(j), dy=pos.getY(i)-pos.getY(j), dz=pos.getZ(i)-pos.getZ(j);
+          const d=Math.sqrt(dx*dx+dy*dy+dz*dz);
+          if(d>minDist && d<maxDist){ idxPairs.push(i,j); links++; if(links>=maxLinks) break; }
+        }
+      }
+      const linePositions = new Float32Array(idxPairs.length*3);
+      lGeo.setAttribute('position', new THREE.BufferAttribute(linePositions,3));
+      const lMat = new THREE.LineBasicMaterial({ color:0xa5b4fc, transparent:true, opacity:.25 });
+      lines = new THREE.LineSegments(lGeo, lMat);
+      scene.add(lines);
+
+      // Aurora shader plane (additive, cinematic)
+      const auroraUniforms = {
+        uTime: { value: 0 },
+        uResolution: { value: new THREE.Vector2(innerWidth, innerHeight) }
+      };
+      const auroraMat = new THREE.ShaderMaterial({
+        uniforms: auroraUniforms,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        depthWrite: false,
+        vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+        fragmentShader: `precision highp float; varying vec2 vUv; uniform float uTime; uniform vec2 uResolution;
+          // Simplex-esque noise (cheap)
+          float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
+          float noise(vec2 p){ vec2 i=floor(p); vec2 f=fract(p); float a=hash(i); float b=hash(i+vec2(1.0,0.0)); float c=hash(i+vec2(0.0,1.0)); float d=hash(i+vec2(1.0,1.0)); vec2 u=f*f*(3.0-2.0*f); return mix(a,b,u.x)+ (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y; }
+          void main(){ vec2 uv=vUv*3.0; float t=uTime*0.06; float n=0.0; float amp=0.6; float fr=1.0; for(int i=0;i<4;i++){ n += noise(uv*fr + t)*amp; fr*=2.0; amp*=0.5; }
+            vec3 col = mix(vec3(0.1,0.0,0.2), vec3(0.5,0.6,1.0), n);
+            col += vec3(0.6,0.4,1.0)*smoothstep(0.6,1.0,n)*0.6;
+            gl_FragColor = vec4(col, 0.18);
+          }`
+      });
+      const plane = new THREE.PlaneGeometry(2,2);
+      aurora = new THREE.Mesh(plane, auroraMat);
+      aurora.position.z = -1; // full-screen quad via post space
+      const auroraScene = new THREE.Scene();
+      const auroraCam = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+      scene.add(aurora); // overlay in same scene (simpler)
 
       window.addEventListener('resize', onResize);
       document.body.addEventListener('mousemove', onMouse);
       animate();
-    }
-    function onResize(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); }
-    let mx=0,my=0; function onMouse(e){ mx = e.clientX - innerWidth/2; my = e.clientY - innerHeight/2; }
 
-    function animate(){
-      if(reduce) return; // respect reduced motion
-      requestAnimationFrame(animate);
-      const t = Date.now()*0.00006;
-      camera.position.x += (mx - camera.position.x)*0.03;
-      camera.position.y += (-my - camera.position.y)*0.03;
-      camera.lookAt(scene.position);
-      if(points){ points.rotation.y = t*2; points.material.size = 1.1 + Math.sin(t*30)*0.2; }
-      renderer.render(scene, camera);
+      function onResize(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); auroraMat.uniforms.uResolution.value.set(innerWidth, innerHeight); }
+      let mx=0,my=0; function onMouse(e){ mx=e.clientX-innerWidth/2; my=e.clientY-innerHeight/2; }
+      function animate(){ if(reduce) return; requestAnimationFrame(animate); const t=Date.now()*0.001; camera.position.x+=(mx-camera.position.x)*0.03; camera.position.y+=(-my-camera.position.y)*0.03; camera.lookAt(scene.position);
+        // rotate particles
+        if(points){ points.rotation.y = t*0.06; }
+        // update lines positions from points
+        const lp=lines.geometry.attributes.position; const pp=points.geometry.attributes.position; for(let k=0;k<idxPairs.length;k++){ const a=idxPairs[k]; const b=idxPairs[++k]; lp.setXYZ(k-1, pp.getX(a), pp.getY(a), pp.getZ(a)); lp.setXYZ(k, pp.getX(b), pp.getY(b), pp.getZ(b)); }
+        lp.needsUpdate=true;
+        // aurora time
+        auroraMat.uniforms.uTime.value = t;
+        renderer.render(scene, camera);
+      }
     }
+    try{ init3D(); }catch(e){ console.warn('WebGL disabled', e); canvas.style.display='none'; }
 
-    try{ init3D(); }catch(err){ console.warn('WebGL off', err); canvas.style.display='none'; }
-  });
+    // ===== Guide + Presenter (with progress bar) =====
+    const steps=[
+      {sel:'header', title:'Bienvenue', text:'SYNAPSE : tout est en une seule colonne. Suivez le projecteur.'},
+      {sel:'#facettes', title:'Mes Facettes', text:'Quatre casquettes, quatre blocs — chacun sur sa propre ligne.'},
+      {sel:'#parcours', title:'Parcours', text:'Expériences clés et impact mesurable.'},
+      {sel:'#formation', title:'Formation & Recherche', text:'MBA, publication et fondamentaux techniques.'},
+      {sel:'#enseignant', title:'Enseignant', text:'Transmettre pour mieux maîtriser.'},
+      {sel:'#competences', title:'Compétences Techniques', text:'Stack data + ML, outillage industriel.'},
+      {sel:'#softskills', title:'Qualités Humaines', text:'Rigueur, curiosité, autonomie, proactivité.'},
+      {sel:'#missions', title:'Missions Stratégiques', text:'Projets concrets avec démos live.'}
+    ];
+    let idx=0, playing=false, voice=false, stepMs=3500, progTimer=null;
+    const guide=document.getElementById('guide'), spot=document.getElementById('spotlight');
+    const gPrev=document.getElementById('g-prev'), gNext=document.getElementById('g-next'), gClose=document.getElementById('g-close');
+    const gCount=document.getElementById('g-count'), gTitle=document.getElementById('g-title'), gText=document.getElementById('g-text');
+    const bar=document.getElementById('presenter-progress');
+
+    function speak(msg){ try{ const u=new SpeechSynthesisUtterance(msg); u.lang=document.documentElement.lang||'fr-FR'; speechSynthesis.cancel(); speechSynthesis.speak(u);}catch{} }
+    function spotlight(sel){ const el=document.querySelector(sel); if(!el) return; const r=el.getBoundingClientRect(); spot.style.boxShadow='0 0 0 9999px rgba(0,0,0,.6), 0 0 0 2px rgba(167,139,250,.8)'; spot.style.clipPath=`inset(${Math.max(r.top-16,0)}px ${Math.max(innerWidth-(r.right+16),0)}px ${Math.max(innerHeight-(r.bottom+16),0)}px ${Math.max(r.left-16,0)}px round 16px)`; el.scrollIntoView({behavior:'smooth', block:'center'}); }
+    function showGuide(){ guide.classList.add('active'); updateStep(); }
+    function hideGuide(){ guide.classList.remove('active'); stopPresent(); }
+    function updateStep(){ const s=steps[idx]; gCount.textContent=`${idx+1}/${steps.length}`; gTitle.textContent=s.title; gText.textContent=s.text; spotlight(s.sel); if(voice){ speak(`${s.title}. ${s.text}`); } }
+    function nextStep(){ idx=Math.min(idx+1, steps.length-1); updateStep(); }
+    function prevStep(){ idx=Math.max(idx-1, 0); updateStep(); }
+    function playPresent(){ playing=true; voice=true; bar.style.width='0%'; animateBar(); (function loop(){ if(!playing) return; setTimeout(()=>{ if(idx<steps.length-1){ idx++; updateStep(); animateBar(); loop(); } else { stopPresent(); } }, stepMs); })(); }
+    function animateBar(){ bar.style.transition='none'; bar.style.width='0%'; requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ bar.style.transition=`width ${stepMs}ms linear`; bar.style.width='100%'; }); }); }
+    function stopPresent(){ playing=false; bar.style.width='0%'; try{ speechSynthesis.cancel(); }catch{} }
+
+    document.getElementById('guide-btn').addEventListener('click', showGuide);
+    document.getElementById('present-btn').addEventListener('click', ()=>{ if(guide.classList.contains('active')===false) showGuide(); playPresent(); });
+    gNext.addEventListener('click', nextStep); gPrev.addEventListener('click', prevStep); gClose.addEventListener('click', hideGuide);
+    document.addEventListener('keydown', e=>{ const k=e.key.toLowerCase(); if(k==='g'){ showGuide(); } if(k==='p'){ if(!playing){ if(!guide.classList.contains('active')) showGuide(); playPresent(); } else { stopPresent(); } } if(k==='escape'){ hideGuide(); document.getElementById('cmdk').classList.remove('active'); } });
+
+    // ===== Command palette (⌘/Ctrl+K) =====
+    const palette=document.getElementById('cmdk'); const input=document.getElementById('cmdk-input'); const list=document.getElementById('cmdk-list');
+    const commands=[
+      {label:'Aller à : Mes Facettes', keywords:'goto facettes', run:()=>document.querySelector('#facettes').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Parcours Professionnel', keywords:'goto parcours', run:()=>document.querySelector('#parcours').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Formation & Recherche', keywords:'goto formation', run:()=>document.querySelector('#formation').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Enseignant', keywords:'goto enseignant teacher', run:()=>document.querySelector('#enseignant').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Compétences Techniques', keywords:'goto competences skills', run:()=>document.querySelector('#competences').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Qualités Humaines', keywords:'goto soft skills', run:()=>document.querySelector('#softskills').scrollIntoView({behavior:'smooth'})},
+      {label:'Aller à : Missions Stratégiques', keywords:'goto missions projects', run:()=>document.querySelector('#missions').scrollIntoView({behavior:'smooth'})},
+      {label:'Présenter (lecture automatique)', keywords:'present autoplay', run:()=>{ if(!document.getElementById('guide').classList.contains('active')) showGuide(); playPresent(); }},
+      {label:'Basculer langue FR/EN', keywords:'language langue english french', run:()=>toggleLang()},
+      {label:'Télécharger le CV', keywords:'cv resume', run:()=>window.open('CV+NFINDA-IVAN.pdf','_blank')},
+    ];
+    function openPalette(){ palette.classList.add('active'); input.value=''; renderList(''); setTimeout(()=>input.focus(),10); }
+    function closePalette(){ palette.classList.remove('active'); }
+    function renderList(q){ list.innerHTML=''; const ql=q.toLowerCase(); const res=commands.filter(c=> c.label.toLowerCase().includes(ql)||c.keywords.includes(ql)); res.forEach((c,i)=>{ const li=document.createElement('li'); li.textContent=c.label; li.setAttribute('tabindex','0'); li.setAttribute('role','option'); if(i===0) li.setAttribute('aria-selected','true'); li.addEventListener('click',()=>{ c.run(); closePalette(); }); list.appendChild(li); }); }
+    input.addEventListener('input', e=>renderList(e.target.value));
+    document.addEventListener('keydown', e=>{ if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openPalette(); } });
+    document.getElementById('cmdk-btn').addEventListener('click', openPalette);
+    palette.addEventListener('click', e=>{ if(e.target===palette) closePalette(); });
+
+    // Keyboard nav inside palette
+    list.addEventListener('keydown', e=>{ const items=[...list.querySelectorAll('li')]; const i=items.findIndex(n=>n.getAttribute('aria-selected')==='true'); if(e.key==='ArrowDown'){ e.preventDefault(); const ni=items[Math.min(i+1,items.length-1)]; items.forEach(n=>n.removeAttribute('aria-selected')); ni?.setAttribute('aria-selected','true'); ni?.focus(); } if(e.key==='ArrowUp'){ e.preventDefault(); const pi=items[Math.max(i-1,0)]; items.forEach(n=>n.removeAttribute('aria-selected')); pi?.setAttribute('aria-selected','true'); pi?.focus(); } if(e.key==='Enter'){ e.preventDefault(); const sel=items.find(n=>n.getAttribute('aria-selected')==='true'); const idx=[...list.children].indexOf(sel); res=commands.filter(c=> c.label.toLowerCase().includes(input.value.toLowerCase())||c.keywords.includes(input.value.toLowerCase())); res[idx]?.run(); closePalette(); } });
+
+    // ===== Language toggle (FR/EN minimal) =====
+    let lang='fr';
+    function toggleLang(){ lang = (lang==='fr')?'en':'fr'; document.documentElement.lang=lang; const dict={
+      fr:{ syn:'Bienvenue dans ', sub:'Le portfolio single-column d’Ivan Roger Nfinda : chaque bloc sur sa propre ligne, animé et interactif.', guide:'Je vais vous guider dans ce portfolio. Suivez le projecteur ✨', present:'Présenter', fac:'Mes Facettes', par:'Parcours Professionnel', form:'Formation & Recherche', ens:'Enseignant', comp:'Compétences Techniques', soft:'Qualités Humaines', miss:'Missions Stratégiques' },
+      en:{ syn:'Welcome to ', sub:"Ivan Roger Nfinda's single-column portfolio: one block per line, animated & interactive.", guide:'I will guide you through this portfolio. Follow the spotlight ✨', present:'Present', fac:'My Facets', par:'Professional Journey', form:'Education & Research', ens:'Teacher', comp:'Hard Skills', soft:'Soft Skills', miss:'Strategic Missions' }
+    }[lang];
+    document.querySelector('header h1').innerHTML = (lang==='fr'? 'Bienvenue dans ':'Welcome to ') + '<span class="bg-gradient-to-r from-indigo-200 to-fuchsia-200 bg-clip-text text-transparent">SYNAPSE</span>';
+    document.querySelector('header p').textContent=dict.sub;
+    document.querySelector('#g-title').textContent = (lang==='fr'?'Bienvenue':'Welcome');
+    document.querySelector('#g-text').textContent = dict.guide;
+    document.querySelector('#facettes h2').textContent=dict.fac;
+    document.querySelector('#parcours h2').textContent=dict.par;
+    document.querySelector('#formation h2').textContent=dict.form;
+    document.querySelector('#enseignant h2').textContent=dict.ens;
+    document.querySelector('#competences h2').textContent=dict.comp;
+    document.querySelector('#softskills h2').textContent=dict.soft;
+    document.querySelector('#missions h2').textContent=dict.miss;
+    }
+    document.getElementById('lang-btn').addEventListener('click', toggleLang);
+
+  })();
   </script>
 </body>
 </html>
