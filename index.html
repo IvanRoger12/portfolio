@@ -41,22 +41,25 @@
       50%{transform:translateZ(0) scale(1.015)}
     }
 
-    /* --- NOUVEAU: Arrière-plan de mots data --- */
+    /* --- MODIFIÉ: Arrière-plan de mots data qui défilent --- */
     #data-word-cloud{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;pointer-events:none}
-    #data-word-cloud span{position:absolute;color:rgba(167,139,250,0.08);font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4rem);animation:float-words 20s linear infinite;opacity:0}
-    @keyframes float-words{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh) translateX(20vw);opacity:0}}
-    #data-word-cloud span:nth-of-type(1){top:20%;left:10%;animation-duration:25s;animation-delay:0s}
-    #data-word-cloud span:nth-of-type(2){top:50%;left:80%;animation-duration:30s;animation-delay:-5s}
-    #data-word-cloud span:nth-of-type(3){top:80%;left:25%;animation-duration:22s;animation-delay:-10s}
-    #data-word-cloud span:nth-of-type(4){top:10%;left:70%;animation-duration:35s;animation-delay:-2s}
-    #data-word-cloud span:nth-of-type(5){top:60%;left:5%;animation-duration:28s;animation-delay:-15s;font-size:clamp(3rem,7vw,6rem)}
-    #data-word-cloud span:nth-of-type(6){top:90%;left:90%;animation-duration:24s;animation-delay:-8s}
-    #data-word-cloud span:nth-of-type(7){top:5%;left:40%;animation-duration:32s;animation-delay:-18s}
-    #data-word-cloud span:nth-of-type(8){top:40%;left:45%;animation-duration:26s;animation-delay:-3s}
-    #data-word-cloud span:nth-of-type(9){top:75%;left:60%;animation-duration:29s;animation-delay:-12s}
-    #data-word-cloud span:nth-of-type(10){top:30%;left:90%;animation-duration:23s;animation-delay:-6s}
+    #data-word-cloud span{position:absolute;color:rgba(167,139,250,0.08);font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4rem);animation:scroll-words linear infinite;}
+    @keyframes scroll-words{
+        from { transform: translateY(100vh); }
+        to { transform: translateY(-50vh); }
+    }
+    #data-word-cloud span:nth-of-type(1) { left: 10%; animation-duration: 25s; animation-delay: 0s; }
+    #data-word-cloud span:nth-of-type(2) { left: 80%; animation-duration: 30s; animation-delay: 5s; }
+    #data-word-cloud span:nth-of-type(3) { left: 25%; animation-duration: 22s; animation-delay: 10s; }
+    #data-word-cloud span:nth-of-type(4) { left: 70%; animation-duration: 35s; animation-delay: 2s; }
+    #data-word-cloud span:nth-of-type(5) { left: 5%; animation-duration: 28s; animation-delay: 15s; font-size: clamp(3rem,7vw,6rem); }
+    #data-word-cloud span:nth-of-type(6) { left: 90%; animation-duration: 24s; animation-delay: 8s; }
+    #data-word-cloud span:nth-of-type(7) { left: 40%; animation-duration: 32s; animation-delay: 18s; }
+    #data-word-cloud span:nth-of-type(8) { left: 45%; animation-duration: 26s; animation-delay: 3s; }
+    #data-word-cloud span:nth-of-type(9) { left: 60%; animation-duration: 29s; animation-delay: 12s; }
+    #data-word-cloud span:nth-of-type(10) { left: 95%; animation-duration: 23s; animation-delay: 6s; }
 
-    /* --- MODIFICATION: Boutons lumineux --- */
+    /* --- MODIFIÉ: Boutons lumineux et animés --- */
     .btn-primary, .btn-secondary {
       position: relative;
       overflow: hidden;
@@ -82,7 +85,29 @@
     .btn-primary:hover{transform:translateY(-2px) scale(1.04);box-shadow: 0 0 15px 4px rgba(167, 139, 250, 0.5), 0 0 40px 10px rgba(124, 58, 237, 0.35);}
     .btn-secondary{display:inline-block;background:rgba(255,255,255,.08);color:#fff;font-weight:600;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;transition:all .25s ease;border:1px solid rgba(255,255,255,.18)}
     .btn-secondary:hover{background:rgba(255,255,255,.16);transform:translateY(-2px) scale(1.04); box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.18);}
+    
+    /* NOUVEAU: Animation de pulsation pour les boutons du header */
+    @keyframes pulse-button {
+      50% { transform: scale(1.03); }
+    }
+    header .btn-primary, header .btn-secondary {
+        animation: pulse-button 3s infinite ease-in-out;
+    }
+    header .btn-primary:hover, header .btn-secondary:hover {
+        animation-play-state: paused; /* Stoppe la pulsation au survol pour laisser place à l'effet de hover */
+    }
 
+    /* NOUVEAU: Animation pour les titres de section */
+    .section h2 {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .section h2.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
     /* Lang switch */
     #lang-switch{position:fixed;right:1rem;top:1rem;z-index:60;display:flex;gap:.4rem}
     #lang-switch button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(8px);padding:.35rem .65rem;border-radius:.6rem;font-weight:600}
@@ -173,6 +198,10 @@
     #ia-bubble{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);color:#fff;font-size:.9rem;padding:.55rem .8rem;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .45s, transform .45s;max-width:260px}
     #ia-cta{display:none;margin-left:.3rem}
     .bubble-show{opacity:1 !important;transform:translateY(0)!important}
+    /* NOUVEAU: Style pour le bouton de la voix */
+    #ia-voice-toggle {background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,.18);color:white;width:38px;height:38px;border-radius:50%;cursor:pointer;transition:all .2s;font-size:16px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
+    #ia-voice-toggle:hover {background:rgba(255,255,255,0.2);}
+
 
     /* Timeline Formation */
     .timeline{position:relative;padding-left:1rem}
@@ -422,6 +451,7 @@
 
   <div id="ia-agent" aria-live="polite">
     <div id="ia-avatar" class="avatar-pulse text-xl">🤖</div>
+    <button id="ia-voice-toggle" title="Couper le son">🔊</button>
     <div id="ia-bubble" role="status">Bienvenue dans mon univers !</div>
     <a id="ia-cta" href="mailto:nfindaroger@gmail.com" class="btn-primary ml-2">✉️</a>
   </div>
@@ -432,6 +462,8 @@
     const isMobile = matchMedia('(max-width: 768px)').matches;
 
     document.addEventListener('DOMContentLoaded', () => {
+      let isVoiceEnabled = true; // La voix est activée par défaut
+
       /* Cursor */
       const dot = document.querySelector('.cursor-dot');
       const glow = document.querySelector('.cursor-glow');
@@ -499,7 +531,7 @@
         });
       }
 
-      /* Floating dots menu */
+      /* Floating dots menu & Title Animation */
       const floatingMenu = document.getElementById('floating-menu');
       const sections = document.querySelectorAll('.section');
       if (floatingMenu && sections.length) {
@@ -518,7 +550,10 @@
           entries.forEach(entry=>{
             if(entry.isIntersecting){
               links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
-              // IA agent reacts
+              // NOUVEAU: Animation du titre de section
+              const h2 = entry.target.querySelector('h2');
+              if(h2) h2.classList.add('visible');
+              
               iaSayForSection(entry.target.id);
             }
           });
@@ -550,6 +585,7 @@
       const iaBubble = document.getElementById('ia-bubble');
       const iaAvatar = document.getElementById('ia-avatar');
       const iaCta = document.getElementById('ia-cta');
+      const voiceToggleBtn = document.getElementById('ia-voice-toggle');
       const guideFR = {
         header: "Bienvenue dans mon univers IA. Faites défiler, je vous guide ✨",
         facettes: "Voici mes casquettes : Data, Business, IA, Études.",
@@ -567,28 +603,44 @@
         "missions-projets": "Explore my projects: ARIA, Scoring, Data Clean, ContraScope."
       };
       
-      // --- MODIFICATION: Agent IA avec Voix ---
+      // --- MODIFIÉ: Agent IA avec Voix et bouton de contrôle ---
       function iaSay(text){
         iaBubble.textContent = text;
         iaBubble.classList.add('bubble-show');
         clearTimeout(iaSay._t);
         iaSay._t = setTimeout(()=>iaBubble.classList.remove('bubble-show'), 4200);
         
+        if (!isVoiceEnabled) return; // Ne parle pas si la voix est coupée
+
         try {
           if ('speechSynthesis' in window) {
-            speechSynthesis.cancel(); // Stoppe la parole précédente
+            speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = document.documentElement.lang === 'fr' ? 'fr-FR' : 'en-US';
-            utterance.pitch = 1.15; // Tonalité un peu plus haute pour un effet 'IA'
-            utterance.rate = 1.2;  // Vitesse de parole un peu plus rapide
+            utterance.pitch = 1.15;
+            utterance.rate = 1.2;
             speechSynthesis.speak(utterance);
           }
         } catch (e) {
           console.warn("La synthèse vocale a échoué.", e);
         }
       }
-      // --- FIN MODIFICATION ---
 
+      if (voiceToggleBtn) {
+        voiceToggleBtn.addEventListener('click', () => {
+          isVoiceEnabled = !isVoiceEnabled;
+          if (isVoiceEnabled) {
+            voiceToggleBtn.textContent = '🔊';
+            voiceToggleBtn.title = 'Couper le son';
+            iaSay(document.documentElement.lang === 'fr' ? 'Voix activée.' : 'Voice enabled.');
+          } else {
+            voiceToggleBtn.textContent = '🔇';
+            voiceToggleBtn.title = 'Activer le son';
+            speechSynthesis.cancel(); // Stoppe toute parole en cours
+          }
+        });
+      }
+      
       function iaSayForSection(id){
         const lang = document.documentElement.lang || 'fr';
         const map = lang==='fr' ? guideFR : guideEN;
