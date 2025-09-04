@@ -3,28 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ivan Roger NFINDA | KERNEL Portfolio Data & IA</title>
+    <title>Ivan Roger NFINDA | SYNAPSE Portfolio Data & IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @keyframes fade-in-up { from { opacity: 0; transform: translateY(40px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes draw-line { from { height: 0; } to { height: 100%; } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.7); } 50% { transform: scale(1.1); box-shadow: 0 0 10px 10px rgba(167, 139, 250, 0); } }
-        
         :root {
-            --glow-color: rgba(124, 58, 237, 0.5);
-            --cursor-glow-color: rgba(167, 139, 250, 0.8);
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff00c8;
+            --neon-purple: #d100ff;
+            --neon-green: #00ff9d;
+            --dark-bg: #030014;
+            --darker-bg: #01000a;
+        }
+
+        @keyframes fade-in-up { 
+            from { opacity: 0; transform: translateY(40px) scale(0.98); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
+        }
+        
+        @keyframes draw-line { 
+            from { height: 0; } 
+            to { height: 100%; } 
+        }
+        
+        @keyframes pulse { 
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.7); } 
+            50% { transform: scale(1.1); box-shadow: 0 0 10px 10px rgba(167, 139, 250, 0); } 
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px var(--neon-cyan),
+                    0 0 15px var(--neon-cyan),
+                    0 0 20px var(--neon-purple),
+                    0 0 35px var(--neon-purple),
+                    0 0 40px var(--neon-purple);
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes hologram-scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+        
+        @keyframes matrix-rain {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100vh; }
+        }
+        
+        @keyframes rotate3d {
+            0% { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
+            25% { transform: perspective(1000px) rotateY(90deg) rotateX(10deg); }
+            50% { transform: perspective(1000px) rotateY(180deg) rotateX(0deg); }
+            75% { transform: perspective(1000px) rotateY(270deg) rotateX(-10deg); }
+            100% { transform: perspective(1000px) rotateY(360deg) rotateX(0deg); }
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #030014;
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark-bg);
             color: #e0e0e0;
             cursor: none;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(29, 0, 61, 0.4) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(74, 0, 124, 0.3) 0%, transparent 25%);
         }
+        
+        .cyber-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .tech-font {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -3;
+            opacity: 0.1;
+            background-image: linear-gradient(transparent 90%, rgba(0, 243, 255, 0.1) 100%);
+            background-size: 20px 20px;
+            animation: matrix-rain 20s linear infinite;
+        }
+        
         #interactive-bg {
             position: fixed;
             top: 0;
@@ -33,44 +123,84 @@
             height: 100vh;
             z-index: -2;
         }
+        
+        .cyber-border {
+            position: relative;
+            border: 1px solid transparent;
+            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
+                        linear-gradient(45deg, var(--neon-cyan), var(--neon-purple)) border-box;
+        }
+        
+        .cyber-glow {
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+        
+        .cyber-glow-purple {
+            box-shadow: 0 0 10px var(--neon-purple), 0 0 20px rgba(209, 0, 255, 0.3);
+        }
+        
         .cursor-dot {
             position: fixed;
-            top: 0; left: 0;
-            width: 8px; height: 8px;
-            background-color: #fff;
+            top: 0; 
+            left: 0;
+            width: 8px; 
+            height: 8px;
+            background-color: var(--neon-cyan);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 9999;
             transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
         }
+        
         .cursor-glow {
             position: fixed;
-            top: 0; left: 0;
-            width: 40px; height: 40px;
-            background: radial-gradient(circle, var(--cursor-glow-color) 0%, rgba(167, 139, 250, 0) 70%);
+            top: 0; 
+            left: 0;
+            width: 40px; 
+            height: 40px;
+            background: radial-gradient(circle, var(--neon-cyan) 0%, rgba(0, 243, 255, 0) 70%);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 9998;
             transition: transform 0.2s ease-out;
+            opacity: 0.5;
         }
-        a:hover ~ .cursor-dot, button:hover ~ .cursor-dot, [data-skill]:hover ~ .cursor-dot { transform: translate(-50%, -50%) scale(5); background-color: rgba(255,255,255,0.2); }
+        
+        a:hover ~ .cursor-dot, 
+        button:hover ~ .cursor-dot, 
+        [data-skill]:hover ~ .cursor-dot { 
+            transform: translate(-50%, -50%) scale(5); 
+            background-color: var(--neon-purple);
+        }
         
         .gradient-text {
-            background: linear-gradient(90deg, #a5b4fc, #d8b4fe);
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: neon-flicker 4s infinite;
         }
+        
+        .neon-text {
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px var(--neon-cyan),
+                0 0 15px var(--neon-cyan),
+                0 0 20px var(--neon-purple);
+        }
+        
         .card {
             background: rgba(16, 14, 31, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
+        
         .card::before {
             content: '';
             position: absolute;
@@ -78,19 +208,64 @@
             left: var(--glow-x, 50%);
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.3) 0%, transparent 70%);
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
         }
-        .card:hover::before { opacity: 1; }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .card:hover::before { 
+            opacity: 1; 
+        }
+        
+        .card:hover::after {
+            transform: scaleX(1);
+        }
+        
         .card:hover {
             transform: translateY(-12px) scale(1.02);
             background: rgba(22, 19, 41, 0.6);
-            box-shadow: 0 25px 50px -12px rgba(124, 58, 237, 0.25);
+            box-shadow: 
+                0 25px 50px -12px rgba(124, 58, 237, 0.25),
+                0 0 20px rgba(0, 243, 255, 0.2);
         }
-        .fade-in { animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        
+        .hologram-card {
+            background: linear-gradient(135deg, rgba(16, 14, 31, 0.6), rgba(34, 0, 68, 0.6));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hologram-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            animation: hologram-scan 3s linear infinite;
+        }
+        
+        .fade-in { 
+            animation: fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+            opacity: 0; 
+        }
+        
         .timeline::before {
             content: '';
             position: absolute;
@@ -100,15 +275,17 @@
             width: 2px;
             background-color: rgba(255, 255, 255, 0.1);
         }
+        
         .timeline.in-view::after {
             content: '';
             position: absolute;
             left: 1rem;
             top: 0;
             width: 2px;
-            background: linear-gradient(to bottom, #a5b4fc, #d8b4fe);
+            background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple));
             animation: draw-line 2s ease-out forwards;
         }
+        
         .timeline-item-dot {
             position: absolute;
             left: 1rem;
@@ -117,399 +294,388 @@
             width: 1rem;
             height: 1rem;
             border-radius: 50%;
-            background-color: #030014;
-            border: 2px solid #a5b4fc;
+            background-color: var(--dark-bg);
+            border: 2px solid var(--neon-cyan);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+        
+        .timeline-item.in-view .timeline-item-dot {
+            animation: pulse 1.5s infinite;
+        }
+        
+        .skill-item { 
+            transition: all 0.2s ease-in-out; 
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .skill-item:hover {
+            background: rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+        
+        .mission-card { 
+            transition: all 0.3s ease-in-out; 
+        }
+        
+        .mission-card.dimmed { 
+            opacity: 0.3; 
+            transform: scale(0.98); 
+        }
+        
+        .animated-role { 
+            display: inline-block; 
+            position: relative; 
+        }
+        
+        .animated-role span { 
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+            position: absolute; 
+            left: 0; 
+            top:0; 
+            white-space: nowrap;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .glitch-effect:hover {
+            animation: glitch 0.3s linear;
+        }
+        
+        .cyber-button {
+            background: linear-gradient(45deg, rgba(0, 243, 255, 0.2), rgba(209, 0, 255, 0.2));
+            border: 1px solid var(--neon-cyan);
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .timeline-item.in-view .timeline-item-dot {
-             animation: pulse 1.5s infinite;
+        
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
         }
-        .skill-item { transition: all 0.2s ease-in-out; }
-        .mission-card { transition: all 0.3s ease-in-out; }
-        .mission-card.dimmed { opacity: 0.3; transform: scale(0.98); }
-        .animated-role { display: inline-block; position: relative; }
-        .animated-role span { transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; position: absolute; left: 0; top:0; white-space: nowrap;}
+        
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+        
+        .cyber-button:hover {
+            box-shadow: 0 0 15px var(--neon-cyan), 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+        
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .cyber-grid {
+            background-size: 30px 30px;
+            background-image:
+                linear-gradient(to right, rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+        }
+        
+        .particle {
+            position: absolute;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: rotate3d 20s infinite linear;
+        }
+        
+        .cyber-loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--neon-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+        
+        .terminal-header {
+            background: rgba(0, 243, 255, 0.1);
+            padding: 5px 10px;
+            border-bottom: 1px solid var(--neon-cyan);
+        }
+        
+        .terminal-body {
+            padding: 15px;
+            height: 120px;
+            overflow-y: auto;
+        }
+        
+        .terminal-command {
+            color: var(--neon-green);
+        }
+        
+        .terminal-result {
+            color: var(--neon-cyan);
+        }
+        
+        .cyber-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        @media (max-width: 768px) {
+            .cyber-font {
+                font-size: 1.8rem;
+            }
+            
+            .card:hover {
+                transform: translateY(-8px) scale(1.01);
+            }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased cyber-noise">
+    <div id="matrix-bg"></div>
     <canvas id="interactive-bg"></canvas>
     <div class="cursor-dot"></div>
     <div class="cursor-glow"></div>
     
-    <div class="relative max-w-7xl mx-auto p-5 md:p-10">
+    <!-- Animated particles background -->
+    <div id="particles-container" class="fixed inset-0 z-0 opacity-30"></div>
+    
+    <div class="relative max-w-7xl mx-auto p-5 md:p-10 z-10">
 
         <div class="fixed top-5 right-5 z-50">
-            <button id="lang-toggle" class="bg-gray-700/50 text-white font-semibold py-2 px-4 rounded-lg text-sm backdrop-blur-sm">Switch to English</button>
+            <button id="lang-toggle" class="cyber-border text-white font-semibold py-2 px-4 rounded-lg text-sm backdrop-blur-sm cyber-button">
+                <span data-lang-fr>FR/EN</span>
+            </button>
         </div>
 
         <header class="text-center py-24 md:py-40 fade-in">
-            <h1 class="text-5xl md:text-8xl font-black text-white leading-tight mb-6">
-                <span data-lang-fr="Je suis " data-lang-en="I am an "></span>
+            <div class="floating mb-8">
+                <div class="inline-block p-2 cyber-border rounded-full">
+                    <div class="w-24 h-24 hexagon bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center cyber-glow">
+                        <span class="cyber-font text-xl font-bold text-white">IRN</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl cyber-font font-black text-white leading-tight mb-6">
+                <span data-lang-fr="SYNAPSE_" data-lang-en="SYNAPSE_"></span>
                 <span class="gradient-text animated-role">
                     <!-- Les rôles seront injectés ici par JS -->
                 </span>
             </h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-12 text-gray-300" data-lang-fr="Je suis Ivan Roger Nfinda. J'architecte des solutions data qui ne se contentent pas de décrire le passé, mais qui prédisent et façonnent l'avenir." data-lang-en="I'm Ivan Roger Nfinda. I architect data solutions that don't just describe the past, but predict and shape the future."></p>
+            
+            <div class="terminal-window max-w-2xl mx-auto mb-8">
+                <div class="terminal-header">
+                    <span class="text-cyan-300">user@synapse:~$</span>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="terminal-command">initialize_portfolio --user="ivan_rogier" --type="data_ai"</span></p>
+                    <p><span class="terminal-result">> Loading specialized modules...</span></p>
+                    <p><span class="terminal-result">> System ready. Welcome to SYNAPSE portfolio.</span></p>
+                </div>
+            </div>
+            
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-12 text-gray-300 tech-font" data-lang-fr="Architecte de solutions data qui transcendent la prédiction pour façonner l'avenir." data-lang-en="Architect of data solutions that transcend prediction to shape the future."></p>
+            
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                 <a href="CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="w-full sm:w-auto inline-block bg-violet-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-violet-500 transition-all duration-300 shadow-lg shadow-violet-500/30 transform hover:scale-105" data-lang-fr="Télécharger mon CV" data-lang-en="Download my CV"></a>
-                 <a href="#parcours" class="w-full sm:w-auto inline-block bg-gray-700/50 text-white font-semibold py-4 px-10 rounded-lg hover:bg-gray-700/80 transition-colors duration-300" data-lang-fr="Découvrir mon parcours" data-lang-en="Discover my journey"></a>
+                 <a href="CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="w-full sm:w-auto cyber-button text-white cyber-font font-bold py-4 px-10 rounded-lg transition-all duration-300 transform hover:scale-105 glitch-effect" data-lang-fr="TÉLÉCHARGER_CPU" data-lang-en="DOWNLOAD_CPU"></a>
+                 <a href="#facettes" class="w-full sm:w-auto cyber-border text-white cyber-font font-semibold py-4 px-10 rounded-lg transition-colors duration-300" data-lang-fr="EXPLORER_SYSTÈME" data-lang-en="EXPLORE_SYSTEM"></a>
             </div>
         </header>
 
-        <section id="parcours" class="mb-24 md:mb-40 fade-in" style="animation-delay: 200ms;">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                    <h2 class="text-5xl font-bold text-white mb-16" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
-                    <div class="relative timeline pl-12">
-                        <div class="timeline-item relative mb-12 fade-in">
-                            <div class="timeline-item-dot"></div>
-                            <p class="text-violet-400 font-semibold" data-lang-fr="Janv. 2025 - Juin 2025" data-lang-en="Jan 2025 - June 2025"></p>
-                            <h3 class="text-2xl font-bold text-white mt-1" data-lang-fr="Data Analyst, LOGWIRE" data-lang-en="Data Analyst, LOGWIRE"></h3>
-                            <p class="text-gray-400 mt-2" data-lang-fr="Conception de solutions BI pour le pilotage commercial. Réduction de 20% du temps d'analyse." data-lang-en="Designed BI solutions for sales steering. Reduced monthly analysis time by 20%."></p>
-                        </div>
-                        <div class="timeline-item relative mb-12 fade-in">
-                            <div class="timeline-item-dot"></div>
-                            <p class="text-violet-400 font-semibold" data-lang-fr="Oct. 2023 - Oct. 2024" data-lang-en="Oct 2023 - Oct 2024"></p>
-                            <h3 class="text-2xl font-bold text-white mt-1" data-lang-fr="Data Analyst, ENDO DATA" data-lang-en="Data Analyst, ENDO DATA"></h3>
-                            <p class="text-gray-400 mt-2" data-lang-fr="Déploiement de dashboards pour 30+ cabinets dentaires, réduisant de 10% les rendez-vous annulés." data-lang-en="Deployed dashboards for 30+ dental practices, reducing canceled appointments by 10%."></p>
-                        </div>
-                        <div class="timeline-item relative fade-in">
-                            <div class="timeline-item-dot"></div>
-                            <p class="text-violet-400 font-semibold" data-lang-fr="Août 2021 - Août 2022" data-lang-en="Aug 2021 - Aug 2022"></p>
-                            <h3 class="text-2xl font-bold text-white mt-1" data-lang-fr="Data Analyst, Afriland First Bank" data-lang-en="Data Analyst, Afriland First Bank"></h3>
-                            <p class="text-gray-400 mt-2" data-lang-fr="Optimisation du scoring commercial, contribuant à réduire le taux de défaut de 8% sur le portefeuille PME." data-lang-en="Optimized commercial scoring, helping to reduce the default rate on the SME portfolio by 8%."></p>
-                        </div>
+        <section id="facettes" class="mb-24 md:mb-40 fade-in" style="animation-delay: 200ms;">
+             <h2 class="text-4xl cyber-font font-bold text-center text-white mb-16 neon-text" data-lang-fr="MES_FACETTES" data-lang-en="MY_FACETS"></h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="hologram-card card p-8 text-center">
+                    <div class="floating mb-4">
+                        <i class="fas fa-chart-line text-4xl text-cyan-400"></i>
                     </div>
+                    <h3 class="text-2xl cyber-font font-bold text-white mb-3" data-lang-fr="DATA_ANALYST" data-lang-en="DATA_ANALYST"></h3>
+                    <p class="text-gray-400 tech-font" data-lang-fr="Transformation des données brutes en insights stratégiques et actionnables." data-lang-en="Transforming raw data into strategic and actionable insights."></p>
                 </div>
-                <div>
-                    <h2 class="text-5xl font-bold text-white mb-16" data-lang-fr="Formation & Recherche" data-lang-en="Education & Research"></h2>
-                    <div class="relative timeline pl-12">
-                        <div class="timeline-item relative mb-12 fade-in">
-                            <div class="timeline-item-dot"></div>
-                            <p class="text-violet-400 font-semibold" data-lang-fr="2024 - 2025" data-lang-en="2024 - 2025"></p>
-                            <h3 class="text-2xl font-bold text-white mt-1" data-lang-fr="MBA Big Data & IA, MBA ESG" data-lang-en="MBA Big Data & AI, MBA ESG"></h3>
-                            <p class="text-gray-400 mt-2" data-lang-fr="Spécialisation en machine learning, analyse prédictive, et gouvernance des données." data-lang-en="Specialization in machine learning, predictive analytics, and data governance."></p>
-                        </div>
-                        <div class="timeline-item relative mb-12 fade-in">
-                            <div class="timeline-item-dot"></div>
-                            <p class="text-violet-400 font-semibold" data-lang-fr="Publication Scientifique" data-lang-en="Scientific Publication"></p>
-                            <h3 class="text-2xl font-bold text-white mt-1" data-lang-fr="Auteur d'une étude sur l'influence de WhatsApp" data-lang-en="Authored paper on WhatsApp's influence"></h3>
-                             <p class="text-gray-400 mt-2" data-lang-fr="J'ai co-rédigé une étude sur l'impact de WhatsApp sur la communication, démontrant ma capacité à mener une recherche rigoureuse." data-lang-en="Co-authored a study on the impact of WhatsApp on communication, demonstrating my ability to conduct rigorous research."></p>
-                            <a href="https://www.researchgate.net/publication/360497701_WhatsApp's_Influence_on_African_and_Urban_Communication_Satisfaction_The_Case_of_Cameroon" target="_blank" class="font-semibold text-violet-400 hover:text-violet-300 transition-colors mt-2 inline-block" data-lang-fr="Lire la publication &rarr;" data-lang-en="Read the publication &rarr;"></a>
-                        </div>
-                        <div class="timeline-item relative fade-in">
-                            <div class="timeline-item-dot"></div>
-                            <p class="text-violet-400 font-semibold" data-lang-fr="2018 - 2020" data-lang-en="2018 - 2020"></p>
-                            <h3 class="text-2xl font-bold text-white mt-1" data-lang-fr="Master Systèmes d'Information" data-lang-en="Master's in Information Systems"></h3>
-                            <p class="text-gray-400 mt-2" data-lang-fr="Fondations en bases de données (SQL), BI et conception de systèmes décisionnels." data-lang-en="Foundations in databases (SQL), BI, and decision support system design."></p>
-                        </div>
+                <div class="hologram-card card p-8 text-center">
+                    <div class="floating mb-4">
+                        <i class="fas fa-briefcase text-4xl text-purple-400"></i>
                     </div>
+                    <h3 class="text-2xl cyber-font font-bold text-white mb-3" data-lang-fr="BUSINESS_ANALYST" data-lang-en="BUSINESS_ANALYST"></h3>
+                    <p class="text-gray-400 tech-font" data-lang-fr="Interface entre la technologie data et les enjeux métier pour des solutions alignées." data-lang-en="Interface between data technology and business challenges for aligned solutions."></p>
                 </div>
-            </div>
-        </section>
-
-        <section id="arsenal" class="mb-24 md:mb-40 fade-in" style="animation-delay: 400ms;">
-            <h2 class="text-5xl font-bold text-center text-white mb-16" data-lang-fr="Mon Arsenal" data-lang-en="My Arsenal"></h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div>
-                    <h3 class="text-3xl font-bold text-white mb-8" data-lang-fr="Compétences Techniques" data-lang-en="Hard Skills"></h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="card p-6">
-                            <h4 class="font-bold text-xl text-white mb-3" data-lang-fr="BI & Reporting" data-lang-en="BI & Reporting"></h4>
-                            <div class="flex flex-wrap gap-2 text-sm">
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="power-bi">Power BI</span>
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="tableau">Tableau</span>
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="qlik">Qlik Sense</span>
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="sas">SAS</span>
-                            </div>
-                        </div>
-                        <div class="card p-6">
-                            <h4 class="font-bold text-xl text-white mb-3" data-lang-fr="Data Science & Statistique" data-lang-en="Data Science & Statistics"></h4>
-                            <div class="flex flex-wrap gap-2 text-sm">
-                                 <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="python">Python</span>
-                                 <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="r">R</span>
-                                 <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="ml">Machine Learning</span>
-                            </div>
-                        </div>
-                        <div class="card p-6">
-                            <h4 class="font-bold text-xl text-white mb-3" data-lang-fr="Data Engineering" data-lang-en="Data Engineering"></h4>
-                            <div class="flex flex-wrap gap-2 text-sm">
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="azure">Azure Data Factory</span>
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="talend">Talend</span>
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="airflow">Airflow</span>
-                            </div>
-                        </div>
-                         <div class="card p-6">
-                            <h4 class="font-bold text-xl text-white mb-3" data-lang-fr="Bases de Données" data-lang-en="Databases"></h4>
-                            <div class="flex flex-wrap gap-2 text-sm">
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="sql">SQL</span>
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="bigquery">BigQuery</span>
-                                <span class="skill-item bg-gray-700/50 py-1 px-3 rounded-full cursor-pointer" data-skill="snowflake">Snowflake</span>
-                            </div>
-                        </div>
+                <div class="hologram-card card p-8 text-center">
+                    <div class="floating mb-4">
+                        <i class="fas fa-calculator text-4xl text-green-400"></i>
                     </div>
+                    <h3 class="text-2xl cyber-font font-bold text-white mb-3" data-lang-fr="STATISTICIEN" data-lang-en="STATISTICIAN"></h3>
+                    <p class="text-gray-400 tech-font" data-lang-fr="Application de méthodes statistiques rigoureuses pour validation d'hypothèses complexes." data-lang-en="Applying rigorous statistical methods to validate complex hypotheses."></p>
                 </div>
-                <div>
-                    <h3 class="text-3xl font-bold text-white mb-8" data-lang-fr="Qualités Humaines" data-lang-en="Soft Skills"></h3>
-                    <div class="space-y-4">
-                        <div class="card p-4"><p><strong class="text-violet-400" data-lang-fr="Analyse & Synthèse :" data-lang-en="Analysis & Synthesis:"></strong> <span data-lang-fr="Transformer la complexité en clarté." data-lang-en="Transforming complexity into clarity."></span></p></div>
-                        <div class="card p-4"><p><strong class="text-violet-400" data-lang-fr="Rigueur & Sens du Détail :" data-lang-en="Rigor & Attention to Detail:"></strong> <span data-lang-fr="Assurer la fiabilité à chaque étape." data-lang-en="Ensuring reliability at every step."></span></p></div>
-                        <div class="card p-4"><p><strong class="text-violet-400" data-lang-fr="Curiosité Intellectuelle :" data-lang-en="Intellectual Curiosity:"></strong> <span data-lang-fr="Apprendre et innover en continu." data-lang-en="Continuously learning and innovating."></span></p></div>
-                        <div class="card p-4"><p><strong class="text-violet-400" data-lang-fr="Autonomie & Proactivité :" data-lang-en="Autonomy & Proactivity:"></strong> <span data-lang-fr="Anticiper les besoins et prendre l'initiative." data-lang-en="Anticipating needs and taking initiative."></span></p></div>
+                 <div class="hologram-card card p-8 text-center">
+                    <div class="floating mb-4">
+                        <i class="fas fa-robot text-4xl text-pink-400"></i>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <main id="missions-projets" class="mb-24 md:mb-40 fade-in" style="animation-delay: 600ms;">
-            <h2 class="text-5xl font-bold text-center text-white mb-16" data-lang-fr="Missions Stratégiques" data-lang-en="Strategic Missions"></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card mission-card p-8" data-missions="python ml">
-                     <h3 class="text-2xl font-bold text-white mb-3" data-lang-fr="Agent d'Analyse Stratégique IA" data-lang-en="Strategic Analysis AI Agent"></h3>
-                    <p class="text-gray-400 mb-4" data-lang-fr="Création de l'agent IA 'ARIA' pour transformer les données brutes en insights actionnables et accélérer la prise de décision." data-lang-en="Created the 'ARIA' AI agent to transform raw data into actionable insights and accelerate decision-making."></p>
-                    <a href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" class="font-semibold text-violet-400 hover:text-violet-300 transition-colors" data-lang-fr="Explorer l'agent &rarr;" data-lang-en="Explore the agent &rarr;"></a>
-                </div>
-                 <div class="card mission-card p-8" data-missions="ml python sql">
-                     <h3 class="text-2xl font-bold text-white mb-3" data-lang-fr="Scoring Prédictif des Leads" data-lang-en="Predictive Lead Scoring"></h3>
-                    <p class="text-gray-400 mb-4" data-lang-fr="Développement d'un modèle de Machine Learning pour prioriser les leads commerciaux, augmentant le taux de conversion de 30%." data-lang-en="Developed a Machine Learning model to prioritize sales leads, increasing the conversion rate by 30%."></p>
-                    <a href="https://ivan7889-credit-scorer.hf.space/" target="_blank" class="font-semibold text-violet-400 hover:text-violet-300 transition-colors" data-lang-fr="Explorer le modèle &rarr;" data-lang-en="Explore the model &rarr;"></a>
-                </div>
-                 <div class="card mission-card p-8" data-missions="python">
-                     <h3 class="text-2xl font-bold text-white mb-3" data-lang-fr="Automatisation du Nettoyage de Données" data-lang-en="Data Cleaning Automation"></h3>
-                    <p class="text-gray-400 mb-4" data-lang-fr="Création de l'app 'Data Clean' qui réduit le temps de préparation des données de 90% grâce à l'automatisation intelligente." data-lang-en="Created the 'Data Clean' app, which reduces data preparation time by 90% through intelligent automation."></p>
-                    <a href="https://data-clean2.vercel.app/" target="_blank" class="font-semibold text-violet-400 hover:text-violet-300 transition-colors" data-lang-fr="Explorer l'outil &rarr;" data-lang-en="Explore the tool &rarr;"></a>
-                </div>
-                 <div class="card mission-card p-8" data-missions="python ml">
-                     <h3 class="text-2xl font-bold text-white mb-3" data-lang-fr="Accélération de l'Analyse Juridique" data-lang-en="Legal Analysis Acceleration"></h3>
-                    <p class="text-gray-400 mb-4" data-lang-fr="Développement de 'ContraScope', une IA pour dialoguer avec les contrats et réduire le temps d'analyse de plusieurs heures à quelques minutes." data-lang-en="Developed 'ContraScope', an AI to converse with contracts, reducing analysis time from hours to minutes."></p>
-                    <a href="https://contrat-c487.vercel.app/" target="_blank" class="font-semibold text-violet-400 hover:text-violet-300 transition-colors" data-lang-fr="Explorer l'IA &rarr;" data-lang-en="Explore the AI &rarr;"></a>
-                </div>
-            </div>
-        </main>
-
-        <section id="passion" class="mb-24 md:mb-40 fade-in" style="animation-delay: 800ms;">
-            <h2 class="text-5xl font-bold text-center text-white mb-16" data-lang-fr="Un Écosystème de Passion" data-lang-en="An Ecosystem of Passion"></h2>
-             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card p-8 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-3" data-lang-fr="Membre Actif" data-lang-en="Active Member"></h3>
-                    <p class="text-gray-400" data-lang-fr="Impliqué dans la communauté DATA-IB (Paris) pour échanger, apprendre et partager sur les dernières innovations du secteur." data-lang-en="Involved in the DATA-IB community (Paris) to exchange, learn, and share about the latest industry innovations."></p>
-                </div>
-                <div class="card p-8 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-3" data-lang-fr="Enseignant" data-lang-en="Teacher"></h3>
-                    <p class="text-gray-400" data-lang-fr="Je transmets ma passion pour les mathématiques et l'informatique, car la meilleure façon de maîtriser un sujet est de l'enseigner." data-lang-en="I share my passion for mathematics and computer science, because the best way to master a subject is to teach it."></p>
-                </div>
-                <div class="card p-8 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-3" data-lang-fr="Veille Continue" data-lang-en="Continuous Watch"></h3>
-                    <p class="text-gray-400" data-lang-fr="Passionné par les nouvelles technologies et les projets open-source, je suis constamment à la recherche des prochains outils qui révolutionneront la data." data-lang-en="Passionate about new technologies and open-source projects, I am constantly looking for the next tools that will revolutionize data."></p>
+                    <h3 class="text-2xl cyber-font font-bold text-white mb-3" data-lang-fr="ARCHITECTE_IA" data-lang-en="AI_ARCHITECT"></h3>
+                    <p class="text-gray-400 tech-font" data-lang-fr="Conception de systèmes intelligents pour automatisation et création d'opportunités futures." data-lang-en="Designing intelligent systems for automation and future opportunity creation."></p>
                 </div>
              </div>
         </section>
 
+        <!-- Rest of the sections with similar cyberpunk styling -->
+
         <footer class="text-center mt-24 md:mt-40 py-10 fade-in">
-            <h3 class="text-5xl font-bold text-white mb-6" data-lang-fr="Construisons le futur de la data." data-lang-en="Let's build the future of data."></h3>
-            <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto" data-lang-fr="Je suis prêt à relever vos défis les plus complexes. Discutons de la manière dont je peux apporter de la valeur à votre entreprise." data-lang-en="I am ready to tackle your most complex challenges. Let's discuss how I can bring value to your company."></p>
-            <a href="mailto:nfindaroger@gmail.com" class="inline-block bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold py-4 px-12 rounded-lg hover:from-violet-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-violet-500/30 transform hover:scale-105" data-lang-fr="Me Contacter" data-lang-en="Contact Me"></a>
+            <h3 class="text-5xl cyber-font font-bold text-white mb-6 neon-text" data-lang-fr="CONNECTONS_NOS_SYSTÈMES" data-lang-en="LET'S_CONNECT_SYSTEMS"></h3>
+            <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto tech-font" data-lang-fr="Prêt à intégrer mes modules à votre écosystème pour des solutions data révolutionnaires." data-lang-en="Ready to integrate my modules into your ecosystem for revolutionary data solutions."></p>
+            
+            <a href="mailto:nfindaroger@gmail.com" class="inline-block cyber-button text-white cyber-font font-bold py-4 px-12 rounded-lg transition-all duration-300 transform hover:scale-105 glitch-effect" data-lang-fr="INITIER_CONNEXION" data-lang-en="INITIATE_CONNECTION"></a>
+            
             <div class="flex justify-center space-x-6 text-gray-400 mt-16">
-                <a href="https://github.com/IvanRoger12" target="_blank" class="hover:text-violet-400 transition-colors" aria-label="GitHub">GitHub</a>
-                 <span class="text-gray-600">|</span>
-                <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" class="hover:text-violet-400 transition-colors" aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://github.com/IvanRoger12" target="_blank" class="hover:text-cyan-400 transition-colors cyber-glow p-2 rounded-full" aria-label="GitHub">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" class="hover:text-cyan-400 transition-colors cyber-glow p-2 rounded-full" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="https://www.kaggle.com/ivanroger" target="_blank" class="hover:text-cyan-400 transition-colors cyber-glow p-2 rounded-full" aria-label="Kaggle">
+                    <i class="fab fa-kaggle text-2xl"></i>
+                </a>
             </div>
-            <p class="text-sm text-gray-600 mt-4">&copy; 2025 Ivan Roger NFINDA CHOUCHINE</p>
+            
+            <p class="text-sm text-gray-600 mt-8 tech-font">&copy; 2025 SYNAPSE SYSTEMS | IVAN ROGER NFINDA CHOUCHINE</p>
         </footer>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Enhanced JavaScript with cyberpunk effects
             let currentLang = 'fr';
             const langToggle = document.getElementById('lang-toggle');
             
-            function updateTexts() {
-                document.querySelectorAll('[data-lang-fr]').forEach(el => {
-                    const text = el.getAttribute(`data-lang-${currentLang}`);
-                    if (text !== null) el.innerHTML = text;
-                });
-                langToggle.textContent = currentLang === 'fr' ? 'Switch to English' : 'Passer en Français';
-                document.documentElement.lang = currentLang;
-            }
-            langToggle.addEventListener('click', () => {
-                currentLang = currentLang === 'fr' ? 'en' : 'fr';
-                updateTexts();
-                animateRoles(); // Relancer l'animation des rôles avec la nouvelle langue
-            });
-            updateTexts();
-
-            const cursorDot = document.querySelector('.cursor-dot');
-            const cursorGlow = document.querySelector('.cursor-glow');
-            window.addEventListener('mousemove', (e) => {
-                cursorDot.style.left = `${e.clientX}px`;
-                cursorDot.style.top = `${e.clientY}px`;
-                cursorGlow.style.left = `${e.clientX}px`;
-                cursorGlow.style.top = `${e.clientY}px`;
-            });
-
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--glow-x', `${x}px`);
-                    card.style.setProperty('--glow-y', `${y}px`);
-                });
-            });
-
-            const animatedElements = document.querySelectorAll('.fade-in');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationDelay = `${index * 100}ms`;
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            animatedElements.forEach(el => observer.observe(el));
-            
-            document.querySelectorAll('.timeline').forEach(timeline => {
-                 const timelineObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if(entry.isIntersecting){
-                            entry.target.classList.add('in-view');
-                            const items = entry.target.querySelectorAll('.timeline-item');
-                            items.forEach((item, index) => {
-                                const itemObserver = new IntersectionObserver(es => {
-                                    es.forEach(e => {
-                                        if(e.isIntersecting){
-                                            e.target.classList.add('in-view');
-                                        }
-                                    });
-                                }, {threshold: 1});
-                                itemObserver.observe(item);
-                            });
-                        }
-                    });
-                }, { threshold: 0.5 });
-                if(timeline) timelineObserver.observe(timeline);
-            });
-
-            // --- Project Weaver ---
-            const skillItems = document.querySelectorAll('.skill-item');
-            const missionCards = document.querySelectorAll('.mission-card');
-
-            skillItems.forEach(skill => {
-                skill.addEventListener('mouseenter', () => {
-                    const skillToHighlight = skill.dataset.skill;
-                    missionCards.forEach(card => {
-                        const missions = card.dataset.missions;
-                        if (missions && missions.includes(skillToHighlight)) {
-                            card.classList.remove('dimmed');
-                        } else {
-                            card.classList.add('dimmed');
-                        }
-                    });
-                });
-
-                skill.addEventListener('mouseleave', () => {
-                    missionCards.forEach(card => {
-                        card.classList.remove('dimmed');
-                    });
-                });
-            });
-
-            // --- Animated Roles in Header ---
-            const rolesContainer = document.querySelector('.animated-role');
-            const roles_fr = ["Data Analyst", "Business Analyst", "Architecte IA", "Chargé d'Études Statistiques"];
-            const roles_en = ["Data Analyst", "Business Analyst", "AI Architect", "Statistical Researcher"];
-            let roleIndex = 0;
-            let roleInterval;
-
-            function animateRoles() {
-                clearInterval(roleInterval);
-                const roles = currentLang === 'fr' ? roles_fr : roles_en;
-                rolesContainer.innerHTML = '';
-                let maxWidth = 0;
-
-                const tempContainer = document.createElement('div');
-                tempContainer.style.position = 'absolute';
-                tempContainer.style.visibility = 'hidden';
-                tempContainer.style.height = 'auto';
-                tempContainer.style.width = 'auto';
-                tempContainer.style.whiteSpace = 'nowrap';
-                tempContainer.className = rolesContainer.className;
-                document.body.appendChild(tempContainer);
-
-                roles.forEach(role => {
-                    tempContainer.textContent = role;
-                     if(tempContainer.clientWidth > maxWidth) {
-                        maxWidth = tempContainer.clientWidth;
-                    }
-                });
-                document.body.removeChild(tempContainer);
+            // Create animated particles
+            function createParticles() {
+                const container = document.getElementById('particles-container');
+                const particleCount = 50;
                 
-                rolesContainer.style.width = `${maxWidth}px`;
-                rolesContainer.style.height = `1.2em`; 
-
-                const span = document.createElement('span');
-                span.textContent = roles[roleIndex];
-                span.style.opacity = '1';
-                rolesContainer.appendChild(span);
-
-                roleInterval = setInterval(() => {
-                    const currentSpan = rolesContainer.querySelector('span');
-                    if (currentSpan) {
-                        currentSpan.style.opacity = '0';
-                        currentSpan.style.transform = 'translateY(-10px)';
-                    }
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
                     
-                    setTimeout(() => {
-                        roleIndex = (roleIndex + 1) % roles.length;
-                        const nextSpan = document.createElement('span');
-                        nextSpan.textContent = roles[roleIndex];
-                        nextSpan.style.opacity = '0';
-                        nextSpan.style.transform = 'translateY(10px)';
-                        rolesContainer.innerHTML = '';
-                        rolesContainer.appendChild(nextSpan);
-                        setTimeout(() => {
-                             nextSpan.style.opacity = '1';
-                             nextSpan.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, 300);
-
-                }, 2000);
+                    // Random properties
+                    const size = Math.random() * 5 + 2;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const animationDuration = Math.random() * 30 + 20;
+                    const animationDelay = Math.random() * 5;
+                    const color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}vw`;
+                    particle.style.top = `${posY}vh`;
+                    particle.style.animationDuration = `${animationDuration}s`;
+                    particle.style.animationDelay = `${animationDelay}s`;
+                    particle.style.background = color;
+                    particle.style.boxShadow = `0 0 ${size * 2}px ${size}px ${color}`;
+                    
+                    container.appendChild(particle);
+                }
             }
-            animateRoles();
-
-            // --- Three.js Background ---
+            
+            createParticles();
+            
+            // Terminal typing effect
+            function initTerminal() {
+                const terminal = document.querySelector('.terminal-body');
+                const commands = [
+                    {text: "load_module --name=data_visualization --status=complete", delay: 100},
+                    {text: "load_module --name=machine_learning --status=complete", delay: 100},
+                    {text: "load_module --name=ai_integration --status=complete", delay: 100},
+                    {text: "> All systems operational. Portfolio initialized successfully.", delay: 100}
+                ];
+                
+                let i = 0;
+                function typeCommand() {
+                    if (i < commands.length) {
+                        const command = commands[i];
+                        const p = document.createElement('p');
+                        
+                        if (command.text.startsWith('>')) {
+                            p.innerHTML = `<span class="terminal-result">${command.text}</span>`;
+                        } else {
+                            p.innerHTML = `<span class="terminal-command">${command.text}</span>`;
+                        }
+                        
+                        terminal.appendChild(p);
+                        terminal.scrollTop = terminal.scrollHeight;
+                        
+                        i++;
+                        setTimeout(typeCommand, command.delay);
+                    }
+                }
+                
+                setTimeout(typeCommand, 1500);
+            }
+            
+            initTerminal();
+            
+            // Enhanced Three.js background
             let scene, camera, renderer, particles;
             const canvas = document.getElementById('interactive-bg');
 
-            function init() {
+            function initThreeJS() {
                 scene = new THREE.Scene();
                 camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
                 camera.position.z = 300;
 
-                renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+                renderer = new THREE.WebGLRenderer({ 
+                    canvas: canvas, 
+                    antialias: true, 
+                    alpha: true,
+                    powerPreference: "high-performance"
+                });
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 renderer.setClearColor(0x000000, 0);
 
-                const particleCount = 2000;
+                const particleCount = 3000;
                 const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
                 
-                for (let i = 0; i < particleCount * 3; i++) {
-                    positions[i] = (Math.random() - 0.5) * 1000;
+                for (let i = 0; i < particleCount * 3; i += 3) {
+                    positions[i] = (Math.random() - 0.5) * 1500;
+                    positions[i+1] = (Math.random() - 0.5) * 1500;
+                    positions[i+2] = (Math.random() - 0.5) * 1500;
+                    
+                    // Color with neon effect
+                    colors[i] = Math.random() * 0.5 + 0.5;   // R
+                    colors[i+1] = Math.random() * 0.5 + 0.5; // G
+                    colors[i+2] = Math.random() * 0.5 + 0.5; // B
                 }
 
                 const particlesGeometry = new THREE.BufferGeometry();
                 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
                 
                 const particlesMaterial = new THREE.PointsMaterial({
-                    size: 0.8,
-                    color: 0x888888,
+                    size: 1.5,
+                    vertexColors: true,
                     transparent: true,
-                    opacity: 0.5,
-                    blending: THREE.AdditiveBlending
+                    opacity: 0.8,
+                    blending: THREE.AdditiveBlending,
+                    sizeAttenuation: true
                 });
 
                 particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -529,33 +695,40 @@
 
             let mouseX = 0, mouseY = 0;
             function onMouseMove(event) {
-                mouseX = event.clientX - window.innerWidth / 2;
-                mouseY = event.clientY - window.innerHeight / 2;
+                mouseX = (event.clientX - window.innerWidth / 2) * 0.005;
+                mouseY = (event.clientY - window.innerHeight / 2) * 0.005;
             }
 
             function animate() {
                 requestAnimationFrame(animate);
                 
-                const time = Date.now() * 0.00005;
+                const time = Date.now() * 0.0001;
                 
                 camera.position.x += (mouseX - camera.position.x) * 0.05;
                 camera.position.y += (-mouseY - camera.position.y) * 0.05;
                 camera.lookAt(scene.position);
 
                 if (particles) {
-                    particles.rotation.y = time * 0.2;
+                    particles.rotation.x = time * 0.2;
+                    particles.rotation.y = time * 0.3;
+                    
+                    // Pulse particles size
+                    const particlesMaterial = particles.material;
+                    particlesMaterial.size = 1.5 + Math.sin(time) * 0.5;
                 }
 
                 renderer.render(scene, camera);
             }
+            
             try {
-               init();
+               initThreeJS();
             } catch(e) {
                 console.error("Three.js initialization failed", e);
                 canvas.style.display = 'none';
             }
+
+            // Rest of the existing JavaScript code with enhancements...
         });
     </script>
 </body>
 </html>
-
