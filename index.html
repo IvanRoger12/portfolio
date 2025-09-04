@@ -4,18 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ivan Roger NFINDA | Singularity Portfolio</title>
-  <meta name="description" content="Portfolio d'Ivan Roger Nfinda : univers vivant, titre matriciel interactif, constellations, guide, palette de commandes, et missions stratégiques." />
+  <meta name="description" content="Portfolio spectaculaire d'Ivan Roger Nfinda : univers vivant, titre matriciel interactif, constellations, guide vocal, palette de commandes, et missions stratégiques." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#030014;--text:#e0e0e0;--violet:#7c3aed;--accent:#a78bfa}
-    *{box-sizing:border-box}
+    :root{--bg:#030014;--text:#e0e0e0;--muted:#aab;--violet:#7c3aed;--accent:#a78bfa}
     body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;cursor:none;overflow-x:hidden}
     .container{max-width:74rem;margin-inline:auto;padding:1.25rem}
-    .section{margin-bottom:6rem;position:relative}
+    .section{margin-bottom:8rem; position: relative;}
     .block{background:rgba(16,14,31,.55);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:15px;padding:1.5rem;box-shadow:0 0 40px rgba(124,58,237,.12);transition:transform .3s ease, box-shadow .3s ease}
     .block:hover{transform:translateY(-6px);box-shadow:0 30px 60px -12px rgba(124,58,237,.25)}
-
+    
     /* Cursor */
     .cursor-dot,.cursor-glow{position:fixed;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999}
     .cursor-dot{width:8px;height:8px;background:#fff;transition:transform .15s ease,background .15s ease}
@@ -25,453 +24,620 @@
     /* Hero */
     header{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden}
     #interactive-bg{position:fixed;inset:0;z-index:-2}
-    .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem,8vw,6.5rem);font-weight:900;line-height:1.05;position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.1em .25em;perspective:1000px}
-    .hero-title .word{display:flex}
-    .hero-title .char{display:inline-block;transition:all .25s ease;text-shadow:0 0 5px rgba(165,180,252,.5),0 0 15px rgba(165,180,252,.5),0 0 30px rgba(124,58,237,.5);animation:flicker 3s infinite alternate}
-    .hero-title:hover .char{transform:translateY(-8px) rotateX(25deg) scale(1.08);color:#fff;text-shadow:0 0 10px #a78bfa,0 0 20px #a78bfa,0 0 40px #a78bfa}
-    @keyframes flicker{
-      0%,19%,21%,23%,25%,54%,56%,100%{opacity:1}
-      20%,24%,55%{opacity:.8;filter:brightness(1.15)}
-    }
+    .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.5rem, 8vw, 6rem);font-weight:900;line-height:1.1;position:relative;display:flex;flex-wrap:wrap;justify-content:center; perspective: 1000px; gap: 0 0.25em;}
+    .hero-title .word { display: flex; }
+    .hero-title .char { display: inline-block; transition: all 0.3s ease; text-shadow: 0 0 5px rgba(165,180,252,.5), 0 0 15px rgba(165,180,252,.5), 0 0 30px rgba(124,58,237,.5); animation: flicker 3s infinite alternate; }
+    .hero-title:hover .char { transform: translateY(-10px) rotateX(30deg) scale(1.1); color: #fff; text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
+    @keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{text-shadow:0 0 5px rgba(165,180,252,.5),0 0 15px rgba(165,180,252,.5), 0 0 30px rgba(124,58,237,.5);opacity:1}20%,24%,55%{text-shadow:none;opacity:.8}}
 
     /* Cards */
-    .card-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:1rem}
-    @media (min-width:640px){.card-grid{grid-template-columns:repeat(2,1fr)}}
-    @media (min-width:1024px){.card-grid{grid-template-columns:repeat(4,1fr)}}
-    .facet-card,.mission-card{height:200px;padding:1rem;text-align:center;display:flex;flex-direction:column;justify-content:center;border-radius:15px}
-    .mission-card{background-image:radial-gradient(circle at top left,rgba(124,58,237,.12),transparent 40%),radial-gradient(circle at bottom right,rgba(167,139,250,.12),transparent 40%);position:relative}
-    .mission-card .icon{position:absolute;top:.8rem;right:.8rem;width:2.2rem;height:2.2rem;opacity:.25;transition:opacity .3s ease}
-    .mission-card:hover .icon{opacity:.6}
-    .card-3d-tilt{transform-style:preserve-3d}
-    .card-3d-tilt:hover{transition:transform .1s linear;transform:scale(1.05)}
+    .card-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem; }
+    @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+    .facet-card, .mission-card {
+        height: 200px; 
+        padding: 1rem;
+        text-align: center; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+        border-radius: 15px;
+    }
+    .mission-card {
+        background-image: radial-gradient(circle at top left, rgba(124, 58, 237, 0.1), transparent 40%),
+                          radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.1), transparent 40%);
+        position: relative;
+    }
+    .mission-card .icon { position: absolute; top: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; opacity: 0.2; transition: opacity 0.3s ease; }
+    .mission-card:hover .icon { opacity: 0.5; }
+    .card-3d-tilt { transform-style: preserve-3d; }
+    .card-3d-tilt:hover { transition: transform 0.1s linear; transform: scale(1.05); }
 
     /* Buttons */
-    .btn-primary{display:inline-block;background:linear-gradient(135deg,var(--violet),var(--accent));color:white;font-weight:700;padding:.9rem 1.4rem;border-radius:12px;text-decoration:none;transition:all .25s ease;box-shadow:0 4px 20px rgba(124,58,237,.35)}
-    .btn-primary:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 8px 30px rgba(124,58,237,.55)}
-    .btn-secondary{display:inline-block;background:rgba(255,255,255,.08);color:white;font-weight:600;padding:.9rem 1.4rem;border-radius:12px;text-decoration:none;transition:all .25s ease;border:1px solid rgba(255,255,255,.15)}
-    .btn-secondary:hover{background:rgba(255,255,255,.16);transform:translateY(-2px) scale(1.05)}
-
-    /* Language toggle */
-    #lang-switch{position:fixed;right:1rem;top:1rem;z-index:60}
-    #lang-switch button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(8px);padding:.35rem .6rem;border-radius:.6rem;margin-left:.35rem;font-weight:600}
-    #lang-switch button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent}
+    .btn-primary {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--violet), var(--accent));
+        color: white;
+        font-weight: bold;
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+    }
+    .btn-primary:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+    }
+    .btn-secondary {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+         transform: translateY(-2px) scale(1.05);
+    }
 
     /* Availability Badge */
-    #availability-badge{position:fixed;bottom:1.2rem;right:1.2rem;z-index:50}
-    @keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(49,196,141,.7)}70%{box-shadow:0 0 0 10px rgba(49,196,141,0)}}
-    #availability-badge button{animation:pulse-badge 2s infinite}
-    #contact-popup{transition:opacity .3s ease,transform .3s ease}
+    #availability-badge {
+        position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50;
+    }
+    @keyframes pulse-badge { 0%, 100% { box-shadow: 0 0 0 0 rgba(49, 196, 141, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(49, 196, 141, 0); } }
+    #availability-badge button { animation: pulse-badge 2s infinite; }
+    #contact-popup {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
-    /* Dots menu */
-    #floating-menu{position:fixed;right:1.1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.7rem}
-    #floating-menu a{width:12px;height:12px;background-color:rgba(255,255,255,.22);border-radius:9999px;transition:all .3s ease;position:relative}
-    #floating-menu a.active{background-color:var(--accent);transform:scale(1.5)}
-    #floating-menu a .tooltip{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background-color:rgba(16,14,31,.85);color:white;padding:.25rem .6rem;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
-    #floating-menu a:hover .tooltip{opacity:1}
+    /* Floating Menu */
+    #floating-menu {
+        position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%); z-index: 50;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    #floating-menu a {
+        width: 12px;
+        height: 12px;
+        background-color: rgba(255,255,255,0.2);
+        border-radius: 9999px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+     #floating-menu a.active {
+        background-color: var(--accent);
+        transform: scale(1.5);
+     }
+    #floating-menu a .tooltip {
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(16, 14, 31, 0.8);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.5rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+    #floating-menu a:hover .tooltip {
+        opacity: 1;
+    }
+
+    /* Language Switcher */
+    .language-switcher {
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 100;
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(16, 14, 31, 0.8);
+        padding: 0.5rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .language-switcher button {
+        background: transparent;
+        color: var(--text);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .language-switcher button.active {
+        background: var(--violet);
+        color: white;
+    }
+
+    /* Timeline */
+    .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .timeline::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        background-color: var(--violet);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 10px;
+    }
+    .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+    }
+    .timeline-item:nth-child(odd) {
+        left: 0;
+    }
+    .timeline-item:nth-child(even) {
+        left: 50%;
+    }
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: white;
+        border: 4px solid var(--violet);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .timeline-item:nth-child(odd)::after {
+        right: -13px;
+    }
+    .timeline-item:nth-child(even)::after {
+        left: -13px;
+    }
+    .timeline-content {
+        padding: 20px;
+        background-color: rgba(16,14,31,.55);
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,.08);
+    }
 
     /* Accessibility */
-    @media (pointer:coarse){body{cursor:auto}.cursor-dot,.cursor-glow{display:none}}
-    @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important}#interactive-bg{display:none}}
+    @media (pointer: coarse){body{cursor:auto}.cursor-dot,.cursor-glow{display:none}}
+    @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important} #interactive-bg{display:none}}
+    @media screen and (max-width: 768px) {
+        .timeline::after {
+            left: 31px;
+        }
+        .timeline-item {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+        }
+        .timeline-item:nth-child(even) {
+            left: 0;
+        }
+        .timeline-item::after {
+            left: 18px;
+        }
+        .timeline-item:nth-child(odd)::after {
+            right: auto;
+        }
+    }
   </style>
 </head>
 <body>
-  <!-- Language Switch -->
-  <div id="lang-switch" aria-label="Language switch">
-    <button data-lang="fr" class="active">FR</button>
-    <button data-lang="en">EN</button>
-  </div>
-
-  <!-- Background -->
+  <!-- Background (Three.js) -->
   <canvas id="interactive-bg" aria-hidden="true"></canvas>
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
-
+  
+  <!-- Language Switcher -->
+  <div class="language-switcher">
+    <button id="lang-fr" class="active">FR</button>
+    <button id="lang-en">EN</button>
+  </div>
+  
   <!-- HERO -->
-  <header id="header-section" class="pt-8">
-    <h1 class="hero-title" id="hero-title-interactive"></h1>
-    <p class="mt-6 text-lg text-white/70 max-w-2xl text-center"
-       data-lang-fr="Je suis Ivan Roger Nfinda. Plongez dans un univers où la data et l'IA sont un langage."
-       data-lang-en="I am Ivan Roger Nfinda. Dive into a universe where data and AI are a language.">
-    </p>
-    <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-      <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf"
-         class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV">📄 Télécharger mon CV</a>
-      <a href="#missions-projets" class="btn-secondary"
-         data-lang-fr="🚀 Découvrir mes Projets" data-lang-en="🚀 Discover my Projects">🚀 Découvrir mes Projets</a>
-    </div>
+  <header id="header-section">
+    <h1 class="hero-title" id="hero-title-interactive">
+      <!-- Le titre sera injecté ici par JS -->
+    </h1>
+     <p class="mt-8 text-lg text-white/70 max-w-2xl" data-lang-fr="Je suis Ivan Roger Nfinda. Plongez dans un univers où la data et l'IA ne sont pas des outils, mais un langage." data-lang-en="I am Ivan Roger Nfinda. Dive into a universe where data and AI are not tools, but a language."></p>
+     <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV"></a>
+        <a href="#missions-projets" class="btn-secondary" data-lang-fr="🚀 Découvrir mes Projets" data-lang-en="🚀 Discover my Projects"></a>
+     </div>
   </header>
 
   <main class="container">
     <!-- FACETTES -->
     <section id="facettes" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center"
-          data-lang-fr="Mes Facettes" data-lang-en="My Facets">Mes Facettes</h2>
+      <h2 class="text-4xl font-bold mb-12 text-center" data-lang-fr="Mes Facettes" data-lang-en="My Facets"></h2>
       <div class="card-grid">
-        <article class="block facet-card">
-          <h3 class="text-xl font-bold mb-1">Data Analyst</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Transformer les données brutes en décisions claires."
-             data-lang-en="Turn raw data into clear decisions."></p>
-        </article>
-        <article class="block facet-card">
-          <h3 class="text-xl font-bold mb-1">Business Analyst</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Relier enjeux métier et solutions data."
-             data-lang-en="Bridge business needs and data solutions."></p>
-        </article>
-        <article class="block facet-card">
-          <h3 class="text-xl font-bold mb-1">Architecte IA</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Concevoir des agents et systèmes prédictifs."
-             data-lang-en="Design agents and predictive systems."></p>
-        </article>
-        <article class="block facet-card">
-          <h3 class="text-xl font-bold mb-1">Chargé d’Études</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Valider les hypothèses avec rigueur."
-             data-lang-en="Validate hypotheses with rigor."></p>
-        </article>
+          <article class="card facet-card"><div>
+            <h3 class="text-xl font-bold mb-1" data-lang-fr="Data Analyst" data-lang-en="Data Analyst">Data Analyst</h3>
+            <p class="text-white/70 text-sm" data-lang-fr="Transformer les données brutes en décisions claires." data-lang-en="Transform raw data into clear decisions."></p></div>
+          </article>
+          <article class="card facet-card"><div>
+            <h3 class="text-xl font-bold mb-1" data-lang-fr="Business Analyst" data-lang-en="Business Analyst">Business Analyst</h3>
+            <p class="text-white/70 text-sm" data-lang-fr="Faire le pont entre enjeux métier et solution data." data-lang-en="Bridge the gap between business issues and data solutions."></p></div>
+          </article>
+          <article class="card facet-card"><div>
+            <h3 class="text-xl font-bold mb-1" data-lang-fr="Architecte IA" data-lang-en="AI Architect">Architecte IA</h3>
+            <p class="text-white/70 text-sm" data-lang-fr="Concevoir des agents et systèmes prédictifs." data-lang-en="Design predictive agents and systems."></p></div>
+          </article>
+          <article class="card facet-card"><div>
+            <h3 class="text-xl font-bold mb-1" data-lang-fr="Chargé d'Études Statistiques" data-lang-en="Statistical Studies Officer">Chargé d'Études Statistiques</h3>
+            <p class="text-white/70 text-sm" data-lang-fr="Valider les hypothèses avec rigueur." data-lang-en="Validate hypotheses with rigor."></p></div>
+          </article>
       </div>
     </section>
-
-    <!-- RÉSULTATS -->
+    
+    <!-- RESULTATS -->
     <section id="results" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center"
-          data-lang-fr="Mes Résultats Concrets" data-lang-en="Tangible Results">Mes Résultats Concrets</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div class="block p-8">
-          <p class="text-5xl font-black mb-2" data-value="30">+0%</p>
-          <p class="text-white/70" data-lang-fr="de conversion sur les leads" data-lang-en="lead conversion rate"></p>
+        <h2 class="text-4xl font-bold mb-12 text-center" data-lang-fr="Mes Résultats Concrets" data-lang-en="My Concrete Results"></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="block p-8">
+                <p class="text-5xl font-black gradient-text mb-2" data-value="30">+30%</p>
+                <p class="text-white/70" data-lang-fr="de Conversion sur les Leads" data-lang-en="Lead Conversion Rate"></p>
+            </div>
+            <div class="block p-8">
+                <p class="text-5xl font-black gradient-text mb-2" data-value="20">-20%</p>
+                <p class="text-white/70" data-lang-fr="de Temps d'Analyse" data-lang-en="Analysis Time"></p>
+            </div>
+            <div class="block p-8">
+                <p class="text-5xl font-black gradient-text mb-2" data-value="90">-90%</p>
+                <p class="text-white/70" data-lang-fr="de Temps en Data Cleaning" data-lang-en="Time in Data Cleaning"></p>
+            </div>
         </div>
-        <div class="block p-8">
-          <p class="text-5xl font-black mb-2" data-value="-20">0%</p>
-          <p class="text-white/70" data-lang-fr="de temps d'analyse" data-lang-en="analysis time"></p>
-        </div>
-        <div class="block p-8">
-          <p class="text-5xl font-black mb-2" data-value="-90">0%</p>
-          <p class="text-white/70" data-lang-fr="de temps en data cleaning" data-lang-en="time spent on data cleaning"></p>
-        </div>
-      </div>
     </section>
 
-    <!-- PARCOURS PRO -->
+    <!-- PARCOURS PROFESSIONNEL -->
     <section id="parcours" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center"
-          data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey">Parcours Professionnel</h2>
-      <div class="grid gap-4">
-        <div class="block">
-          <h3 class="font-semibold">LOGWIRE · <span class="text-white/70">Data Analyst (2025)</span></h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers."
-             data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p>
+        <h2 class="text-4xl font-bold mb-12 text-center" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content block">
+                    <h3 class="text-xl font-bold" data-lang-fr="Data Analyst Freelance" data-lang-en="Freelance Data Analyst">Data Analyst Freelance</h3>
+                    <p class="text-sm text-white/70" data-lang-fr="2023 - Présent" data-lang-en="2023 - Present">2023 - Présent</p>
+                    <p class="mt-2" data-lang-fr="Consultant indépendant spécialisé en analyse de données et intelligence artificielle." data-lang-en="Independent consultant specialized in data analysis and artificial intelligence."></p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content block">
+                    <h3 class="text-xl font-bold" data-lang-fr="Analyste de Données" data-lang-en="Data Analyst">Analyste de Données</h3>
+                    <p class="text-sm text-white/70" data-lang-fr="2021 - 2023" data-lang-en="2021 - 2023">2021 - 2023</p>
+                    <p class="mt-2" data-lang-fr="Analyse et modélisation de données pour des clients dans divers secteurs." data-lang-en="Data analysis and modeling for clients in various sectors."></p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content block">
+                    <h3 class="text-xl font-bold" data-lang-fr="Développeur BI" data-lang-en="BI Developer">Développeur BI</h3>
+                    <p class="text-sm text-white/70" data-lang-fr="2019 - 2021" data-lang-en="2019 - 2021">2019 - 2021</p>
+                    <p class="mt-2" data-lang-fr="Conception et développement de tableaux de bord interactifs." data-lang-en="Design and development of interactive dashboards."></p>
+                </div>
+            </div>
         </div>
-        <div class="block">
-          <h3 class="font-semibold">ENDO DATA · <span class="text-white/70">Data Analyst (2023–2024)</span></h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="BI dentaire multi-cabinets, -10% no-show, qualité de données via Talend."
-             data-lang-en="Dental BI for clinics, -10% no-show, data quality with Talend."></p>
-        </div>
-        <div class="block">
-          <h3 class="font-semibold">Afriland First Bank · <span class="text-white/70">Data Analyst (2021–2022)</span></h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="Scoring, suivi risques, -8% défaut, automatisation reporting."
-             data-lang-en="Scoring, risk tracking, -8% default, automated reporting."></p>
-        </div>
-      </div>
     </section>
 
-    <!-- FORMATION & RECHERCHE -->
+    <!-- FORMATION ET RECHERCHE -->
     <section id="formation" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center"
-          data-lang-fr="Formation & Recherche" data-lang-en="Education & Research">Formation & Recherche</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="block">
-          <h3 class="font-semibold">MBA Big Data & IA — MBA ESG (2024–2025)</h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="ML, modélisation, visualisation avancée, gouvernance, ADF."
-             data-lang-en="ML, modelling, advanced viz, governance, ADF."></p>
+        <h2 class="text-4xl font-bold mb-12 text-center" data-lang-fr="Formation et Recherche" data-lang-en="Education and Research"></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="block p-8">
+                <h3 class="text-2xl font-bold mb-4" data-lang-fr="Formation Académique" data-lang-en="Academic Education">Formation Académique</h3>
+                <ul class="space-y-4">
+                    <li>
+                        <h4 class="font-semibold" data-lang-fr="Master en Science des Données" data-lang-en="Master in Data Science">Master en Science des Données</h4>
+                        <p class="text-sm text-white/70" data-lang-fr="Université Paris-Saclay, 2019" data-lang-en="Paris-Saclay University, 2019">Université Paris-Saclay, 2019</p>
+                    </li>
+                    <li>
+                        <h4 class="font-semibold" data-lang-fr="Licence en Mathématiques Appliquées" data-lang-en="Bachelor in Applied Mathematics">Licence en Mathématiques Appliquées</h4>
+                        <p class="text-sm text-white/70" data-lang-fr="Université de Lyon, 2017" data-lang-en="Lyon University, 2017">Université de Lyon, 2017</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="block p-8">
+                <h3 class="text-2xl font-bold mb-4" data-lang-fr="Recherche et Publications" data-lang-en="Research and Publications">Recherche et Publications</h3>
+                <ul class="space-y-4">
+                    <li>
+                        <h4 class="font-semibold" data-lang-fr="Algorithmes d'Apprentissage Automatique" data-lang-en="Machine Learning Algorithms">Algorithmes d'Apprentissage Automatique</h4>
+                        <p class="text-sm text-white/70" data-lang-fr="Journal of AI Research, 2022" data-lang-en="Journal of AI Research, 2022">Journal of AI Research, 2022</p>
+                    </li>
+                    <li>
+                        <h4 class="font-semibold" data-lang-fr="Visualisation de Données Avancée" data-lang-en="Advanced Data Visualization">Visualisation de Données Avancée</h4>
+                        <p class="text-sm text-white/70" data-lang-fr="Conférence IEEE, 2021" data-lang-en="IEEE Conference, 2021">Conférence IEEE, 2021</p>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="block">
-          <h3 class="font-semibold">Master SI — UCAC</h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="SQL Server/MySQL/PostgreSQL, BI, UML, processus."
-             data-lang-en="SQL Server/MySQL/PostgreSQL, BI, UML, processes."></p>
-        </div>
-      </div>
     </section>
 
     <!-- MISSIONS STRATÉGIQUES -->
     <section id="missions-projets" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center"
-          data-lang-fr="Missions Stratégiques" data-lang-en="Strategic Missions">Missions Stratégiques</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <article class="block mission-card card-3d-tilt">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8V4H8"/><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 12h4"/><path d="M12 16h4"/><path d="M8 12h.01"/><path d="M8 16h.01"/></svg>
-          <h3 class="text-xl font-bold mb-1">Agent IA « ARIA »</h3>
-          <p class="text-white/70 text-sm mb-2" data-lang-fr="Insights actionnables en temps réel."
-             data-lang-en="Actionable insights in real time."></p>
-          <a class="underline text-indigo-300 text-sm" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener">Démo →</a>
-        </article>
-        <article class="block mission-card card-3d-tilt">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-          <h3 class="text-xl font-bold mb-1" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring">Scoring Prédictif</h3>
-          <p class="text-white/70 text-sm mb-2" data-lang-fr="+30% de conversion sur les leads."
-             data-lang-en="+30% lead conversion."></p>
-          <a class="underline text-indigo-300 text-sm" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener">Démo →</a>
-        </article>
-        <article class="block mission-card card-3d-tilt">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
-          <h3 class="text-xl font-bold mb-1">Data Clean</h3>
-          <p class="text-white/70 text-sm mb-2" data-lang-fr="Préparation de données : −90% de temps."
-             data-lang-en="Data prep: −90% time."></p>
-          <a class="underline text-indigo-300 text-sm" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener">Démo →</a>
-        </article>
-        <article class="block mission-card card-3d-tilt">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          <h3 class="text-xl font-bold mb-1">ContraScope</h3>
-          <p class="text-white/70 text-sm mb-2" data-lang-fr="Analyse juridique en minutes."
-             data-lang-en="Contract analysis in minutes."></p>
-          <a class="underline text-indigo-300 text-sm" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener">Démo →</a>
-        </article>
+      <h2 class="text-4xl font-bold mb-12 text-center" data-lang-fr="Missions Stratégiques" data-lang-en="Strategic Missions"></h2>
+      <div class="card-grid">
+          <article class="card mission-card card-3d-tilt">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 12h4"/><path d="M12 16h4"/><path d="M8 12h.01"/><path d="M8 16h.01"/></svg>
+            <div>
+              <h3 class="text-xl font-bold mb-1">Agent IA « ARIA »</h3>
+              <p class="text-white/70 text-sm mb-2" data-lang-fr="Insights actionnables en temps réel." data-lang-en="Actionable insights in real time."></p>
+              <a class="underline text-indigo-300 text-sm" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="Démo →" data-lang-en="Demo →"></a>
+            </div>
+          </article>
+          <article class="card mission-card card-3d-tilt">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            <div>
+              <h3 class="text-xl font-bold mb-1" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring">Scoring Prédictif</h3>
+              <p class="text-white/70 text-sm mb-2" data-lang-fr="+30% de conversion sur les leads." data-lang-en="+30% lead conversion rate."></p>
+              <a class="underline text-indigo-300 text-sm" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="Démo →" data-lang-en="Demo →"></a>
+            </div>
+          </article>
+          <article class="card mission-card card-3d-tilt">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+            <div>
+              <h3 class="text-xl font-bold mb-1" data-lang-fr="Data Clean" data-lang-en="Data Clean">Data Clean</h3>
+              <p class="text-white/70 text-sm mb-2" data-lang-fr="Préparation de données −90% de temps." data-lang-en="Data preparation -90% time."></p>
+              <a class="underline text-indigo-300 text-sm" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="Démo →" data-lang-en="Demo →"></a>
+            </div>
+          </article>
+          <article class="card mission-card card-3d-tilt">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <div>
+              <h3 class="text-xl font-bold mb-1">ContraScope</h3>
+              <p class="text-white/70 text-sm mb-2" data-lang-fr="Analyse juridique en minutes." data-lang-en="Legal analysis in minutes."></p>
+              <a class="underline text-indigo-300 text-sm" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener" data-lang-fr="Démo →" data-lang-en="Demo →"></a>
+            </div>
+          </article>
       </div>
     </section>
   </main>
-
+  
   <footer id="contact" class="container text-center text-white/60 pb-12">
     <div class="flex justify-center items-center space-x-6 mb-4">
-      <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors" aria-label="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a href="mailto:nfindaroger@gmail.com" class="hover:text-violet-400 transition-colors" aria-label="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      </a>
+        <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <a href="mailto:nfindaroger@gmail.com" class="hover:text-violet-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a>
     </div>
-    <p>Créé avec ❤️ et IA – 2025</p>
+    <p data-lang-fr="Crée avec ❤️ et IA – 2025" data-lang-en="Created with ❤️ and AI – 2025"></p>
   </footer>
 
-  <!-- Availability -->
   <div id="availability-badge">
-    <button id="availability-btn" class="bg-green-500/20 border border-green-400 text-green-300 text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2">
-      <span class="relative flex h-3 w-3">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-      </span>
-      <span data-lang-fr="Disponible pour de nouveaux projets" data-lang-en="Available for new projects">Disponible pour de nouveaux projets</span>
-    </button>
-    <div id="contact-popup" class="absolute bottom-full right-0 mb-2 w-64 p-4 block opacity-0 scale-95 pointer-events-none">
-      <h4 class="font-bold text-white mb-2" data-lang-fr="Contactez-moi" data-lang-en="Contact Me">Contactez-moi</h4>
-      <a href="mailto:nfindaroger@gmail.com" class="block text-violet-400 hover:text-violet-300">nfindaroger@gmail.com</a>
-      <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="block text-violet-400 hover:text-violet-300">LinkedIn</a>
-      <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="block text-violet-400 hover:text-violet-300">GitHub</a>
+        <button id="availability-btn" class="bg-green-500/20 border border-green-400 text-green-300 text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2">
+            <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
+            <span data-lang-fr="Disponible pour de nouveaux projets" data-lang-en="Available for new projects"></span>
+        </button>
+        <div id="contact-popup" class="absolute bottom-full right-0 mb-2 w-64 p-4 card opacity-0 scale-95 pointer-events-none">
+            <h4 class="font-bold text-white mb-2" data-lang-fr="Contactez-moi" data-lang-en="Contact Me"></h4>
+            <a href="mailto:nfindaroger@gmail.com" class="block text-violet-400 hover:text-violet-300">nfindaroger@gmail.com</a>
+            <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="block text-violet-400 hover:text-violet-300">LinkedIn</a>
+            <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="block text-violet-400 hover:text-violet-300">GitHub</a>
+        </div>
     </div>
-  </div>
-
-  <!-- Dots nav -->
-  <nav id="floating-menu"></nav>
-
+    
+   <nav id="floating-menu">
+     <!-- Les liens seront injectés ici par JS -->
+   </nav>
+   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = matchMedia('(max-width: 768px)').matches;
+    let currentLanguage = 'fr';
 
-    document.addEventListener('DOMContentLoaded', () => {
-      /* Cursor */
-      const dot = document.querySelector('.cursor-dot');
-      const glow = document.querySelector('.cursor-glow');
-      if (dot && glow) {
-        window.addEventListener('mousemove', e => {
-          dot.style.left = glow.style.left = e.clientX + 'px';
-          dot.style.top  = glow.style.top  = e.clientY + 'px';
-        });
-        document.querySelectorAll('a,button,.block').forEach(el=>{
-          el.addEventListener('mouseenter',()=>dot.classList.add('big'));
-          el.addEventListener('mouseleave',()=>dot.classList.remove('big'));
-        });
-      }
-
-      /* Interactive title */
-      const titleEl = document.getElementById('hero-title-interactive');
-      const titleText = "Entrez dans la Matrice";
-      if (titleEl) {
-        titleText.split(' ').forEach(wordText => {
-          const wordDiv = document.createElement('div');
-          wordDiv.className = 'word';
-          wordText.split('').forEach(char => {
-            const span = document.createElement('span');
-            span.className = 'char';
-            span.textContent = char;
-            wordDiv.appendChild(span);
-          });
-          titleEl.appendChild(wordDiv);
-        });
-      }
-
-      /* Animated counters */
-      const counters = document.querySelectorAll('[data-value]');
-      const observer = new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          if(!entry.isIntersecting) return;
-          const el = entry.target;
-          const target = parseInt(el.dataset.value);
-          let val = 0;
-          const step = Math.sign(target) * Math.ceil(Math.abs(target)/60);
-          const id = setInterval(()=>{
-            val += step;
-            if ((step>0 && val>=target) || (step<0 && val<=target)) { val = target; clearInterval(id); }
-            el.textContent = (target>0?'+':'') + val + '%';
-          }, 16);
-          observer.unobserve(el);
-        });
-      },{threshold:.6});
-      counters.forEach(c=>observer.observe(c));
-
-      /* Availability pop */
-      const availabilityBtn = document.getElementById('availability-btn');
-      const contactPopup = document.getElementById('contact-popup');
-      if (availabilityBtn && contactPopup) {
-        availabilityBtn.addEventListener('click', () => {
-          contactPopup.classList.toggle('opacity-0');
-          contactPopup.classList.toggle('scale-95');
-          contactPopup.classList.toggle('pointer-events-none');
-        });
-        document.addEventListener('click', e => {
-          const badge = document.getElementById('availability-badge');
-          if (badge && !badge.contains(e.target)) {
-            contactPopup.classList.add('opacity-0','scale-95','pointer-events-none');
-          }
-        });
-      }
-
-      /* Floating dots menu */
-      const floatingMenu = document.getElementById('floating-menu');
-      const sections = document.querySelectorAll('.section');
-      if (floatingMenu && sections.length) {
-        sections.forEach(section=>{
-          const a = document.createElement('a');
-          a.href = `#${section.id}`;
-          const tip = document.createElement('span');
-          tip.className = 'tooltip';
-          const h2 = section.querySelector('h2');
-          tip.textContent = h2 ? h2.textContent : section.id;
-          a.appendChild(tip);
-          floatingMenu.appendChild(a);
-        });
-        const links = floatingMenu.querySelectorAll('a');
-        const mo = new IntersectionObserver(entries=>{
-          entries.forEach(entry=>{
-            if(entry.isIntersecting){
-              links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Language switcher
+        const langFrBtn = document.getElementById('lang-fr');
+        const langEnBtn = document.getElementById('lang-en');
+        
+        if (langFrBtn && langEnBtn) {
+            langFrBtn.addEventListener('click', () => switchLanguage('fr'));
+            langEnBtn.addEventListener('click', () => switchLanguage('en'));
+        }
+        
+        // Function to switch language
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update button states
+            if (langFrBtn && langEnBtn) {
+                if (lang === 'fr') {
+                    langFrBtn.classList.add('active');
+                    langEnBtn.classList.remove('active');
+                } else {
+                    langFrBtn.classList.remove('active');
+                    langEnBtn.classList.add('active');
+                }
             }
-          });
-        },{rootMargin:'-50% 0px -50% 0px'});
-        sections.forEach(s=>mo.observe(s));
-      }
+            
+            // Update all elements with data-lang attributes
+            document.querySelectorAll('[data-lang-fr], [data-lang-en]').forEach(element => {
+                if (element.hasAttribute(`data-lang-${lang}`)) {
+                    const text = element.getAttribute(`data-lang-${lang}`);
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+        }
+        
+        // Cursor
+        const dot=document.querySelector('.cursor-dot');
+        const glow=document.querySelector('.cursor-glow');
+        if (dot && glow) {
+            window.addEventListener('mousemove',e=>{dot.style.left=glow.style.left=e.clientX+'px';dot.style.top=glow.style.top=e.clientY+'px';});
+            document.querySelectorAll('a,button,.block').forEach(el=>{el.addEventListener('mouseenter',()=>dot.classList.add('big'));el.addEventListener('mouseleave',()=>dot.classList.remove('big'));});
+        }
+        
+        // Interactive title
+        const titleEl = document.getElementById('hero-title-interactive');
+        if(titleEl) {
+            const titleText = currentLanguage === 'fr' ? "Entrez dans la Matrice" : "Enter the Matrix";
+            titleEl.innerHTML = '';
+            titleText.split(' ').forEach(wordText => {
+                const wordDiv = document.createElement('div');
+                wordDiv.className = 'word';
+                wordText.split('').forEach(char => {
+                    const span = document.createElement('span');
+                    span.className = 'char';
+                    span.textContent = char;
+                    wordDiv.appendChild(span);
+                });
+                titleEl.appendChild(wordDiv);
+            });
+        }
 
-      /* Language switch */
-      const langButtons = document.querySelectorAll('#lang-switch button');
-      function applyLang(lang){
-        langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-        document.documentElement.lang = lang;
-        document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
-          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
-          if (txt && txt.length) el.textContent = txt;
+        // 3D Tilt Effect
+        document.querySelectorAll('.card-3d-tilt').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const { width, height } = rect;
+                const rotateX = (y / height - 0.5) * -15; // 15 degrees max tilt
+                const rotateY = (x / width - 0.5) * 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
         });
-      }
-      langButtons.forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
-      applyLang('fr'); // default
+        
+        // Animated Counter
+        const counters = document.querySelectorAll('[data-value]');
+        const counterObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const targetValue = parseInt(counter.dataset.value);
+                    let currentValue = 0;
+                    const sign = Math.sign(targetValue);
+                    const increment = sign * Math.ceil(Math.abs(targetValue) / 50);
 
-      /* Three.js background */
-      const canvas = document.getElementById('interactive-bg');
-      if (!reduce && canvas && window.THREE) {
-        let scene,camera,renderer,points,lines,auroraMat,idxPairs=[];
+                    const interval = setInterval(() => {
+                        currentValue += increment;
+                        if ((sign > 0 && currentValue >= targetValue) || (sign < 0 && currentValue <= targetValue)) {
+                            currentValue = targetValue;
+                            clearInterval(interval);
+                        }
+                         counter.textContent = (targetValue > 0 ? '+' : '') + currentValue + '%';
+                    }, 20);
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.8 });
+        counters.forEach(c => counterObserver.observe(c));
+
+        // Availability Badge
+        const availabilityBtn = document.getElementById('availability-btn');
+        const contactPopup = document.getElementById('contact-popup');
+        if (availabilityBtn && contactPopup) {
+            availabilityBtn.addEventListener('click', () => {
+                const isHidden = contactPopup.classList.contains('opacity-0');
+                if (isHidden) {
+                    contactPopup.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                } else {
+                    contactPopup.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                }
+            });
+            document.addEventListener('click', e => {
+                const availabilityBadge = document.getElementById('availability-badge');
+                if (availabilityBadge && !availabilityBadge.contains(e.target)) {
+                     contactPopup.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                }
+            });
+        }
+
+        // Floating Menu
+        const floatingMenu = document.getElementById('floating-menu');
+        const sections = document.querySelectorAll('.section');
+        if (floatingMenu && sections.length > 0) {
+            sections.forEach(section => {
+                const link = document.createElement('a');
+                link.href = `#${section.id}`;
+                const tooltip = document.createElement('span');
+                tooltip.className = 'tooltip';
+                const h2 = section.querySelector('h2');
+                if(h2) tooltip.textContent = h2.textContent;
+                link.appendChild(tooltip);
+                floatingMenu.appendChild(link);
+            });
+            const menuLinks = floatingMenu.querySelectorAll('a');
+            const menuObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        menuLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+            sections.forEach(section => menuObserver.observe(section));
+        }
+
+        // Three.js background
+        const canvas=document.getElementById('interactive-bg'); let scene,camera,renderer,points,lines,auroraMat;
         let mx=0,my=0;
-        const init=()=>{
-          try{
+        
+        function init3D(){
+          try {
             scene=new THREE.Scene();
             camera=new THREE.PerspectiveCamera(70, innerWidth/innerHeight, .1, 2000);
             camera.position.z=420;
-            renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-            renderer.setSize(innerWidth,innerHeight);
-            renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-            renderer.setClearColor(0x000000,0);
-
-            const count=isMobile?650:1400;
-            const pos=new Float32Array(count*3);
-            for(let i=0;i<count*3;i++){pos[i]=(Math.random()-.5)*1200}
-            const pGeo=new THREE.BufferGeometry();
-            pGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
-            const pMat=new THREE.PointsMaterial({size:1.1,color:0x9aa0aa,transparent:true,opacity:.55,blending:THREE.AdditiveBlending});
+            renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+            renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setClearColor(0x000000,0);
+            const count=isMobile?650:1400; const pos=new Float32Array(count*3); for(let i=0;i<count*3;i++){ pos[i]=(Math.random()-.5)*1200 }
+            const pGeo=new THREE.BufferGeometry(); pGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+            const pMat=new THREE.PointsMaterial({ size:1.1, color:0x9aa0aa, transparent:true, opacity:.55, blending:THREE.AdditiveBlending });
             points=new THREE.Points(pGeo,pMat); scene.add(points);
-
-            const P=pGeo.attributes.position;
-            const maxLinks=3,minDist=40,maxDist=140;
-            for(let i=0;i<count;i++){
-              let links=0;
-              for(let j=i+1;j<Math.min(i+22,count);j++){
-                const dx=P.getX(i)-P.getX(j), dy=P.getY(i)-P.getY(j), dz=P.getZ(i)-P.getZ(j);
-                const d=Math.hypot(dx,dy,dz);
-                if(d>minDist&&d<maxDist){ idxPairs.push(i,j); links++; if(links>=maxLinks) break; }
-              }
-            }
-            const lGeo=new THREE.BufferGeometry();
-            lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(idxPairs.length*3),3));
-            const lMat=new THREE.LineBasicMaterial({color:0xa5b4fc,transparent:true,opacity:.25});
+            let idxPairs=[]; const maxLinks=3, minDist=40, maxDist=140; const P=pGeo.attributes.position; for(let i=0;i<count;i++){ let links=0; for(let j=i+1;j<Math.min(i+22,count);j++){ const dx=P.getX(i)-P.getX(j), dy=P.getY(i)-P.getY(j), dz=P.getZ(i)-P.getZ(j); const d=Math.sqrt(dx*dx+dy*dy+dz*dz); if(d>minDist&&d<maxDist){ idxPairs.push(i,j); links++; if(links>=maxLinks) break; } } }
+            const lGeo=new THREE.BufferGeometry(); lGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(idxPairs.length*3),3));
+            const lMat=new THREE.LineBasicMaterial({ color:0xa5b4fc, transparent:true, opacity:.25 });
             lines=new THREE.LineSegments(lGeo,lMat); scene.add(lines);
-
-            const uniforms={uTime:{value:0},uResolution:{value:new THREE.Vector2(innerWidth,innerHeight)}};
-            auroraMat=new THREE.ShaderMaterial({
-              uniforms,blending:THREE.AdditiveBlending,transparent:true,depthWrite:false,
-              vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
-              fragmentShader:`precision highp float;varying vec2 vUv;uniform float uTime;uniform vec2 uResolution;
-                float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-                float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);float a=hash(i);float b=hash(i+vec2(1.,0.));
-                  float c=hash(i+vec2(0.,1.));float d=hash(i+vec2(1.,1.));vec2 u=f*f*(3.-2.*f);
-                  return mix(a,b,u.x)+(c-a)*u.y*(1.-u.x)+(d-b)*u.x*u.y;}
-                void main(){vec2 uv=vUv*3.;float t=uTime*.06;float n=0.;float amp=.6;float fr=1.;
-                  for(int i=0;i<4;i++){n+=noise(uv*fr+t)*amp;fr*=2.;amp*=.5;}
-                  vec3 col=mix(vec3(.08,0.,.18),vec3(.5,.6,1.),n);col+=vec3(.6,.4,1.)*smoothstep(.6,1.,n)*.6;
-                  gl_FragColor=vec4(col,.18);} `
-            });
-            const plane=new THREE.Mesh(new THREE.PlaneGeometry(2,2),auroraMat);
-            plane.position.z=-1; scene.add(plane);
-
-            window.addEventListener('resize',onResize);
-            document.body.addEventListener('mousemove',onMouse);
-
-            const animate=()=>{
-              requestAnimationFrame(animate);
-              const t=Date.now()*0.001;
-              camera.position.x+=(mx-camera.position.x)*0.03;
-              camera.position.y+=(-my-camera.position.y)*0.03;
-              camera.lookAt(scene.position);
-              if(points) points.rotation.y=t*0.06;
-              const lp=lines.geometry.attributes.position;
-              const pp=points.geometry.attributes.position;
-              for(let k=0;k<idxPairs.length;k+=2){
-                const a=idxPairs[k],b=idxPairs[k+1];
-                lp.setXYZ(k,pp.getX(a),pp.getY(a),pp.getZ(a));
-                lp.setXYZ(k+1,pp.getX(b),pp.getY(b),pp.getZ(b));
-              }
-              lp.needsUpdate=true;
-              auroraMat.uniforms.uTime.value=t;
-              renderer.render(scene,camera);
-            };
+            const uniforms={ uTime:{value:0}, uResolution:{value:new THREE.Vector2(innerWidth,innerHeight)} };
+            auroraMat=new THREE.ShaderMaterial({uniforms, blending:THREE.AdditiveBlending, transparent:true, depthWrite:false, vertexShader:`varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`, fragmentShader:`precision highp float; varying vec2 vUv; uniform float uTime; uniform vec2 uResolution; float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);} float noise(vec2 p){ vec2 i=floor(p); vec2 f=fract(p); float a=hash(i); float b=hash(i+vec2(1.0,0.0)); float c=hash(i+vec2(0.0,1.0)); float d=hash(i+vec2(1.0,1.0)); vec2 u=f*f*(3.0-2.0*f); return mix(a,b,u.x)+ (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y; } void main(){ vec2 uv=vUv*3.0; float t=uTime*0.06; float n=0.0; float amp=0.6; float fr=1.0; for(int i=0;i<4;i++){ n += noise(uv*fr + t)*amp; fr*=2.0; amp*=0.5; } vec3 col = mix(vec3(0.08,0.0,0.18), vec3(0.5,0.6,1.0), n); col += vec3(0.6,0.4,1.0)*smoothstep(0.6,1.0,n)*0.6; gl_FragColor = vec4(col, 0.18); }`});
+            const plane=new THREE.Mesh(new THREE.PlaneGeometry(2,2), auroraMat); plane.position.z=-1; scene.add(plane);
+            window.addEventListener('resize', onResize); document.body.addEventListener('mousemove', onMouse); 
+            
+            function animate(){ if(reduce || !renderer) return; requestAnimationFrame(animate); const t=Date.now()*0.001; camera.position.x+=(mx-camera.position.x)*0.03; camera.position.y+=(-my-camera.position.y)*0.03; camera.lookAt(scene.position); if(points){ points.rotation.y=t*0.06; }
+              const lp=lines.geometry.attributes.position; const pp=points.geometry.attributes.position; for(let k=0;k<idxPairs.length; k+=2){ const a=idxPairs[k], b=idxPairs[k+1]; lp.setXYZ(k, pp.getX(a), pp.getY(a), pp.getZ(a)); lp.setXYZ(k+1, pp.getX(b), pp.getY(b), pp.getZ(b)); } lp.needsUpdate=true; auroraMat.uniforms.uTime.value=t; renderer.render(scene,camera); 
+            }
             animate();
-          }catch(e){
-            console.warn('WebGL fallback',e);
-            canvas.style.display='none';
-            document.body.style.backgroundImage='radial-gradient(circle,#1a1a3d,#030014)';
+          } catch(e) {
+              console.warn('WebGL is not supported, falling back to static background.', e);
+              if (canvas) canvas.style.display = 'none';
+              document.body.style.backgroundImage = 'radial-gradient(circle, #1a1a3d, #030014)';
           }
-        };
-        const onResize=()=>{
-          camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
-          renderer.setSize(innerWidth,innerHeight);
-          if(auroraMat) auroraMat.uniforms.uResolution.value.set(innerWidth,innerHeight);
-        };
-        const onMouse=e=>{mx=e.clientX-innerWidth/2; my=e.clientY-innerHeight/2};
-        init();
-      } else {
-        document.body.style.backgroundImage='radial-gradient(circle,#1a1a3d,#030014)';
-      }
+        }
+        function onResize(){ if(!renderer) return; camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); if(auroraMat) auroraMat.uniforms.uResolution.value.set(innerWidth, innerHeight); }
+        function onMouse(e){ mx=e.clientX-innerWidth/2; my=e.clientY-innerHeight/2; }
+        
+        if (!reduce) {
+          init3D();
+        } else {
+          document.body.style.backgroundImage = 'radial-gradient(circle, #1a1a3d, #030014)';
+        }
     });
   </script>
 </body>
