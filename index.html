@@ -1,230 +1,509 @@
-<style id="patch-css">
-    /* --- 1. Titre Principal "WOW" --- */
-    .hero-title {
-        position: relative;
-        /* Halo lumineux + contour scintillant */
-        text-shadow: 0 0 12px var(--accent), 0 0 30px var(--violet),
-                     0 0 50px rgba(124, 58, 237, 0.7),
-                     1px 1px 2px rgba(255, 255, 255, 0.2);
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ivan Roger NFINDA | Data Analyst & BI Portfolio</title>
+  <meta name="description" content="Portfolio d'Ivan Roger Nfinda, Data Analyst spécialisé en BI et IA. Découvrez mes projets (Power BI, R Shiny) et mes missions stratégiques." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#030014;--text:#e6e6f0;--muted:#aab;--violet:#7c3aed;--accent:#a78bfa;--cyan:#22d3ee;--green:#22c55e;--red:#ef4444
     }
-    .hero-title::after {
-        content: '';
-        position: absolute;
-        inset: -20%;
-        background-image: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 50%);
-        opacity: 0;
-        transform: scale(0.5);
-        transition: opacity 0.35s ease-out, transform 0.35s ease-out;
-        pointer-events: none;
-    }
-    .hero-title:hover::after {
-        opacity: 1;
-        transform: scale(1.1);
-    }
+    *{box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;cursor:none;overflow-x:hidden}
+    .container{max-width:74rem;margin-inline:auto;padding:1.25rem}
+    main.container { padding-bottom: 6rem; }
+    
+    .section{margin-bottom:6.5rem;position:relative}
+    .block{background:rgba(16,14,31,.55);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;padding:1.25rem;box-shadow:0 0 40px rgba(124,58,237,.12);transition:transform .3s ease, box-shadow .3s ease; display: flex; flex-direction: column;}
+    .block:hover{transform:translateY(-6px);box-shadow:0 30px 60px -12px rgba(124,58,237,.25)}
+    .block p, .timeline p { line-height: 1.7; }
 
-    /* --- 2. Ambiance IA pour "Missions Stratégiques" (#missions-projets) --- */
-    #missions-projets.ai-bg::before {
-        content: '';
-        position: absolute;
-        inset: -50%;
-        z-index: -1;
-        background-image: radial-gradient(circle at 20% 30%, var(--violet) 0%, transparent 25%),
-                          radial-gradient(circle at 80% 70%, var(--cyan) 0%, transparent 20%);
-        background-size: 200% 200%;
-        opacity: 0;
-        animation: aurora-pulse 12s ease-in-out infinite;
-        transition: opacity 1s ease-in-out;
-    }
-    #missions-projets.is-visible.ai-bg::before { opacity: 0.15; }
+    .cursor-dot,.cursor-glow{position:fixed;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999}
+    .cursor-dot{width:8px;height:8px;background:#fff;transition:transform .15s ease,background .15s ease}
+    .cursor-glow{width:50px;height:50px;background:radial-gradient(circle,rgba(167,139,250,.8)0%,rgba(167,139,250,0)70%);z-index:9998;transition:transform .2s ease,opacity .2s}
+    .cursor-dot.big{transform:translate(-50%,-50%) scale(5);background-color:rgba(255,255,255,.25)}
 
-    /* Micro-interactions sur les cartes de mission */
-    #missions-projets .ms-aria:hover::before { animation-duration: 0.7s; }
-    #missions-projets .ms-scoring:hover::before { animation-duration: 1s; opacity: 0.6; }
-    #missions-projets .ms-clean::before { transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    #missions-projets .ms-clean:hover::before { transform: translateX(120%) !important; }
+    header{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;padding-top:4.5rem}
+    #interactive-bg{position:fixed;inset:0;z-index:-2}
+    .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.6rem, 7.6vw, 6.6rem);font-weight:900;line-height:1.05;position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.08em .24em;perspective:1000px}
+    .hero-title .word{display:flex}
+    .hero-title .char{display:inline-block;transition:all .25s ease;text-shadow:0 0 6px rgba(165,180,252,.55),0 0 18px rgba(165,180,252,.55),0 0 34px rgba(124,58,237,.55);animation:flicker 3.2s infinite alternate}
+    .hero-title:hover .char{transform:translateY(-8px) rotateX(22deg) scale(1.08);color:#fff;text-shadow:0 0 10px #a78bfa,0 0 22px #a78bfa,0 0 44px #a78bfa}
+    .hero-breath{animation:breath 5.2s ease-in-out infinite}
+    @keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1}20%,24%,55%{opacity:.85;filter:brightness(1.15)}}
+    @keyframes breath{0%,100%{transform:translateZ(0) scale(1)}50%{transform:translateZ(0) scale(1.015)}}
+    
+    #data-word-cloud{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;pointer-events:none}
+    #data-word-cloud span{position:absolute;color:rgba(167,139,250,0.08);font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4rem);animation:scroll-words linear infinite;}
+    @keyframes scroll-words{from{transform:translateY(100vh)}to{transform:translateY(-50vh)}}
+    #data-word-cloud span:nth-of-type(1){left:10%;animation-duration:25s;animation-delay:0s}
+    
+    .btn-primary, .btn-secondary { position: relative; overflow: hidden; z-index: 1; transition: all .25s ease; }
+    .btn-primary::before, .btn-secondary::before { content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0) 100%);transform:skewX(-25deg);opacity:0;transition:all 0.7s ease; }
+    .btn-primary:hover::before, .btn-secondary:hover::before { left: 120%; opacity: 1; }
+    .btn-primary:active, .btn-secondary:active { transform: translateY(1px) scale(0.98) !important; transition-duration: 0.1s; }
+    .btn-primary{display:inline-block;background:linear-gradient(135deg,var(--violet),var(--accent));color:#fff;font-weight:700;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;box-shadow:0 8px 30px rgba(124,58,237,.45)}
+    .btn-primary:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 15px 4px rgba(167,139,250,0.5),0 0 40px 10px rgba(124,58,237,0.35)}
+    .btn-secondary{display:inline-block;background:rgba(255,255,255,.08);color:#fff;font-weight:600;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,.18)}
+    .btn-secondary:hover{background:rgba(255,255,255,.16);transform:translateY(-2px) scale(1.04);box-shadow:0 0 12px 2px rgba(255,255,255,0.18)}
 
-    /* --- 3. Animations "Data/BI" pour "Projets d'Analyse" (#projets-ia) --- */
-    .bi-card-overlay {
-        position: absolute; inset: 0; pointer-events: none;
-        opacity: 0; transition: opacity 0.5s ease;
-    }
-    #projets-ia.is-visible .bi-card-overlay { opacity: 1; }
+    .section h2 { transition: opacity 0.6s ease, transform 0.6s ease; opacity: 0; transform: translateY(20px); letter-spacing: 0.05em; }
+    .section h2.visible { opacity: 1; transform: translateY(0); }
+    
+    #lang-switch{position:fixed;right:1rem;top:1rem;z-index:60;display:flex;gap:.4rem}
+    #lang-switch button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(8px);padding:.35rem .65rem;border-radius:.6rem;font-weight:600}
+    #lang-switch button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent}
 
-    /* Effet "ETL Pipe" en fond */
-    .etl-flow::before {
-        content: '';
-        position: absolute; inset: 0; z-index: -1;
-        background-image: radial-gradient(var(--accent) 1px, transparent 1px);
-        background-size: 20px 20px;
-        mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
-        opacity: 0;
-        animation: etl-move 3s linear infinite;
-    }
-    #projets-ia.is-visible .etl-flow::before { opacity: 0.1; }
-    @keyframes etl-move { from { background-position: 0 0; } to { background-position: 40px 0; } }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+    .project-card { padding: 1.5rem; text-align: left; }
+    .project-card h3 { font-family: 'Orbitron', sans-serif; }
+    .project-card .btn-secondary { margin-top: auto; text-align: center; }
+    
+    .mission-card{text-align:center; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden; border-radius:16px; min-height: 280px; padding: 1.25rem;}
+    .mission-card p { font-size: 0.9rem;}
+    .mission-card .btn-secondary { margin-top: auto; }
 
-    /* Animation "Bar Fill" */
-    .bar-fill::after {
-        content: '';
-        position: absolute; bottom: 1rem; left: 1.25rem; height: 3px;
-        width: 0;
-        background-color: var(--cyan);
-        transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
-    }
-    #projets-ia.is-visible .bar-fill::after { width: 50%; }
+    .card-3d-tilt{transform-style:preserve-3d}
+    .card-3d-tilt:hover{transition:transform .1s linear;transform:scale(1.05)}
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 30px -5px rgba(124, 58, 237, 0.3); } 50% { box-shadow: 0 0 50px 5px rgba(124, 58, 237, 0.5); } }
+    .ms-aria::before{content:"";position:absolute;inset:15%;border-radius:50%;background:conic-gradient(from 0deg,rgba(167,139,250,.55),transparent 60%),radial-gradient(circle at 50% 50%,transparent 55%,rgba(167,139,250,.45) 56%,transparent 58%);animation:radar-spin 6s linear infinite;mix-blend-mode:screen;opacity:.45}
+    @keyframes radar-spin{to{transform:rotate(360deg)}}
 
-    /* --- 4. Accessibilité Globale --- */
-    a:focus-visible, button:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-        box-shadow: 0 0 10px var(--accent);
-        border-radius: 4px;
-    }
-    .btn-primary:hover, .btn-secondary:hover {
-        box-shadow: 0 0 15px 4px rgba(167,139,250,0.5); /* Effet lumineux renforcé */
-    }
+    #availability-badge{position:fixed;bottom:1.1rem;right:1.1rem;z-index:50}
+    @keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(49,196,141,.7)}70%{box-shadow:0 0 0 10px rgba(49,196,141,0)}}
+    #availability-badge button{animation:pulse-badge 2s infinite}
+    
+    #floating-menu{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.7rem}
+    #floating-menu a{width:12px;height:12px;background-color:rgba(255,255,255,.22);border-radius:9999px;transition:all .3s ease;position:relative}
+    #floating-menu a.active{background-color:var(--accent);transform:scale(1.5)}
+    #floating-menu a .tooltip{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background-color:rgba(16,14,31,.85);color:#fff;padding:.25rem .6rem;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
+    #floating-menu a:hover .tooltip{opacity:1}
 
-    /* --- 5. Respect de `prefers-reduced-motion` --- */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+    #ia-agent{position:fixed;left:1rem;bottom:1rem;z-index:60;display:flex;align-items:center;gap:.6rem}
+    #ia-avatar{width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,#9b8cfb,#6b4be6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(167,139,250,.6); transition: box-shadow .3s ease; cursor: pointer;}
+    @keyframes avatar-glow{0%,100%{box-shadow:0 0 16px rgba(167,139,250,.5)}50%{box-shadow:0 0 40px rgba(167,139,250,.85)}}
+    #ia-bubble{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);color:#fff;font-size:.9rem;padding:.55rem .8rem;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;max-width:260px}
+    .bubble-show{opacity:1 !important;transform:translateY(0)!important}
+    
+    .timeline{position:relative;padding-left:1rem}
+    .timeline::before{content:"";position:absolute;left:0.4rem;top:.1rem;bottom:.4rem;width:2px;background:linear-gradient(180deg,rgba(167,139,250,.2),rgba(167,139,250,1),rgba(167,139,250,.2))}
+    .t-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(167,139,250,.8)}
+    
+    @media (max-width: 640px) {
+      #ia-agent { flex-direction: column; align-items: flex-start; }
+      #ia-bubble { max-width: calc(100vw - 4rem); }
+      footer p { font-size: 0.8rem; }
+    }
+    @media (pointer:coarse){body{cursor:auto}.cursor-dot,.cursor-glow{display:none}}
+    @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important}#interactive-bg{display:none}}
+
+    /* --- DEBUT DU PATCH CSS ADD-ON --- */
+    .hero-title.title-wow .char { text-shadow:0 0 10px rgba(167,139,250,.9),0 0 22px rgba(167,139,250,.6),0 0 44px rgba(124,58,237,.55); }
+    .hero-title.title-wow:hover .char { filter:brightness(1.15); }
+
+    #missions-strategiques.ai-bg { isolation:isolate; }
+    #missions-strategiques.ai-bg::before { content:""; position:absolute; inset:-2px; z-index:-1; pointer-events:none; background: radial-gradient(60rem 30rem at 110% 120%, rgba(167,139,250,.10), transparent 45%), radial-gradient(80rem 40rem at -10% -10%, rgba(124,58,237,.12), transparent 45%); animation: ai-aurora 10s ease-in-out infinite alternate; opacity:.9; }
+    @keyframes ai-aurora { 0%{filter:hue-rotate(0) brightness(1)} 100%{filter:hue-rotate(20deg) brightness(1.08)} }
+
+    #projets-analyse.bi-anim .project-card { position:relative; }
+    #projets-analyse.bi-anim .project-card.bi-armed::after { content:""; position:absolute; left:0; top:0; height:3px; width:0; background:linear-gradient(90deg,var(--accent), rgba(255,255,255,0)); opacity:.85; transition:width .9s ease-out; }
+    #projets-analyse.bi-anim .project-card.in::after { width:100%; }
+
+    .etl-flow { position:absolute; inset:0; pointer-events:none; overflow:hidden; opacity:.15; }
+    .etl-flow i { position:absolute; width:6px; height:6px; border-radius:9999px; background:var(--cyan); animation:etl-move 4.5s linear infinite; }
+    @keyframes etl-move { 0%{transform:translate(-10%,110%)} 50%{transform:translate(50%,50%)} 100%{transform:translate(110%,-10%)} }
+
+    a.btn-primary:hover, a.btn-secondary:hover, button:hover { box-shadow:0 0 14px rgba(167,139,250,.35), 0 0 34px rgba(124,58,237,.25); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    
+    #availability-badge .availability-popup {
+        position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: rgba(22, 19, 46, 0.85); backdrop-filter: blur(10px); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,.18); width: max-content; opacity: 0; transform: translateY(10px) scale(0.95); transition: all 0.3s ease; pointer-events: none;
+    }
+    #availability-badge .availability-popup.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    #availability-badge .availability-popup a { display: block; color: var(--muted); text-decoration: none; margin-top: 0.35rem; transition: color 0.2s; }
+    #availability-badge .availability-popup a:hover { color: var(--accent); }
+
+    #missions-strategiques .mission-card p, #projets-analyse .project-card p, header p { max-inline-size:68ch; margin-inline:auto; text-wrap:pretty; hyphens:auto; line-height:1.75; }
+    #missions-strategiques .mission-card h3, #projets-analyse .project-card h3 { letter-spacing:.01em; }
+
+    #ia-bubble { max-width:min(92vw, 520px); }
+    @media (max-width:768px){
+      #ia-agent { left:.75rem; bottom:.75rem; }
+      .hero-title.title-wow .char { text-shadow:0 0 8px rgba(167,139,250,.8),0 0 18px rgba(167,139,250,.5),0 0 28px rgba(124,58,237,.45); }
+      a.btn-primary, a.btn-secondary, button { min-height:44px; }
+    }
+    /* --- FIN DU PATCH CSS ADD-ON --- */
+  </style>
+</head>
+<body>
+  <div id="data-word-cloud" aria-hidden="true">
+    <span>SQL</span> <span>Power BI</span> <span>Dashboard</span> <span>ETL</span> <span>Python</span> <span>Azure</span>
+  </div>
+  <audio id="hover-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-fast-thin-swish-3-435.mp3" preload="auto"></audio>
+  <audio id="click-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-interface-device-click-2577.mp3" preload="auto"></audio>
+  <div id="lang-switch"><button data-lang="fr" class="active">FR</button><button data-lang="en">EN</button></div>
+  <canvas id="interactive-bg" aria-hidden="true"></canvas>
+  <div class="cursor-dot" aria-hidden="true"></div><div class="cursor-glow" aria-hidden="true"></div>
+
+  <header id="header" class="hero-breath">
+    <h1 class="hero-title" id="hero-title-interactive"></h1>
+    <p class="mt-6 text-lg text-white/70 max-w-2xl text-center"
+       data-lang-fr="Je suis Ivan Roger Nfinda, Data Analyst. Je transforme les données complexes en insights clairs et actionnables."
+       data-lang-en="I am Ivan Roger Nfinda, Data Analyst. I turn complex data into clear, actionable insights.">
+    </p>
+    <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+      <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV"></a>
+      <a href="#projets-analyse" class="btn-secondary" data-lang-fr="🚀 Voir mes Projets" data-lang-en="🚀 See my Projects"></a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="facettes" class="section">
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Expertise" data-lang-en="My Expertise"></h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <article class="block">
+          <h3 class="text-xl font-bold mb-1">Data Analyst & BI</h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Spécialiste de la collecte, nettoyage et visualisation pour créer des tableaux de bord percutants (Power BI, SQL, DAX)."
+             data-lang-en="Expert in collecting, cleaning, and visualizing data to create impactful dashboards (Power BI, SQL, DAX)."></p>
+        </article>
+        <article class="block">
+          <h3 class="text-xl font-bold mb-1">Data Quality</h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Mise en place de processus de fiabilisation pour garantir des analyses robustes et des recommandations fiables."
+             data-lang-en="Implementing data reliability processes to ensure robust analyses and trustworthy recommendations."></p>
+        </article>
+        <article class="block">
+          <h3 class="text-xl font-bold mb-1">Analyse & Modélisation</h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Utilisation de Python et R pour des analyses exploratoires et la construction de modèles prédictifs simples."
+             data-lang-en="Using Python and R for exploratory analysis and building simple predictive models."></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="results" class="section">
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mes Résultats Concrets" data-lang-en="Tangible Results"></h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="15">+0%</p><p class="text-white/70" data-lang-fr="précision des rapports" data-lang-en="reporting accuracy"></p></div>
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-20">0%</p><p class="text-white/70" data-lang-fr="temps d'analyse mensuel" data-lang-en="monthly analysis time"></p></div>
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-10">0%</p><p class="text-white/70" data-lang-fr="de rendez-vous annulés" data-lang-en="cancelled appointments"></p></div>
+      </div>
+    </section>
+
+    <section id="parcours" class="section">
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
+      <div class="grid gap-4">
+        <div class="block"><h3 class="font-semibold">LOGWIRE · <span class="text-white/70">Data Analyst (2025)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers." data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p></div>
+        <div class="block"><h3 class="font-semibold">ENDO DATA · <span class="text-white/70">Data Analyst (2023–2024)</span></h3><p class="text-white/70 text-sm" data-lang-fr="BI dentaire pour +30 cabinets, -10% RDV annulés, formation de +40 utilisateurs." data-lang-en="Dental BI for +30 clinics, -10% no-shows, training for +40 users."></p></div>
+        <div class="block"><h3 class="font-semibold">Afriland First Bank · <span class="text-white/70">Data Analyst (2021–2022)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Scoring commercial, -8% taux de défaut sur portefeuille PME, reporting de risques automatisé." data-lang-en="Commercial scoring, -8% default rate on SME portfolio, automated risk reporting."></p></div>
+      </div>
+    </section>
+    
+    <section id="projets-analyse" class="section">
+        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Projets d'Analyse & BI" data-lang-en="Analysis & BI Projects"></h2>
+        <div class="project-grid">
+            <article class="block project-card card-3d-tilt">
+              <h3 class="text-xl font-bold mb-2">Analyse Spotify 2024</h3>
+              <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-green-600/20 text-green-300 rounded-full">Power BI</span>
+              <p class="text-white/80 text-sm mb-4" data-lang-fr="Dashboard interactif pour visualiser les tendances de streaming. Identification des artistes et des périodes les plus populaires (Bad Bunny, vendredis...) pour des insights marketing."
+                 data-lang-en="Interactive dashboard to visualize streaming trends. Identified top artists and popular periods (Bad Bunny, Fridays...) for marketing insights."></p>
+              <a class="btn-secondary hover:bg-green-600/30" href="https://lnkd.in/epwcAy9U" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur LinkedIn" data-lang-en="▶ View on LinkedIn"></a>
+            </article>
+            <article class="block project-card card-3d-tilt">
+              <h3 class="text-xl font-bold mb-2">Dashboard RH & Rétention</h3>
+              <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-violet-600/20 text-violet-300 rounded-full">Power BI / DAX</span>
+              <p class="text-white/80 text-sm mb-4" data-lang-fr="Analyse de la performance et de la rétention des employés. Vue complète sur l'engagement, la diversité et l'absentéisme pour aider les équipes RH à prendre des décisions stratégiques."
+                 data-lang-en="Analysis of employee performance and retention. Comprehensive view of engagement, diversity, and absenteeism to help HR teams make strategic decisions."></p>
+              <a class="btn-secondary hover:bg-violet-600/30" href="https://lnkd.in/eEwhc6-H" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur GitHub" data-lang-en="▶ View on GitHub"></a>
+            </article>
+            <article class="block project-card card-3d-tilt">
+              <h3 class="text-xl font-bold mb-2">Analyse Attrition RH</h3>
+              <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-cyan-600/20 text-cyan-300 rounded-full">R Shiny</span>
+              <p class="text-white/80 text-sm mb-4" data-lang-fr="Tableau de bord interactif pour analyser les données RH (taux d'attrition, satisfaction, équilibre pro/perso). Transformation de données métier en insights exploitables."
+                 data-lang-en="Interactive dashboard to analyze HR data (attrition rate, satisfaction, work-life balance). Transforming business data into actionable insights."></p>
+              <a class="btn-secondary hover:bg-cyan-600/30" href="https://lnkd.in/eKs-Z5ax" target="_blank" rel="noopener" data-lang-fr="▶ Voir le Code Source" data-lang-en="▶ View Source Code"></a>
+            </article>
+        </div>
+    </section>
+
+    <section id="missions-strategiques" class="section relative">
+      <div class="absolute -inset-2 rounded-2xl border border-violet-500/20 pointer-events-none" style="animation:pulse-glow 6s infinite ease-in-out"></div>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Missions Stratégiques & IA" data-lang-en="Strategic & AI Missions"></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <article class="block mission-card card-3d-tilt ms-aria">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Agent IA « ARIA »</h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : Les décideurs manquent de temps pour explorer les dashboards. **Action** : Conception d'un agent conversationnel qui fournit des insights en temps réel. **Résultat** : Un prototype fonctionnel qui accélère la prise de décision."
+             data-lang-en="**Situation**: Decision-makers lack time to explore dashboards. **Action**: Designed a conversational agent providing real-time insights. **Result**: A functional prototype that speeds up decision-making."></p>
+          <a class="btn-secondary hover:bg-violet-600/30" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+        <article class="block mission-card card-3d-tilt">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring"></h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : Une équipe commerciale devait mieux cibler ses prospects. **Action** : Développement d'un modèle ML pour scorer les leads. **Résultat** : Démonstration d'une priorisation qui pourrait augmenter la conversion de +30%."
+             data-lang-en="**Situation**: A sales team needed to better target its prospects. **Action**: Developed an ML model to score leads. **Result**: Demonstrated a prioritization that could increase conversion by +30%."></p>
+          <a class="btn-secondary hover:bg-green-600/30" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+        <article class="block mission-card card-3d-tilt">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Data Clean</h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : Le nettoyage des données est chronophage et répétitif. **Action** : Création d'un outil web pour automatiser le nettoyage en un clic. **Résultat** : Un gain de temps potentiel de 90% sur la préparation des données."
+             data-lang-en="**Situation**: Data cleaning is time-consuming and repetitive. **Action**: Created a web tool to automate cleaning in one click. **Result**: A potential 90% time saving on data preparation."></p>
+          <a class="btn-secondary hover:bg-cyan-600/30" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+        <article class="block mission-card card-3d-tilt">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">ContraScope</h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : L'analyse manuelle de contrats légaux est lente et sujette à erreurs. **Action** : Conception d'un outil IA pour extraire les clauses clés. **Résultat** : Un prototype capable de synthétiser les risques et les points importants."
+             data-lang-en="**Situation**: Manual analysis of legal contracts is slow and error-prone. **Action**: Designed an AI tool to extract key clauses. **Result**: A prototype capable of summarizing risks and key points."></p>
+          <a class="btn-secondary hover:bg-red-600/30" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact" class="container text-center text-white/60 pb-12">
+    <div class="flex justify-center items-center space-x-6 mb-4">
+      <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+      <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+      <a href="mailto:nfindaroger@gmail.com" class="hover:text-violet-400 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+    </div>
+    <p>Créé avec ❤️ et IA – 2025</p>
+  </footer>
+
+  <div id="availability-badge">
+    <button class="bg-green-500/20 border border-green-400 text-green-300 text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2">
+      <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
+      <span data-lang-fr="Disponible" data-lang-en="Available"></span>
+    </button>
+  </div>
+
+  <nav id="floating-menu"></nav>
+
+  <div id="ia-agent" aria-live="polite">
+    <div id="ia-avatar" class="avatar-pulse text-xl" title="Cliquez pour interagir">🤖</div>
+    <div id="ia-bubble" role="status"></div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <script>
+    /*
+    ====================================================================
+    SCRIPT UNIFIÉ : Portfolio d'Ivan Roger Nfinda (Base + Add-on)
+    Ce script combine les fonctionnalités originales (fond 3D, menu,
+    curseur) avec les nouvelles améliorations (WOW, animations,
+    voix IA, badge fonctionnel) pour une performance optimale.
+    ====================================================================
+    */
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- 0. CONFIGURATION & SÉLECTEURS COMMUNS ---
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = matchMedia('(max-width: 768px)').matches;
+      const lang = (localStorage.getItem('portfolio_lang') || document.documentElement.lang || 'fr');
+      const L = (lang === 'en') ? 'en' : 'fr';
+
+      // --- 1. FONCTIONNALITÉS ORIGINALES (CONSERVÉES ET OPTIMISÉES) ---
+      
+      // 1.1 Traduction (applyLang) - Conservée
+      const langButtons = document.querySelectorAll('#lang-switch button');
+      function applyLang(lang){
+        langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+        document.documentElement.lang = lang;
+        localStorage.setItem('portfolio_lang', lang);
+        document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
+          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
+          if(txt) { el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); }
+        });
       }
-    }
-</style>
-
-<script id="patch-js">
-document.addEventListener('DOMContentLoaded', () => {
-    // --- 0. Configuration & Données ---
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const userData = {
-        name: "Ivan Roger Nfinda",
-        github: "https://github.com/IvanRoger12",
-        linkedin: "https://www.linkedin.com/in/ivan-roger-nfinda/",
-        email: "nfindaroger@gmail.com"
-    };
-    const voiceMessages = {
-        fr: {
-            header: "Bienvenue ! Je suis l'agent IA d’Ivan Roger Nfinda. Je peux vous guider dans ce portfolio.",
-            parcours: "Voici les expériences de Monsieur Nfinda, avec impact mesurable et progression.",
-            formation: "La formation reflète le parcours académique de Monsieur Nfinda et ses expertises clés.",
-            'projets-ia': "Découvrez des projets Data & BI concrets, outils et insights actionnables.",
-            'missions-projets': "Ce sont les missions que Monsieur Nfinda mène avec l’IA pour créer de la valeur.",
-            contact: "Contactez Ivan Roger via ces liens ou en cliquant sur le badge de disponibilité."
-        },
-        en: { // Fallback ou pour version bilingue
-            header: "Welcome! I am Ivan Roger Nfinda's AI agent. I can guide you through this portfolio.",
-            parcours: "Here are Mr. Nfinda's experiences, with measurable impact and progression.",
-            formation: "The education reflects Mr. Nfinda's academic journey and key expertise.",
-            'projets-ia': "Discover concrete Data & BI projects, tools, and actionable insights.",
-            'missions-projets': "These are the missions Mr. Nfinda leads with AI to create value.",
-            contact: "Contact Ivan Roger through these links or by clicking the availability badge."
-        }
-    };
-
-    // --- 1. Badge "Disponible" & Popup de Contact ---
-    function patchContactInfo() {
-        const badge = document.getElementById('availability-badge');
-        const popup = document.getElementById('contact-popup');
-        const btn = badge?.querySelector('button');
-
-        if (!badge || !popup || !btn) return;
-
-        // Rend le popup fonctionnel au clic
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            popup.classList.toggle('opacity-0');
-            popup.classList.toggle('pointer-events-none');
+      langButtons.forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+      applyLang(lang);
+      
+      // 1.2 Animation du titre (injection des caractères) - Conservée
+      const titleEl = document.getElementById('hero-title-interactive');
+      const titleText = "Data to Decision";
+      if (titleEl) {
+        titleText.split(' ').forEach(wordText => {
+          const wordDiv = document.createElement('div'); wordDiv.className = 'word';
+          wordText.split('').forEach(char => {
+            const span = document.createElement('span'); span.className = 'char';
+            span.textContent = char; wordDiv.appendChild(span);
+          });
+          titleEl.appendChild(wordDiv);
         });
-        document.addEventListener('click', () => popup.classList.add('opacity-0', 'pointer-events-none'));
+      }
+      
+      // 1.3 Compteurs animés - Conservée
+      const countersObserver = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseInt(el.dataset.value);
+          let val = 0;
+          const step = Math.sign(target) * Math.ceil(Math.abs(target)/60);
+          const id = setInterval(()=>{
+            val += step;
+            if ((step>0 && val>=target) || (step<0 && val<=target)) { val = target; clearInterval(id); }
+            el.textContent = (target>0?'+':'') + val + '%';
+          }, 16);
+          countersObserver.unobserve(el);
+        });
+      },{threshold:.6});
+      document.querySelectorAll('[data-value]').forEach(c=>countersObserver.observe(c));
 
-        // Injection des informations utilisateur
-        const links = {
-            github: popup.querySelector('a[href*="github.com"]'),
-            linkedin: popup.querySelector('a[href*="linkedin.com"]'),
-            email: popup.querySelector('a[href*="mailto:"]')
-        };
-        if (links.github) { links.github.href = userData.github; links.github.target = "_blank"; links.github.rel = "noopener"; }
-        if (links.linkedin) { links.linkedin.href = userData.linkedin; links.linkedin.target = "_blank"; links.linkedin.rel = "noopener"; }
-        if (links.email) links.email.href = `mailto:${userData.email}`;
-    }
+      // 1.4 Effets de survol (Curseur & Sons) - Conservée
+      const hoverSound = document.getElementById('hover-sound');
+      const clickSound = document.getElementById('click-sound');
+      if (hoverSound) hoverSound.volume = 0.2;
+      if (clickSound) clickSound.volume = 0.5;
+      const dot = document.querySelector('.cursor-dot');
+      const glow = document.querySelector('.cursor-glow');
+      if (dot && glow) {
+        window.addEventListener('mousemove', e => {
+          dot.style.left = glow.style.left = e.clientX + 'px';
+          dot.style.top  = glow.style.top  = e.clientY + 'px';
+        });
+      }
+      document.querySelectorAll('a, button, .block').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          try { hoverSound.currentTime = 0; hoverSound.play(); } catch(e){}
+          if (dot) dot.classList.add('big');
+        });
+        el.addEventListener('mouseleave', () => {
+          if (dot) dot.classList.remove('big');
+        });
+        el.addEventListener('mousedown', () => { try { clickSound.currentTime = 0; clickSound.play(); } catch(e){} });
+      });
 
-    // --- 2. Animations déclenchées au scroll ---
-    function initScrollAnimations() {
-        if (reduceMotion) return;
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        const missionsSection = document.getElementById('missions-projets');
-        const biProjectsSection = document.getElementById('projets-ia'); // Renommer si ID différent
-
-        if(missionsSection) {
-            missionsSection.classList.add('ai-bg');
-            observer.observe(missionsSection);
-        }
-        if(biProjectsSection) observer.observe(biProjectsSection);
-    }
-
-    // --- 3. Agent IA Vocal ---
-    function initVoiceAgent() {
-        const agent = document.getElementById('ia-agent');
-        const avatar = document.getElementById('ia-avatar');
-        const bubble = document.getElementById('ia-bubble');
-        if (!agent || !avatar || !bubble || !('speechSynthesis' in window)) return;
-
-        let currentTextToSpeak = '';
-        document.body.dataset.voice = "on"; // Actif par défaut
-
-        const updateAgentText = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const lang = document.documentElement.lang || 'fr';
-                    const sectionId = entry.target.id;
-                    const message = voiceMessages[lang][sectionId];
-                    if (message) {
-                        currentTextToSpeak = message;
-                        bubble.textContent = message;
-                        bubble.classList.add('bubble-show');
-                        setTimeout(() => bubble.classList.remove('bubble-show'), 5000);
-                    }
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(updateAgentText, { rootMargin: '-40% 0px -55% 0px' });
-        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
-
-        avatar.addEventListener('click', () => {
-            if (reduceMotion) return; // Respecte les préférences
-            
-            // Toggle Mute/Unmute
-            const isMuted = document.body.dataset.voice === 'off';
-            document.body.dataset.voice = isMuted ? 'on' : 'off';
-            avatar.style.borderColor = isMuted ? 'transparent' : 'var(--cyan)'; // Feedback visuel
-
-            if (!isMuted && currentTextToSpeak) {
-                speechSynthesis.cancel(); // Annule la parole précédente
-                const utterance = new SpeechSynthesisUtterance(currentTextToSpeak);
-                utterance.lang = document.documentElement.lang === 'fr' ? 'fr-FR' : 'en-US';
-                utterance.pitch = 1.1;
-                utterance.rate = 1.1;
-                speechSynthesis.speak(utterance);
-            } else {
-                speechSynthesis.cancel();
+      // 1.5 Menu flottant - Conservée
+      const floatingMenu = document.getElementById('floating-menu');
+      const sections = document.querySelectorAll('.section');
+      if (floatingMenu && sections.length) {
+        sections.forEach(section=>{
+          const a = document.createElement('a'); a.href = `#${section.id}`;
+          const tip = document.createElement('span'); tip.className = 'tooltip';
+          const h2 = section.querySelector('h2');
+          tip.setAttribute('data-lang-fr', h2.getAttribute('data-lang-fr'));
+          tip.setAttribute('data-lang-en', h2.getAttribute('data-lang-en'));
+          a.appendChild(tip); floatingMenu.appendChild(a);
+        });
+        applyLang(lang); // Mettre à jour les tooltips
+        const links = floatingMenu.querySelectorAll('a');
+        const menuObserver = new IntersectionObserver(entries=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
+              entry.target.querySelector('h2')?.classList.add('visible');
             }
-        });
-    }
+          });
+        },{rootMargin:'-45% 0px -55% 0px'});
+        sections.forEach(s=>menuObserver.observe(s));
+      }
+      
+      // 1.6 Effet 3D sur les cartes - Conservée
+      document.querySelectorAll('.card-3d-tilt').forEach(card=>{
+        card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;const rx=(y/r.height-0.5)*-12;const ry=(x/r.width-0.5)*12;card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`});
+        card.addEventListener('mouseleave',()=>{card.style.transform='perspective(900px) rotateX(0) rotateY(0) scale(1)'});
+      });
+      
+      // 1.7 Arrière-plan 3D (Three.js) - Conservée
+      const canvas = document.getElementById('interactive-bg');
+      if (!reduce && canvas && window.THREE) {
+        // Le code Three.js original est conservé ici
+        let scene,camera,renderer,points;
+        (function init(){try{scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,2000);camera.position.z=420;renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x0,0);const count=isMobile?650:1400;const pos=new Float32Array(count*3);for(let i=0;i<count*3;i++){pos[i]=(Math.random()-.5)*1200}const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));const pMat=new THREE.PointsMaterial({size:1.1,color:0x9aa0aa,transparent:true,opacity:.55,blending:THREE.AdditiveBlending});points=new THREE.Points(pGeo,pMat);scene.add(points);let mx=0,my=0;document.body.addEventListener('mousemove',e=>{mx=e.clientX-innerWidth/2;my=e.clientY-innerHeight/2});window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});const animate=()=>{requestAnimationFrame(animate);const t=Date.now()*.001;camera.position.x+=(mx-camera.position.x)*.03;camera.position.y+=(-my-camera.position.y)*.03;camera.lookAt(scene.position);if(points)points.rotation.y=t*.06;renderer.render(scene,camera)};animate()}catch(e){canvas.style.display='none';}})()
+      }
 
-    // --- Initialisation de toutes les améliorations ---
-    patchContactInfo();
-    initScrollAnimations();
-    initVoiceAgent();
-});
-</script>
+      // --- 2. NOUVELLES FONCTIONNALITÉS (ADD-ON INTÉGRÉ) ---
+      
+      // 2.1 Activation des styles CSS pour les améliorations
+      titleEl?.classList.add('title-wow');
+      document.getElementById('missions-strategiques')?.classList.add('ai-bg');
+
+      // 2.2 Animations de la section Projets BI
+      const projets = document.getElementById('projets-analyse');
+      if (projets && !reduce){
+        projets.classList.add('bi-anim');
+        const cards = projets.querySelectorAll('.project-card');
+        cards.forEach(card => {
+          card.classList.add('bi-armed');
+          if (!card.querySelector('.etl-flow')){
+            const flow = document.createElement('div'); flow.className = 'etl-flow';
+            for(let i=0;i<3;i++){ const dot = document.createElement('i'); dot.style.animationDelay = (i*1.5)+'s'; flow.appendChild(dot); }
+            card.appendChild(flow);
+          }
+        });
+        const projectObserver = new IntersectionObserver(es => es.forEach(e => {
+          if (e.isIntersecting){ e.target.classList.add('in'); projectObserver.unobserve(e.target); }
+        }), {threshold:.5});
+        cards.forEach(c => projectObserver.observe(c));
+      }
+      
+      // 2.3 Badge "Disponible" fonctionnel
+      const badge = document.getElementById('availability-badge');
+      if (badge){
+        const btn = badge.querySelector('button');
+        let popup = badge.querySelector('.availability-popup');
+        if (!popup){
+          popup = document.createElement('div');
+          popup.className = 'availability-popup';
+          badge.appendChild(popup);
+        }
+        popup.innerHTML = `
+          <strong style="display:block; margin-bottom:.35rem;">Ivan Roger Nfinda</strong>
+          <a href="mailto:nfindaroger@gmail.com">✉️ nfindaroger@gmail.com</a>
+          <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener">🐙 GitHub</a>
+          <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener">🔗 LinkedIn</a>`;
+        
+        btn?.addEventListener('click', (e)=>{ e.stopPropagation(); popup.classList.toggle('open'); });
+        document.addEventListener('click', (e)=>{ if(!badge.contains(e.target)) popup.classList.remove('open'); });
+      }
+
+      // 2.4 Robot IA avec voix contextuelle
+      const avatar = document.getElementById('ia-avatar');
+      const bubble = document.getElementById('ia-bubble');
+      if (avatar && bubble && 'speechSynthesis' in window) {
+        let currentMsg = '';
+        const T = {
+          fr:{header:"Bienvenue ! Je suis l’agent IA d’Ivan. Cliquez-moi pour une visite guidée.", formation:"C'est ici que tout commence : les fondations académiques d'Ivan.", parcours:"Découvrez les expériences qui ont forgé son expertise.", 'projets-analyse':"Voici des projets concrets où la data prend vie.", 'missions-strategiques':"Explorez sa vision stratégique avec l'intelligence artificielle."},
+          en:{header:"Welcome! I'm Ivan's AI agent. Click me for a guided tour.", formation:"This is where it all began: Ivan's academic foundations.", parcours:"Discover the experiences that built his expertise.", 'projets-analyse':"Here are concrete projects where data comes to life.", 'missions-strategiques':"Explore his strategic vision with Artificial Intelligence."}
+        };
+        const DICT = T[L];
+
+        function say(msg){
+          currentMsg = msg;
+          bubble.textContent = msg;
+          bubble.classList.add('bubble-show');
+          setTimeout(()=> bubble.classList.remove('bubble-show'), 5000);
+        }
+
+        function speak(msg){
+          if (reduce) return;
+          try {
+            speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(msg);
+            u.lang = (L==='en') ? 'en-US' : 'fr-FR';
+            u.pitch = 1.08; u.rate = isMobile ? 0.98 : 1.06;
+            speechSynthesis.speak(u);
+          } catch(e){}
+        }
+        
+        say(DICT.header);
+        avatar.addEventListener('click', () => currentMsg && speak(currentMsg));
+
+        const sectionMsgMap = [
+          { id:'formation', msg: DICT.formation }, { id:'parcours', msg: DICT.parcours },
+          { id:'projets-analyse', msg: DICT['projets-analyse'] }, { id:'missions-strategiques', msg: DICT['missions-strategiques'] },
+        ];
+        const voiceObserver = new IntersectionObserver(es => {
+          es.forEach(entry => {
+            if (entry.isIntersecting) {
+              const item = sectionMsgMap.find(x => x.id === entry.target.id);
+              if (item) say(item.msg);
+            }
+          });
+        }, { rootMargin:'-45% 0px -55% 0px' });
+        sectionMsgMap.forEach(x => { const el = document.getElementById(x.id); if (el) voiceObserver.observe(el); });
+      }
+    });
+  </script>
+</body>
+</html>
