@@ -205,7 +205,7 @@
       </div>
     </section>
     
-    <section id="projets-analyse" class="section" data-project-bg="spotify">
+    <section id="projets-analyse" class="section">
         <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Projets d'Analyse & BI" data-lang-en="Analysis & BI Projects"></h2>
         <div class="project-grid">
             <article class="block project-card card-3d-tilt">
@@ -215,7 +215,7 @@
                  data-lang-en="Interactive dashboard to visualize streaming trends. Identified top artists and popular periods (Bad Bunny, Fridays...) for marketing insights."></p>
               <a class="btn-secondary hover:bg-green-600/30" href="https://lnkd.in/epwcAy9U" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur LinkedIn" data-lang-en="▶ View on LinkedIn"></a>
             </article>
-            <article class="block project-card card-3d-tilt" data-project-bg="dashboard-rh">
+            <article class="block project-card card-3d-tilt">
               <h3 class="text-xl font-bold mb-2">Dashboard RH & Rétention</h3>
               <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-violet-600/20 text-violet-300 rounded-full">Power BI / DAX</span>
               <p class="text-white/80 text-sm mb-4" data-lang-fr="Analyse de la performance et de la rétention des employés. Vue complète sur l'engagement, la diversité et l'absentéisme pour aider les équipes RH à prendre des décisions stratégiques."
@@ -242,19 +242,19 @@
              data-lang-en="**Situation**: Decision-makers lack time to explore dashboards. **Action**: Designed a conversational agent providing real-time insights. **Result**: A functional prototype that speeds up decision-making."></p>
           <a class="btn-secondary hover:bg-violet-600/30" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
         </article>
-        <article class="block mission-card card-3d-tilt ms-scoring">
+        <article class="block mission-card card-3d-tilt">
           <h3 class="text-2xl font-bold mb-2 font-[Orbitron]" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring"></h3>
           <p class="text-white/80" data-lang-fr="**Situation** : Une équipe commerciale devait mieux cibler ses prospects. **Action** : Développement d'un modèle ML pour scorer les leads. **Résultat** : Démonstration d'une priorisation qui pourrait augmenter la conversion de +30%."
              data-lang-en="**Situation**: A sales team needed to better target its prospects. **Action**: Developed an ML model to score leads. **Result**: Demonstrated a prioritization that could increase conversion by +30%."></p>
           <a class="btn-secondary hover:bg-green-600/30" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
         </article>
-        <article class="block mission-card card-3d-tilt ms-clean">
+        <article class="block mission-card card-3d-tilt">
           <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Data Clean</h3>
           <p class="text-white/80" data-lang-fr="**Situation** : Le nettoyage des données est chronophage et répétitif. **Action** : Création d'un outil web pour automatiser le nettoyage en un clic. **Résultat** : Un gain de temps potentiel de 90% sur la préparation des données."
              data-lang-en="**Situation**: Data cleaning is time-consuming and repetitive. **Action**: Created a web tool to automate cleaning in one click. **Result**: A potential 90% time saving on data preparation."></p>
           <a class="btn-secondary hover:bg-cyan-600/30" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
         </article>
-        <article class="block mission-card card-3d-tilt ms-contra">
+        <article class="block mission-card card-3d-tilt">
           <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">ContraScope</h3>
           <p class="text-white/80" data-lang-fr="**Situation** : L'analyse manuelle de contrats légaux est lente et sujette à erreurs. **Action** : Conception d'un outil IA pour extraire les clauses clés. **Résultat** : Un prototype capable de synthétiser les risques et les points importants."
              data-lang-en="**Situation**: Manual analysis of legal contracts is slow and error-prone. **Action**: Designed an AI tool to extract key clauses. **Result**: A prototype capable of summarizing risks and key points."></p>
@@ -294,9 +294,6 @@
     /*
     ====================================================================
     SCRIPT UNIFIÉ : Portfolio d'Ivan Roger Nfinda (Base + Add-on)
-    Ce script combine les fonctionnalités originales (fond 3D, menu,
-    curseur) avec les nouvelles améliorations (WOW, animations,
-    voix IA, badge fonctionnel) pour une performance optimale.
     ====================================================================
     */
     document.addEventListener('DOMContentLoaded', () => {
@@ -502,178 +499,198 @@
   <script>
     /*!
      * Portfolio Background FX Add-on
-     * Creates and manages specific animated backgrounds for sections and cards.
+     * Detects cards by H3 content and injects specific animated backgrounds.
      * Respects IntersectionObserver for performance and prefers-reduced-motion.
      */
     (() => {
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduceMotion) {
-            console.log('Animations de fond désactivées (prefers-reduced-motion).');
-            return;
-        }
-
-        const observer = new IntersectionObserver((entries, obs) => {
-            for (const entry of entries) {
-                if (entry.isIntersecting) {
-                    entry.target.render = true;
-                    obs.unobserve(entry.target); // Optimize: start rendering once and never stop
-                }
+        document.addEventListener('DOMContentLoaded', () => {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion) {
+                console.info('Add-on FX: Animations de fond désactivées (prefers-reduced-motion).');
+                return;
             }
-        }, { threshold: 0.1 });
 
-        const createCanvas = (parent, className) => {
-            const canvas = document.createElement('canvas');
-            canvas.className = className;
-            parent.prepend(canvas);
-            const ctx = canvas.getContext('2d');
-            let frameId;
-
-            const resize = () => {
-                canvas.width = parent.offsetWidth;
-                canvas.height = parent.offsetHeight;
-            };
-            window.addEventListener('resize', resize, { passive: true });
-            resize();
+            // Injecte le style nécessaire pour les canvas
+            const style = document.createElement('style');
+            style.textContent = `
+                .mission-card .mission-bg-canvas, 
+                .project-card .mission-bg-canvas { 
+                    position:absolute; inset:0; pointer-events:none; z-index:-1; opacity:0.7; 
+                    border-radius: inherit; /* Assure que le canvas ne dépasse pas */
+                }
+            `;
+            document.head.appendChild(style);
             
-            return { canvas, ctx, parent, frameId, resize };
-        };
-
-        const effects = {
-            // Pour les sections de Projets BI
-            'spotify': (parent) => { // fxEqualizer
-                const { ctx, parent: p } = createCanvas(parent, 'project-bg-canvas');
-                const bars = 40;
-                let t = 0;
-                function draw() {
-                    if (!p.render) { requestAnimationFrame(draw); return; }
-                    t += 0.02;
-                    const w = p.offsetWidth, h = p.offsetHeight, bw = w / bars;
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.fillStyle = `rgba(34, 211, 238, 0.2)`;
-                    for (let i = 0; i < bars; i++) {
-                        const bh = (Math.sin(t + i * 0.3) + 1) / 2 * h * 0.6 + h * 0.1;
-                        ctx.fillRect(i * bw, h - bh, bw * 0.8, bh);
+            const observer = new IntersectionObserver((entries, obs) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        entry.target.dataset.render = 'true';
+                        obs.unobserve(entry.target);
                     }
-                    requestAnimationFrame(draw);
                 }
-                draw();
-            },
-            'dashboard-rh': (parent) => { // fxHRGrid
-                const { ctx, parent: p } = createCanvas(parent, 'project-bg-canvas');
-                const gridSize = 30;
-                let t = 0;
-                function draw() {
-                    if (!p.render) { requestAnimationFrame(draw); return; }
-                    t += 0.01;
-                    const w = p.offsetWidth, h = p.offsetHeight;
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.strokeStyle = `rgba(167, 139, 250, 0.1)`;
-                    for (let i = 0; i <= w; i += gridSize) ctx.strokeRect(i, 0, 0.5, h);
-                    for (let j = 0; j <= h; j += gridSize) ctx.strokeRect(0, j, w, 0.5);
-                    const scanY = (t * 50) % (h + 10);
-                    ctx.fillStyle = `rgba(167, 139, 250, 0.15)`;
-                    ctx.fillRect(0, scanY - 5, w, 5);
-                    requestAnimationFrame(draw);
-                }
-                draw();
-            },
-            // Pour les cartes de Missions Stratégiques
-            'ms-contra': (parent) => { // Radar
-                const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas');
-                let angle = 0;
-                function draw() {
-                    if (!p.render) { requestAnimationFrame(draw); return; }
-                    angle += 0.02;
-                    const w = p.offsetWidth, h = p.offsetHeight, cx = w/2, cy = h/2, r = Math.min(cx, cy);
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.strokeStyle = `rgba(239, 68, 68, 0.5)`;
-                    for(let i=1; i<=3; i++) { ctx.beginPath(); ctx.arc(cx, cy, r * (i/3) * 0.8, 0, 2 * Math.PI); ctx.stroke(); }
-                    const grad = ctx.createLinearGradient(cx, cy, cx + r * Math.cos(angle), cy + r * Math.sin(angle));
-                    grad.addColorStop(0, `rgba(239, 68, 68, 0.4)`);
-                    grad.addColorStop(1, `rgba(239, 68, 68, 0)`);
-                    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + r * 0.8 * Math.cos(angle), cy + r * 0.8 * Math.sin(angle)); ctx.strokeStyle = grad; ctx.stroke();
-                    requestAnimationFrame(draw);
-                }
-                draw();
-            },
-            'ms-clean': (parent) => { // Orbe
-                const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas');
-                const particles = Array.from({length: 50}, () => ({
-                    a: Math.random() * 2 * Math.PI, // angle
-                    r: 0, // radius shift
-                    s: 0.01 + Math.random() * 0.02, // speed
-                }));
-                function draw() {
-                    if (!p.render) { requestAnimationFrame(draw); return; }
-                    const w = p.offsetWidth, h = p.offsetHeight, cx = w/2, cy = h/2, r = Math.min(cx, cy) * 0.6;
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.fillStyle = `rgba(34, 211, 238, 0.8)`;
-                    particles.forEach(p => {
-                        p.a += p.s;
-                        const x = cx + Math.cos(p.a) * (r + Math.sin(p.a * 3) * 10);
-                        const y = cy + Math.sin(p.a) * (r + Math.cos(p.a * 2) * 10);
-                        ctx.beginPath(); ctx.arc(x, y, 1.5, 0, 2 * Math.PI); ctx.fill();
-                    });
-                    requestAnimationFrame(draw);
-                }
-                draw();
-            },
-            'ms-scoring': (parent) => { // Réseau
-                const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas');
-                const nodes = Array.from({length: 30}, () => ({x: Math.random(), y: Math.random()}));
-                let t = 0;
-                function draw() {
-                    if (!p.render) { requestAnimationFrame(draw); return; }
-                    t += 0.02;
-                    const w = p.offsetWidth, h = p.offsetHeight;
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.fillStyle = `rgba(34, 197, 94, 0.8)`;
-                    ctx.strokeStyle = `rgba(34, 197, 94, 0.2)`;
-                    nodes.forEach((n, i) => {
-                        ctx.beginPath(); ctx.arc(n.x * w, n.y * h, 2, 0, 2 * Math.PI); ctx.fill();
-                        const next = nodes[(i + 1 + Math.floor(Math.sin(t+i)*2)) % nodes.length];
-                        ctx.beginPath(); ctx.moveTo(n.x * w, n.y * h); ctx.lineTo(next.x * w, next.y * h); ctx.stroke();
-                    });
-                    requestAnimationFrame(draw);
-                }
-                draw();
-            },
-            'ms-aria': (parent) => { // Spectre vocal
-                const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas');
-                let t = 0;
-                function draw() {
-                    if (!p.render) { requestAnimationFrame(draw); return; }
-                    t += 0.05;
-                    const w = p.offsetWidth, h = p.offsetHeight, cx = w/2, cy = h/2;
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.strokeStyle = `rgba(167, 139, 250, 0.5)`;
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    for (let i=0; i < w; i++) {
-                        const y = cy + Math.sin(i * 0.1 + t) * Math.sin(i * 0.02 + t) * (h/4);
-                        ctx.lineTo(i, y);
+            }, { threshold: 0.1 });
+
+            const createCanvas = (parent, className) => {
+                const canvas = document.createElement('canvas');
+                canvas.className = className;
+                // Insère le canvas au début pour qu'il soit en arrière-plan
+                parent.insertBefore(canvas, parent.firstChild);
+                
+                const resize = () => {
+                    canvas.width = parent.clientWidth;
+                    canvas.height = parent.clientHeight;
+                };
+                window.addEventListener('resize', resize, { passive: true });
+                resize();
+                
+                return { canvas, ctx: canvas.getContext('2d'), resize };
+            };
+            
+            const effects = {
+                // --- Projets d’Analyse & BI ---
+                spotify: (parent) => {
+                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
+                    const bars = 20; let t = 0;
+                    function draw() {
+                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
+                        t += 0.03;
+                        const w = canvas.width, h = canvas.height, bw = w / bars;
+                        ctx.clearRect(0, 0, w, h);
+                        ctx.fillStyle = `rgba(34, 197, 94, 0.4)`;
+                        for (let i = 0; i < bars; i++) {
+                            const bh = (Math.sin(t + i * 0.4) + 1) / 2 * h * 0.8 + h * 0.1;
+                            ctx.fillRect(i * bw + bw * 0.1, h - bh, bw * 0.8, bh);
+                        }
+                        requestAnimationFrame(draw);
                     }
-                    ctx.stroke();
-                    requestAnimationFrame(draw);
+                    draw();
+                },
+                rh: (parent) => { // Cible "Dashboard RH" et "Attrition RH"
+                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
+                    const gridSize = 20; let t = 0;
+                    function draw() {
+                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
+                        t += 0.02;
+                        const w = canvas.width, h = canvas.height;
+                        ctx.clearRect(0, 0, w, h);
+                        for (let x = 0; x < w; x += gridSize) {
+                            for (let y = 0; y < h; y += gridSize) {
+                                const pulse = (Math.sin(x * 0.1 + t) + Math.cos(y * 0.1 + t) + 2) / 4;
+                                ctx.fillStyle = `rgba(167, 139, 250, ${pulse * 0.3})`;
+                                ctx.beginPath(); ctx.arc(x, y, 2, 0, 2 * Math.PI); ctx.fill();
+                            }
+                        }
+                        requestAnimationFrame(draw);
+                    }
+                    draw();
+                },
+                attrition: (parent) => {
+                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
+                    let t = 0;
+                    function draw() {
+                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
+                        t += 0.02;
+                        const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2;
+                        const maxRadius = Math.sqrt(cx*cx + cy*cy);
+                        ctx.clearRect(0, 0, w, h);
+                        ctx.strokeStyle = `rgba(34, 211, 238, 0.4)`;
+                        for (let i = 1; i <= 3; i++) {
+                            ctx.beginPath();
+                            const radius = (t * 50 + i * (maxRadius / 3)) % maxRadius;
+                            ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+                            ctx.globalAlpha = 1 - (radius / maxRadius);
+                            ctx.stroke();
+                        }
+                        ctx.globalAlpha = 1;
+                        requestAnimationFrame(draw);
+                    }
+                    draw();
+                },
+                // --- Missions Stratégiques ---
+                contrascope: (parent) => {
+                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
+                    let y = 0, dir = 1;
+                    function draw() {
+                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
+                        y += dir * 2;
+                        if (y > canvas.height || y < 0) dir *= -1;
+                        const w = canvas.width, h = canvas.height;
+                        ctx.clearRect(0, 0, w, h);
+                        ctx.strokeStyle = `rgba(239, 68, 68, 0.1)`;
+                        for(let i=0; i<h; i+=10) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke(); }
+                        ctx.fillStyle = `rgba(239, 68, 68, 0.7)`;
+                        ctx.fillRect(0, y, w, 2);
+                        ctx.fillStyle = `rgba(239, 68, 68, 0.15)`;
+                        ctx.fillRect(0, y-10, w, 20);
+                        requestAnimationFrame(draw);
+                    }
+                    draw();
+                },
+                dataclean: (parent) => {
+                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
+                    let t = 0;
+                    function draw() {
+                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
+                        t += 0.01;
+                        const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = Math.min(cx,cy) * 0.6;
+                        ctx.clearRect(0, 0, w, h);
+                        for(let i=0; i<3; i++) {
+                            ctx.beginPath();
+                            const angle = t + i * (2*Math.PI/3);
+                            ctx.strokeStyle = `hsla(${180 + i * 60}, 80%, 60%, 0.6)`;
+                            ctx.arc(cx, cy, r + i*5, angle, angle + Math.PI * 1.5);
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                        }
+                        requestAnimationFrame(draw);
+                    }
+                    draw();
+                },
+                scoring: (parent) => {
+                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
+                    let t = 0;
+                    function draw() {
+                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
+                        t += 0.02;
+                        const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2;
+                        const r = Math.min(cx, cy) * 0.4 * ((Math.sin(t) + 1.5) / 2.5);
+                        ctx.clearRect(0, 0, w, h);
+                        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+                        grad.addColorStop(0, `rgba(34, 197, 94, 0.5)`);
+                        grad.addColorStop(1, `rgba(34, 197, 94, 0)`);
+                        ctx.fillStyle = grad;
+                        ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2*Math.PI); ctx.fill();
+                        requestAnimationFrame(draw);
+                    }
+                    draw();
+                },
+            };
+
+            const keywordMap = {
+                'spotify': effects.spotify,
+                'rétention': effects.rh,
+                'dashboard rh': effects.rh,
+                'attrition': effects.attrition,
+                'contrascope': effects.contrascope,
+                'data clean': effects.dataclean,
+                'dataclean': effects.dataclean,
+                'scoring': effects.scoring,
+            };
+
+            const attachEffect = (card) => {
+                const h3 = card.querySelector('h3');
+                if (!h3) return;
+                const text = h3.textContent.toLowerCase().trim();
+                for (const keyword in keywordMap) {
+                    if (text.includes(keyword)) {
+                        keywordMap[keyword](card);
+                        observer.observe(card);
+                        break;
+                    }
                 }
-                draw();
-            }
-        };
-
-        // Attache les effets aux éléments du DOM
-        document.querySelectorAll('[data-project-bg]').forEach(el => {
-            const effect = effects[el.dataset.projectBg];
-            if (effect) {
-                effect(el);
-                observer.observe(el);
-            }
-        });
-
-        Object.keys(effects).filter(k => k.startsWith('ms-')).forEach(className => {
-            document.querySelectorAll(`.${className}`).forEach(card => {
-                effects[className](card);
-                observer.observe(card);
-            });
+            };
+            
+            document.querySelectorAll('#projets-analyse .project-card, #missions-strategiques .mission-card').forEach(attachEffect);
         });
     })();
   </script>
