@@ -268,34 +268,30 @@
     document.addEventListener('DOMContentLoaded', () => {
       const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const isMobile = matchMedia('(max-width: 768px)').matches;
-      const iaBubble = document.getElementById('ia-bubble');
-      const iaAvatar = document.getElementById('ia-avatar');
-      const hoverSound = document.getElementById('hover-sound');
-      const clickSound = document.getElementById('click-sound');
-      let currentIaMessage = '';
-
-      if(hoverSound) hoverSound.volume = 0.2;
-      if(clickSound) clickSound.volume = 0.5;
-
-      document.querySelectorAll('a, button, .block').forEach(el => {
-        el.addEventListener('mouseenter', () => { try { hoverSound.currentTime = 0; hoverSound.play(); } catch(e){} });
-        el.addEventListener('mousedown', () => { try { clickSound.currentTime = 0; clickSound.play(); } catch(e){} });
-      });
-
-      const dot = document.querySelector('.cursor-dot');
-      const glow = document.querySelector('.cursor-glow');
-      if (dot && glow) {
-        window.addEventListener('mousemove', e => {
-          dot.style.left = glow.style.left = e.clientX + 'px';
-          dot.style.top  = glow.style.top  = e.clientY + 'px';
-        });
-        document.querySelectorAll('a,button,.block').forEach(el=>{
-          el.addEventListener('mouseenter',()=>dot.classList.add('big'));
-          el.addEventListener('mouseleave',()=>dot.classList.remove('big'));
+      
+      // Initialiser les éléments du DOM
+      const titleEl = document.getElementById('hero-title-interactive');
+      
+      // --- FONCTION DE TRADUCTION ---
+      const langButtons = document.querySelectorAll('#lang-switch button');
+      function applyLang(lang){
+        langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+        document.documentElement.lang = lang;
+        localStorage.setItem('portfolio_lang', lang);
+        document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
+          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
+          if(txt){
+            // Supporte le markdown simple **texte** -> <strong>texte</strong>
+            el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+          }
         });
       }
+      langButtons.forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+      
+      // Appliquer la langue au chargement
+      applyLang(localStorage.getItem('portfolio_lang') || 'fr');
 
-      const titleEl = document.getElementById('hero-title-interactive');
+      // --- ANIMATION DU TITRE ---
       const titleText = "Data to Decision";
       if (titleEl) {
         titleText.split(' ').forEach(wordText => {
@@ -311,6 +307,7 @@
         });
       }
 
+      // --- COMPTEURS ANIMÉS ---
       const counters = document.querySelectorAll('[data-value]');
       const observer = new IntersectionObserver(entries=>{
         entries.forEach(entry=>{
@@ -329,6 +326,29 @@
       },{threshold:.6});
       counters.forEach(c=>observer.observe(c));
 
+      // --- EFFETS DE SURVOL (SONS & CURSEUR) ---
+      const hoverSound = document.getElementById('hover-sound');
+      const clickSound = document.getElementById('click-sound');
+      if(hoverSound) hoverSound.volume = 0.2;
+      if(clickSound) clickSound.volume = 0.5;
+      document.querySelectorAll('a, button, .block').forEach(el => {
+        el.addEventListener('mouseenter', () => { try { hoverSound.currentTime = 0; hoverSound.play(); } catch(e){} });
+        el.addEventListener('mousedown', () => { try { clickSound.currentTime = 0; clickSound.play(); } catch(e){} });
+      });
+      const dot = document.querySelector('.cursor-dot');
+      const glow = document.querySelector('.cursor-glow');
+      if (dot && glow) {
+        window.addEventListener('mousemove', e => {
+          dot.style.left = glow.style.left = e.clientX + 'px';
+          dot.style.top  = glow.style.top  = e.clientY + 'px';
+        });
+        document.querySelectorAll('a,button,.block').forEach(el=>{
+          el.addEventListener('mouseenter',()=>dot.classList.add('big'));
+          el.addEventListener('mouseleave',()=>dot.classList.remove('big'));
+        });
+      }
+
+      // --- MENU FLOTTANT ---
       const floatingMenu = document.getElementById('floating-menu');
       const sections = document.querySelectorAll('.section');
       if (floatingMenu && sections.length) {
@@ -336,9 +356,11 @@
           const a = document.createElement('a'); a.href = `#${section.id}`;
           const tip = document.createElement('span'); tip.className = 'tooltip';
           const h2 = section.querySelector('h2');
-          tip.textContent = h2 ? h2.textContent : section.id;
+          tip.setAttribute('data-lang-fr', h2.getAttribute('data-lang-fr'));
+          tip.setAttribute('data-lang-en', h2.getAttribute('data-lang-en'));
           a.appendChild(tip); floatingMenu.appendChild(a);
         });
+        applyLang(localStorage.getItem('portfolio_lang') || 'fr'); // Mettre à jour les tooltips
         const links = floatingMenu.querySelectorAll('a');
         const mo = new IntersectionObserver(entries=>{
           entries.forEach(entry=>{
@@ -352,27 +374,13 @@
         sections.forEach(s=>mo.observe(s));
       }
 
-      const langButtons = document.querySelectorAll('#lang-switch button');
-      function applyLang(lang){
-        langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-        document.documentElement.lang = lang;
-        localStorage.setItem('portfolio_lang', lang);
-        document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
-          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
-          if(txt){
-            // Support for simple markdown (bold)
-            el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-          }
-        });
-      }
-      langButtons.forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
-      applyLang(localStorage.getItem('portfolio_lang') || 'fr');
-
+      // --- EFFET 3D SUR LES CARTES ---
       document.querySelectorAll('.card-3d-tilt').forEach(card=>{
         card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;const rx=(y/r.height-0.5)*-12;const ry=(x/r.width-0.5)*12;card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`});
         card.addEventListener('mouseleave',()=>{card.style.transform='perspective(900px) rotateX(0) rotateY(0) scale(1)'});
       });
 
+      // --- ARRIÈRE-PLAN 3D (THREE.JS) ---
       const canvas = document.getElementById('interactive-bg');
       if (!reduce && canvas && window.THREE) {
         let scene,camera,renderer,points;
