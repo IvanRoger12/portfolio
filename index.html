@@ -136,7 +136,6 @@
       a.btn-primary, a.btn-secondary, button { min-height:44px; }
     }
     
-    /* NOUVEAU : Règle pour les canvas de fond */
     .project-bg-canvas, .mission-bg-canvas {
         position:absolute; inset:0; pointer-events:none; z-index:0; opacity:.95;
     }
@@ -497,202 +496,216 @@
   </script>
 
   <script>
-    /*!
-     * Portfolio Background FX Add-on
-     * Detects cards by H3 content and injects specific animated backgrounds.
-     * Respects IntersectionObserver for performance and prefers-reduced-motion.
-     */
-    (() => {
-        document.addEventListener('DOMContentLoaded', () => {
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reduceMotion) {
-                console.info('Add-on FX: Animations de fond désactivées (prefers-reduced-motion).');
-                return;
+    /* -------------------------------------------------------------------
+     * ADD-ON FINAL (AJOUT, PAS MODIF) — "Background Lexical Data + 5 patchs"
+     * À coller juste avant </body>. Compatible avec le code actuel.
+    --------------------------------------------------------------------*/
+    document.addEventListener('DOMContentLoaded', () => {
+        /* =========================
+         * 0) OUTILS & CONSTANTES
+         ==========================*/
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobile = matchMedia('(max-width:768px)').matches;
+        const H = document.documentElement;
+        const D = document;
+
+        /* ===============================================================
+         * 1) PATCHS PERF/UX/SEO (AJOUTS NON DESTRUCTIFS)
+         ================================================================*/
+
+        // 1.a Perf fonts: preconnect + preload Google Fonts (si absent)
+        (function injectFontPreloads(){
+            const head = D.head;
+            if(head.querySelector('link[rel="preconnect"][href="https://fonts.gstatic.com"]')) return;
+            const L1 = D.createElement('link'); L1.rel='preconnect'; L1.href='https://fonts.gstatic.com'; L1.crossOrigin='anonymous';
+            const L2 = D.createElement('link'); L2.rel='preconnect'; L2.href='https://fonts.googleapis.com';
+            head.prepend(L1,L2);
+        })();
+
+        // 1.b Pause douce quand l’onglet est caché (batterie)
+        let PAGE_HIDDEN = false;
+        D.addEventListener('visibilitychange', () => { PAGE_HIDDEN = D.hidden; });
+
+        // 1.c Sons plus légers (preload=metadata)
+        D.querySelectorAll('audio[preload="auto"]').forEach(a => a.setAttribute('preload','metadata'));
+
+        // 1.d Accessibilité clavier: si Tab → curseur natif
+        (function keyboardA11y(){
+            let keyboardUser=false;
+            const keydownHandler = (e) => { 
+                if(e.key==='Tab') {
+                    keyboardUser=true;
+                    H.classList.add('kb');
+                    window.removeEventListener('keydown', keydownHandler); // Une seule détection suffit
+                }
+            };
+            window.addEventListener('keydown', keydownHandler);
+            const style = D.createElement('style');
+            style.textContent = `html.kb body{cursor:auto} html.kb .cursor-dot, html.kb .cursor-glow{display:none}`;
+            D.head.appendChild(style);
+        })();
+
+        // 1.e ARIA sur menu flottant (bulles → aria-label)
+        D.querySelectorAll('#floating-menu a').forEach(a=>{
+            const t=a.querySelector('.tooltip'); if(t) a.setAttribute('aria-label', t.textContent.trim());
+        });
+
+        // 1.f SEO de base (si manquants) — AJOUT non destructif
+        (function injectSEO(){
+            const head=D.head;
+            const meta = (name) => head.querySelector(`meta[name="${name}"]`);
+            if(!meta('theme-color')){ const m=D.createElement('meta'); m.name='theme-color'; m.content='#030014'; head.appendChild(m); }
+            if(!head.querySelector('meta[property="og:title"]')){
+                const og = [
+                    ['og:title','Ivan Roger NFINDA | Data Analyst & BI'],
+                    ['og:description',"Dashboards Power BI, Data Quality, IA & missions stratégiques."],
+                    ['og:type','website']
+                ];
+                og.forEach(([p,v])=>{const m=D.createElement('meta'); m.setAttribute('property',p); m.content=v; head.appendChild(m);});
+            }
+            if(!head.querySelector('script[type="application/ld+json"]')){
+                const ld = D.createElement('script'); ld.type='application/ld+json';
+                ld.textContent = JSON.stringify({
+                    "@context":"https://schema.org","@type":"Person",
+                    "name":"Ivan Roger Nfinda","jobTitle":"Data Analyst",
+                    "sameAs":["https://github.com/IvanRoger12","https://www.linkedin.com/in/ivan-roger-nfinda/"]
+                });
+                head.appendChild(ld);
+            }
+        })();
+
+        /* ===============================================================
+         * 2) ARRIÈRE-PLAN VIVANT "LEXICAL DATA"
+         ================================================================*/
+        if(!reduce){
+            const css = `
+              #lexi-bg{ position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.95; mix-blend-mode:screen; filter: saturate(120%) blur(0.2px); }
+              @media (prefers-reduced-motion:reduce){ #lexi-bg{ display:none !important; } }
+            `;
+            const st = D.createElement('style'); st.textContent = css; D.head.appendChild(st);
+
+            const cvs = D.createElement('canvas'); cvs.id = 'lexi-bg';
+            D.body.insertBefore(cvs, D.body.firstChild);
+            const ctx = cvs.getContext('2d');
+            
+            function fit(){ 
+                const dpr = window.devicePixelRatio || 1;
+                cvs.width = innerWidth * dpr;
+                cvs.height= innerHeight * dpr;
+                ctx.scale(dpr, dpr);
+            }
+            window.addEventListener('resize', fit, {passive:true}); fit();
+
+            const LEXI = [
+                "SQL","NoSQL","ETL","ELT","OLAP","Data Lake","Star Schema","Snowflake",
+                "Power BI","DAX","Power Query","R Shiny","Tableau","Looker","KPI","OKR","Churn",
+                "Python","R","Pandas","NumPy","scikit-learn","XGBoost","Forecasting","ARIMA",
+                "NLP","Embeddings","Vector DB","RAG","LLM","Token","Hugging Face",
+                "API","REST","Streamlit","Azure","AWS","GCP","BigQuery","Redshift","Databricks",
+                "Spark","dbt","Airflow","Kafka","Docker","Git","GitHub Actions","MLflow",
+                "PostgreSQL","MongoDB","Redis","Elasticsearch","Data Quality",
+                "Profiling","Imputation","Normalization","PCA","A/B Testing",
+                "ROC AUC","Precision","Recall","F1","Lineage", "Anonymization","GDPR"
+            ];
+
+            const WORDS = [];
+            const MAX_WORDS  = isMobile ? 40 : 100;
+            let spawnAccumulator = 0;
+
+            function rand(a,b){ return a + Math.random()*(b-a); }
+            function pick(arr){ return arr[(Math.random()*arr.length)|0]; }
+
+            function makeWord(){
+                return {
+                    text: pick(LEXI), x: rand(-60, innerWidth+60), y: innerHeight + rand(10,140),
+                    size: rand(12, isMobile? 26: 38), vx: rand(-0.25,0.25), vy: -rand(0.6, 1.4),
+                    rot: rand(-0.15,0.15), alpha: rand(0.35,0.85)
+                };
             }
 
-            // Injecte le style nécessaire pour les canvas
-            const style = document.createElement('style');
-            style.textContent = `
-                .mission-card .mission-bg-canvas, 
-                .project-card .mission-bg-canvas { 
-                    position:absolute; inset:0; pointer-events:none; z-index:-1; opacity:0.7; 
-                    border-radius: inherit; /* Assure que le canvas ne dépasse pas */
-                }
-            `;
-            document.head.appendChild(style);
-            
-            const observer = new IntersectionObserver((entries, obs) => {
-                for (const entry of entries) {
-                    if (entry.isIntersecting) {
-                        entry.target.dataset.render = 'true';
-                        obs.unobserve(entry.target);
-                    }
-                }
-            }, { threshold: 0.1 });
+            let micAmp = 0, cursorAmp = 0, speakAmp = 0;
 
-            const createCanvas = (parent, className) => {
-                const canvas = document.createElement('canvas');
-                canvas.className = className;
-                // Insère le canvas au début pour qu'il soit en arrière-plan
-                parent.insertBefore(canvas, parent.firstChild);
-                
-                const resize = () => {
-                    canvas.width = parent.clientWidth;
-                    canvas.height = parent.clientHeight;
-                };
-                window.addEventListener('resize', resize, { passive: true });
-                resize();
-                
-                return { canvas, ctx: canvas.getContext('2d'), resize };
-            };
-            
-            const effects = {
-                // --- Projets d’Analyse & BI ---
-                spotify: (parent) => {
-                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
-                    const bars = 20; let t = 0;
-                    function draw() {
-                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
-                        t += 0.03;
-                        const w = canvas.width, h = canvas.height, bw = w / bars;
-                        ctx.clearRect(0, 0, w, h);
-                        ctx.fillStyle = `rgba(34, 197, 94, 0.4)`;
-                        for (let i = 0; i < bars; i++) {
-                            const bh = (Math.sin(t + i * 0.4) + 1) / 2 * h * 0.8 + h * 0.1;
-                            ctx.fillRect(i * bw + bw * 0.1, h - bh, bw * 0.8, bh);
-                        }
-                        requestAnimationFrame(draw);
-                    }
-                    draw();
-                },
-                rh: (parent) => { // Cible "Dashboard RH" et "Attrition RH"
-                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
-                    const gridSize = 20; let t = 0;
-                    function draw() {
-                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
-                        t += 0.02;
-                        const w = canvas.width, h = canvas.height;
-                        ctx.clearRect(0, 0, w, h);
-                        for (let x = 0; x < w; x += gridSize) {
-                            for (let y = 0; y < h; y += gridSize) {
-                                const pulse = (Math.sin(x * 0.1 + t) + Math.cos(y * 0.1 + t) + 2) / 4;
-                                ctx.fillStyle = `rgba(167, 139, 250, ${pulse * 0.3})`;
-                                ctx.beginPath(); ctx.arc(x, y, 2, 0, 2 * Math.PI); ctx.fill();
-                            }
-                        }
-                        requestAnimationFrame(draw);
-                    }
-                    draw();
-                },
-                attrition: (parent) => {
-                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
-                    let t = 0;
-                    function draw() {
-                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
-                        t += 0.02;
-                        const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2;
-                        const maxRadius = Math.sqrt(cx*cx + cy*cy);
-                        ctx.clearRect(0, 0, w, h);
-                        ctx.strokeStyle = `rgba(34, 211, 238, 0.4)`;
-                        for (let i = 1; i <= 3; i++) {
-                            ctx.beginPath();
-                            const radius = (t * 50 + i * (maxRadius / 3)) % maxRadius;
-                            ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
-                            ctx.globalAlpha = 1 - (radius / maxRadius);
-                            ctx.stroke();
-                        }
-                        ctx.globalAlpha = 1;
-                        requestAnimationFrame(draw);
-                    }
-                    draw();
-                },
-                // --- Missions Stratégiques ---
-                contrascope: (parent) => {
-                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
-                    let y = 0, dir = 1;
-                    function draw() {
-                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
-                        y += dir * 2;
-                        if (y > canvas.height || y < 0) dir *= -1;
-                        const w = canvas.width, h = canvas.height;
-                        ctx.clearRect(0, 0, w, h);
-                        ctx.strokeStyle = `rgba(239, 68, 68, 0.1)`;
-                        for(let i=0; i<h; i+=10) { ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke(); }
-                        ctx.fillStyle = `rgba(239, 68, 68, 0.7)`;
-                        ctx.fillRect(0, y, w, 2);
-                        ctx.fillStyle = `rgba(239, 68, 68, 0.15)`;
-                        ctx.fillRect(0, y-10, w, 20);
-                        requestAnimationFrame(draw);
-                    }
-                    draw();
-                },
-                dataclean: (parent) => {
-                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
-                    let t = 0;
-                    function draw() {
-                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
-                        t += 0.01;
-                        const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2, r = Math.min(cx,cy) * 0.6;
-                        ctx.clearRect(0, 0, w, h);
-                        for(let i=0; i<3; i++) {
-                            ctx.beginPath();
-                            const angle = t + i * (2*Math.PI/3);
-                            ctx.strokeStyle = `hsla(${180 + i * 60}, 80%, 60%, 0.6)`;
-                            ctx.arc(cx, cy, r + i*5, angle, angle + Math.PI * 1.5);
-                            ctx.lineWidth = 2;
-                            ctx.stroke();
-                        }
-                        requestAnimationFrame(draw);
-                    }
-                    draw();
-                },
-                scoring: (parent) => {
-                    const { ctx, canvas } = createCanvas(parent, 'mission-bg-canvas');
-                    let t = 0;
-                    function draw() {
-                        if (parent.dataset.render !== 'true') { requestAnimationFrame(draw); return; }
-                        t += 0.02;
-                        const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2;
-                        const r = Math.min(cx, cy) * 0.4 * ((Math.sin(t) + 1.5) / 2.5);
-                        ctx.clearRect(0, 0, w, h);
-                        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-                        grad.addColorStop(0, `rgba(34, 197, 94, 0.5)`);
-                        grad.addColorStop(1, `rgba(34, 197, 94, 0)`);
-                        ctx.fillStyle = grad;
-                        ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2*Math.PI); ctx.fill();
-                        requestAnimationFrame(draw);
-                    }
-                    draw();
-                },
-            };
+            (async function tryMic(){
+                try{
+                    const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+                    const ac = new (window.AudioContext||window.webkitAudioContext)();
+                    const src = ac.createMediaStreamSource(stream);
+                    const analyser = ac.createAnalyser(); analyser.fftSize = 512;
+                    src.connect(analyser);
+                    const buf = new Uint8Array(analyser.frequencyBinCount);
+                    (function micLoop(){
+                        if (PAGE_HIDDEN){ micAmp = 0; requestAnimationFrame(micLoop); return; }
+                        analyser.getByteFrequencyData(buf);
+                        const avg = buf.reduce((a,b)=>a+b,0)/buf.length;
+                        micAmp = Math.min(1, avg/160);
+                        requestAnimationFrame(micLoop);
+                    })();
+                }catch(e){/* no mic */}
+            })();
 
-            const keywordMap = {
-                'spotify': effects.spotify,
-                'rétention': effects.rh,
-                'dashboard rh': effects.rh,
-                'attrition': effects.attrition,
-                'contrascope': effects.contrascope,
-                'data clean': effects.dataclean,
-                'dataclean': effects.dataclean,
-                'scoring': effects.scoring,
-            };
+            const iaBubble = D.getElementById('ia-bubble');
+            if (iaBubble){
+                new MutationObserver(() => {
+                    speakAmp = iaBubble.classList.contains('bubble-show') ? 0.9 : 0;
+                }).observe(iaBubble, {attributes:true, attributeFilter:['class']});
+            }
 
-            const attachEffect = (card) => {
-                const h3 = card.querySelector('h3');
-                if (!h3) return;
-                const text = h3.textContent.toLowerCase().trim();
-                for (const keyword in keywordMap) {
-                    if (text.includes(keyword)) {
-                        keywordMap[keyword](card);
-                        observer.observe(card);
-                        break;
-                    }
+            let lastX=0,lastY=0,lastT=performance.now();
+            window.addEventListener('mousemove', e=>{
+                const t=performance.now(); const dt=Math.max(16, t-lastT);
+                const v=Math.min(1, Math.hypot(e.clientX-lastX,e.clientY-lastY)/(dt*0.9));
+                cursorAmp = v; lastX=e.clientX; lastY=e.clientY; lastT=t;
+            }, {passive:true});
+
+            function draw(){
+                if (PAGE_HIDDEN){ requestAnimationFrame(draw); return; }
+                ctx.clearRect(0,0,innerWidth,innerHeight);
+                const amp = 0.6 + micAmp*0.9 + cursorAmp*0.6 + speakAmp*0.9;
+                spawnAccumulator += 0.012 * (1+amp);
+                while (WORDS.length < MAX_WORDS && spawnAccumulator > 0.02){
+                    WORDS.push( makeWord() );
+                    spawnAccumulator -= 0.02;
                 }
-            };
-            
-            document.querySelectorAll('#projets-analyse .project-card, #missions-strategiques .mission-card').forEach(attachEffect);
-        });
-    })();
+                ctx.textBaseline='middle'; ctx.textAlign='center';
+                for (let i=WORDS.length-1; i>=0; i--){
+                    const w = WORDS[i];
+                    w.x += (w.vx + Math.sin(w.y*0.02) * 0.15) * (1 + amp*0.4);
+                    w.y += (w.vy - amp*0.18) * (1 + amp*0.2);
+                    w.rot += 0.001*(1+amp);
+                    w.alpha *= 0.9992;
+                    
+                    ctx.save();
+                    ctx.translate(w.x, w.y);
+                    ctx.rotate(w.rot);
+                    ctx.globalAlpha = Math.max(0, Math.min(1, w.alpha));
+                    ctx.font = `700 ${w.size}px Orbitron, Poppins, system-ui`;
+                    ctx.fillStyle = 'rgba(167,139,250,0.85)';
+                    ctx.fillText(w.text, 0, 0);
+                    ctx.restore();
+                    
+                    if (w.y < -80) WORDS.splice(i,1);
+                }
+                requestAnimationFrame(draw);
+            }
+            requestAnimationFrame(draw);
+        }
+
+        /* ===============================================================
+         * 3) MICRO-UX (optionnel non destructif)
+         ================================================================*/
+        (function injectCTA(){
+            const hero = D.querySelector('header .mt-8');
+            if(!hero || hero.querySelector('a[href^="mailto:"]')) return;
+            const a = D.createElement('a');
+            a.className = 'btn-secondary';
+            a.href = 'mailto:nfindaroger@gmail.com?subject=Contact%20Portfolio';
+            a.setAttribute('data-lang-fr','📩 Me contacter');
+            a.setAttribute('data-lang-en','📩 Contact me');
+            a.textContent = (H.lang==='en') ? '📩 Contact me' : '📩 Me contacter';
+            hero.appendChild(a);
+        })();
+
+    });
   </script>
 </body>
 </html>
