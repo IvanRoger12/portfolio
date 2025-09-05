@@ -17,7 +17,6 @@
     .section{margin-bottom:6.5rem;position:relative}
     .block{background:rgba(16,14,31,.55);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;padding:1.25rem;box-shadow:0 0 40px rgba(124,58,237,.12);transition:transform .3s ease, box-shadow .3s ease}
     .block:hover{transform:translateY(-6px);box-shadow:0 30px 60px -12px rgba(124,58,237,.25)}
-    /* --- NOUVEAU: Amélioration de la lisibilité du texte --- */
     .block p, .timeline p { line-height: 1.7; }
 
     /* Cursor */
@@ -29,12 +28,20 @@
     /* Header / Hero */
     header{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;padding-top:4.5rem}
     #interactive-bg{position:fixed;inset:0;z-index:-2}
-    .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.6rem, 7.6vw, 6.6rem);font-weight:900;line-height:1.05;position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.08em .24em;perspective:1000px}
+    .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.6rem, 7.6vw, 6.6rem);font-weight:900;line-height:1.05;position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.08em .24em;perspective:1000px; /* NOUVEAU: Ajout de l'animation glitch */ animation: glitch-text 3s linear infinite alternate;}
+    @keyframes glitch-text {
+        0% { text-shadow: 0 0 6px rgba(165,180,252,.55), 0 0 18px rgba(165,180,252,.55), 0 0 34px rgba(124,58,237,.55); opacity: 1; transform: translateX(0); }
+        20% { text-shadow: 0 0 6px rgba(165,180,252,.55), 0 0 18px rgba(165,180,252,.55), 0 0 34px rgba(124,58,237,.55); opacity: 0.98; transform: translateX(-2px); }
+        25% { text-shadow: 0 0 6px rgba(165,180,252,.55), 0 0 18px rgba(165,180,252,.55), 0 0 34px rgba(124,58,237,.55); opacity: 1; transform: translateX(0); }
+        70% { text-shadow: 0 0 6px rgba(165,180,252,.55), 0 0 18px rgba(165,180,252,.55), 0 0 34px rgba(124,58,237,.55); opacity: 1; transform: translateX(0); }
+        75% { text-shadow: 2px 0 12px rgba(255,0,255,.7), -2px 0 12px rgba(0,255,255,.7); opacity: 0.9; transform: translateX(2px); }
+        80% { text-shadow: 0 0 6px rgba(165,180,252,.55), 0 0 18px rgba(165,180,252,.55), 0 0 34px rgba(124,58,237,.55); opacity: 1; transform: translateX(0); }
+        100% { text-shadow: 0 0 6px rgba(165,180,252,.55), 0 0 18px rgba(165,180,252,.55), 0 0 34px rgba(124,58,237,.55); opacity: 1; transform: translateX(0); }
+    }
     .hero-title .word{display:flex}
-    .hero-title .char{display:inline-block;transition:all .25s ease;text-shadow:0 0 6px rgba(165,180,252,.55),0 0 18px rgba(165,180,252,.55),0 0 34px rgba(124,58,237,.55);animation:flicker 3.2s infinite alternate}
+    .hero-title .char{display:inline-block;transition:all .25s ease;text-shadow:0 0 6px rgba(165,180,252,.55),0 0 18px rgba(165,180,252,.55),0 0 34px rgba(124,58,237,.55)}
     .hero-title:hover .char{transform:translateY(-8px) rotateX(22deg) scale(1.08);color:#fff;text-shadow:0 0 10px #a78bfa,0 0 22px #a78bfa,0 0 44px #a78bfa}
     .hero-breath{animation:breath 5.2s ease-in-out infinite}
-    @keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1}20%,24%,55%{opacity:.85;filter:brightness(1.15)}}
     @keyframes breath{0%,100%{transform:translateZ(0) scale(1)}50%{transform:translateZ(0) scale(1.015)}}
 
     /* Arrière-plan de mots data qui défilent */
@@ -50,15 +57,40 @@
     #data-word-cloud span:nth-of-type(7){left:40%;animation-duration:32s;animation-delay:18s}
     #data-word-cloud span:nth-of-type(8){left:45%;animation-duration:26s;animation-delay:3s}
 
-    /* --- MODIFIÉ: Boutons ultra interactifs --- */
+    /* Boutons ultra interactifs et vibrants */
     .btn-primary, .btn-secondary {
       position: relative; overflow: hidden; z-index: 1; transition: all .25s ease;
+      /* NOUVEAU: Vibration au survol */
+      -webkit-tap-highlight-color: transparent; /* Empêche le flash bleu sur mobile */
     }
+    .btn-primary:hover, .btn-secondary:hover {
+      animation: vibrate-button 0.15s ease-in-out infinite alternate;
+    }
+    @keyframes vibrate-button {
+      0% { transform: translateY(-2px) scale(1.04) rotateZ(-0.5deg); }
+      50% { transform: translateY(-2px) scale(1.04) rotateZ(0.5deg); }
+      100% { transform: translateY(-2px) scale(1.04) rotateZ(-0.5deg); }
+    }
+    /* NOUVEAU: Animation initiale pour les boutons du header */
+    header .btn-primary, header .btn-secondary {
+        animation: pulse-button 2s infinite ease-in-out, enter-from-bottom 0.8s ease-out 0.5s forwards;
+        opacity: 0; /* Masqué au départ pour l'animation */
+    }
+    @keyframes pulse-button {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes enter-from-bottom {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
     .btn-primary::before, .btn-secondary::before {
       content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0) 100%);transform:skewX(-25deg);opacity:0;transition:all 0.7s ease;
     }
-    .btn-primary:hover::before, .btn-secondary:hover::before { left: 120%; opacity: 1; }
-    /* NOUVEAU: Effet d'enfoncement au clic */
+    .btn-primary:hover::before, .btn-secondary:hover::before { left: 120%; opacity: 1; animation: none; /* Désactive la vibration pendant l'effet de brillance */ }
+    /* Effet d'enfoncement au clic */
     .btn-primary:active, .btn-secondary:active {
       transform: translateY(1px) scale(0.98) !important;
       transition-duration: 0.1s;
@@ -72,7 +104,6 @@
     .section h2 {
         transition: opacity 0.6s ease, transform 0.6s ease;
         opacity: 0; transform: translateY(20px);
-        /* NOUVEAU: Espacement des lettres pour un style plus "tech" */
         letter-spacing: 0.05em;
     }
     .section h2.visible { opacity: 1; transform: translateY(0); }
@@ -87,14 +118,24 @@
     @media (min-width:640px){.card-grid{grid-template-columns:repeat(2,1fr)}}
     @media (min-width:1024px){.card-grid.facets{grid-template-columns:repeat(4,1fr)}}
 
-    .facet-card,.mission-card{height:210px;padding:1.1rem;text-align:center;display:flex;flex-direction:column;justify-content:center;border-radius:16px;position:relative;overflow:hidden}
+    .facet-card,.mission-card{height:210px;padding:1.1rem;text-align:center;display:flex;flex-direction:column;justify-content:center;border-radius:16px;position:relative;overflow:hidden;
+        /* NOUVEAU: Animation d'entrée pour les facettes */
+        opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .facet-card.visible { opacity: 1; transform: translateY(0); }
+    /* Décalage pour l'animation des facettes */
+    .facet-card:nth-child(1).visible { transition-delay: 0.1s; }
+    .facet-card:nth-child(2).visible { transition-delay: 0.2s; }
+    .facet-card:nth-child(3).visible { transition-delay: 0.3s; }
+    .facet-card:nth-child(4).visible { transition-delay: 0.4s; }
+
+
     .mission-card{background-image:
       radial-gradient(80rem 40rem at -10% -10%,rgba(124,58,237,.15),transparent 45%),
       radial-gradient(60rem 30rem at 110% 120%,rgba(167,139,250,.12),transparent 45%);
       border:1px solid rgba(255,255,255,.08)
     }
     .mission-card .icon{position:absolute;top:.8rem;right:.8rem;width:2.2rem;height:2.2rem;opacity:.25;transition:opacity .3s ease, transform .3s ease}
-    /* --- NOUVEAU: Animation de l'icône au survol --- */
     .mission-card:hover .icon{opacity:.7; transform: scale(1.1) rotate(10deg);}
     .card-3d-tilt{transform-style:preserve-3d}
     .card-3d-tilt:hover{transition:transform .1s linear;transform:scale(1.05)}
@@ -103,7 +144,7 @@
     .ms-aria::before{content:"";position:absolute;inset:15% 15% 15% 15%;border-radius:50%;background:conic-gradient(from 0deg,rgba(167,139,250,.55),transparent 60%),radial-gradient(circle at 50% 50%,transparent 55%,rgba(167,139,250,.45) 56%,transparent 58%);animation:radar-spin 6s linear infinite;mix-blend-mode:screen;opacity:.45}
     @keyframes radar-spin{to{transform:rotate(360deg)}}
     .ms-scoring::before{content:"";position:absolute;inset:0;background-image:linear-gradient(180deg,rgba(34,197,94,0) 0%,rgba(34,197,94,.12) 2%,rgba(34,197,94,0) 4%),linear-gradient(180deg,rgba(34,197,94,0) 0%,rgba(34,197,94,.12) 2%,rgba(34,197,94,0) 4%);background-size:100% 30px,100% 22px;background-position:0 0,0 -10px;animation:matrix-fall 2.2s linear infinite;opacity:.35;mix-blend-mode:screen}
-    @keyframes matrix-fall{to{background-position:0 30px,0 12px}}
+    @keyframes matrix-fall{to{background-position:0 30px,0 12px)}}
     .ms-clean::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(34,211,238,.15) 40%,rgba(34,211,238,.35) 50%,rgba(34,211,238,.15) 60%,transparent 100%);transform:translateX(-120%);animation:clean-sweep 5s ease-in-out infinite;mix-blend-mode:screen}
     @keyframes clean-sweep{0%,15%{transform:translateX(-120%)}45%{transform:translateX(120%)}100%{transform:translateX(120%)}}
     .ms-contra::before{content:"";position:absolute;left:0;right:0;height:3px;top:-3px;background:linear-gradient(90deg,transparent,rgba(239,68,68,.9),transparent);animation:laser-scan 3.6s linear infinite;box-shadow:0 0 14px rgba(239,68,68,.8),0 0 28px rgba(239,68,68,.5)}
@@ -124,21 +165,109 @@
 
     /* Agent IA */
     #ia-agent{position:fixed;left:1rem;bottom:1rem;z-index:60;display:flex;align-items:center;gap:.6rem}
-    #ia-avatar{width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,#9b8cfb,#6b4be6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(167,139,250,.6); transition: box-shadow .3s ease;}
-    .avatar-pulse{animation:avatar-glow 3s ease-in-out infinite}
-    /* --- NOUVEAU: Animation "surprise" pour l'avatar --- */
-    #ia-avatar.waiting-to-speak {
-      animation: waiting-glow 1.5s infinite ease-in-out;
+    #ia-avatar{width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,#9b8cfb,#6b4be6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(167,139,250,.6); transition: box-shadow .3s ease, transform .5s ease; /* NOUVEAU: Animation de l'avatar */ animation: ia-idle 4s infinite ease-in-out;}
+    @keyframes ia-idle {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
     }
-    @keyframes waiting-glow{0%,100%{box-shadow:0 0 40px rgba(34,211,238,.8)}50%{box-shadow:0 0 20px rgba(34,211,238,.4)}}
-    @keyframes avatar-glow{0%,100%{box-shadow:0 0 16px rgba(167,139,250,.5)}50%{box-shadow:0 0 40px rgba(167,139,250,.85)}}
+    #ia-avatar.waiting-to-speak {
+      animation: waiting-glow 1.5s infinite ease-in-out, ia-idle 4s infinite ease-in-out; /* Combine les animations */
+      cursor: pointer;
+    }
+    @keyframes waiting-glow{0%,100%{box-shadow:0 0 40px rgba(34,211,238,.8), 0 0 15px rgba(34,211,238,.6) inset}50%{box-shadow:0 0 20px rgba(34,211,238,.4), 0 0 5px rgba(34,211,238,.2) inset}}
     #ia-bubble{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);color:#fff;font-size:.9rem;padding:.55rem .8rem;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;max-width:260px}
     #ia-cta{display:none;margin-left:.3rem}
     .bubble-show{opacity:1 !important;transform:translateY(0)!important}
 
-    /* Timeline Formation */
-    .timeline{position:relative;padding-left:1rem}
-    .timeline::before{content:"";position:absolute;left:0.4rem;top:.1rem;bottom:.4rem;width:2px;background:linear-gradient(180deg,rgba(167,139,250,.2),rgba(167,139,250,1),rgba(167,139,250,.2))}
+    /* Timeline Professionnelle (inspiré de l'image) */
+    .timeline-pro {
+      position: relative;
+      padding-left: 2rem;
+      max-width: 800px; /* Limite la largeur de la timeline */
+      margin: 0 auto;
+    }
+    .timeline-pro::before {
+      content: '';
+      position: absolute;
+      left: 1.1rem; /* Positionne la ligne au centre */
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(167,139,250,.2), rgba(167,139,250,1), rgba(167,139,250,.2));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      opacity: 0; /* Masqué au départ pour l'animation */
+      transform: translateY(20px) rotateX(10deg);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .timeline-item.visible {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+    .timeline-item-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 9999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(167,139,250,.8);
+      position: absolute;
+      left: 0.5rem; /* Aligné sur la ligne verticale */
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .timeline-content {
+      flex: 1;
+      background: rgba(16,14,31,.55);
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow:0 0 40px rgba(124,58,237,.12);
+      transition:transform .3s ease, box-shadow .3s ease;
+      margin-left: 2rem; /* Espace pour la ligne et le dot */
+      max-width: calc(50% - 2.5rem); /* Pour alterner gauche/droite */
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+      margin-right: 2rem; /* Place le contenu à droite pour les éléments pairs */
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) .timeline-item-dot {
+        left: auto;
+        right: 0.5rem; /* Aligné à droite pour les éléments pairs */
+    }
+    /* Adapte la position de la ligne et des points pour la version mobile si nécessaire */
+    @media (max-width: 768px) {
+        .timeline-pro::before { left: 1.1rem; }
+        .timeline-item { flex-direction: column; align-items: flex-start; }
+        .timeline-item-dot { left: 0.5rem; right: auto; top: 1rem; transform: translateY(0); }
+        .timeline-content {
+            margin-left: 2.5rem;
+            margin-right: 0;
+            max-width: 100%;
+            text-align: left;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 2.5rem;
+            margin-right: 0;
+            text-align: left;
+        }
+        .timeline-item:nth-child(even) .timeline-item-dot {
+            left: 0.5rem;
+            right: auto;
+        }
+    }
+
+
+    /* Formation Timeline */
+    .timeline-formation{position:relative;padding-left:1rem}
+    .timeline-formation::before{content:"";position:absolute;left:0.4rem;top:.1rem;bottom:.4rem;width:2px;background:linear-gradient(180deg, rgba(167,139,250,.2), rgba(167,139,250,1), rgba(167,139,250,.2))}
     .t-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(167,139,250,.8)}
 
     /* Accessibility */
@@ -153,8 +282,10 @@
     <span>API</span> <span>Scikit-learn</span> <span>Power BI</span>
   </div>
   
-  <audio id="hover-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-fast-thin-swish-3-435.mp3" preload="auto"></audio>
-  <audio id="click-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-interface-device-click-2577.mp3" preload="auto"></audio>
+  <audio id="hover-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-sweep-transition-1481.mp3" preload="auto"></audio>
+  <audio id="click-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-click-2009.mp3" preload="auto"></audio>
+  <audio id="ia-speak-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-small-alert-bells-2191.mp3" preload="auto"></audio>
+
 
   <div id="lang-switch" aria-label="Language switch">
     <button data-lang="fr" class="active">FR</button>
@@ -229,24 +360,42 @@
     <section id="parcours" class="section">
       <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]"
           data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey">Parcours Professionnel</h2>
-      <div class="grid gap-4">
-        <div class="block">
-          <h3 class="font-semibold">LOGWIRE · <span class="text-white/70">Data Analyst (2025)</span></h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers."
-             data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p>
+      <div class="timeline-pro">
+        <div class="timeline-item">
+          <div class="timeline-item-dot"></div>
+          <div class="timeline-content block">
+            <h3 class="font-semibold text-lg" data-lang-fr="Data Analyst Freelance" data-lang-en="Freelance Data Analyst">Data Analyst Freelance</h3>
+            <p class="text-white/70 text-sm">2023 – Présent</p>
+            <p class="text-white/70 text-sm mt-2" data-lang-fr="Missions variées, conseil et développement de solutions data pour divers clients."
+               data-lang-en="Diverse missions, consulting and developing data solutions for various clients."></p>
+          </div>
         </div>
-        <div class="block">
-          <h3 class="font-semibold">ENDO DATA · <span class="text-white/70">Data Analyst (2023–2024)</span></h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="BI dentaire multi-cabinets, -10% no-show, qualité de données."
-             data-lang-en="Dental BI for clinics, -10% no-show, data quality."></p>
+        <div class="timeline-item">
+          <div class="timeline-item-dot"></div>
+          <div class="timeline-content block">
+            <h3 class="font-semibold text-lg">LOGWIRE · <span class="text-white/70">Data Analyst</span></h3>
+            <p class="text-white/70 text-sm">2025</p>
+            <p class="text-white/70 text-sm mt-2" data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers."
+               data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p>
+          </div>
         </div>
-        <div class="block">
-          <h3 class="font-semibold">Afriland First Bank · <span class="text-white/70">Data Analyst (2021–2022)</span></h3>
-          <p class="text-white/70 text-sm"
-             data-lang-fr="Scoring, suivi risques, -8% défaut, reporting automatisé."
-             data-lang-en="Scoring, risk tracking, -8% default, automated reporting."></p>
+        <div class="timeline-item">
+          <div class="timeline-item-dot"></div>
+          <div class="timeline-content block">
+            <h3 class="font-semibold text-lg">ENDO DATA · <span class="text-white/70">Data Analyst</span></h3>
+            <p class="text-white/70 text-sm">2023–2024</p>
+            <p class="text-white/70 text-sm mt-2" data-lang-fr="BI dentaire multi-cabinets, -10% no-show, qualité de données."
+               data-lang-en="Dental BI for clinics, -10% no-show, data quality."></p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item-dot"></div>
+          <div class="timeline-content block">
+            <h3 class="font-semibold text-lg">Afriland First Bank · <span class="text-white/70">Data Analyst</span></h3>
+            <p class="text-white/70 text-sm">2021–2022</p>
+            <p class="text-white/70 text-sm mt-2" data-lang-fr="Scoring, suivi risques, -8% défaut, reporting automatisé."
+               data-lang-en="Scoring, risk tracking, -8% default, automated reporting."></p>
+          </div>
         </div>
       </div>
     </section>
@@ -255,7 +404,7 @@
       <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]"
           data-lang-fr="Formation & Recherche" data-lang-en="Education & Research">Formation & Recherche</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="block timeline">
+        <div class="block timeline-formation">
           <div class="flex items-start gap-3">
             <div class="t-dot mt-1"></div>
             <div>
@@ -281,6 +430,12 @@
             <li data-lang-fr="Optimisation des pipelines de scoring (temps réel)." data-lang-en="Real-time scoring pipelines optimization."></li>
             <li data-lang-fr="Automatisation data quality (profiling + règles)." data-lang-en="Automated data quality (profiling + rules)."></li>
             <li data-lang-fr="Dashboard KPI multi-métiers, UX de décision." data-lang-en="Cross-domain KPI dashboards, decision UX."></li>
+            <li>
+                <a href="https://www.researchgate.net/publication/360497701_WhatsApp's_Influence_on_African_and_Urban_Communication_Satisfaction_The_Case_of_Cameroon"
+                   target="_blank" rel="noopener" class="text-cyan-400 hover:underline">
+                   WhatsApp's Influence on African and Urban Communication Satisfaction...
+                </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -332,7 +487,7 @@
   <nav id="floating-menu"></nav>
 
   <div id="ia-agent" aria-live="polite">
-    <div id="ia-avatar" class="avatar-pulse text-xl" title="Cliquez pour m'entendre !">🤖</div>
+    <div id="ia-avatar" class="text-xl" title="Cliquez pour m'entendre !">🤖</div>
     <div id="ia-bubble" role="status"></div>
     <a id="ia-cta" href="mailto:nfindaroger@gmail.com" class="btn-primary ml-2">✉️</a>
   </div>
@@ -343,25 +498,23 @@
     const isMobile = matchMedia('(max-width: 768px)').matches;
 
     document.addEventListener('DOMContentLoaded', () => {
-      /* --- MODIFIÉ: Initialisation de l'Agent IA et des Sons --- */
+      /* Agent IA et Sons */
       const iaBubble = document.getElementById('ia-bubble');
       const iaAvatar = document.getElementById('ia-avatar');
       const iaCta = document.getElementById('ia-cta');
       const hoverSound = document.getElementById('hover-sound');
       const clickSound = document.getElementById('click-sound');
+      const iaSpeakSound = document.getElementById('ia-speak-sound');
       let currentIaMessage = '';
 
-      // Configuration des sons
       if(hoverSound) hoverSound.volume = 0.2;
       if(clickSound) clickSound.volume = 0.5;
+      if(iaSpeakSound) iaSpeakSound.volume = 0.4;
 
+      // Jouer les sons pour les interactions
       document.querySelectorAll('a, button, .block').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          try { hoverSound.currentTime = 0; hoverSound.play(); } catch(e){}
-        });
-        el.addEventListener('mousedown', () => {
-          try { clickSound.currentTime = 0; clickSound.play(); } catch(e){}
-        });
+        el.addEventListener('mouseenter', () => { try { hoverSound.currentTime = 0; hoverSound.play(); } catch(e){} });
+        el.addEventListener('mousedown', () => { try { clickSound.currentTime = 0; clickSound.play(); } catch(e){} });
       });
 
       /* Cursor */
@@ -397,7 +550,7 @@
 
       /* Animated counters */
       const counters = document.querySelectorAll('[data-value]');
-      const observer = new IntersectionObserver(entries=>{
+      const counterObserver = new IntersectionObserver(entries=>{
         entries.forEach(entry=>{
           if(!entry.isIntersecting) return;
           const el = entry.target;
@@ -409,10 +562,10 @@
             if ((step>0 && val>=target) || (step<0 && val<=target)) { val = target; clearInterval(id); }
             el.textContent = (target>0?'+':'') + val + '%';
           }, 16);
-          observer.unobserve(el);
+          counterObserver.unobserve(el);
         });
       },{threshold:.6});
-      counters.forEach(c=>observer.observe(c));
+      counters.forEach(c=>counterObserver.observe(c));
 
       /* Availability pop */
       const availabilityBtn = document.getElementById('availability-btn');
@@ -431,9 +584,79 @@
         });
       }
 
-      /* Floating dots menu & Title Animation */
+      /* Floating dots menu & Title/Card Animation */
       const floatingMenu = document.getElementById('floating-menu');
       const sections = document.querySelectorAll('.section');
+      const iaSayTimer = {}; // Pour gérer les timeouts des messages IA
+      
+      const iaGuide = {
+        fr: {
+          header: "Bienvenue dans mon portfolio ! Je suis votre guide IA. Explorez l'univers, et cliquez sur moi quand je brille pour entendre mes pensées.",
+          facettes: "Ici, vous découvrez mes différentes facettes. Chacune est une compétence clé que j'affine pour donner vie à la donnée.",
+          results: "Ces chiffres ne sont pas juste des statistiques, ils racontent des histoires de succès et d'optimisation.",
+          parcours: "Ma trajectoire, étape par étape, depuis mes débuts jusqu'à mes rôles actuels. Chaque mission est une aventure !",
+          formation: "Les fondations solides qui soutiennent ma passion pour la Data et l'IA. De la théorie à la pratique, tout est là.",
+          "missions-projets": "Ah, mes 'Missions Stratégiques' ! De l'agent IA prédictif au nettoyage de données. Cliquez sur une démo, vous verrez !",
+          contact: "Prêt à créer la prochaine révolution ? Contactez-moi ! Mon CV, LinkedIn, ou juste un e-mail direct."
+        },
+        en: {
+          header: "Welcome to my portfolio! I'm your AI guide. Explore the universe, and click me when I glow to hear my thoughts.",
+          facettes: "Here you'll discover my different facets. Each is a key skill I hone to bring data to life.",
+          results: "These numbers aren't just statistics; they tell stories of success and optimization.",
+          parcours: "My journey, step by step, from my beginnings to my current roles. Every mission is an adventure!",
+          formation: "The solid foundations that support my passion for Data and AI. From theory to practice, it's all here.",
+          "missions-projets": "Ah, my 'Strategic Missions'! From predictive AI agents to data cleaning. Click a demo, you'll see!",
+          contact: "Ready to create the next revolution? Contact me! My CV, LinkedIn, or just a direct email."
+        }
+      };
+
+      function iaShowBubble(text, sectionId = '') {
+          currentIaMessage = text;
+          iaBubble.textContent = text;
+          iaBubble.classList.add('bubble-show');
+          iaAvatar.classList.add('waiting-to-speak');
+          
+          if (iaSayTimer[sectionId]) clearTimeout(iaSayTimer[sectionId]);
+          iaSayTimer[sectionId] = setTimeout(() => {
+              iaBubble.classList.remove('bubble-show');
+              iaAvatar.classList.remove('waiting-to-speak');
+              currentIaMessage = ''; // Réinitialise le message
+          }, 8000); // La bulle reste un peu plus longtemps
+      }
+
+      function speakText(text) {
+          try {
+            if ('speechSynthesis' in window) {
+              speechSynthesis.cancel();
+              const utterance = new SpeechSynthesisUtterance(text);
+              utterance.lang = document.documentElement.lang === 'fr' ? 'fr-FR' : 'en-US';
+              utterance.pitch = 1.15; utterance.rate = 1.1;
+              iaSpeakSound.currentTime = 0; iaSpeakSound.play(); // Son avant de parler
+              utterance.onend = () => iaSpeakSound.pause(); // Arrêter le son après la parole
+              speechSynthesis.speak(utterance);
+            }
+          } catch (e) { console.warn("Speech synthesis failed.", e); }
+      }
+
+      iaAvatar.addEventListener('click', () => {
+          if (currentIaMessage) {
+              speakText(currentIaMessage);
+              iaAvatar.classList.remove('waiting-to-speak'); // Le glow disparaît après avoir été cliqué
+              iaBubble.classList.remove('bubble-show');
+              currentIaMessage = ''; // Message parlé, donc on réinitialise
+          } else {
+              iaCta.style.display = iaCta.style.display === 'none' ? 'inline-block' : 'none';
+              const contactMsg = iaGuide[document.documentElement.lang || 'fr'].contact;
+              iaShowBubble(contactMsg, 'contact');
+              speakText(contactMsg);
+          }
+      });
+      
+      function iaSayForSection(id){
+        const lang = document.documentElement.lang || 'fr';
+        if (iaGuide[lang][id]) iaShowBubble(iaGuide[lang][id], id);
+      }
+
       if (floatingMenu && sections.length) {
         sections.forEach(section=>{
           const a = document.createElement('a'); a.href = `#${section.id}`;
@@ -443,93 +666,47 @@
           a.appendChild(tip); floatingMenu.appendChild(a);
         });
         const links = floatingMenu.querySelectorAll('a');
-        const mo = new IntersectionObserver(entries=>{
+        const sectionObserver = new IntersectionObserver(entries=>{
           entries.forEach(entry=>{
             if(entry.isIntersecting){
               links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
+              // Animation des titres de section
               const h2 = entry.target.querySelector('h2');
               if(h2) h2.classList.add('visible');
+
+              // Animation des cartes Facettes
+              if (entry.target.id === 'facettes') {
+                  entry.target.querySelectorAll('.facet-card').forEach(card => card.classList.add('visible'));
+              }
+
+              // Animation des éléments de la timeline pro
+              if (entry.target.id === 'parcours') {
+                  entry.target.querySelectorAll('.timeline-item').forEach(item => item.classList.add('visible'));
+              }
+              
+              // Animation des compteurs de résultats
+              if (entry.target.id === 'results') {
+                  entry.target.querySelectorAll('[data-value]').forEach(counter => counterObserver.observe(counter));
+              }
+
               iaSayForSection(entry.target.id);
+            } else {
+                // Si la section sort du viewport, enlever la classe visible pour préparer la prochaine entrée
+                const h2 = entry.target.querySelector('h2');
+                if(h2) h2.classList.remove('visible');
+                if (entry.target.id === 'facettes') {
+                    entry.target.querySelectorAll('.facet-card').forEach(card => card.classList.remove('visible'));
+                }
+                if (entry.target.id === 'parcours') {
+                    entry.target.querySelectorAll('.timeline-item').forEach(item => item.classList.remove('visible'));
+                }
             }
           });
         },{rootMargin:'-45% 0px -55% 0px'});
-        sections.forEach(s=>mo.observe(s));
-      }
-
-      /* Language switch */
-      const langButtons = document.querySelectorAll('#lang-switch button');
-      function applyLang(lang){
-        langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-        document.documentElement.lang = lang;
-        localStorage.setItem('portfolio_lang', lang);
-        document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
-          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
-          if (txt) el.textContent = txt;
-        });
-      }
-      langButtons.forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
-      applyLang(localStorage.getItem('portfolio_lang') || 'fr');
-
-      /* --- MODIFIÉ: Agent IA "Surprise" --- */
-      const guideFR = {
-        header: "Bonjour ! Je suis l'agent IA de ce portfolio. Cliquez sur moi quand je brille pour entendre mes pensées. C'est parti ?",
-        facettes: "Ici, vous découvrez mes différentes casquettes. Un peu comme un couteau suisse de la data ! Chacune a son histoire.",
-        results: "Des chiffres, oui, mais derrière chaque pourcentage se cache une stratégie. C'est ça qui est passionnant.",
-        parcours: "Chaque expérience a été une ligne de code dans mon parcours. C'est ici que vous pouvez voir l'évolution.",
-        formation: "Les fondations théoriques de ma pratique. C'est ici que les concepts prennent vie.",
-        "missions-projets": "Ah, ma partie préférée ! Ce sont mes 'Missions Stratégiques'. De vraies aventures data. Cliquez sur une démo !"
-      };
-      const guideEN = {
-        header: "Hello! I'm the AI agent for this portfolio. Click me when I'm glowing to hear my thoughts. Shall we begin?",
-        facettes: "Here are my different hats. A bit like a Swiss Army knife for data! Each one has its story.",
-        results: "Yes, there are numbers, but behind each percentage lies a strategy. That's the exciting part.",
-        parcours: "Each experience was a line of code in my journey. Here you can see the evolution.",
-        formation: "The theoretical foundations of my practice. This is where concepts come to life.",
-        "missions-projets": "Ah, my favorite part! These are my 'Strategic Missions'. Real data adventures. Go on, click a demo!"
-      };
-      
-      function iaSay(text){
-        currentIaMessage = text;
-        iaBubble.textContent = text;
-        iaBubble.classList.add('bubble-show');
-        iaAvatar.classList.add('waiting-to-speak');
-        clearTimeout(iaSay._t);
-        iaSay._t = setTimeout(() => {
-          iaBubble.classList.remove('bubble-show');
-          iaAvatar.classList.remove('waiting-to-speak');
-        }, 5000);
+        sections.forEach(s=>sectionObserver.observe(s));
       }
       
-      function speakText(text) {
-          try {
-            if ('speechSynthesis' in window) {
-              speechSynthesis.cancel();
-              const utterance = new SpeechSynthesisUtterance(text);
-              utterance.lang = document.documentElement.lang === 'fr' ? 'fr-FR' : 'en-US';
-              utterance.pitch = 1.15; utterance.rate = 1.1;
-              speechSynthesis.speak(utterance);
-            }
-          } catch (e) { console.warn("Speech synthesis failed.", e); }
-      }
-
-      iaAvatar.addEventListener('click', () => {
-          if (currentIaMessage) {
-              speakText(currentIaMessage);
-              iaAvatar.classList.remove('waiting-to-speak');
-          } else {
-              iaCta.style.display = iaCta.style.display === 'none' ? 'inline-block' : 'none';
-              const contactMsg = document.documentElement.lang==='fr' ? "On se parle ? Email en un clic." : "Shall we talk? Email in one click.";
-              iaSay(contactMsg);
-              speakText(contactMsg);
-          }
-      });
-      
-      function iaSayForSection(id){
-        const lang = document.documentElement.lang || 'fr';
-        const map = lang==='fr' ? guideFR : guideEN;
-        if (map[id]) iaSay(map[id]);
-      }
-      setTimeout(()=>iaSayForSection('header'), 1000); // Message de bienvenue initial
+      setTimeout(()=>iaShowBubble(iaGuide[document.documentElement.lang || 'fr'].header, 'header'), 1500);
 
       /* Card 3D tilt */
       document.querySelectorAll('.card-3d-tilt').forEach(card=>{
@@ -540,7 +717,6 @@
       /* 3D Background */
       const canvas = document.getElementById('interactive-bg');
       if (!reduce && canvas && window.THREE) {
-        // Le code Three.js reste le même...
         let scene,camera,renderer,points,lines,auroraMat,idxPairs=[];let mx=0,my=0;
         (function init(){try{scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,2000);camera.position.z=420;renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0x0,0);const count=isMobile?650:1400;const pos=new Float32Array(count*3);for(let i=0;i<count*3;i++){pos[i]=(Math.random()-.5)*1200}const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));const pMat=new THREE.PointsMaterial({size:1.1,color:0x9aa0aa,transparent:true,opacity:.55,blending:THREE.AdditiveBlending});points=new THREE.Points(pGeo,pMat);scene.add(points);const P=pGeo.attributes.position;const maxLinks=3,minDist=40,maxDist=140;for(let i=0;i<count;i++){let links=0;for(let j=i+1;j<Math.min(i+22,count);j++){const dx=P.getX(i)-P.getX(j),dy=P.getY(i)-P.getY(j),dz=P.getZ(i)-P.getZ(j);const d=Math.hypot(dx,dy,dz);if(d>minDist&&d<maxDist){idxPairs.push(i,j);links++;if(links>=maxLinks)break}}}const lGeo=new THREE.BufferGeometry();lGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(idxPairs.length*3),3));const lMat=new THREE.LineBasicMaterial({color:0xa5b4fc,transparent:true,opacity:.25});lines=new THREE.LineSegments(lGeo,lMat);scene.add(lines);const uniforms={uTime:{value:0},uResolution:{value:new THREE.Vector2(innerWidth,innerHeight)}};auroraMat=new THREE.ShaderMaterial({uniforms,blending:THREE.AdditiveBlending,transparent:true,depthWrite:false,vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,fragmentShader:`precision highp float;varying vec2 vUv;uniform float uTime;uniform vec2 uResolution;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);float a=hash(i);float b=hash(i+vec2(1.,0.));float c=hash(i+vec2(0.,1.));float d=hash(i+vec2(1.,1.));vec2 u=f*f*(3.-2.*f);return mix(a,b,u.x)+(c-a)*u.y*(1.-u.x)+(d-b)*u.x*u.y;}void main(){vec2 uv=vUv*3.;float t=uTime*.06;float n=0.;float amp=.6;float fr=1.;for(int i=0;i<4;i++){n+=noise(uv*fr+t)*amp;fr*=2.;amp*=.5;}vec3 col=mix(vec3(.08,0.,.18),vec3(.5,.6,1.),n);col+=vec3(.6,.4,1.)*smoothstep(.6,1.,n)*.6;gl_FragColor=vec4(col,.22);}`});const plane=new THREE.Mesh(new THREE.PlaneGeometry(2,2),auroraMat);plane.position.z=-1;scene.add(plane);window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);if(auroraMat)auroraMat.uniforms.uResolution.value.set(innerWidth,innerHeight)});document.body.addEventListener('mousemove',e=>{mx=e.clientX-innerWidth/2;my=e.clientY-innerHeight/2});const animate=()=>{requestAnimationFrame(animate);const t=Date.now()*0.001;camera.position.x+=(mx-camera.position.x)*0.03;camera.position.y+=(-my-camera.position.y)*0.03;camera.lookAt(scene.position);if(points)points.rotation.y=t*0.06;const lp=lines.geometry.attributes.position;const pp=points.geometry.attributes.position;for(let k=0;k<idxPairs.length;k+=2){const a=idxPairs[k],b=idxPairs[k+1];lp.setXYZ(k,pp.getX(a),pp.getY(a),pp.getZ(a));lp.setXYZ(k+1,pp.getX(b),pp.getY(b),pp.getZ(b))}lp.needsUpdate=true;auroraMat.uniforms.uTime.value=t;renderer.render(scene,camera)};animate()}catch(e){console.warn('WebGL fallback',e);canvas.style.display='none';document.body.style.backgroundImage='radial-gradient(circle,#1a1a3d,#030014)'}})()
       } else {
