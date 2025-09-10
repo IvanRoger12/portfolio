@@ -6,7 +6,7 @@
   <title>Ivan Roger NFINDA | Data Analyst & BI Architect | Power BI, RLS, Azure</title>
   <meta name="description" content="Portfolio d'Ivan Roger Nfinda, Data Analyst expert en architecture BI. Découvrez mes solutions techniques en sécurité (RLS, Azure AD), performance (Incremental Refresh) et UX (Power BI)." />
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script type="application/ld+json">
   {
@@ -21,132 +21,107 @@
       "https://github.com/IvanRoger12"
     ],
     "knowsAbout": [
-      "Power BI", "DAX", "Row-Level Security (RLS)", "Azure Active Directory",
-      "Incremental Refresh", "Data Modeling", "Star Schema", "UX Design for BI"
+      "Power BI", "DAX Optimization", "Row-Level Security", "Azure Active Directory",
+      "Incremental Refresh", "Data Modeling", "Star Schema", "Power Query M", "DAX Studio"
     ]
   }
   </script>
   <style>
-    /* CRITICAL CSS & PREVIOUS ENHANCEMENTS */
+    /* CRITICAL CSS (<6KB) & ENHANCEMENTS */
     :root{--bg:#030014;--text:#e6e6f0;--muted:#aab;--violet:#7c3aed;--accent:#a78bfa;--cyan:#22d3ee;--green:#22c55e;--red:#ef4444}
     *{box-sizing:border-box}
     body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;overflow-x:hidden}
     .container{max-width:74rem;margin-inline:auto;padding:1.25rem}
     header{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden}
     .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.6rem, 7.6vw, 6.6rem);font-weight:900;line-height:1.05;display:flex;flex-wrap:wrap;justify-content:center;gap:.08em .24em}
-    .btn-primary,.btn-secondary{display:inline-block;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;font-weight:700}
+    .btn-primary,.btn-secondary{display:inline-block;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;font-weight:700;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;}
     .btn-primary{background:linear-gradient(135deg,var(--violet),var(--accent));color:#fff;}
     .btn-secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18)}
     
     .skip-link { position: absolute; top: -100px; left: 0; background: var(--accent); color: var(--bg); padding: 10px; z-index: 10000; transition: top 0.3s; font-weight: 600; }
     .skip-link:focus { top: 0; }
     
-    #proof-banner { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: center; margin-top: 2.5rem; }
-    #proof-banner span { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--muted); border: 1px solid rgba(170, 170, 187, 0.3); padding: 0.35rem 0.85rem; border-radius: 99px; letter-spacing: 0.05em; }
+    #proof-banner { position: relative; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: center; margin-top: 2.5rem; }
+    #proof-banner span { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--muted); border: 1px solid rgba(170, 170, 187, 0.3); padding: 0.35rem 0.85rem; border-radius: 99px; letter-spacing: 0.05em; position: relative; overflow: hidden; }
 
-    .solution-card { padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; position: relative; overflow: hidden;}
+    .solution-card { padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
     .solution-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.75rem; color: var(--cyan); line-height: 1.2; border-bottom: 2px solid var(--cyan); padding-bottom: 0.75rem; margin-bottom: 0.5rem; }
     .solution-card strong { display: block; font-weight: 600; color: var(--accent); margin-bottom: 0.25rem; letter-spacing: 0.02em;}
     .solution-card p { margin: 0; color: var(--muted); }
     .solution-card .impact p { font-size: 1.25rem; font-weight: 700; color: var(--green); }
-
+    
     .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-    @media (max-width: 768px) {
-        button, a.btn-primary, a.btn-secondary { min-height: 44px; min-width: 44px; }
-    }
-  </style>
-
-  <style>
-    @keyframes typewriter {
-      to { opacity: 1; }
-    }
-    @keyframes float-drift {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(5px, 15px); }
-      50% { transform: translate(-10px, 5px); }
-      75% { transform: translate(0, -10px); }
-      100% { transform: translate(10px, 0); }
-    }
     
-    @media (prefers-reduced-motion: no-preference) {
-      /* Animation 1: Typewriter */
-      .hero-title.typewriter-effect .char { opacity: 0; animation: typewriter 0.2s forwards; }
-      .hero-title.typewriter-effect .char:nth-child(1) { animation-delay: 0.5s; }
-      .hero-title.typewriter-effect .char:nth-child(2) { animation-delay: 0.65s; }
-      .hero-title.typewriter-effect .char:nth-child(3) { animation-delay: 0.8s; }
-      .hero-title.typewriter-effect .char:nth-child(4) { animation-delay: 0.95s; }
-      .hero-title.typewriter-effect .char:nth-child(6) { animation-delay: 1.1s; }
-      .hero-title.typewriter-effect .char:nth-child(7) { animation-delay: 1.25s; }
-      .hero-title.typewriter-effect .char:nth-child(9) { animation-delay: 1.4s; }
-      .hero-title.typewriter-effect .char:nth-child(10) { animation-delay: 1.55s; }
-      .hero-title.typewriter-effect .char:nth-child(11) { animation-delay: 1.7s; }
-      .hero-title.typewriter-effect .char:nth-child(12) { animation-delay: 1.85s; }
-      .hero-title.typewriter-effect .char:nth-child(13) { animation-delay: 2s; }
-      .hero-title.typewriter-effect .char:nth-child(14) { animation-delay: 2.15s; }
-      .hero-title.typewriter-effect .char:nth-child(15) { animation-delay: 2.3s; }
+    @keyframes typewriter { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes progress-bar { from { width: 0%; } to { width: 100%; } }
 
-      /* Animation 2: Floating Particles */
-      .floating-particles { position: absolute; inset: 0; pointer-events: none; }
-      .particle { position: absolute; width: 2px; height: 2px; background-color: var(--cyan); opacity: 0; border-radius: 50%; }
-      .particles-active .particle { animation-name: float-drift; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-direction: alternate; opacity: 0.6; }
-      .particles-active .p1 { top: 20%; left: 10%; animation-duration: 22s; animation-delay: 0s; }
-      .particles-active .p2 { top: 50%; left: 80%; animation-duration: 18s; animation-delay: 2s; }
-      .particles-active .p3 { top: 80%; left: 30%; animation-duration: 25s; animation-delay: 5s; }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-title.typewriter-effect .char { opacity: 0; animation: typewriter 0.1s forwards; }
+      .hero-title.typewriter-effect .char:nth-child(1){animation-delay:0.50s}.hero-title.typewriter-effect .char:nth-child(2){animation-delay:0.65s}.hero-title.typewriter-effect .char:nth-child(3){animation-delay:0.80s}.hero-title.typewriter-effect .char:nth-child(4){animation-delay:0.95s}.hero-title.typewriter-effect .char:nth-child(6){animation-delay:1.10s}.hero-title.typewriter-effect .char:nth-child(7){animation-delay:1.25s}.hero-title.typewriter-effect .char:nth-child(9){animation-delay:1.40s}.hero-title.typewriter-effect .char:nth-child(10){animation-delay:1.55s}.hero-title.typewriter-effect .char:nth-child(11){animation-delay:1.70s}.hero-title.typewriter-effect .char:nth-child(12){animation-delay:1.85s}.hero-title.typewriter-effect .char:nth-child(13){animation-delay:2.00s}.hero-title.typewriter-effect .char:nth-child(14){animation-delay:2.15s}.hero-title.typewriter-effect .char:nth-child(15){animation-delay:2.30s}
+      
+      .progress-indicator { position: absolute; bottom: 0; left: 0; height: 2px; background: var(--cyan); width: 0; }
+      .proof-banner-visible .progress-indicator { animation: progress-bar 2s ease-out forwards; }
+      .proof-banner-visible .p1 { animation-delay: 0.2s; }
+      .proof-banner-visible .p2 { animation-delay: 0.4s; }
+      .proof-banner-visible .p3 { animation-delay: 0.6s; }
     }
   </style>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap"></noscript>
   <style>
-    /* STYLES ORIGINAUX (sauf critiques) */
-    /* ... (Le reste de votre CSS original, pour la clarté) ... */
+    /* NON-CRITICAL CSS */
+    body{cursor:none} main.container{padding-bottom:6rem} .section{margin-bottom:6.5rem;position:relative} .block{background:rgba(16,14,31,.55);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;padding:1.25rem;box-shadow:0 0 40px rgba(124,58,237,.12);transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column} .block:hover{transform:translateY(-6px);box-shadow:0 30px 60px -12px rgba(124,58,237,.25)} .block p,.timeline p{line-height:1.7} .cursor-dot,.cursor-glow{position:fixed;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999} .cursor-dot{width:8px;height:8px;background:#fff;transition:transform .15s ease,background .15s ease} .cursor-glow{width:50px;height:50px;background:radial-gradient(circle,rgba(167,139,250,.8) 0%,rgba(167,139,250,0) 70%);z-index:9998;transition:transform .2s ease,opacity .2s} .cursor-dot.big{transform:translate(-50%,-50%) scale(5);background-color:rgba(255,255,255,.25)} #interactive-bg{position:fixed;inset:0;z-index:-2} .hero-title .word{display:flex} .hero-title .char{display:inline-block;transition:all .25s ease;text-shadow:0 0 6px rgba(165,180,252,.55),0 0 18px rgba(165,180,252,.55),0 0 34px rgba(124,58,237,.55)} .hero-title:hover .char{transform:translateY(-8px) rotateX(22deg) scale(1.08);color:#fff;text-shadow:0 0 10px #a78bfa,0 0 22px #a78bfa,0 0 44px #a78bfa} @keyframes breath{0%,100%{transform:translateZ(0) scale(1)}50%{transform:translateZ(0) scale(1.015)}} #data-word-cloud{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;pointer-events:none} #data-word-cloud span{position:absolute;color:rgba(167,139,250,0.08);font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4rem);animation:scroll-words linear infinite} @keyframes scroll-words{from{transform:translateY(100vh)}to{transform:translateY(-50vh)}} #data-word-cloud span:nth-of-type(1){left:10%;animation-duration:25s;animation-delay:0s} .btn-primary,.btn-secondary{position:relative;overflow:hidden;z-index:1;transition:all .25s ease} .btn-primary::before,.btn-secondary::before{content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0) 100%);transform:skewX(-25deg);opacity:0;transition:all .7s ease} .btn-primary:hover::before,.btn-secondary:hover::before{left:120%} .btn-primary:active,.btn-secondary:active{transform:translateY(1px) scale(.98) !important;transition-duration:.1s} .btn-primary:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 15px 4px rgba(167,139,250,0.5),0 0 40px 10px rgba(124,58,237,0.35)} .btn-secondary:hover{background:rgba(255,255,255,.16);transform:translateY(-2px) scale(1.04);box-shadow:0 0 12px 2px rgba(255,255,255,0.18)} .section h2{transition:opacity .6s ease,transform .6s ease;opacity:0;transform:translateY(20px);letter-spacing:.05em} .section h2.visible{opacity:1;transform:translateY(0)} #lang-switch{position:fixed;right:1rem;top:1rem;z-index:60;display:flex;gap:.4rem} #lang-switch button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(8px);padding:.35rem .65rem;border-radius:.6rem;font-weight:600} #lang-switch button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent} .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem} #availability-badge{position:fixed;bottom:1.1rem;right:1.1rem;z-index:50} @keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(49,196,141,.7)}70%{box-shadow:0 0 0 10px rgba(49,196,141,0)}} #availability-badge button{animation:pulse-badge 2s infinite} #floating-menu{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.7rem} #floating-menu a{width:12px;height:12px;background-color:rgba(255,255,255,.22);border-radius:9999px;transition:all .3s ease;position:relative} #floating-menu a.active{background-color:var(--accent);transform:scale(1.5)} #floating-menu a .tooltip{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background-color:rgba(16,14,31,.85);color:#fff;padding:.25rem .6rem;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease} #floating-menu a:hover .tooltip{opacity:1} #ia-agent{position:fixed;left:1rem;bottom:1rem;z-index:60;display:flex;align-items:center;gap:.6rem} #ia-avatar{width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,#9b8cfb,#6b4be6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(167,139,250,.6);transition:box-shadow .3s ease;cursor:pointer} @keyframes avatar-glow{0%,100%{box-shadow:0 0 16px rgba(167,139,250,.5)}50%{box-shadow:0 0 40px rgba(167,139,250,.85)}} #ia-bubble{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);color:#fff;font-size:.9rem;padding:.55rem .8rem;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;max-width:260px} .bubble-show{opacity:1 !important;transform:translateY(0)!important} .timeline{position:relative;padding-left:1rem} .timeline::before{content:"";position:absolute;left:0.4rem;top:.1rem;bottom:.4rem;width:2px;background:linear-gradient(180deg,rgba(167,139,250,.2),rgba(167,139,250,1),rgba(167,139,250,.2))} .t-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(167,139,250,.8)}
+    footer .footer-link{display:flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;color:var(--muted);transition:color .2s ease} footer .footer-link:hover{color:var(--accent)}
+    @media(max-width:768px){.cta-buttons{flex-direction:column}#floating-menu{display:none}#ia-agent{flex-direction:column;align-items:flex-start}#ia-bubble{max-width:calc(100vw - 4rem)}}
+    @media (pointer:coarse){body{cursor:auto}.cursor-dot,.cursor-glow{display:none}}
   </style>
 </head>
 <body>
   <a href="#facettes" class="skip-link" data-lang-fr="Aller au contenu principal" data-lang-en="Skip to main content"></a>
-
-  <div id="data-word-cloud" aria-hidden="true"><span>SQL</span> <span>Power BI</span> <span>Dashboard</span> <span>ETL</span> <span>Python</span> <span>Azure</span></div>
+  <div id="data-word-cloud" aria-hidden="true"><span>SQL</span><span>Power BI</span><span>RLS</span><span>DAX</span><span>Azure</span></div>
   <audio id="hover-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-fast-thin-swish-3-435.mp3" preload="auto"></audio>
   <audio id="click-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-interface-device-click-2577.mp3" preload="auto"></audio>
-  <div id="lang-switch"><button data-lang="fr" class="active">FR</button><button data-lang="en">EN</button></div>
+  <div id="lang-switch"><button data-lang="fr" class="active" aria-label="Passer en français">FR</button><button data-lang="en" aria-label="Switch to English">EN</button></div>
   <canvas id="interactive-bg" aria-hidden="true"></canvas>
   <div class="cursor-dot" aria-hidden="true"></div><div class="cursor-glow" aria-hidden="true"></div>
 
   <header id="header" class="hero-breath">
     <h1 class="hero-title typewriter-effect" id="hero-title-interactive"></h1>
     <p class="mt-6 text-lg text-white/70 max-w-2xl text-center"
-       data-lang-fr="Je suis Ivan Roger Nfinda, Data Analyst. Je transforme les données complexes en insights clairs et actionnables."
-       data-lang-en="I am Ivan Roger Nfinda, Data Analyst. I turn complex data into clear, actionable insights.">
+       data-lang-fr="Je suis Ivan Roger Nfinda, Architecte BI & Data Analyst. Je transforme les problèmes business complexes en solutions data sécurisées et performantes."
+       data-lang-en="I am Ivan Roger Nfinda, BI Architect & Data Analyst. I turn complex business problems into secure, high-performance data solutions.">
     </p>
     <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-      <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV"></a>
+      <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA_Architecte_BI.pdf" class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV"></a>
       <a href="#projets-analyse" class="btn-secondary" data-lang-fr="🚀 Voir mes Solutions" data-lang-en="🚀 See my Solutions"></a>
     </div>
     <div id="proof-banner">
-        <span>RLS + Azure AD</span>
-        <span data-lang-fr="Refresh &lt; 20min" data-lang-en="Refresh &lt; 20min"></span>
-        <span data-lang-fr="UX Testée & Approuvée" data-lang-en="User-Tested & Approved UX"></span>
+        <span><span class="p1 progress-indicator"></span>RLS + Azure AD</span>
+        <span><span class="p2 progress-indicator"></span>Refresh &lt; 20min</span>
+        <span><span class="p3 progress-indicator"></span>UX Testée & Approuvée</span>
     </div>
   </header>
 
   <main class="container">
     <section id="facettes" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Expertise" data-lang-en="My Expertise"></h2>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Expertise Technique" data-lang-en="My Technical Expertise"></h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <article class="block">
           <h3 class="text-xl font-bold mb-1">Architecture BI & Sécurité</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Conception de solutions sécurisées (RLS, Azure AD) et performantes (modèles en étoile, aggregations)."
-             data-lang-en="Designing secure (RLS, Azure AD) and high-performance BI solutions (star schemas, aggregations)."></p>
+          <p class="text-white/70 text-sm" data-lang-fr="Conception de solutions sécurisées (RLS, Azure AD) et performantes (modèles en étoile, aggregations) auditables et conformes RGPD."
+             data-lang-en="Designing secure (RLS, Azure AD) and high-performance BI solutions (star schemas, aggregations) that are auditable and GDPR-compliant."></p>
         </article>
         <article class="block">
           <h3 class="text-xl font-bold mb-1">Performance & Optimisation</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Optimisation de la chaîne de données, de l'ETL au refresh (actualisation incrémentielle), pour des dashboards ultra-réactifs."
-             data-lang-en="Optimizing the data chain, from ETL to refresh (incremental), for ultra-responsive dashboards."></p>
+          <p class="text-white/70 text-sm" data-lang-fr="Optimisation de la chaîne de données avec Power Query M et DAX Studio pour des refreshs ultra-rapides (actualisation incrémentielle)."
+             data-lang-en="Optimizing the data chain with Power Query M and DAX Studio for ultra-fast refreshes (incremental refresh)."></p>
         </article>
         <article class="block">
           <h3 class="text-xl font-bold mb-1">UX Décisionnelle</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Application des principes de design (KISS, 3-KPI rule) pour créer des outils d'aide à la décision réellement adoptés et utilisés."
-             data-lang-en="Applying design principles (KISS, 3-KPI rule) to create decision-support tools that are actually adopted and used."></p>
+          <p class="text-white/70 text-sm" data-lang-fr="Application des principes de design (KISS, Règle des 3 KPI) pour créer des outils d'aide à la décision réellement adoptés (taux >95%)."
+             data-lang-en="Applying design principles (KISS, 3-KPI Rule) to create decision-support tools with high adoption rates (>95%)."></p>
         </article>
       </div>
     </section>
@@ -155,107 +130,210 @@
         <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Solutions Techniques Démontrées" data-lang-en="Demonstrated Technical Solutions"></h2>
         <div class="project-grid">
             <article class="block solution-card">
-                <div class="floating-particles" aria-hidden="true"><div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div></div>
-                <h3 data-lang-fr="Authentification & Sécurité Power BI" data-lang-en="Power BI Authentication & Security"></h3>
+                <h3 data-lang-fr="Sécurité & Conformité BI" data-lang-en="BI Security & Compliance"></h3>
                 <div class="problem">
                     <strong data-lang-fr="Problème Business" data-lang-en="Business Problem"></strong>
-                    <p data-lang-fr="Garantir la confidentialité des données de santé pour 30+ cabinets dentaires, chacun ne devant accéder qu'à ses propres patients, tout en passant les audits RGPD." data-lang-en="Ensuring health data confidentiality for 30+ dental clinics, where each must only access its own patient data, while passing GDPR audits."></p>
+                    <p data-lang-fr="Garantir la confidentialité des données de 30+ cabinets dentaires, avec un audit RGPD imminent." data-lang-en="Ensuring data confidentiality for 30+ dental clinics, with an impending GDPR audit."></p>
                 </div>
                 <div class="decision">
-                    <strong data-lang-fr="Ma Décision d'Architecture" data-lang-en="My Architectural Decision"></strong>
-                    <p data-lang-fr="J'ai implémenté une sécurité au niveau des lignes (RLS) dynamique, couplée à l'authentification Azure AD. Chaque cabinet est isolé dans son propre workspace pour une ségrégation totale." data-lang-en="I implemented dynamic Row-Level Security (RLS) coupled with Azure AD authentication. Each clinic is isolated in its own workspace for complete segregation."></p>
+                    <strong data-lang-fr="Décision d'Architecture" data-lang-en="Architectural Decision"></strong>
+                    <p data-lang-fr="RLS dynamique via Azure AD. Pourquoi ? C'est plus performant et maintenable que des rôles custom, tout en offrant un audit trail complet." data-lang-en="Dynamic RLS via Azure AD. Why? It's more performant and maintainable than custom roles, while providing a complete audit trail."></p>
                 </div>
                 <div class="impact">
                     <strong data-lang-fr="Impact Mesurable" data-lang-en="Measurable Impact"></strong>
-                    <p data-lang-fr="Zéro incident de sécurité depuis le déploiement. Audit RGPD validé avec succès." data-lang-en="Zero security incidents since deployment. Successfully passed GDPR audit."></p>
+                    <p data-lang-fr="0 incident de sécurité. Audit RGPD validé." data-lang-en="Zero security incidents. GDPR audit passed."></p>
                 </div>
             </article>
 
             <article class="block solution-card">
-                 <div class="floating-particles" aria-hidden="true"><div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div></div>
-                <h3 data-lang-fr="Performance des Dashboards à Grande Échelle" data-lang-en="Large-Scale Dashboard Performance"></h3>
+                <h3 data-lang-fr="Performance à Grande Échelle" data-lang-en="Large-Scale Performance"></h3>
                 <div class="problem">
                     <strong data-lang-fr="Problème Business" data-lang-en="Business Problem"></strong>
-                    <p data-lang-fr="Un refresh de 8 heures sur 500k+ lignes rendait les dashboards financiers inutilisables avant midi, bloquant le pilotage quotidien." data-lang-en="An 8-hour refresh on 500k+ rows made financial dashboards unusable before noon, blocking daily steering."></p>
+                    <p data-lang-fr="Un refresh de 8h sur 500k+ lignes rendait les dashboards financiers inutilisables le matin." data-lang-en="An 8-hour refresh on 500k+ rows made financial dashboards unusable in the morning."></p>
                 </div>
                 <div class="decision">
-                    <strong data-lang-fr="Ma Décision d'Architecture" data-lang-en="My Architectural Decision"></strong>
-                    <p data-lang-fr="J'ai configuré l'actualisation incrémentielle (Incremental Refresh) et optimisé le modèle en étoile pour réduire les jointures. Le choix du mode Import plutôt que DirectQuery a été crucial pour la vitesse d'interaction." data-lang-en="I configured Incremental Refresh and optimized the star schema model to reduce joins. Choosing Import mode over DirectQuery was crucial for interaction speed."></p>
+                    <strong data-lang-fr="Décision d'Architecture" data-lang-en="Architectural Decision"></strong>
+                    <p data-lang-fr="Actualisation incrémentielle et modèle en étoile. Pourquoi ? Le modèle Import est plus rapide pour l'UX que DirectQuery, et le star schema minimise les jointures coûteuses." data-lang-en="Incremental refresh and a star schema model. Why? Import mode is faster for UX than DirectQuery, and the star schema minimizes costly joins."></p>
                 </div>
                 <div class="impact">
                     <strong data-lang-fr="Impact Mesurable" data-lang-en="Measurable Impact"></strong>
-                    <p data-lang-fr="Temps de refresh réduit à 20 minutes. Interactivité des dashboards en moins de 2 secondes." data-lang-en="Refresh time reduced to 20 minutes. Dashboard interactivity in under 2 seconds."></p>
+                    <p data-lang-fr="Refresh en 20 minutes. Interactions &lt; 2 secondes." data-lang-en="Refresh time: 20 minutes. Interactions &lt; 2 seconds."></p>
                 </div>
             </article>
 
             <article class="block solution-card">
-                 <div class="floating-particles" aria-hidden="true"><div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div></div>
-                <h3 data-lang-fr="UX des KPI & Adoption Utilisateur" data-lang-en="KPI UX & User Adoption"></h3>
+                <h3 data-lang-fr="UX & Adoption Utilisateur" data-lang-en="UX & User Adoption"></h3>
                 <div class="problem">
                     <strong data-lang-fr="Problème Business" data-lang-en="Business Problem"></strong>
-                    <p data-lang-fr="Les managers étaient noyés sous 15+ métriques par dashboard, menant à une paralysie de l'analyse et à un faible usage des outils BI." data-lang-en="Managers were drowning in 15+ metrics per dashboard, leading to analysis paralysis and low BI tool adoption."></p>
+                    <p data-lang-fr="Les managers étaient noyés sous 15+ métriques, menant à une paralysie de l'analyse." data-lang-en="Managers were drowning in 15+ metrics, leading to analysis paralysis."></p>
                 </div>
                 <div class="decision">
-                    <strong data-lang-fr="Ma Décision d'Architecture" data-lang-en="My Architectural Decision"></strong>
-                    <p data-lang-fr="J'ai appliqué la 'Règle des 3 KPI' par écran, avec des drill-downs progressifs pour le détail. Des tests utilisateurs ont validé la clarté et la pertinence des alertes visuelles conditionnelles." data-lang-en="I applied the '3-KPI Rule' per screen, with progressive drill-downs for details. User testing validated the clarity and relevance of conditional visual alerts."></p>
+                    <strong data-lang-fr="Décision d'Architecture" data-lang-en="Architectural Decision"></strong>
+                    <p data-lang-fr="La 'Règle des 3 KPI' par écran avec drill-down. Pourquoi ? La charge cognitive est limitée (principe KISS), ce qui a été validé par des tests utilisateurs." data-lang-en="The '3-KPI Rule' per screen with drill-downs. Why? It limits cognitive load (KISS principle), which was validated through user testing."></p>
                 </div>
                 <div class="impact">
                     <strong data-lang-fr="Impact Mesurable" data-lang-en="Measurable Impact"></strong>
-                    <p data-lang-fr="Temps de prise de décision divisé par trois. Taux d'adoption des dashboards de 95%." data-lang-en="Decision-making time divided by three. 95% dashboard adoption rate."></p>
+                    <p data-lang-fr="Temps de décision divisé par trois. Taux d'adoption de 95%." data-lang-en="Decision-making time divided by three. 95% adoption rate."></p>
                 </div>
             </article>
         </div>
     </section>
 
-    </main>
+    <section id="results" class="section">
+        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="KPIs Transverses" data-lang-en="Cross-Project KPIs"></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-20">-0%</p><p class="text-white/70" data-lang-fr="temps d'analyse mensuel" data-lang-en="monthly analysis time"></p></div>
+            <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="40">0+</p><p class="text-white/70" data-lang-fr="utilisateurs formés" data-lang-en="users trained"></p></div>
+            <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-8">-0%</p><p class="text-white/70" data-lang-fr="taux de défaut PME" data-lang-en="SME default rate"></p></div>
+        </div>
+    </section>
+    <section id="parcours" class="section">
+        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
+        <div class="grid gap-4">
+            <div class="block"><h3 class="font-semibold">LOGWIRE · <span class="text-white/70">Data Analyst (2025)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers." data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p></div>
+            <div class="block"><h3 class="font-semibold">ENDO DATA · <span class="text-white/70">Data Analyst (2023–2024)</span></h3><p class="text-white/70 text-sm" data-lang-fr="BI dentaire pour +30 cabinets, -10% RDV annulés, formation de +40 utilisateurs." data-lang-en="Dental BI for +30 clinics, -10% no-shows, training for +40 users."></p></div>
+            <div class="block"><h3 class="font-semibold">Afriland First Bank · <span class="text-white/70">Data Analyst (2021–2022)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Scoring commercial, -8% taux de défaut sur portefeuille PME, reporting de risques automatisé." data-lang-en="Commercial scoring, -8% default rate on SME portfolio, automated risk reporting."></p></div>
+        </div>
+    </section>
+    <section id="missions-strategiques" class="section relative">
+        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Projets Complémentaires" data-lang-en="Complementary Projects"></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <article class="block mission-card card-3d-tilt"><h3 class="text-xl font-bold mb-2 font-[Orbitron]">Agent IA « ARIA »</h3><p class="text-white/70 text-sm" data-lang-fr="Un agent conversationnel qui fournit des insights en temps réel pour accélérer la prise de décision." data-lang-en="A conversational agent providing real-time insights to accelerate decision-making."></p><a class="btn-secondary mt-auto" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="▶ Voir la Démo" data-lang-en="▶ View Demo"></a></article>
+            <article class="block mission-card card-3d-tilt"><h3 class="text-xl font-bold mb-2 font-[Orbitron]" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring"></h3><p class="text-white/70 text-sm" data-lang-fr="Un modèle ML pour scorer les leads et prioriser l'effort commercial." data-lang-en="An ML model to score leads and prioritize sales efforts."></p><a class="btn-secondary mt-auto" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="▶ Voir la Démo" data-lang-en="▶ View Demo"></a></article>
+            <article class="block mission-card card-3d-tilt"><h3 class="text-xl font-bold mb-2 font-[Orbitron]">Data Clean Tool</h3><p class="text-white/70 text-sm" data-lang-fr="Un outil web pour automatiser le nettoyage des données en un clic." data-lang-en="A web tool to automate data cleaning in one click."></p><a class="btn-secondary mt-auto" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Voir la Démo" data-lang-en="▶ View Demo"></a></article>
+        </div>
+    </section>
+    <section id="cta-section" class="section text-center">
+        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Discutons de vos défis" data-lang-en="Let's Discuss Your Challenges"></h2>
+        <div class="cta-buttons">
+            <a id="cta-audit" href="#" class="btn-primary" data-lang-fr="Audit architecture BI gratuit (15min)" data-lang-en="Free BI Architecture Audit (15min)"></a>
+            <a id="cta-perf" href="#" class="btn-secondary" data-lang-fr="Discuter de vos défis de performance" data-lang-en="Discuss Your Performance Challenges"></a>
+            <a href="#" class="btn-secondary" data-lang-fr="Télécharger mon cas d'étude RLS" data-lang-en="Download RLS Case Study"></a>
+        </div>
+        </section>
+
+  </main>
+  
+  <footer id="contact" class="container text-center text-white/60 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="footer-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        <span data-lang-fr="Voir mes projets sur GitHub" data-lang-en="See my projects on GitHub"></span>
+      </a>
+      <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="footer-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <span data-lang-fr="Mon parcours sur LinkedIn" data-lang-en="My career on LinkedIn"></span>
+      </a>
+      <a href="mailto:nfindaroger@gmail.com" class="footer-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span data-lang-fr="Me contacter par Email" data-lang-en="Contact me by Email"></span>
+      </a>
+    </div>
+    <p class="mt-8">Créé avec ❤️ et IA – 2025</p>
+    </footer>
+
+  <div id="availability-badge">
+    <button class="bg-green-500/20 border border-green-400 text-green-300 text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2"><span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span><span data-lang-fr="Disponible" data-lang-en="Available"></span></button>
+  </div>
+
+  <nav id="floating-menu"></nav>
+  <div id="ia-agent" aria-live="polite">
+    <div id="ia-avatar" class="avatar-pulse text-xl" title="Cliquez pour interagir">🤖</div>
+    <div id="ia-bubble" role="status"></div>
+  </div>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   
   <script>
-    /* SCRIPT ORIGINAL (légèrement adapté pour la cohabitation) */
+    /* SCRIPT UNIFIÉ - FINAL VERSION */
     document.addEventListener('DOMContentLoaded', () => {
-      const isDesktop = !/Mobi|Android/i.test(navigator.userAgent);
+      const isDesktop = !/Mobi|Android/i.test(navigator.userAgent) && window.innerWidth > 768;
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      // ... (code original pour lang switch, curseur, 3D, etc. non modifié)
+      
+      // Language Switcher
+      function applyLang(lang) {
+        document.documentElement.lang = lang;
+        localStorage.setItem('portfolio_lang', lang);
+        document.querySelectorAll('#lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+        document.querySelectorAll('[data-lang-fr]').forEach(el => {
+            const content = el.getAttribute(lang === 'fr' ? 'data-lang-fr' : 'data-lang-en');
+            if(content) el.innerHTML = content;
+        });
+      }
+      document.querySelectorAll('#lang-switch button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+      applyLang(localStorage.getItem('portfolio_lang') || 'fr');
+
+      // Hero Title population
       const titleEl = document.getElementById('hero-title-interactive');
       if (titleEl) {
         "Data to Decision".split(' ').forEach(wordText => {
-            const wordDiv = document.createElement('div'); wordDiv.className = 'word';
+            const wordDiv = document.createElement('div');
             wordText.split('').forEach(char => {
-                if (char === ' ') {
-                    wordDiv.style.padding = '0 0.12em';
-                } else {
-                    const span = document.createElement('span'); span.className = 'char';
-                    span.textContent = char; wordDiv.appendChild(span);
-                }
+                const span = document.createElement('span'); span.className = 'char'; span.textContent = char; wordDiv.appendChild(span);
             });
             titleEl.appendChild(wordDiv);
         });
       }
+      
+      // Animated counters for #results section
+      const countersObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const el = entry.target.querySelector('[data-value]');
+                  if (!el) return;
+                  const target = parseInt(el.dataset.value);
+                  let val = 0;
+                  const prefix = target > 0 ? '+' : '';
+                  const suffix = el.textContent.includes('+') ? '+' : (el.textContent.includes('%') ? '%' : '');
+                   const id = setInterval(() => {
+                      val += Math.sign(target);
+                      el.textContent = prefix + val + suffix;
+                      if (val === target) clearInterval(id);
+                  }, 2000 / Math.abs(target));
+                  countersObserver.unobserve(entry.target);
+              }
+          });
+      }, { threshold: 0.8 });
+      document.querySelectorAll('#results .block').forEach(c => countersObserver.observe(c));
+
+      // Proof banner animation
+      const bannerObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            document.getElementById('proof-banner')?.classList.add('proof-banner-visible');
+        }
+      }, { threshold: 0.8 });
+      bannerObserver.observe(document.getElementById('proof-banner'));
+      
+      // Conditional Three.js init for Desktop
+      if (isDesktop && !reduceMotion) {
+        const canvas = document.getElementById('interactive-bg');
+        if (canvas && window.THREE) {
+            let scene,camera,renderer,points;
+            try{scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,1e3);camera.position.z=300;renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:!0,alpha:!0});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0,0);const count=800;const pos=new Float32Array(2400);for(let i=0;i<2400;i++)pos[i]=(Math.random()-.5)*1e3;const pGeo=new THREE.BufferGeometry;pGeo.setAttribute("position",new THREE.BufferAttribute(pos,3));const pMat=new THREE.PointsMaterial({size:1,color:0x9aa0aa,transparent:!0,opacity:.5});points=new THREE.Points(pGeo,pMat);scene.add(points);let mx=0,my=0;document.body.addEventListener("mousemove",e=>{mx=e.clientX-innerWidth/2;my=e.clientY-innerHeight/2},{passive:!0});window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)},{passive:!0});const animate=()=>{requestAnimationFrame(animate);const t=.001*Date.now();camera.position.x+=(mx-camera.position.x)*.02;camera.position.y+=(-my-camera.position.y)*.02;camera.lookAt(scene.position);if(points)points.rotation.y=.05*t;renderer.render(scene,camera)};animate()}catch(e){canvas.style.display="none"}
+        }
+      }
+
+      // CTA Mailto Logic
+      function setupCtas() {
+        const lang = document.documentElement.lang || 'fr';
+        const ctaAudit = document.getElementById('cta-audit');
+        const ctaPerf = document.getElementById('cta-perf');
+        const mailto = {
+            audit: { 
+                fr: { s: "Demande d'audit d'architecture BI", b: "Bonjour Ivan,%0D%0A%0D%0AJ'aimerais planifier un audit gratuit de 15 minutes de notre architecture BI.%0D%0A%0D%0ANos disponibilités : [Proposez vos créneaux]%0D%0A%0D%0ACordialement," }, 
+                en: { s: "BI Architecture Audit Request", b: "Hello Ivan,%0D%0A%0D%0AI would like to schedule a free 15-minute audit of our BI architecture.%0D%0A%0D%0AOur availability: [Suggest times]%0D%0A%0D%0ARegards," }
+            },
+            perf: { 
+                fr: { s: "Discussion sur la performance Power BI", b: "Bonjour Ivan,%0D%0A%0D%0AJ'aimerais discuter avec vous de nos défis actuels de performance sur Power BI.%0D%0A%0D%0ACordialement," }, 
+                en: { s: "Discussion on Power BI Performance", b: "Hello Ivan,%0D%0A%0D%0AI'd like to discuss our current performance challenges with Power BI.%0D%0A%0D%0ARegards," }
+            }
+        };
+        if(ctaAudit) ctaAudit.href = `mailto:nfindaroger@gmail.com?subject=${encodeURIComponent(mailto.audit[lang].s)}&body=${encodeURIComponent(mailto.audit[lang].b)}`;
+        if(ctaPerf) ctaPerf.href = `mailto:nfindaroger@gmail.com?subject=${encodeURIComponent(mailto.perf[lang].s)}&body=${encodeURIComponent(mailto.perf[lang].b)}`;
+      }
+      setupCtas();
+      new MutationObserver(() => setupCtas()).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     });
   </script>
-
-  <script>
-    (function() {
-        'use strict';
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // Particle Animation Trigger
-        const solutionsSection = document.getElementById('projets-analyse');
-        if (solutionsSection && !reduceMotion) {
-            const particleObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        solutionsSection.classList.add('particles-active');
-                        observer.unobserve(solutionsSection);
-                    }
-                });
-            }, { threshold: 0.1 });
-            particleObserver.observe(solutionsSection);
-        }
-
-        // ... (Logique pour CTA mailto et disponibilité conservée des versions précédentes) ...
-    })();
-  </script>
-  </body>
+</body>
 </html>
