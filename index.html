@@ -43,7 +43,6 @@
       --bg:#030014;--text:#e6e6f0;--muted:#aab;--violet:#7c3aed;--accent:#a78bfa;--cyan:#22d3ee;--green:#22c55e;--red:#ef4444
     }
     *{box-sizing:border-box}
-    /* AMÉLIORATION : Fond léger avec dégradé CSS au lieu de JS/Canvas lourd */
     body{
       background-color: var(--bg);
       background-image: radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
@@ -89,52 +88,20 @@
     #floating-menu a.active{background-color:var(--accent);transform:scale(1.5)}
     #floating-menu a .tooltip{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background-color:rgba(16,14,31,.85);color:#fff;padding:.25rem .6rem;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
     #floating-menu a:hover .tooltip{opacity:1}
-    #ia-agent{position:fixed;left:1rem;bottom:1rem;z-index:60;display:flex;align-items:center;gap:.6rem}
-    #ia-avatar{width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,#9b8cfb,#6b4be6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(167,139,250,.6);transition:box-shadow .3s ease;cursor:pointer}
-    #ia-bubble{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);color:#fff;font-size:.9rem;padding:.55rem .8rem;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;max-width:260px}
-    .bubble-show{opacity:1!important;transform:translateY(0)!important}
+
+    .project-modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:1rem}
+    .project-modal.open{display:grid}
+    .project-modal-content{background:#0d0b21;border:1px solid rgba(255,255,255,.15);border-radius:16px;max-width:800px;width:100%;max-height:90vh;overflow-y:auto;padding:1.5rem 2rem;position:relative;animation:modal-fade-in .3s ease}
+    @keyframes modal-fade-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .project-modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.1);border:none;color:var(--text);font-size:1.5rem;width:32px;height:32px;border-radius:99px;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+    .project-modal-close:hover{background:rgba(255,255,255,.2)}
+    .project-modal-content h3{font-family:'Orbitron',sans-serif}
+    .project-modal-content h4{font-weight:700;color:var(--accent);margin-top:1.25rem;margin-bottom:.5rem;font-size:1.1rem}
+    .project-modal-content ul{list-style-position:inside;padding-left:.5rem}
+    .project-modal-content li{margin-bottom:.4rem}
+    .project-modal-content code{background:rgba(255,255,255,.1);padding:.1rem .3rem;border-radius:4px;font-size:.85rem}
     
-    /* STYLES POUR LES MODALES DE PROJET (optimisés) */
-    .project-modal {
-      position: fixed; inset: 0; z-index: 100;
-      display: none; place-items: center;
-      background: rgba(0,0,0,.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 1rem;
-    }
-    .project-modal.open { display: grid; }
-    .project-modal-content {
-      background: #0d0b21;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 16px;
-      max-width: 800px; width: 100%;
-      max-height: 90vh; overflow-y: auto;
-      padding: 1.5rem 2rem;
-      position: relative;
-      animation: modal-fade-in .3s ease;
-    }
-    @keyframes modal-fade-in { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
-    .project-modal-close {
-      position: absolute; top: 1rem; right: 1rem;
-      background: rgba(255,255,255,.1); border: none;
-      color: var(--text); font-size: 1.5rem;
-      width: 32px; height: 32px; border-radius: 99px;
-      cursor: pointer; display: grid; place-items: center;
-      transition: background .2s;
-    }
-    .project-modal-close:hover { background: rgba(255,255,255,.2); }
-    .project-modal-content h3 { font-family: 'Orbitron', sans-serif; }
-    .project-modal-content h4 { font-weight: 700; color: var(--accent); margin-top: 1.25rem; margin-bottom: .5rem; font-size: 1.1rem; }
-    .project-modal-content ul { list-style-position: inside; padding-left: .5rem; }
-    .project-modal-content li { margin-bottom: .4rem; }
-    .project-modal-content code { background: rgba(255,255,255,.1); padding: .1rem .3rem; border-radius: 4px; font-size: .85rem; }
-    
-    @media (max-width:640px){
-      #ia-agent{flex-direction:column;align-items:flex-start}
-      #ia-bubble{max-width:calc(100vw - 4rem)}
-      footer p{font-size:.8rem}
-    }
+    @media (max-width:640px){footer p{font-size:.8rem}}
     @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.001ms!important}}
     a.btn-primary:hover,a.btn-secondary:hover,button:hover{box-shadow:0 0 14px rgba(167,139,250,.35),0 0 34px rgba(124,58,237,.25)}
     a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -143,22 +110,9 @@
     #availability-badge .availability-popup a{display:block;color:var(--muted);text-decoration:none;margin-top:.35rem;transition:color .2s}
     #availability-badge .availability-popup a:hover{color:var(--accent)}
     header p{max-inline-size:68ch;margin-inline:auto;text-wrap:pretty;hyphens:auto;line-height:1.75}
-    #ia-bubble{max-width:min(92vw,520px)}
-    @media (max-width:768px){
-      #ia-agent{left:.75rem;bottom:.75rem}
-      .hero-title.title-wow .char{text-shadow:0 0 8px rgba(167,139,250,.8),0 0 18px rgba(167,139,250,.5),0 0 28px rgba(124,58,237,.45)}
-      a.btn-primary,a.btn-secondary,button{min-height:44px}
-    }
+    @media (max-width:768px){.hero-title.title-wow .char{text-shadow:0 0 8px rgba(167,139,250,.8),0 0 18px rgba(167,139,250,.5),0 0 28px rgba(124,58,237,.45)}a.btn-primary,a.btn-secondary,button{min-height:44px}}
     
-    /* Section "Mon Approche" */
-    .approach-icon {
-      margin: 0 auto 1rem;
-      width: 56px; height: 56px;
-      border-radius: 99px;
-      display: grid; place-items: center;
-      background: linear-gradient(135deg, var(--violet), var(--accent));
-      box-shadow: 0 0 20px rgba(167,139,250,.4);
-    }
+    .approach-icon{margin:0 auto 1rem;width:56px;height:56px;border-radius:99px;display:grid;place-items:center;background:linear-gradient(135deg,var(--violet),var(--accent));box-shadow:0 0 20px rgba(167,139,250,.4)}
     
     #project-filter{display:flex;gap:.5rem;justify-content:center;margin:-.5rem 0 1.25rem;flex-wrap:wrap}
     #project-filter button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);padding:.45rem .7rem;border-radius:9999px;font-weight:600;font-size:.85rem}
@@ -168,6 +122,35 @@
     #hire-modal.open{display:grid}
     #hire-card{background:rgba(16,14,31,.9);border:1px solid rgba(255,255,255,.12);border-radius:16px;max-width:560px;width:92vw;padding:1.25rem}
     #hire-card a{color:var(--accent)}
+    
+    /* === NOUVEAUX STYLES : SECTION PROTOTYPES & POC === */
+    #missions-strategiques{position:relative}
+    #missions-strategiques::before{content:"";position:absolute;inset:-2px;border-radius:18px;border:1px solid rgba(124,58,237,.2);animation:pulse-glow 6s infinite ease-in-out;pointer-events:none}
+    @keyframes pulse-glow{0%,100%{box-shadow:0 0 30px -5px rgba(124,58,237,.3)}50%{box-shadow:0 0 50px 5px rgba(124,58,237,.5)}}
+    .mission-card{text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-radius:16px;min-height:280px;padding:1.25rem;z-index:1}
+    .mission-card h3{font-family:'Orbitron';font-size:1.5rem;margin-bottom:.5rem}
+    .mission-card p{font-size:.9rem}
+    .mission-card .btn-secondary{margin-top:auto}
+    .mission-card::before,.mission-card::after,.mission-card i{content:'';position:absolute;pointer-events:none;z-index:-1}
+    .ms-aria::before{inset:15%;border-radius:50%;background:conic-gradient(from 0deg,rgba(167,139,250,.55) 0deg,transparent 60deg),radial-gradient(circle at 50% 50%,transparent 55%,rgba(167,139,250,.45) 56%,transparent 58%);animation:radar-spin 6s linear infinite;mix-blend-mode:screen;opacity:.45}
+    @keyframes radar-spin{to{transform:rotate(360deg)}}
+    .ms-scoring::before{inset:0;background-image:linear-gradient(rgba(34,197,94,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.15) 1px,transparent 1px);background-size:30px 30px;animation:bg-pan 20s linear infinite}
+    @keyframes bg-pan{100%{background-position:30px 30px}}
+    .ms-scoring i{background:var(--green);border-radius:50%;box-shadow:0 0 5px var(--green);animation:scoring-move 10s linear infinite}
+    .ms-scoring i:nth-child(1){width:3px;height:3px;top:20%;left:30%;animation-duration:8s}
+    .ms-scoring i:nth-child(2){width:2px;height:2px;top:50%;left:80%;animation-duration:12s;animation-delay:-3s}
+    .ms-scoring i:nth-child(3){width:4px;height:4px;top:80%;left:10%;animation-duration:9s;animation-delay:-5s}
+    @keyframes scoring-move{0%{transform:translate(0,0);opacity:1}25%{transform:translate(40px,-60px)}50%{transform:translate(-30px,50px)}75%{transform:translate(80px,20px)}100%{transform:translate(0,0);opacity:0}}
+    .ms-clean i{width:2px;height:2px;background:var(--cyan);border-radius:50%;box-shadow:0 0 6px var(--cyan);top:50%;left:50%;animation:clean-spiral 4s ease-in-out infinite}
+    .ms-clean i:nth-child(1){animation-delay:0s}
+    .ms-clean i:nth-child(2){animation-delay:-.5s}
+    .ms-clean i:nth-child(3){animation-delay:-1s}
+    .ms-clean i:nth-child(4){animation-delay:-1.5s}
+    .ms-clean i:nth-child(5){animation-delay:-2s}
+    @keyframes clean-spiral{0%{transform:translate(-50%,-50%) rotate(0deg) translateX(20px) scale(.5);opacity:0}50%{opacity:1}100%{transform:translate(-50%,-50%) rotate(720deg) translateX(80px) scale(1.2);opacity:0}}
+    .ms-contra::after{top:0;height:3px;width:100%;background:linear-gradient(90deg,transparent,rgba(239,68,68,.8),transparent);box-shadow:0 0 10px 2px var(--red);animation:scanner-move 3s cubic-bezier(.65,0,.35,1) infinite}
+    @keyframes scanner-move{0%,100%{transform:translateY(20px);opacity:0}10%{opacity:1}90%{opacity:1}50%{transform:translateY(calc(280px - 40px))}}
+    @media (max-width:768px){.ms-aria::before,.ms-scoring::before,.ms-scoring i,.ms-clean i,.ms-contra::after{display:none}}
   </style>
 </head>
 <body>
@@ -296,6 +279,41 @@
         </article>
       </div>
     </section>
+
+    <!-- ================================================================= -->
+    <!-- ============== SECTION "PROTOTYPES & POC" AJOUTÉE ICI ============== -->
+    <!-- ================================================================= -->
+    <section id="missions-strategiques" class="section">
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Prototypes & POC" data-lang-en="Prototypes & POCs"></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <article class="block mission-card ms-aria">
+              <h3 data-lang-fr="Agent IA « ARIA »" data-lang-en="AI Agent « ARIA »"></h3>
+              <p class="text-white/80" data-lang-fr="POC d'un agent conversationnel qui répond à des questions sur des KPIs pour accélérer la lecture des dashboards."
+                 data-lang-en="POC of a conversational agent that answers questions about KPIs to speed up dashboard reading."></p>
+              <a class="btn-secondary hover:bg-violet-600/30" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+          </article>
+          <article class="block mission-card ms-scoring">
+              <i></i><i></i><i></i>
+              <h3 data-lang-fr="Scoring de Crédit" data-lang-en="Credit Scoring"></h3>
+              <p class="text-white/80" data-lang-fr="Expérimentation sur un modèle de scoring pour prioriser des leads commerciaux (sur un échantillon réduit)."
+                 data-lang-en="Experimented with a scoring model to prioritize sales leads (on a small sample)."></p>
+              <a class="btn-secondary hover:bg-green-600/30" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+          </article>
+          <article class="block mission-card ms-clean">
+               <i></i><i></i><i></i><i></i><i></i>
+              <h3 data-lang-fr="Data Clean" data-lang-en="Data Clean"></h3>
+              <p class="text-white/80" data-lang-fr="Prototype d’un outil web pour automatiser des tâches de nettoyage de CSV. Objectif : gagner du temps sur la préparation."
+                 data-lang-en="Prototype of a web tool to automate CSV cleaning tasks. Goal: save time on data preparation."></p>
+              <a class="btn-secondary hover:bg-cyan-600/30" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+          </article>
+          <article class="block mission-card ms-contra">
+              <h3 data-lang-fr="ContraScope" data-lang-en="ContraScope"></h3>
+              <p class="text-white/80" data-lang-fr="Exploration : extraire des clauses clés d’un contrat et générer un résumé des points d’attention (POC)."
+                 data-lang-en="Exploration: extract key clauses from a contract and summarize points of attention (POC)."></p>
+              <a class="btn-secondary hover:bg-red-600/30" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+          </article>
+      </div>
+    </section>
       
     <section id="approach" class="section">
         <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Approche" data-lang-en="My Approach"></h2>
@@ -382,21 +400,18 @@
       <button id="hire-close" class="btn-secondary mt-4" style="width:100%" data-lang-fr="Fermer" data-lang-en="Close"></button>
     </div>
   </div>
-
+  
   <div id="spotify-modal" class="project-modal">
     <div class="project-modal-content">
       <button class="project-modal-close">&times;</button>
       <h3 class="text-2xl font-bold mb-2">Analyse des Tendances Spotify 2024</h3>
       <p class="text-white/70 text-sm mb-4">Un dashboard Power BI complet pour décrypter les musiques qui ont marqué l'année.</p>
-      
       <h4 data-lang-fr="Situation" data-lang-en="Situation"></h4>
       <p data-lang-fr="Dans un contexte d'auto-formation, l'objectif était de maîtriser le cycle de vie complet d'un projet BI sur un jeu de données public, riche et complexe. L'enjeu était de démontrer la capacité à transformer une masse de données brutes en un outil d'exploration intuitif et pertinent pour un utilisateur final (ex: un manager de label)."
          data-lang-en="In a self-learning context, the goal was to master the complete BI project lifecycle on a rich and complex public dataset. The challenge was to demonstrate the ability to transform a mass of raw data into an intuitive and relevant exploration tool for an end-user (e.g., a record label manager)."></p>
-
       <h4 data-lang-fr="Tâche" data-lang-en="Task"></h4>
       <p data-lang-fr="Créer un rapport Power BI permettant de répondre à des questions business concrètes : Quels artistes génèrent le plus d'engagement ? Existe-t-il une corrélation entre les caractéristiques audio (énergie, dansabilité) et le succès commercial ? Comment identifier les tendances émergentes pour signer de nouveaux talents ?"
          data-lang-en="Create a Power BI report to answer concrete business questions: Which artists generate the most engagement? Is there a correlation between audio features (energy, danceability) and commercial success? How can emerging trends be identified to sign new talent?"></p>
-
       <h4 data-lang-fr="Actions" data-lang-en="Actions"></h4>
       <ul class="list-disc text-white/90 text-sm">
         <li data-lang-fr="<strong>ETL et Fiabilisation :</strong> Utilisation de <code>Power Query</code> pour importer, nettoyer et structurer les données. J'ai mis un point d'honneur à documenter chaque étape de transformation pour garantir la traçabilité et la reproductibilité de l'analyse."
@@ -408,7 +423,6 @@
         <li data-lang-fr="<strong>UX/UI du Dashboard :</strong> Conception d'une interface claire et épurée, en appliquant des principes de data storytelling pour guider l'utilisateur dans son exploration, de la vue macro aux détails les plus fins."
             data-lang-en="<strong>Dashboard UX/UI:</strong> Designed a clean and uncluttered interface, applying data storytelling principles to guide the user's exploration from the macro view to the finest details."></li>
       </ul>
-
       <h4 data-lang-fr="Résultats" data-lang-en="Results"></h4>
       <p data-lang-fr="Le dashboard final est un outil décisionnel qui permet à un manager de label d'identifier en quelques clics les artistes à fort potentiel ou de comprendre les dynamiques du marché. Ce projet démontre ma capacité à gérer un projet BI de A à Z, en gardant toujours la finalité business comme principal objectif."
          data-lang-en="The final dashboard is a decision-making tool that allows a label manager to identify high-potential artists or understand market dynamics in just a few clicks. This project demonstrates my ability to manage a BI project from A to Z, always keeping the business outcome as the main goal."></p>
@@ -420,15 +434,12 @@
       <button class="project-modal-close">&times;</button>
       <h3 class="text-2xl font-bold mb-2">Dashboard RH & Analyse de la Rétention</h3>
       <p class="text-white/70 text-sm mb-4">Un outil stratégique pour aider les managers à comprendre et à agir sur l'attrition du personnel.</p>
-      
       <h4 data-lang-fr="Situation" data-lang-en="Situation"></h4>
       <p data-lang-fr="Une entreprise simulée faisait face à une augmentation de 15% de son turnover annuel, un coût direct (recrutement, formation) et indirect (perte de connaissance) important. Les managers manquaient d'un outil centralisé pour analyser ce phénomène, entraînant une perte de temps et des décisions basées sur des intuitions."
          data-lang-en="A simulated company was facing a 15% increase in its annual turnover, a significant direct (recruitment, training) and indirect (loss of knowledge) cost. Managers lacked a centralized tool to analyze this phenomenon, leading to wasted time and decisions based on intuition."></p>
-
       <h4 data-lang-fr="Tâche" data-lang-en="Task"></h4>
       <p data-lang-fr="Mon rôle était de développer un dashboard de pilotage pour le département RH. L'objectif : ne pas seulement 'montrer' le taux de départ, mais 'expliquer' le 'pourquoi'. Le livrable devait permettre d'identifier les populations et les facteurs à risque pour mettre en place des plans d'action ciblés."
          data-lang-en="My role was to develop a management dashboard for the HR department. The goal: not just to 'show' the turnover rate, but to 'explain' the 'why'. The deliverable had to identify at-risk populations and factors to implement targeted action plans."></p>
-
       <h4 data-lang-fr="Actions" data-lang-en="Actions"></h4>
       <ul class="list-disc text-white/90 text-sm">
         <li data-lang-fr="<strong>Ateliers de Cadrage :</strong> J'ai commencé par échanger avec les 'clients' (rôles joués dans le projet) pour définir les KPIs les plus pertinents : Taux d'attrition par département/manager, corrélation avec la satisfaction, l'ancienneté, le niveau de salaire."
@@ -438,7 +449,6 @@
         <li data-lang-fr="<strong>Conception d'un 'Storytelling' Visuel :</strong> Le dashboard a été structuré pour raconter une histoire : une page de synthèse pour la direction, une page d'analyse des causes pour les RH, et une vue détaillée par équipe pour les managers opérationnels."
             data-lang-en="<strong>Designing a Visual Storytelling:</strong> The dashboard was structured to tell a story: a summary page for management, a cause analysis page for HR, and a detailed team view for operational managers."></li>
       </ul>
-
       <h4 data-lang-fr="Résultats" data-lang-en="Results"></h4>
       <p data-lang-fr="Le dashboard a permis de mettre en évidence une corrélation forte entre le manque de perspectives d'évolution et les départs au sein des équipes techniques. Grâce à cette analyse, la direction a pu lancer un programme de formation et de mobilité interne. Ce projet illustre ma capacité à transformer un problème business complexe en une solution data qui génère de la valeur et oriente l'action."
          data-lang-en="The dashboard highlighted a strong correlation between the lack of career development prospects and departures within the technical teams. Thanks to this analysis, management was able to launch a training and internal mobility program. This project illustrates my ability to turn a complex business problem into a data solution that generates value and drives action."></p>
@@ -450,15 +460,12 @@
       <button class="project-modal-close">&times;</button>
       <h3 class="text-2xl font-bold mb-2">Application d'Analyse d'Attrition avec R Shiny</h3>
       <p class="text-white/70 text-sm mb-4">Une application web interactive pour une exploration autonome et approfondie des données RH.</p>
-      
       <h4 data-lang-fr="Situation" data-lang-en="Situation"></h4>
       <p data-lang-fr="Le dashboard Power BI était excellent pour le reporting, mais les analystes RH plus avancés avaient besoin de 'bac à sable' pour tester des hypothèses spécifiques et croiser des variables à la volée, ce qui n'est pas toujours aisé dans un rapport pré-défini."
          data-lang-en="The Power BI dashboard was excellent for reporting, but more advanced HR analysts needed a 'sandbox' to test specific hypotheses and cross-reference variables on the fly, which is not always easy in a predefined report."></p>
-
       <h4 data-lang-fr="Tâche" data-lang-en="Task"></h4>
       <p data-lang-fr="Développer un prototype d'application web avec <code>R Shiny</code> pour offrir cette flexibilité. L'outil devait permettre aux utilisateurs de sélectionner eux-mêmes les variables à analyser, le type de graphique à générer, et d'appliquer des filtres dynamiques pour une exploration en profondeur."
          data-lang-en="Develop a web application prototype with <code>R Shiny</code> to offer this flexibility. The tool had to allow users to select the variables to analyze, the type of chart to generate, and apply dynamic filters for in-depth exploration."></p>
-
       <h4 data-lang-fr="Actions" data-lang-en="Actions"></h4>
       <ul class="list-disc text-white/90 text-sm">
         <li data-lang-fr="<strong>Architecture UI/Serveur :</strong> J'ai structuré l'application en séparant clairement l'interface utilisateur (<code>ui.R</code>) et la logique de calcul côté serveur (<code>server.R</code>), une bonne pratique pour la maintenabilité."
@@ -468,7 +475,6 @@
         <li data-lang-fr="<strong>Visualisation Dynamique :</strong> J'ai utilisé <code>ggplot2</code> et <code>plotly</code> pour générer des graphiques interactifs (avec des infobulles au survol), dont les axes et les groupements étaient définis dynamiquement par les choix de l'utilisateur."
             data-lang-en="<strong>Dynamic Visualization:</strong> I used <code>ggplot2</code> and <code>plotly</code> to generate interactive charts (with hover tooltips), whose axes and groupings were dynamically defined by user choices."></li>
       </ul>
-
       <h4 data-lang-fr="Résultats" data-lang-en="Results"></h4>
       <p data-lang-fr="Le prototype a démontré la faisabilité de créer des outils d'analyse sur-mesure pour des besoins d'exploration avancés. Il a permis aux analystes de découvrir des relations complexes (ex: l'impact de la distance domicile-travail sur l'attrition des bas salaires) qui n'étaient pas visibles dans le dashboard initial. Ce projet montre ma compétence à aller au-delà du reporting standard pour construire de véritables produits data."
          data-lang-en="The prototype demonstrated the feasibility of creating custom analysis tools for advanced exploration needs. It allowed analysts to discover complex relationships (e.g., the impact of commute distance on attrition for low-wage employees) that were not visible in the initial dashboard. This project showcases my ability to go beyond standard reporting to build true data products."></p>
@@ -477,59 +483,49 @@
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = matchMedia('(max-width: 768px)').matches;
     const lang = (localStorage.getItem('portfolio_lang') || document.documentElement.lang || 'fr');
     
-    // Lang
-    const langButtons = document.querySelectorAll('#lang-switch button');
     function applyLang(lang){
-      langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      document.querySelectorAll('#lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
       document.documentElement.lang = lang;
-      localStorage.setItem('portfolio_lang', lang);
+      localStorage.setItem('portfolio_lang',lang);
       document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
-        const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
-        if(txt){ el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
+        const txt = el.getAttribute(lang==='fr'?'data-lang-fr':'data-lang-en');
+        if(txt){el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');}
       });
     }
-    langButtons.forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+    document.querySelectorAll('#lang-switch button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
     applyLang(lang);
     
-    // Hero title
     const titleEl = document.getElementById('hero-title-interactive');
-    const titleText = "Data Analyst";
     if (titleEl) {
-      titleEl.innerHTML = ''; // Clear previous content if any
-      titleText.split(' ').forEach(wordText => {
-        const wordDiv = document.createElement('div'); wordDiv.className = 'word';
-        wordText.split('').forEach(char => {
-          const span = document.createElement('span'); span.className = 'char';
-          span.textContent = char; wordDiv.appendChild(span);
-        });
+      titleEl.innerHTML = '';
+      "Data Analyst".split(' ').forEach(wordText=>{
+        const wordDiv=document.createElement('div');wordDiv.className='word';
+        wordText.split('').forEach(char=>{const span=document.createElement('span');span.className='char';span.textContent=char;wordDiv.appendChild(span);});
         titleEl.appendChild(wordDiv);
       });
       titleEl.classList.add('title-wow');
     }
 
-    // Menu flottant
     const floatingMenu = document.getElementById('floating-menu');
     const sections = document.querySelectorAll('.section');
     if (floatingMenu && sections.length) {
       floatingMenu.innerHTML = '';
       sections.forEach(section=>{
-        const a = document.createElement('a'); a.href = `#${section.id}`;
-        const tip = document.createElement('span'); tip.className = 'tooltip';
-        const h2 = section.querySelector('h2');
-        tip.setAttribute('data-lang-fr', h2?.getAttribute('data-lang-fr') || '');
-        tip.setAttribute('data-lang-en', h2?.getAttribute('data-lang-en') || '');
-        a.appendChild(tip); floatingMenu.appendChild(a);
+        const a=document.createElement('a');a.href=`#${section.id}`;
+        const tip=document.createElement('span');tip.className='tooltip';
+        const h2=section.querySelector('h2');
+        tip.setAttribute('data-lang-fr',h2?.getAttribute('data-lang-fr')||'');
+        tip.setAttribute('data-lang-en',h2?.getAttribute('data-lang-en')||'');
+        a.appendChild(tip);floatingMenu.appendChild(a);
       });
       applyLang(lang);
-      const links = floatingMenu.querySelectorAll('a');
-      const menuObserver = new IntersectionObserver(entries=>{
+      const links=floatingMenu.querySelectorAll('a');
+      const menuObserver=new IntersectionObserver(entries=>{
         entries.forEach(entry=>{
           if(entry.isIntersecting){
-            links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
+            links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')===`#${entry.target.id}`));
             entry.target.querySelector('h2')?.classList.add('visible');
           }
         });
@@ -537,94 +533,67 @@
       sections.forEach(s=>menuObserver.observe(s));
     }
 
-    // Badge dispo
-    const badge = document.getElementById('availability-badge');
-    if (badge){
-      const btn = badge.querySelector('button');
-      let popup = badge.querySelector('.availability-popup');
-      if (!popup){
-        popup = document.createElement('div');
-        popup.className = 'availability-popup';
-        badge.appendChild(popup);
-      }
-      popup.innerHTML = `
-        <strong style="display:block; margin-bottom:.35rem;">Ivan Roger Nfinda</strong>
-        <a href="mailto:nfindaroger@gmail.com">✉️ nfindaroger@gmail.com</a>
-        <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener">🐙 GitHub</a>
-        <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener">🔗 LinkedIn</a>`;
-      btn?.addEventListener('click', (e)=>{ e.stopPropagation(); popup.classList.toggle('open'); });
-      document.addEventListener('click', (e)=>{ if(!badge.contains(e.target)) popup.classList.remove('open'); });
+    const badge=document.getElementById('availability-badge');
+    if(badge){
+      const btn=badge.querySelector('button');
+      let popup=badge.querySelector('.availability-popup');
+      if(!popup){popup=document.createElement('div');popup.className='availability-popup';badge.appendChild(popup);}
+      popup.innerHTML=`<strong style="display:block;margin-bottom:.35rem;">Ivan Roger Nfinda</strong><a href="mailto:nfindaroger@gmail.com">✉️ nfindaroger@gmail.com</a><a href="https://github.com/IvanRoger12" target="_blank" rel="noopener">🐙 GitHub</a><a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener">🔗 LinkedIn</a>`;
+      btn?.addEventListener('click',e=>{e.stopPropagation();popup.classList.toggle('open');});
+      document.addEventListener('click',e=>{if(!badge.contains(e.target))popup.classList.remove('open');});
     }
   });
 
   (function(){
-    // Filtre projets
-    const pf = document.getElementById('project-filter');
+    const pf=document.getElementById('project-filter');
     if(pf){
-      const cards = document.querySelectorAll('#projets-analyse .project-card');
+      const cards=document.querySelectorAll('#projets-analyse .project-card');
       pf.querySelectorAll('button').forEach(btn=>{
-        btn.addEventListener('click', ()=>{
+        btn.addEventListener('click',()=>{
           pf.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
           btn.classList.add('active');
-          const tag = btn.dataset.tag;
+          const tag=btn.dataset.tag;
           cards.forEach(c=>{
-            c.parentElement.style.display = 'block';
-            if(tag === 'all') return;
-            const tags = (c.getAttribute('data-tags')||'').split(/\s+/);
-            if (!tags.includes(tag)) {
-              c.parentElement.style.display = 'none';
-            }
+            c.style.display='flex';
+            if(tag==='all'){return;}
+            const tags=(c.getAttribute('data-tags')||'').split(/\s+/);
+            if(!tags.includes(tag)){c.style.display='none';}
           });
         });
       });
     }
 
-    // CTA modal
-    const cta = document.getElementById('sticky-cta');
-    const modal = document.getElementById('hire-modal');
-    const close = document.getElementById('hire-close');
-    if(cta && modal){
-      cta.addEventListener('click', ()=> modal.classList.add('open'));
-      close?.addEventListener('click', ()=> modal.classList.remove('open'));
-      modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('open'); });
+    const cta=document.getElementById('sticky-cta');
+    const modal=document.getElementById('hire-modal');
+    const close=document.getElementById('hire-close');
+    if(cta&&modal){
+      cta.addEventListener('click',()=>modal.classList.add('open'));
+      close?.addEventListener('click',()=>modal.classList.remove('open'));
+      modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
     }
 
-    // Logique pour les modales de projet
-    const modalTriggers = document.querySelectorAll('[data-modal-target]');
-    modalTriggers.forEach(trigger => {
-      trigger.addEventListener('click', () => {
-        const modalId = trigger.getAttribute('data-modal-target');
-        const modal = document.getElementById(modalId);
-        if (modal) {
-          modal.classList.add('open');
-        }
+    document.querySelectorAll('[data-modal-target]').forEach(trigger=>{
+      trigger.addEventListener('click',()=>{
+        const modal=document.getElementById(trigger.getAttribute('data-modal-target'));
+        if(modal){modal.classList.add('open');}
       });
     });
 
-    const projectModals = document.querySelectorAll('.project-modal');
-    projectModals.forEach(modal => {
-      const closeButton = modal.querySelector('.project-modal-close');
-      closeButton?.addEventListener('click', () => {
-        modal.classList.remove('open');
-      });
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('open');
-        }
-      });
+    document.querySelectorAll('.project-modal').forEach(modal=>{
+      modal.querySelector('.project-modal-close')?.addEventListener('click',()=>modal.classList.remove('open'));
+      modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');}});
     });
     
-    // Réappliquer la langue (labels dynamiques)
     (function reapplyLang(){
       try{
-        const lang = (localStorage.getItem('portfolio_lang') || document.documentElement.lang || 'fr');
+        const lang=(localStorage.getItem('portfolio_lang')||document.documentElement.lang||'fr');
         document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
-          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
-          if(txt){ el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
+          const txt=el.getAttribute(lang==='fr'?'data-lang-fr':'data-lang-en');
+          if(txt){el.innerHTML=txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');}
         });
-        document.querySelectorAll('#project-filter [data-lang-fr],[data-lang-en], #sticky-cta[data-lang-fr],[data-lang-en], .project-actions [data-lang-fr],[data-lang-en]').forEach(el=>{
-          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
-          if(txt) el.textContent = txt.replace(/<[^>]+>/g,'');
+        document.querySelectorAll('#project-filter [data-lang-fr],[data-lang-en],#sticky-cta[data-lang-fr],[data-lang-en],.project-actions [data-lang-fr],[data-lang-en]').forEach(el=>{
+          const txt=el.getAttribute(lang==='fr'?'data-lang-fr':'data-lang-en');
+          if(txt)el.textContent=txt.replace(/<[^>]+>/g,'');
         });
       }catch(e){}
     })();
