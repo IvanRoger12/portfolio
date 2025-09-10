@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ivan Roger NFINDA — Data Analyst & BI Portfolio</title>
-  <meta name="description" content="Portfolio d'Ivan Roger Nfinda, Data Analyst spécialisé en BI, Data Quality et IA. Projets Power BI, R Shiny, agents IA et résultats concrets." />
+  <title>Ivan Roger NFINDA — Junior Data Analyst Portfolio</title>
+  <meta name="description" content="Portfolio junior d'Ivan Roger Nfinda, jeune diplômé en Data Analytics (MBA Big Data & IA). Stages, projets académiques et apprentissages techniques (Power BI, Python, Data Quality). À la recherche d'un premier CDI ou stage en data." />
 
   <!-- Tailwind + Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,15 +14,15 @@
   <link rel="canonical" href="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Ivan Roger NFINDA — Data Analyst & BI">
-  <meta property="og:description" content="Je transforme des données complexes en décisions. Dashboards Power BI, Data Quality, IA (agents, scoring), cas concrets & résultats.">
+  <meta property="og:title" content="Ivan Roger NFINDA — Junior Data Analyst">
+  <meta property="og:description" content="Jeune diplômé passionné par l’analyse de données. Stages, projets académiques et apprentissages techniques. À la recherche de mon premier CDI.">
   <meta property="og:url" content="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/">
   <meta property="og:image" content="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/og-cover.jpg">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ivan Roger NFINDA — Data Analyst & BI">
-  <meta name="twitter:description" content="Dashboards Power BI, Data Quality & IA. Cas concrets, mesures & résultats.">
+  <meta name="twitter:title" content="Ivan Roger NFINDA — Junior Data Analyst">
+  <meta name="twitter:description" content="Stages, projets académiques et apprentissages techniques. Premier CDI en Data Analytics.">
   <meta name="twitter:image" content="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/og-cover.jpg">
 
   <!-- ✅ JSON-LD : Person -->
@@ -31,14 +31,17 @@
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Ivan Roger NFINDA",
-    "jobTitle":"Data Analyst — BI & Data Quality",
+    "jobTitle":"Junior Data Analyst",
     "url":"https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/",
     "sameAs":[
       "https://www.linkedin.com/in/ivan-roger-nfinda/",
       "https://github.com/IvanRoger12",
       "mailto:nfindaroger@gmail.com"
     ],
-    "worksFor":{"@type":"Organization","name":"Consultant (freelance/mission)"}
+    "alumniOf":[
+      {"@type":"CollegeOrUniversity","name":"MBA Big Data & IA"},
+      {"@type":"CollegeOrUniversity","name":"Master Systèmes d'Information"}
+    ]
   }
   </script>
 
@@ -167,7 +170,7 @@
     /* Canvas de fond pour effets */
     .project-bg-canvas,.mission-bg-canvas{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.95}
 
-    /* === SOLUTIONS PLAYBOOK === */
+    /* === APPRENTISSAGES TECHNIQUES === */
     #solutions{position:relative}
     .solutions-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
     .solutions-tabs button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(6px);padding:.5rem .8rem;border-radius:.6rem;font-weight:600}
@@ -211,8 +214,8 @@
   <header id="header" class="hero-breath">
     <h1 class="hero-title" id="hero-title-interactive"></h1>
     <p class="mt-6 text-lg text-white/70 max-w-2xl text-center"
-       data-lang-fr="Je suis Ivan Roger Nfinda, Data Analyst. Je transforme les données complexes en insights clairs et actionnables."
-       data-lang-en="I am Ivan Roger Nfinda, Data Analyst. I turn complex data into clear, actionable insights.">
+       data-lang-fr="Je suis <strong>Ivan Roger Nfinda</strong>, <strong>Junior Data Analyst</strong> — jeune diplômé passionné par l'analyse de données, à la recherche de mon <strong>premier CDI</strong> (ou stage de fin d’études)."
+       data-lang-en="I'm <strong>Ivan Roger Nfinda</strong>, a <strong>Junior Data Analyst</strong> — recent graduate passionate about data, seeking my <strong>first full-time role</strong> (or final internship).">
     </p>
     <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
       <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV"></a>
@@ -221,45 +224,100 @@
   </header>
 
   <main class="container">
-    <!-- Expertise -->
+    <!-- Expertise (ton junior assumé) -->
     <section id="facettes" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Expertise" data-lang-en="My Expertise"></h2>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Positionnement Junior" data-lang-en="My Junior Profile"></h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <article class="block">
-          <h3 class="text-xl font-bold mb-1">Data Analyst & BI</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Spécialiste de la collecte, nettoyage et visualisation pour créer des tableaux de bord percutants (Power BI, SQL, DAX)."
-             data-lang-en="Expert in collecting, cleaning, and visualizing data to create impactful dashboards (Power BI, SQL, DAX)."></p>
+          <h3 class="text-xl font-bold mb-1" data-lang-fr="Bases solides : Power BI & SQL" data-lang-en="Solid basics: Power BI & SQL"></h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Nettoyage, modélisation simple (étoile), mesures DAX de base, dashboards clairs et filtrables."
+             data-lang-en="Cleaning, simple star-schema modeling, basic DAX measures, clear and filterable dashboards."></p>
         </article>
         <article class="block">
-          <h3 class="text-xl font-bold mb-1">Data Quality</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Mise en place de processus de fiabilisation pour garantir des analyses robustes et des recommandations fiables."
-             data-lang-en="Implementing data reliability processes to ensure robust analyses and trustworthy recommendations."></p>
+          <h3 class="text-xl font-bold mb-1" data-lang-fr="Data Quality (découverte)" data-lang-en="Data Quality (learning)"></h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Contrôles de cohérence, gestion des valeurs manquantes, documentation de transformations."
+             data-lang-en="Consistency checks, handling missing values, documenting transformations."></p>
         </article>
         <article class="block">
-          <h3 class="text-xl font-bold mb-1">Analyse & Modélisation</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Utilisation de Python et R pour des analyses exploratoires et la construction de modèles prédictifs simples."
-             data-lang-en="Using Python and R for exploratory analysis and building simple predictive models."></p>
+          <h3 class="text-xl font-bold mb-1" data-lang-fr="Python & R (pratique guidée)" data-lang-en="Python & R (guided practice)"></h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Exploration (pandas), visualisation, prototypes simples (R Shiny)."
+             data-lang-en="Exploration (pandas), visualization, simple prototypes (R Shiny)."></p>
         </article>
       </div>
     </section>
 
-    <!-- Résultats -->
+    <!-- Résultats (métriques réalistes junior) -->
     <section id="results" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mes Résultats Concrets" data-lang-en="Tangible Results"></h2>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Petits Résultats Mesurés (stages)" data-lang-en="Small Measured Wins (internships)"></h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="15">+0%</p><p class="text-white/70" data-lang-fr="précision des rapports" data-lang-en="reporting accuracy"></p></div>
-        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-20">0%</p><p class="text-white/70" data-lang-fr="temps d'analyse mensuel" data-lang-en="monthly analysis time"></p></div>
-        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-10">0%</p><p class="text-white/70" data-lang-fr="de rendez-vous annulés" data-lang-en="cancelled appointments"></p></div>
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="5">+0%</p><p class="text-white/70" data-lang-fr="précision de reporting (pilote)" data-lang-en="reporting accuracy (pilot)"></p></div>
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-5">0%</p><p class="text-white/70" data-lang-fr="temps d'analyse mensuel (équipe)" data-lang-en="monthly analysis time (team)"></p></div>
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-3">0%</p><p class="text-white/70" data-lang-fr="rendez-vous annulés (test)" data-lang-en="cancelled appointments (test)"></p></div>
       </div>
     </section>
 
-    <!-- Parcours -->
+    <!-- Stages & Projets (ex-Expérience) -->
     <section id="parcours" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]"
+          data-lang-fr="Stages & Projets"
+          data-lang-en="Internships & Projects"></h2>
       <div class="grid gap-4">
-        <div class="block"><h3 class="font-semibold">LOGWIRE · <span class="text-white/70">Data Analyst (2025)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers." data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p></div>
-        <div class="block"><h3 class="font-semibold">ENDO DATA · <span class="text-white/70">Data Analyst (2023–2024)</span></h3><p class="text-white/70 text-sm" data-lang-fr="BI dentaire pour +30 cabinets, -10% RDV annulés, formation de +40 utilisateurs." data-lang-en="Dental BI for +30 clinics, -10% no-shows, training for +40 users."></p></div>
-        <div class="block"><h3 class="font-semibold">Afriland First Bank · <span class="text-white/70">Data Analyst (2021–2022)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Scoring commercial, -8% taux de défaut sur portefeuille PME, reporting de risques automatisé." data-lang-en="Commercial scoring, -8% default rate on SME portfolio, automated risk reporting."></p></div>
+        <div class="block">
+          <h3 class="font-semibold">LOGWIRE · <span class="text-white/70" data-lang-fr="Stage Data Analyst (2025)" data-lang-en="Data Analyst Intern (2025)"></span></h3>
+          <p class="text-white/70 text-sm"
+             data-lang-fr="J'ai participé à la création de dashboards ventes & finances sous encadrement. Contribution à la préparation des données, aux mesures DAX simples et aux tests utilisateurs. Impact observé : ~–5% de temps d’analyse au sein de l’équipe (période test)."
+             data-lang-en="I contributed to sales & finance dashboards under supervision. Helped with data prep, basic DAX measures, and user testing. Observed impact: ~–5% analysis time within the team (test period)."></p>
+        </div>
+        <div class="block">
+          <h3 class="font-semibold">ENDO DATA · <span class="text-white/70" data-lang-fr="Stage/Alternance (Support BI) 2023–2024" data-lang-en="Intern/Apprenticeship (BI Support) 2023–2024"></span></h3>
+          <p class="text-white/70 text-sm"
+             data-lang-fr="J'ai contribué au support BI pour des cabinets (préparation de données, mise à jour de visuels, documentation). Participation à ~10 sessions de formation interne. Résultat observé : ~–3% de no-shows sur un petit échantillon pilote."
+             data-lang-en="Contributed to BI support for clinics (data prep, visuals updates, documentation). Participated in ~10 internal training sessions. Observed result: ~–3% no-shows in a small pilot."></p>
+        </div>
+        <div class="block">
+          <h3 class="font-semibold">Afriland First Bank · <span class="text-white/70" data-lang-fr="Stage Data (2021–2022)" data-lang-en="Data Intern (2021–2022)"></span></h3>
+          <p class="text-white/70 text-sm"
+             data-lang-fr="Encadré par un(e) senior, j'ai aidé sur un modèle de scoring commercial (exploration & features simples) et l’automatisation d’un rapport. Piste d’amélioration notée : –2% du taux de défaut (analyse exploratoire)."
+             data-lang-en="Under senior guidance, I assisted on a commercial scoring model (EDA & simple features) and automated a report. Improvement lead noted: –2% default rate (exploratory analysis)."></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formation & Projets Académiques -->
+    <section id="formation" class="section">
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]"
+          data-lang-fr="Formation & Projets Académiques"
+          data-lang-en="Education & Academic Projects"></h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <article class="block">
+          <h3 class="text-xl font-bold mb-1" data-lang-fr="MBA Big Data & IA (2024–2025)" data-lang-en="MBA Big Data & AI (2024–2025)"></h3>
+          <p class="text-white/70 text-sm"
+             data-lang-fr="Cours principaux : Data Analytics, Data Quality, Visualisation, Python, Cloud. Projet de synthèse : tableau de bord Power BI (ventes & RH), gouvernance des données, petit POC d’agent IA (question/réponse sur KPI)."
+             data-lang-en="Key courses: Data Analytics, Data Quality, Visualization, Python, Cloud. Capstone: Power BI dashboard (Sales & HR), data governance, small AI agent POC (Q&A over KPIs)."></p>
+        </article>
+        <article class="block">
+          <h3 class="text-xl font-bold mb-1" data-lang-fr="Master Systèmes d’Information (2018–2020)" data-lang-en="Master Information Systems (2018–2020)"></h3>
+          <p class="text-white/70 text-sm"
+             data-lang-fr="Architecture SI, modélisation de données, gestion de projet. Projets : mini ETL (Python/pandas), normalisation de tables, maquette R Shiny pour analyser l’attrition."
+             data-lang-en="IS architecture, data modeling, project management. Projects: mini-ETL (Python/pandas), table normalization, R Shiny mockup for attrition analysis."></p>
+        </article>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 mt-4">
+        <div class="block">
+          <h3 class="font-semibold" data-lang-fr="Projet École — Dashboard Ventes" data-lang-en="School Project — Sales Dashboard"></h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Modèle étoile simple, filtres région/produit, KPI : CA, marge, commandes."
+             data-lang-en="Simple star schema, region/product filters, KPIs: Revenue, Margin, Orders."></p>
+        </div>
+        <div class="block">
+          <h3 class="font-semibold" data-lang-fr="Projet École — Attrition RH (R Shiny)" data-lang-en="School Project — HR Attrition (R Shiny)"></h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Visualisation taux d’attrition, satisfaction, équilibre vie pro/perso."
+             data-lang-en="Visualizing attrition rate, satisfaction, work-life balance."></p>
+        </div>
+        <div class="block">
+          <h3 class="font-semibold" data-lang-fr="Projet Perso — Data Clean (Web)" data-lang-en="Side Project — Data Clean (Web)"></h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Prototype d’outil pour nettoyer des CSV (valeurs manquantes, types)."
+             data-lang-en="Prototype tool to clean CSVs (missing values, types)."></p>
+        </div>
       </div>
     </section>
 
@@ -279,151 +337,149 @@
         <article class="block project-card card-3d-tilt" data-tags="powerbi">
           <h3 class="text-xl font-bold mb-2">Analyse Spotify 2024</h3>
           <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-green-600/20 text-green-300 rounded-full">Power BI</span>
-          <p class="text-white/80 text-sm mb-4" data-lang-fr="Dashboard interactif pour visualiser les tendances de streaming. Identification des artistes et des périodes les plus populaires (Bad Bunny, vendredis...) pour des insights marketing."
-             data-lang-en="Interactive dashboard to visualize streaming trends. Identified top artists and popular periods (Bad Bunny, Fridays...) for marketing insights."></p>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Projet personnel (apprentissage) : visualiser des tendances de streaming, identifier artistes/périodes clés. Focus : filtres clairs, export rapide."
+             data-lang-en="Personal learning project: visualize streaming trends, identify key artists/periods. Focus: clear filters, quick export."></p>
           <a class="btn-secondary hover:bg-green-600/30" href="https://lnkd.in/epwcAy9U" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur LinkedIn" data-lang-en="▶ View on LinkedIn"></a>
         </article>
 
         <article class="block project-card card-3d-tilt" data-project-bg="dashboard-rh" data-tags="powerbi">
           <h3 class="text-xl font-bold mb-2">Dashboard RH & Rétention</h3>
           <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-violet-600/20 text-violet-300 rounded-full">Power BI / DAX</span>
-          <p class="text-white/80 text-sm mb-4" data-lang-fr="Analyse de la performance et de la rétention des employés. Vue complète sur l'engagement, la diversité et l'absentéisme pour aider les équipes RH à prendre des décisions stratégiques."
-             data-lang-en="Analysis of employee performance and retention. Comprehensive view of engagement, diversity, and absenteeism to help HR teams make strategic decisions."></p>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Projet d’école : performance & rétention. J’ai appris à définir 3 KPI par vue (outcome/leading/guardrail) pour une lecture rapide."
+             data-lang-en="School project: performance & retention. I learned to define 3 KPIs per view (outcome/leading/guardrail) for quick reading."></p>
           <a class="btn-secondary hover:bg-violet-600/30" href="https://lnkd.in/eEwhc6-H" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur GitHub" data-lang-en="▶ View on GitHub"></a>
         </article>
 
         <article class="block project-card card-3d-tilt" data-tags="rshiny ia">
-          <h3 class="text-xl font-bold mb-2">Analyse Attrition RH</h3>
+          <h3 class="text-xl font-bold mb-2">Attrition RH (R Shiny)</h3>
           <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-cyan-600/20 text-cyan-300 rounded-full">R Shiny</span>
-          <p class="text-white/80 text-sm mb-4" data-lang-fr="Tableau de bord interactif pour analyser les données RH (taux d'attrition, satisfaction, équilibre pro/perso). Transformation de données métier en insights exploitables."
-             data-lang-en="Interactive dashboard to analyze HR data (attrition rate, satisfaction, work-life balance). Transforming business data into actionable insights."></p>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Projet d’école : explorer l’attrition et la satisfaction. Premières apps interactives et story-telling des insights."
+             data-lang-en="School project: explore attrition and satisfaction. First interactive apps and insight storytelling."></p>
           <a class="btn-secondary hover:bg-cyan-600/30" href="https://lnkd.in/eKs-Z5ax" target="_blank" rel="noopener" data-lang-fr="▶ Voir le Code Source" data-lang-en="▶ View Source Code"></a>
         </article>
       </div>
     </section>
 
-    <!-- Missions Stratégiques -->
+    <!-- Missions Stratégiques (reformulées côté junior : prototypes/POC) -->
     <section id="missions-strategiques" class="section relative">
       <div class="absolute -inset-2 rounded-2xl border border-violet-500/20 pointer-events-none" style="animation:pulse-glow 6s infinite ease-in-out"></div>
-      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Missions Stratégiques & IA" data-lang-en="Strategic & AI Missions"></h2>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Prototypes & POC (Guidés)" data-lang-en="Prototypes & POCs (Guided)"></h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <article class="block mission-card card-3d-tilt ms-aria">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Agent IA « ARIA »</h3>
-          <p class="text-white/80" data-lang-fr="**Situation** : Les décideurs manquent de temps pour explorer les dashboards. **Action** : Conception d'un agent conversationnel qui fournit des insights en temps réel. **Résultat** : Un prototype fonctionnel qui accélère la prise de décision."
-             data-lang-en="**Situation**: Decision-makers lack time to explore dashboards. **Action**: Designed a conversational agent providing real-time insights. **Result**: A functional prototype that speeds up decision-making."></p>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Agent IA « ARIA » (POC)</h3>
+          <p class="text-white/80" data-lang-fr="Dans une logique d’apprentissage, j’ai prototypé un agent qui répond à des questions sur des KPI. Objectif : accélérer la lecture des dashboards (démonstration guidée)."
+             data-lang-en="As a learning exercise, I prototyped an agent answering KPI questions. Goal: faster dashboard reading (guided demo)."></p>
           <a class="btn-secondary hover:bg-violet-600/30" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
         </article>
         <article class="block mission-card card-3d-tilt ms-scoring">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring"></h3>
-          <p class="text-white/80" data-lang-fr="**Situation** : Une équipe commerciale devait mieux cibler ses prospects. **Action** : Développement d'un modèle ML pour scorer les leads. **Résultat** : Démonstration d'une priorisation qui pourrait augmenter la conversion de +30%."
-             data-lang-en="**Situation**: A sales team needed to better target its prospects. **Action**: Developed an ML model to score leads. **Result**: Demonstrated a prioritization that could increase conversion by +30%."></p>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]" data-lang-fr="Scoring (premiers essais)" data-lang-en="Scoring (first tries)"></h3>
+          <p class="text-white/80" data-lang-fr="J’ai expérimenté un petit modèle de scoring pour prioriser des leads (échantillon réduit, sous encadrement)."
+             data-lang-en="Experimented with a small scoring model to prioritize leads (small sample, supervised)."></p>
           <a class="btn-secondary hover:bg-green-600/30" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
         </article>
         <article class="block mission-card card-3d-tilt ms-clean">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Data Clean</h3>
-          <p class="text-white/80" data-lang-fr="**Situation** : Le nettoyage des données est chronophage et répétitif. **Action** : Création d'un outil web pour automatiser le nettoyage en un clic. **Résultat** : Un gain de temps potentiel de 90% sur la préparation des données."
-             data-lang-en="**Situation**: Data cleaning is time-consuming and repetitive. **Action**: Created a web tool to automate cleaning in one click. **Result**: A potential 90% time saving on data preparation."></p>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Data Clean (prototype)</h3>
+          <p class="text-white/80" data-lang-fr="Prototype d’outil pour automatiser quelques tâches de nettoyage. Objectif : gagner du temps sur la préparation."
+             data-lang-en="Prototype tool to automate some cleaning tasks. Goal: save time on prep."></p>
           <a class="btn-secondary hover:bg-cyan-600/30" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
         </article>
         <article class="block mission-card card-3d-tilt ms-contra">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">ContraScope</h3>
-          <p class="text-white/80" data-lang-fr="**Situation** : L'analyse manuelle de contrats légaux est lente et sujette à erreurs. **Action** : Conception d'un outil IA pour extraire les clauses clés. **Résultat** : Un prototype capable de synthétiser les risques et les points importants."
-             data-lang-en="**Situation**: Manual analysis of legal contracts is slow and error-prone. **Action**: Designed an AI tool to extract key clauses. **Result**: A prototype capable of summarizing risks and key points."></p>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">ContraScope (prototype)</h3>
+          <p class="text-white/80" data-lang-fr="Exploration : extraire des clauses clés d’un contrat et générer un résumé des points d’attention (POC d’apprentissage)."
+             data-lang-en="Exploration: extract key clauses from a contract and summarize focus points (learning POC)."></p>
           <a class="btn-secondary hover:bg-red-600/30" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
         </article>
       </div>
     </section>
 
-    <!-- Solutions Playbook -->
+    <!-- Apprentissages Techniques (ex-Solutions) -->
     <section id="solutions" class="section">
       <h2 class="text-4xl font-bold mb-4 text-center font-[Orbitron]"
-          data-lang-fr="Playbook de Solutions (BI & IA)"
-          data-lang-en="Solutions Playbook (BI & AI)"></h2>
+          data-lang-fr="Apprentissages Techniques (Power BI, Data Quality, IA)"
+          data-lang-en="Technical Learnings (Power BI, Data Quality, AI)"></h2>
 
       <p class="text-center text-white/70 mb-4"
-         data-lang-fr="Voici comment je résous des problèmes concrets côté Power BI, Data Quality et IA, avec des choix techniques expliqués et des résultats mesurés."
-         data-lang-en="Here’s how I solve real problems in Power BI, Data Quality and AI, with explained technical choices and measured outcomes."></p>
+         data-lang-fr="Ce que j’ai appris en formation, en stage et sur des projets personnels. Vocabulaire d’apprentissage : découverte, pratique guidée, premières mises en production."
+         data-lang-en="What I learned in school, internships and personal projects. Learning mindset: discovery, guided practice, first deployments."></p>
 
-      <div class="solutions-tabs" role="tablist" aria-label="Solutions">
-        <button class="active" data-tab="sec-2fa" role="tab" data-lang-fr="2FA & RLS" data-lang-en="2FA & RLS"></button>
-        <button data-tab="sec-refresh" role="tab" data-lang-fr="Refresh & Perf" data-lang-en="Refresh & Perf"></button>
-        <button data-tab="sec-dax" role="tab" data-lang-fr="Choix DAX" data-lang-en="DAX Choices"></button>
-        <button data-tab="sec-3kpi" role="tab" data-lang-fr="Règle des 3 KPI" data-lang-en="3-KPI Rule"></button>
+      <div class="solutions-tabs" role="tablist" aria-label="Apprentissages">
+        <button class="active" data-tab="sec-2fa" role="tab" data-lang-fr="Sécurisation & Partage (découverte)" data-lang-en="Security & Sharing (intro)"></button>
+        <button data-tab="sec-refresh" role="tab" data-lang-fr="Refresh & Perf (premiers réglages)" data-lang-en="Refresh & Perf (first tweaks)"></button>
+        <button data-tab="sec-dax" role="tab" data-lang-fr="DAX : mes choix débutants" data-lang-en="DAX: beginner choices"></button>
+        <button data-tab="sec-3kpi" role="tab" data-lang-fr="Règle des 3 KPI (pratique)" data-lang-en="3-KPI rule (practice)"></button>
       </div>
 
       <div class="solutions-panels">
-        <!-- 2FA & RLS -->
+        <!-- Sécurisation & Partage -->
         <article id="sec-2fa" class="block active" role="tabpanel">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">2FA + RLS sur Power BI</h3>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Sécurisation & Partage (intro)</h3>
           <p class="text-white/80">
-            <strong>Problème :</strong> Accès aux dashboards sensibles sans contrôle fort.<br>
-            <strong>Solution :</strong> Azure AD + MFA (2FA) côté tenant, groupes AAD synchronisés avec des <em>roles</em> Power BI (RLS),
-            <em>Row-Level Security</em> mappé aux entités (BU, pays, manager).
-            <strong>Plus :</strong> <em>Conditional Access</em> (IP/Device) et mode <em>App</em> Power BI pour publier proprement.<br>
-            <strong>Impact :</strong> conformité & sécurité durcies, zéro partage sauvage, traçabilité claire (Audit Logs).
+            <strong>Ce que j’ai appris :</strong> bases du partage propre via <em>Power BI App</em>, notions de <em>RLS</em> (Row-Level Security) et groupes, et bonnes pratiques de liens/permissions.<br>
+            <strong>Niveau :</strong> junior (démos guidées), mise en place avec encadrement.
           </p>
           <div class="solutions-kpis">
-            <div class="k"><strong data-lang-fr="⏱️ Délai d’accès" data-lang-en="⏱️ Access time"></strong><br><span>—30%</span></div>
-            <div class="k"><strong>SPOF</strong><br><span data-lang-fr="Réduit (groupes AAD)" data-lang-en="Reduced (AAD groups)"></span></div>
-            <div class="k"><strong>Adoption</strong><br><span>+15%</span></div>
+            <div class="k"><strong data-lang-fr="Confiance utilisateurs" data-lang-en="User confidence"></strong><br><span>↑</span></div>
+            <div class="k"><strong>Partage</strong><br><span data-lang-fr="Plus clair (App)" data-lang-en="Cleaner (App)"></span></div>
+            <div class="k"><strong>Support</strong><br><span data-lang-fr="Encadrement senior" data-lang-en="Senior support"></span></div>
           </div>
         </article>
 
         <!-- Refresh & perf -->
         <article id="sec-refresh" class="block" role="tabpanel">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Chargements rapides & à jour</h3>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Refresh & Performance (premiers réglages)</h3>
           <p class="text-white/80">
-            <strong>Problème :</strong> Modèles lents et coûteux à rafraîchir.<br>
-            <strong>Solution :</strong> <em>Incremental Refresh</em> (plage glissante),
-            <em>Aggregations</em> (+ tables résumées), <em>Composite models</em> (DirectQuery + Import),
-            <em>Partitions</em> quotidiennes, clés de dates <em>surrogate</em>, et <em>Query Folding</em> respecté (Power Query).<br>
-            <strong>Impact :</strong> coûts & temps de refresh divisés, latence analytique réduite, utilisateurs toujours “near-real-time”.
+            <strong>Ce que j’ai pratiqué :</strong> comprendre <em>Incremental Refresh</em> et le <em>Query Folding</em>, partitions basiques, modèles composites (initiation).<br>
+            <strong>Niveau :</strong> junior — application sur petits jeux de données, supervision pour production.
           </p>
           <div class="solutions-kpis">
-            <div class="k"><strong>Refresh</strong><br><span>—60%</span></div>
-            <div class="k"><strong>Coûts</strong><br><span>—30%</span></div>
-            <div class="k"><strong>Latence</strong><br><span>—40%</span></div>
+            <div class="k"><strong>Refresh</strong><br><span data-lang-fr="Plus rapide (démo)" data-lang-en="Faster (demo)"></span></div>
+            <div class="k"><strong>Coûts</strong><br><span data-lang-fr="Compréhension ↑" data-lang-en="Understanding ↑"></span></div>
+            <div class="k"><strong>Latence</strong><br><span data-lang-fr="Moins visible" data-lang-en="Less visible"></span></div>
           </div>
         </article>
 
         <!-- Choix DAX -->
         <article id="sec-dax" class="block" role="tabpanel">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Pourquoi X plutôt que Y en DAX</h3>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">DAX : mes choix débutants</h3>
           <p class="text-white/80">
-            <strong>Problème :</strong> Mesures instables ou lentes (erreurs de contexte).<br>
-            <strong>Mes choix :</strong>
-            <em>CALCULATE</em> pour piloter le contexte de filtre,
-            <em>SUMX</em> seulement quand l’itération est nécessaire (sinon <em>SUM</em>),
-            variables <em>VAR</em> pour la lisibilité et la perf,
-            colonnes calculées limitées (préférer mesures),
-            table calendrier unique (marquée), relations 1-* strictes,
-            mesures standardisées (<em>_Base</em>, <em>_MTD</em>, <em>_YTD</em>),
-            formatage & noms cohérents.<br>
-            <strong>Impact :</strong> mesures stables, modèles maintenables, temps de rendu en baisse.
+            <strong>Approche :</strong> utiliser <em>CALCULATE</em> pour le contexte de filtre, privilégier <em>SUM</em> aux itérateurs (<em>SUMX</em> si nécessaire), utiliser <em>VAR</em> pour la lisibilité,
+            centraliser une table calendrier unique et nommer clairement les mesures (ex. <em>_YTD</em>).<br>
+            <strong>Objectif :</strong> mesures stables et lisibles, base saine pour progresser.
           </p>
           <div class="solutions-kpis">
-            <div class="k"><strong>Perf visuals</strong><br><span>—25%</span></div>
-            <div class="k"><strong>Erreurs</strong><br><span>—50%</span></div>
-            <div class="k"><strong>Lisibilité</strong><br><span data-lang-fr="+ normes DAX" data-lang-en="+ DAX standards"></span></div>
+            <div class="k"><strong>Lisibilité</strong><br><span>↑</span></div>
+            <div class="k"><strong>Erreurs</strong><br><span data-lang-fr="Réduction (pratique)" data-lang-en="Reduced (practice)"></span></div>
+            <div class="k"><strong>Perf</strong><br><span data-lang-fr="OK pour début" data-lang-en="OK to start"></span></div>
           </div>
         </article>
 
         <!-- Règle des 3 KPI -->
         <article id="sec-3kpi" class="block" role="tabpanel">
-          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Pourquoi seulement 3 KPI par vue</h3>
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Règle des 3 KPI (pratique)</h3>
           <p class="text-white/80">
-            <strong>Problème :</strong> Dashboards surchargés ⇒ décisions lentes.<br>
-            <strong>Cadre :</strong> 1) <em>Outcome</em> (résultat business), 2) <em>Leading</em> (indicateur précurseur),
-            3) <em>Guardrail</em> (garde-fou qualité).<br>
-            <strong>Exemple RH :</strong> Turnover% (Outcome), Délai de recrutement (Leading), Absence% (Guardrail).<br>
-            <strong>Impact :</strong> lecture en 5s, action en 1 clic (drill-through), adoption UX.
+            <strong>Cadre adopté :</strong> 1) <em>Outcome</em>, 2) <em>Leading</em>, 3) <em>Guardrail</em>. Cela m’aide à garder des vues simples et actionnables (lecture rapide, drill-through).
           </p>
           <div class="solutions-kpis">
-            <div class="k"><strong>Adoption</strong><br><span>+20%</span></div>
-            <div class="k"><strong>TTR décision</strong><br><span>—35%</span></div>
-            <div class="k"><strong>Clarté</strong><br><span data-lang-fr="Capacité à arbitrer ↑" data-lang-en="Better trade-offs"></span></div>
+            <div class="k"><strong>Adoption</strong><br><span>↑</span></div>
+            <div class="k"><strong>Clarté</strong><br><span>↑</span></div>
+            <div class="k"><strong>Décision</strong><br><span data-lang-fr="Plus rapide" data-lang-en="Faster"></span></div>
           </div>
         </article>
+      </div>
+    </section>
+
+    <!-- Pourquoi me choisir comme junior -->
+    <section id="why-junior" class="section">
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]"
+          data-lang-fr="Pourquoi me choisir comme junior"
+          data-lang-en="Why hire me as a junior"></h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <article class="block"><h3 class="text-xl font-bold mb-1" data-lang-fr="Motivation & curiosité" data-lang-en="Motivated & curious"></h3><p class="text-white/70 text-sm" data-lang-fr="Je progresse vite, je pose les bonnes questions et je documente." data-lang-en="I learn fast, ask good questions, and document."></p></article>
+        <article class="block"><h3 class="text-xl font-bold mb-1" data-lang-fr="Adaptabilité" data-lang-en="Adaptable"></h3><p class="text-white/70 text-sm" data-lang-fr="À l’aise avec de nouveaux domaines et outils, feedback bienvenu." data-lang-en="Comfortable with new domains/tools, feedback-friendly."></p></article>
+        <article class="block"><h3 class="text-xl font-bold mb-1" data-lang-fr="Formation continue" data-lang-en="Continuous learning"></h3><p class="text-white/70 text-sm" data-lang-fr="MBA Big Data & IA + projets personnels réguliers." data-lang-en="MBA Big Data & AI + steady personal projects."></p></article>
+        <article class="block"><h3 class="text-xl font-bold mb-1" data-lang-fr="Qualité & rigueur" data-lang-en="Quality & rigor"></h3><p class="text-white/70 text-sm" data-lang-fr="Jeux de tests, vérifs de cohérence, clarté des KPI." data-lang-en="Test sets, consistency checks, clear KPIs."></p></article>
+        <article class="block"><h3 class="text-xl font-bold mb-1" data-lang-fr="Autonomie encadrée" data-lang-en="Autonomy with guidance"></h3><p class="text-white/70 text-sm" data-lang-fr="Je sais avancer seul sur des tâches cadrées et escalader si besoin." data-lang-en="I move independently on scoped tasks and escalate when needed."></p></article>
+        <article class="block"><h3 class="text-xl font-bold mb-1" data-lang-fr="Communication simple" data-lang-en="Simple communication"></h3><p class="text-white/70 text-sm" data-lang-fr="Restitutions courtes, slides propres, visuels lisibles." data-lang-en="Short readouts, clean slides, readable visuals."></p></article>
       </div>
     </section>
   </main>
@@ -441,14 +497,14 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
       </a>
     </div>
-    <p>Créé avec ❤️ et IA – 2025</p>
+    <p data-lang-fr="Créé avec ❤️ — profil junior, 2025" data-lang-en="Made with ❤️ — junior profile, 2025">Créé avec ❤️ — profil junior, 2025</p>
   </footer>
 
   <!-- Badge de disponibilité -->
   <div id="availability-badge">
     <button class="bg-green-500/20 border border-green-400 text-green-300 text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2">
       <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
-      <span data-lang-fr="Disponible" data-lang-en="Available"></span>
+      <span data-lang-fr="Ouvert aux opportunités junior" data-lang-en="Open to junior roles"></span>
     </button>
   </div>
 
@@ -462,27 +518,27 @@
   </div>
 
   <!-- CTA sticky recruteur + modal -->
-  <button id="sticky-cta" aria-haspopup="dialog">💼 Discuter d’un besoin / Hire me</button>
+  <button id="sticky-cta" aria-haspopup="dialog" data-lang-fr="💼 Opportunité junior / Stage • CDI" data-lang-en="💼 Junior opportunity / Intern • Full-time">💼 Opportunité junior / Stage • CDI</button>
   <div id="hire-modal" role="dialog" aria-modal="true" aria-labelledby="hire-title">
     <div id="hire-card" class="block">
       <h3 id="hire-title" class="text-2xl font-bold mb-2 font-[Orbitron]"
-          data-lang-fr="Travaillons ensemble"
-          data-lang-en="Let’s work together"></h3>
+          data-lang-fr="Discuter d’une opportunité junior"
+          data-lang-en="Let’s discuss a junior opportunity"></h3>
       <p class="text-white/80 mb-3"
-         data-lang-fr="Je conçois des solutions BI mesurables (Power BI, Data Quality, IA). Dites-moi votre objectif : je propose un plan clair, un pilote rapide, puis un déploiement solide."
-         data-lang-en="I design measurable BI solutions (Power BI, Data Quality, AI). Tell me your goal: I propose a clear plan, a fast pilot, then a robust rollout."></p>
+         data-lang-fr="Jeune diplômé (MBA Big Data & IA), je cherche un stage de fin d’études ou un premier CDI. Je progresse vite : je peux livrer un POC simple sous encadrement (Power BI, Python)."
+         data-lang-en="Recent graduate (MBA Big Data & AI), seeking a final internship or first full-time role. I learn fast and can ship a simple POC with guidance (Power BI, Python)."></p>
       <div class="grid sm:grid-cols-2 gap-3">
         <a href="mailto:nfindaroger@gmail.com" class="btn-primary">✉️ Email</a>
-        <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn-secondary">📅 15-min Call</a>
+        <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn-secondary" data-lang-fr="📅 15 min d’échange" data-lang-en="📅 15-min chat">📅 15 min d’échange</a>
       </div>
-      <button id="hire-close" class="btn-secondary mt-4" style="width:100%">Fermer / Close</button>
+      <button id="hire-close" class="btn-secondary mt-4" style="width:100%" data-lang-fr="Fermer" data-lang-en="Close">Fermer</button>
     </div>
   </div>
 
   <!-- libs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-  <!-- Script principal (langue, fond 3D, menu, sons, compteurs, tilt, agent IA) -->
+  <!-- Script principal -->
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -506,7 +562,7 @@
 
     // Hero title
     const titleEl = document.getElementById('hero-title-interactive');
-    const titleText = "Data to Decision";
+    const titleText = "Junior Data Analyst";
     if (titleEl) {
       titleText.split(' ').forEach(wordText => {
         const wordDiv = document.createElement('div'); wordDiv.className = 'word';
@@ -644,8 +700,26 @@
     if (avatar && bubble && 'speechSynthesis' in window) {
       let currentMsg = '';
       const T = {
-        fr:{header:"Bienvenue ! Je suis l’agent IA d’Ivan. Cliquez-moi pour une visite guidée.", facettes:"Compétences clés d'Ivan : BI, Data Quality, Modélisation.", parcours:"Découvrez les expériences qui ont forgé son expertise.", 'projets-analyse':"Des projets concrets où la data prend vie.", 'missions-strategiques':"Sa vision stratégique avec l'intelligence artificielle.", solutions:"Ses playbooks pour résoudre des problèmes réels."},
-        en:{header:"Welcome! I'm Ivan's AI agent. Click me for a guided tour.", facettes:"Ivan’s core skills: BI, Data Quality, Modeling.", parcours:"Discover the experiences that built his expertise.", 'projets-analyse':"Concrete projects where data comes to life.", 'missions-strategiques':"His strategic vision with AI.", solutions:"Playbooks that solve real problems."}
+        fr:{
+          header:"Bienvenue ! Je suis l’agent IA d’Ivan (profil junior). Cliquez pour une courte visite.",
+          facettes:"Son positionnement junior : bases Power BI/SQL, Data Quality en découverte.",
+          parcours:"Voici ses stages et projets réalisés sous encadrement.",
+          formation:"Ses diplômes et projets académiques clés.",
+          'projets-analyse':"Des projets personnels et d’école pour pratiquer.",
+          'missions-strategiques':"Prototypes/POC réalisés pour apprendre.",
+          solutions:"Ses apprentissages techniques (niveau débutant).",
+          'why-junior':"Pourquoi l’intégrer comme junior dans l’équipe."
+        },
+        en:{
+          header:"Welcome! I'm Ivan’s AI agent (junior profile). Click for a quick tour.",
+          facettes:"Junior positioning: Power BI/SQL basics, learning Data Quality.",
+          parcours:"Internships & projects completed with guidance.",
+          formation:"Degrees and key academic projects.",
+          'projets-analyse':"Personal & school projects to practice.",
+          'missions-strategiques':"Prototypes/POCs built to learn.",
+          solutions:"Technical learnings (beginner level).",
+          'why-junior':"Why he’s a good junior hire."
+        }
       };
       const DICT = T[L];
       function say(msg){
@@ -667,9 +741,11 @@
       const sectionMsgMap = [
         { id:'facettes', msg: DICT.facettes },
         { id:'parcours', msg: DICT.parcours },
+        { id:'formation', msg: DICT.formation },
         { id:'projets-analyse', msg: DICT['projets-analyse'] },
         { id:'missions-strategiques', msg: DICT['missions-strategiques'] },
-        { id:'solutions', msg: DICT['solutions'] }
+        { id:'solutions', msg: DICT['solutions'] },
+        { id:'why-junior', msg: DICT['why-junior'] }
       ];
       const voiceObserver = new IntersectionObserver(es => {
         es.forEach(entry => {
@@ -790,7 +866,7 @@
   })();
   </script>
 
-  <!-- Tabs Solutions, Filtre Projets, CTA modal, Ré-apply Lang -->
+  <!-- Tabs, Filtre, CTA modal, Ré-apply Lang -->
   <script>
   (function(){
     // Tabs
@@ -841,8 +917,8 @@
           const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
           if(txt){ el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
         });
-        // labels boutons filtre & tabs solutions
-        document.querySelectorAll('#project-filter [data-lang-fr],[data-lang-en], .solutions-tabs [data-lang-fr],[data-lang-en]').forEach(el=>{
+        // labels dynamiques
+        document.querySelectorAll('#project-filter [data-lang-fr],[data-lang-en], .solutions-tabs [data-lang-fr],[data-lang-en], #sticky-cta[data-lang-fr],[data-lang-en]').forEach(el=>{
           const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
           if(txt) el.textContent = txt.replace(/<[^>]+>/g,'');
         });
