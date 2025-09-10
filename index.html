@@ -83,7 +83,7 @@
     .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
     .project-card{padding:1.5rem;text-align:left}
     .project-card h3{font-family:'Orbitron',sans-serif}
-    .project-card .btn-secondary{margin-top:auto;text-align:center}
+    .project-card .project-actions{margin-top:auto;display:flex;flex-direction:column;gap:.5rem}
     .mission-card{text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-radius:16px;min-height:280px;padding:1.25rem}
     .mission-card p{font-size:.9rem}
     .mission-card .btn-secondary{margin-top:auto}
@@ -107,6 +107,43 @@
     .timeline{position:relative;padding-left:1rem}
     .timeline::before{content:"";position:absolute;left:.4rem;top:.1rem;bottom:.4rem;width:2px;background:linear-gradient(180deg,rgba(167,139,250,.2),rgba(167,139,250,1),rgba(167,139,250,.2))}
     .t-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(167,139,250,.8)}
+    
+    /* --- STYLES POUR LES MODALES DE PROJET --- */
+    .project-modal {
+      position: fixed; inset: 0; z-index: 100;
+      display: none; place-items: center;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 1.5rem;
+    }
+    .project-modal.open { display: grid; }
+    .project-modal-content {
+      background: #0d0b21;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 16px;
+      max-width: 800px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: modal-fade-in .4s ease;
+    }
+    @keyframes modal-fade-in { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: scale(1); } }
+    .project-modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(255,255,255,.1); border: none;
+      color: var(--text); font-size: 1.5rem;
+      width: 32px; height: 32px; border-radius: 99px;
+      cursor: pointer; display: grid; place-items: center;
+      transition: background .2s;
+    }
+    .project-modal-close:hover { background: rgba(255,255,255,.2); }
+    .project-modal-content h3 { font-family: 'Orbitron', sans-serif; }
+    .project-modal-content h4 { font-weight: 700; color: var(--accent); margin-top: 1.25rem; margin-bottom: .5rem; }
+    .project-modal-content ul { list-style-position: inside; padding-left: .5rem; }
+    .project-modal-content li { margin-bottom: .4rem; }
+    .project-modal-content code { background: rgba(255,255,255,.1); padding: .1rem .3rem; border-radius: 4px; font-size: .85rem; }
+    
     @media (max-width:640px){
       #ia-agent{flex-direction:column;align-items:flex-start}
       #ia-bubble{max-width:calc(100vw - 4rem)}
@@ -128,7 +165,6 @@
     @keyframes etl-move{0%{transform:translate(-10%,110%)}50%{transform:translate(50%,50%)}100%{transform:translate(110%,-10%)}}
     a.btn-primary:hover,a.btn-secondary:hover,button:hover{box-shadow:0 0 14px rgba(167,139,250,.35),0 0 34px rgba(124,58,237,.25)}
     a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-    /* Popup dispo */
     #availability-badge .availability-popup{position:absolute;bottom:100%;right:0;margin-bottom:.5rem;background:rgba(22,19,46,.85);backdrop-filter:blur(10px);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.18);width:max-content;opacity:0;transform:translateY(10px) scale(.95);transition:all .3s ease;pointer-events:none}
     #availability-badge .availability-popup.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
     #availability-badge .availability-popup a{display:block;color:var(--muted);text-decoration:none;margin-top:.35rem;transition:color .2s}
@@ -141,9 +177,7 @@
       .hero-title.title-wow .char{text-shadow:0 0 8px rgba(167,139,250,.8),0 0 18px rgba(167,139,250,.5),0 0 28px rgba(124,58,237,.45)}
       a.btn-primary,a.btn-secondary,button{min-height:44px}
     }
-    /* Canvas de fond pour effets */
     .project-bg-canvas,.mission-bg-canvas{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.95}
-    /* === APPRENTISSAGES TECHNIQUES === */
     #solutions{position:relative}
     .solutions-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
     .solutions-tabs button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(6px);padding:.5rem .8rem;border-radius:.6rem;font-weight:600}
@@ -152,11 +186,9 @@
     .solutions-panels>article.active{display:block}
     .solutions-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
     .solutions-kpis .k{padding:1rem;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(16,14,31,.55)}
-    /* === FILTER PROJETS === */
     #project-filter{display:flex;gap:.5rem;justify-content:center;margin:-.5rem 0 1.25rem;flex-wrap:wrap}
     #project-filter button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);padding:.45rem .7rem;border-radius:9999px;font-weight:600;font-size:.85rem}
     #project-filter button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent}
-    /* === CTA sticky recruteur === */
     #sticky-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:60;background:linear-gradient(135deg,var(--violet),var(--accent));color:#fff;border-radius:9999px;padding:.55rem .9rem;display:flex;align-items:center;gap:.6rem;font-weight:800;box-shadow:0 12px 40px rgba(124,58,237,.45)}
     #hire-modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);z-index:70}
     #hire-modal.open{display:grid}
@@ -262,24 +294,8 @@
              data-lang-en="IS architecture, data modeling, project management. Projects: mini-ETL (Python/pandas), table normalization, R Shiny mockup for attrition analysis."></p>
         </article>
       </div>
-      <div class="grid md:grid-cols-3 gap-4 mt-4">
-        <div class="block">
-          <h3 class="font-semibold" data-lang-fr="Projet École — Dashboard Ventes" data-lang-en="School Project — Sales Dashboard"></h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Modèle étoile simple, filtres région/produit, KPI : CA, marge, commandes."
-             data-lang-en="Simple star schema, region/product filters, KPIs: Revenue, Margin, Orders."></p>
-        </div>
-        <div class="block">
-          <h3 class="font-semibold" data-lang-fr="Projet École — Attrition RH (R Shiny)" data-lang-en="School Project — HR Attrition (R Shiny)"></h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Visualisation taux d’attrition, satisfaction, équilibre vie pro/perso."
-             data-lang-en="Visualizing attrition rate, satisfaction, work-life balance."></p>
-        </div>
-        <div class="block">
-          <h3 class="font-semibold" data-lang-fr="Projet Perso — Data Clean (Web)" data-lang-en="Side Project — Data Clean (Web)"></h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Prototype d’outil pour nettoyer des CSV (valeurs manquantes, types)."
-             data-lang-en="Prototype tool to clean CSVs (missing values, types)."></p>
-        </div>
-      </div>
     </section>
+
     <section id="projets-analyse" class="section" data-project-bg="spotify">
       <h2 class="text-4xl font-bold mb-4 text-center font-[Orbitron]" data-lang-fr="Projets d'Analyse & BI" data-lang-en="Analysis & BI Projects"></h2>
       <div id="project-filter" aria-label="Filtrer les projets">
@@ -289,26 +305,38 @@
         <button data-tag="ia">IA</button>
       </div>
       <div class="project-grid">
+        
         <article class="block project-card card-3d-tilt" data-tags="powerbi">
           <h3 class="text-xl font-bold mb-2">Analyse Spotify 2024</h3>
           <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-green-600/20 text-green-300 rounded-full">Power BI</span>
-          <p class="text-white/80 text-sm mb-4" data-lang-fr="Projet personnel : visualiser des tendances de streaming, identifier artistes/périodes clés. Focus : filtres clairs, export rapide."
-             data-lang-en="Personal project: visualize streaming trends, identify key artists/periods. Focus: clear filters, quick export."></p>
-          <a class="btn-secondary hover:bg-green-600/30" href="https://lnkd.in/epwcAy9U" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur LinkedIn" data-lang-en="▶ View on LinkedIn"></a>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Dashboard interactif pour explorer les tendances musicales, les artistes populaires et les caractéristiques audio des titres. Un projet complet de l'ETL à la visualisation."
+             data-lang-en="Interactive dashboard to explore music trends, popular artists, and track audio features. A complete project from ETL to visualization."></p>
+          <div class="project-actions">
+            <button data-modal-target="spotify-modal" class="btn-primary w-full text-center text-sm" data-lang-fr="Voir les détails (STAR)" data-lang-en="View Details (STAR)"></button>
+            <a class="btn-secondary w-full text-center text-sm" href="https://github.com/IvanRoger12/PowerBI-Spotify-Analysis" target="_blank" rel="noopener" data-lang-fr="Code sur GitHub" data-lang-en="Code on GitHub"></a>
+          </div>
         </article>
+
         <article class="block project-card card-3d-tilt" data-project-bg="dashboard-rh" data-tags="powerbi">
           <h3 class="text-xl font-bold mb-2">Dashboard RH & Rétention</h3>
           <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-violet-600/20 text-violet-300 rounded-full">Power BI / DAX</span>
-          <p class="text-white/80 text-sm mb-4" data-lang-fr="Projet d’école : performance & rétention. Définition de 3 KPI par vue (outcome/leading/guardrail) pour une lecture rapide."
-             data-lang-en="School project: performance & retention. Defined 3 KPIs per view (outcome/leading/guardrail) for quick reading."></p>
-          <a class="btn-secondary hover:bg-violet-600/30" href="https://lnkd.in/eEwhc6-H" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur GitHub" data-lang-en="▶ View on GitHub"></a>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Analyse des données RH pour comprendre les facteurs d'attrition et améliorer la rétention. Un focus sur des KPIs clairs et des insights actionnables pour la direction."
+             data-lang-en="Analyzing HR data to understand attrition factors and improve retention. A focus on clear KPIs and actionable insights for management."></p>
+          <div class="project-actions">
+            <button data-modal-target="rh-modal" class="btn-primary w-full text-center text-sm" data-lang-fr="Voir les détails (STAR)" data-lang-en="View Details (STAR)"></button>
+            <a class="btn-secondary w-full text-center text-sm" href="https://github.com/IvanRoger12/PowerBI-HR-Dashboard" target="_blank" rel="noopener" data-lang-fr="Code sur GitHub" data-lang-en="Code on GitHub"></a>
+          </div>
         </article>
+        
         <article class="block project-card card-3d-tilt" data-tags="rshiny ia">
-          <h3 class="text-xl font-bold mb-2">Attrition RH (R Shiny)</h3>
+          <h3 class="text-xl font-bold mb-2">Application d'Analyse d'Attrition</h3>
           <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-cyan-600/20 text-cyan-300 rounded-full">R Shiny</span>
-          <p class="text-white/80 text-sm mb-4" data-lang-fr="Projet d’école : explorer l’attrition et la satisfaction. Création d'apps interactives et story-telling des insights."
-             data-lang-en="School project: explore attrition and satisfaction. First interactive apps and insight storytelling."></p>
-          <a class="btn-secondary hover:bg-cyan-600/30" href="https://lnkd.in/eKs-Z5ax" target="_blank" rel="noopener" data-lang-fr="▶ Voir le Code Source" data-lang-en="▶ View Source Code"></a>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Développement d'une application web interactive avec R Shiny pour permettre aux managers d'explorer de manière autonome les données sur l'attrition des employés."
+             data-lang-en="Development of an interactive web application with R Shiny to allow managers to autonomously explore employee attrition data."></p>
+          <div class="project-actions">
+            <button data-modal-target="rshiny-modal" class="btn-primary w-full text-center text-sm" data-lang-fr="Voir les détails (STAR)" data-lang-en="View Details (STAR)"></button>
+            <a class="btn-secondary w-full text-center text-sm" href="https://github.com/IvanRoger12/RShiny-HR-Attrition-App" target="_blank" rel="noopener" data-lang-fr="Code sur GitHub" data-lang-en="Code on GitHub"></a>
+          </div>
         </article>
       </div>
     </section>
@@ -458,6 +486,102 @@
       <button id="hire-close" class="btn-secondary mt-4" style="width:100%" data-lang-fr="Fermer" data-lang-en="Close"></button>
     </div>
   </div>
+
+  <div id="spotify-modal" class="project-modal">
+    <div class="project-modal-content">
+      <button class="project-modal-close">&times;</button>
+      <h3 class="text-2xl font-bold mb-2">Analyse des Tendances Spotify 2024</h3>
+      <p class="text-white/70 text-sm mb-4">Un dashboard Power BI complet pour décrypter les musiques qui ont marqué l'année.</p>
+      
+      <h4 data-lang-fr="Situation" data-lang-en="Situation"></h4>
+      <p data-lang-fr="Dans un contexte personnel de formation continue, je voulais maîtriser le cycle de vie complet d'un projet BI : de la collecte de données brutes à la présentation d'insights via un dashboard interactif. Le jeu de données de Spotify, riche et complexe, était un excellent cas d'étude pour appliquer des techniques d'ETL, de modélisation et de data visualisation."
+         data-lang-en="As part of my ongoing self-training, I aimed to master the complete lifecycle of a BI project: from raw data collection to presenting insights via an interactive dashboard. The rich and complex Spotify dataset was an excellent case study to apply ETL, modeling, and data visualization techniques."></p>
+
+      <h4 data-lang-fr="Tâche" data-lang-en="Task"></h4>
+      <p data-lang-fr="Mon objectif était de créer un rapport Power BI permettant à un utilisateur non-technique d'explorer les données musicales. Le dashboard devait répondre à des questions comme : Quels sont les artistes les plus populaires ? Quelles sont les caractéristiques audio (dansabilité, énergie) des titres à succès ? Comment la popularité a-t-elle évolué au fil des mois ?"
+         data-lang-en="My goal was to create a Power BI report allowing a non-technical user to explore music data. The dashboard needed to answer questions like: Who are the most popular artists? What are the audio features (danceability, energy) of hit songs? How has popularity evolved over the months?"></p>
+
+      <h4 data-lang-fr="Actions" data-lang-en="Actions"></h4>
+      <ul class="list-disc text-white/90 text-sm">
+        <li data-lang-fr="<strong>Extraction et Transformation (ETL) :</strong> J'ai utilisé <code>Power Query</code> pour importer et nettoyer les données depuis un fichier CSV. Les actions incluaient la gestion des valeurs nulles, la correction des types de données et la création d'une colonne de date exploitable."
+            data-lang-en="<strong>Extraction and Transformation (ETL):</strong> I used <code>Power Query</code> to import and clean the data from a CSV file. Actions included handling null values, correcting data types, and creating a usable date column."></li>
+        <li data-lang-fr="<strong>Modélisation des Données :</strong> J'ai structuré les données en un modèle en étoile simple avec une table de faits (les chansons) et des dimensions (artistes, dates). Cela a permis d'optimiser les performances des calculs et des filtres."
+            data-lang-en="<strong>Data Modeling:</strong> I structured the data into a simple star schema with a fact table (songs) and dimensions (artists, dates). This optimized the performance of calculations and filters."></li>
+        <li data-lang-fr="<strong>Calculs DAX :</strong> J'ai écrit plusieurs mesures <code>DAX</code> pour créer des indicateurs clés comme le nombre total de streams, le nombre d'artistes uniques, et la moyenne des caractéristiques audio (ex: <code>AVERAGE('Spotify'[Danceability])</code>)."
+            data-lang-en="<strong>DAX Calculations:</strong> I wrote several <code>DAX</code> measures to create key indicators like total streams, unique artist count, and average audio features (e.g., <code>AVERAGE('Spotify'[Danceability])</code>)."></li>
+        <li data-lang-fr="<strong>Visualisation et Interactivité :</strong> J'ai conçu une interface utilisateur intuitive avec des filtres (par artiste, par mois), des graphiques (top 10 artistes, évolution des streams) et des cartes pour présenter les informations de manière claire et concise."
+            data-lang-en="<strong>Visualization and Interactivity:</strong> I designed an intuitive user interface with filters (by artist, by month), charts (top 10 artists, stream evolution), and cards to present information clearly and concisely."></li>
+      </ul>
+
+      <h4 data-lang-fr="Résultats" data-lang-en="Results"></h4>
+      <p data-lang-fr="Le dashboard final est un outil performant et visuellement agréable qui démontre ma capacité à transformer des données brutes en un rapport décisionnel. Il a permis d'identifier rapidement des tendances, comme la corrélation entre la 'valence' (positivité musicale) et la popularité des titres durant l'été. Ce projet a solidifié mes compétences sur Power BI, de la préparation de données à la restitution."
+         data-lang-en="The final dashboard is a high-performing and visually appealing tool demonstrating my ability to turn raw data into a decision-making report. It allowed for the quick identification of trends, such as the correlation between 'valence' (musical positivity) and track popularity during the summer. This project solidified my skills in Power BI, from data preparation to reporting."></p>
+    </div>
+  </div>
+
+  <div id="rh-modal" class="project-modal">
+    <div class="project-modal-content">
+      <button class="project-modal-close">&times;</button>
+      <h3 class="text-2xl font-bold mb-2">Dashboard RH & Analyse de la Rétention</h3>
+      <p class="text-white/70 text-sm mb-4">Un outil stratégique pour aider les managers à comprendre et à agir sur l'attrition du personnel.</p>
+      
+      <h4 data-lang-fr="Situation" data-lang-en="Situation"></h4>
+      <p data-lang-fr="Dans le cadre d'un projet académique simulant une entreprise, le département RH faisait face à un taux de départ (attrition) croissant sans comprendre les raisons profondes. Les données sur les employés étaient dispersées dans plusieurs fichiers, rendant toute analyse globale fastidieuse et sujette aux erreurs."
+         data-lang-en="In a simulated corporate academic project, the HR department faced a rising attrition rate without understanding the root causes. Employee data was scattered across multiple files, making any global analysis tedious and error-prone."></p>
+
+      <h4 data-lang-fr="Tâche" data-lang-en="Task"></h4>
+      <p data-lang-fr="Ma mission était de centraliser ces données et de concevoir un dashboard Power BI pour identifier les principaux facteurs d'attrition. Le rapport devait permettre de filtrer par département, par niveau de séniorité et par niveau de satisfaction afin de fournir des insights ciblés aux managers."
+         data-lang-en="My mission was to centralize this data and design a Power BI dashboard to identify the main drivers of attrition. The report needed to allow filtering by department, seniority level, and satisfaction level to provide targeted insights to managers."></p>
+
+      <h4 data-lang-fr="Actions" data-lang-en="Actions"></h4>
+      <ul class="list-disc text-white/90 text-sm">
+        <li data-lang-fr="<strong>Consolidation des Données :</strong> J'ai utilisé <code>Power Query</code> pour fusionner des données provenant de trois sources : un export du SIRH, les résultats d'une enquête de satisfaction et un fichier de suivi des salaires."
+            data-lang-en="<strong>Data Consolidation:</strong> I used <code>Power Query</code> to merge data from three sources: an HRIS export, satisfaction survey results, and a salary tracking file."></li>
+        <li data-lang-fr="<strong>Création de KPIs pertinents :</strong> Avec <code>DAX</code>, j'ai développé des mesures clés comme le Taux d'Attrition (`Attrition Rate`), la Satisfaction Moyenne par Département, et un indicateur de 'Risque de Départ' basé sur plusieurs facteurs (satisfaction basse, ancienneté faible, etc.)."
+            data-lang-en="<strong>Creation of Relevant KPIs:</strong> Using <code>DAX</code>, I developed key measures like Attrition Rate, Average Satisfaction by Department, and a 'Flight Risk' indicator based on several factors (low satisfaction, low tenure, etc.)."></li>
+        <li data-lang-fr="<strong>Storytelling Visuel :</strong> Le dashboard a été structuré en trois pages : une vue d'ensemble (macro), une analyse détaillée des départs (causes et profils), et une vue prospective sur les employés 'à risque'. J'ai utilisé des visuels conditionnels pour mettre en évidence les zones problématiques (ex: un département en rouge si son taux d'attrition dépasse la moyenne)."
+            data-lang-en="<strong>Visual Storytelling:</strong> The dashboard was structured into three pages: a macro overview, a detailed analysis of departures (causes and profiles), and a forward-looking view of 'at-risk' employees. I used conditional formatting to highlight problem areas (e.g., a department in red if its attrition rate exceeds the average)."></li>
+      </ul>
+
+      <h4 data-lang-fr="Résultats" data-lang-en="Results"></h4>
+      <p data-lang-fr="Le dashboard a révélé des insights cruciaux : le taux d'attrition était 30% plus élevé dans le département des ventes, et corrélé à un faible score de satisfaction concernant l'équilibre vie pro/perso. Ces informations ont permis de proposer des actions ciblées (ex: révision des plannings). Ce projet montre ma capacité à traduire un problème métier en une solution BI actionnable, qui guide la prise de décision."
+         data-lang-en="The dashboard revealed crucial insights: the attrition rate was 30% higher in the sales department and correlated with a low satisfaction score regarding work-life balance. This information led to targeted action proposals (e.g., schedule reviews). This project demonstrates my ability to translate a business problem into an actionable BI solution that guides decision-making."></p>
+    </div>
+  </div>
+
+  <div id="rshiny-modal" class="project-modal">
+    <div class="project-modal-content">
+      <button class="project-modal-close">&times;</button>
+      <h3 class="text-2xl font-bold mb-2">Application d'Analyse d'Attrition avec R Shiny</h3>
+      <p class="text-white/70 text-sm mb-4">Une application web interactive pour une exploration autonome et approfondie des données RH.</p>
+      
+      <h4 data-lang-fr="Situation" data-lang-en="Situation"></h4>
+      <p data-lang-fr="Suite à la création du dashboard Power BI, les managers RH ont exprimé le besoin d'un outil plus flexible pour tester des hypothèses de manière dynamique (ex: 'Quel est l'impact du niveau de salaire sur la satisfaction pour les employés de moins de 2 ans d'ancienneté ?'). Un rapport statique ne suffisait plus."
+         data-lang-en="Following the creation of the Power BI dashboard, HR managers expressed a need for a more flexible tool to dynamically test hypotheses (e.g., 'What is the impact of salary level on satisfaction for employees with less than 2 years of tenure?'). A static report was no longer sufficient."></p>
+
+      <h4 data-lang-fr="Tâche" data-lang-en="Task"></h4>
+      <p data-lang-fr="L'objectif était de développer un prototype d'application web avec <code>R Shiny</code>. L'application devait permettre aux utilisateurs de sélectionner des variables (ex: département, satisfaction, salaire) pour générer des visualisations et des statistiques descriptives à la volée, sans avoir besoin de compétences techniques."
+         data-lang-en="The goal was to develop a web application prototype using <code>R Shiny</code>. The app had to allow users to select variables (e.g., department, satisfaction, salary) to generate on-the-fly visualizations and descriptive statistics, without needing technical skills."></p>
+
+      <h4 data-lang-fr="Actions" data-lang-en="Actions"></h4>
+      <ul class="list-disc text-white/90 text-sm">
+        <li data-lang-fr="<strong>Développement de l'UI (Interface Utilisateur) :</strong> J'ai conçu une interface simple avec <code>shiny::fluidPage</code>, contenant un panneau latéral (<code>sidebarPanel</code>) pour les filtres (sliders, menus déroulants) et un panneau principal (<code>mainPanel</code>) pour afficher les graphiques et les tables."
+            data-lang-en="<strong>UI Development:</strong> I designed a simple interface using <code>shiny::fluidPage</code>, containing a <code>sidebarPanel</code> for filters (sliders, dropdown menus) and a <code>mainPanel</code> to display charts and tables."></li>
+        <li data-lang-fr="<strong>Logique Serveur (Réactivité) :</strong> Dans la partie <code>server</code> de l'application, j'ai utilisé des expressions réactives (<code>reactive()</code>) pour que les données se filtrent automatiquement en fonction des choix de l'utilisateur. Les graphiques, créés avec <code>ggplot2</code>, se mettaient à jour instantanément."
+            data-lang-en="<strong>Server Logic (Reactivity):</strong> In the <code>server</code> part of the app, I used reactive expressions (<code>reactive()</code>) so that the data would filter automatically based on user input. The charts, created with <code>ggplot2</code>, updated instantly."></li>
+        <li data-lang-fr="<strong>Manipulation des Données :</strong> J'ai utilisé les packages du Tidyverse (<code>dplyr</code>, <code>tidyr</code>) pour préparer les données en amont et pour les manipuler efficacement au sein de la logique réactive du serveur."
+            data-lang-en="<strong>Data Manipulation:</strong> I used Tidyverse packages (<code>dplyr</code>, <code>tidyr</code>) to prepare the data beforehand and to manipulate it efficiently within the server's reactive logic."></li>
+        <li data-lang-fr="<strong>Déploiement (Concept) :</strong> J'ai préparé l'application pour un déploiement potentiel sur une plateforme comme 'shinyapps.io', démontrant ma compréhension du cycle de vie d'un produit data de bout en bout."
+            data-lang-en="<strong>Deployment (Concept):</strong> I prepared the app for potential deployment on a platform like 'shinyapps.io', demonstrating my understanding of the end-to-end data product lifecycle."></li>
+      </ul>
+
+      <h4 data-lang-fr="Résultats" data-lang-en="Results"></h4>
+      <p data-lang-fr="Le résultat est une application web fonctionnelle qui offre un niveau d'interactivité et de personnalisation bien supérieur à un dashboard classique. Elle permet aux managers de devenir autonomes dans leur exploration de données et d'accélérer la découverte d'insights. Ce projet met en avant mes compétences en programmation R et ma capacité à construire des outils data sur-mesure."
+         data-lang-en="The result is a functional web application that offers a much higher level of interactivity and customization than a classic dashboard. It empowers managers to become autonomous in their data exploration and accelerates the discovery of insights. This project highlights my R programming skills and my ability to build custom data tools."></p>
+    </div>
+  </div>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -809,6 +933,32 @@
       close?.addEventListener('click', ()=> modal.classList.remove('open'));
       modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('open'); });
     }
+
+    // NOUVEAU : Logique pour les modales de projet
+    const modalTriggers = document.querySelectorAll('[data-modal-target]');
+    modalTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const modalId = trigger.getAttribute('data-modal-target');
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add('open');
+        }
+      });
+    });
+
+    const projectModals = document.querySelectorAll('.project-modal');
+    projectModals.forEach(modal => {
+      const closeButton = modal.querySelector('.project-modal-close');
+      closeButton?.addEventListener('click', () => {
+        modal.classList.remove('open');
+      });
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+        }
+      });
+    });
+
     // Réappliquer la langue (labels dynamiques)
     (function reapplyLang(){
       try{
@@ -818,7 +968,7 @@
           if(txt){ el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
         });
         // labels dynamiques
-        document.querySelectorAll('#project-filter [data-lang-fr],[data-lang-en], .solutions-tabs [data-lang-fr],[data-lang-en], #sticky-cta[data-lang-fr],[data-lang-en]').forEach(el=>{
+        document.querySelectorAll('#project-filter [data-lang-fr],[data-lang-en], .solutions-tabs [data-lang-fr],[data-lang-en], #sticky-cta[data-lang-fr],[data-lang-en], .project-actions [data-lang-fr],[data-lang-en]').forEach(el=>{
           const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
           if(txt) el.textContent = txt.replace(/<[^>]+>/g,'');
         });
