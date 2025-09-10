@@ -3,333 +3,852 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ivan Roger NFINDA | Data Analyst & BI Architect | Power BI, RLS, Azure</title>
-  <meta name="description" content="Portfolio d'Ivan Roger Nfinda, Data Analyst expert en architecture BI. Découvrez mes solutions techniques en sécurité (RLS, Azure AD), performance (Incremental Refresh) et UX (Power BI)." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Ivan Roger NFINDA — Data Analyst & BI Portfolio</title>
+  <meta name="description" content="Portfolio d'Ivan Roger Nfinda, Data Analyst spécialisé en BI, Data Quality et IA. Projets Power BI, R Shiny, agents IA et résultats concrets." />
+
+  <!-- Tailwind + Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- ✅ SEO & Social -->
+  <link rel="canonical" href="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ivan Roger NFINDA — Data Analyst & BI">
+  <meta property="og:description" content="Je transforme des données complexes en décisions. Dashboards Power BI, Data Quality, IA (agents, scoring), cas concrets & résultats.">
+  <meta property="og:url" content="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/">
+  <meta property="og:image" content="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/og-cover.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ivan Roger NFINDA — Data Analyst & BI">
+  <meta name="twitter:description" content="Dashboards Power BI, Data Quality & IA. Cas concrets, mesures & résultats.">
+  <meta name="twitter:image" content="https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/og-cover.jpg">
+
+  <!-- ✅ JSON-LD : Person -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Ivan Roger NFINDA CHOUCHINE",
-    "url": "https://your-portfolio-url.com",
-    "jobTitle": "Data Analyst & BI Architect",
-    "email": "nfindaroger@gmail.com",
-    "sameAs": [
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Ivan Roger NFINDA",
+    "jobTitle":"Data Analyst — BI & Data Quality",
+    "url":"https://portfolio-ten-alpha-sp2b9k7qqc.vercel.app/",
+    "sameAs":[
       "https://www.linkedin.com/in/ivan-roger-nfinda/",
-      "https://github.com/IvanRoger12"
+      "https://github.com/IvanRoger12",
+      "mailto:nfindaroger@gmail.com"
     ],
-    "knowsAbout": [
-      "Power BI", "DAX Optimization", "Row-Level Security", "Azure Active Directory",
-      "Incremental Refresh", "Data Modeling", "Star Schema", "Power Query M", "DAX Studio"
-    ]
+    "worksFor":{"@type":"Organization","name":"Consultant (freelance/mission)"}
   }
   </script>
+
   <style>
-    /* CRITICAL CSS (<6KB) & ENHANCEMENTS */
-    :root{--bg:#030014;--text:#e6e6f0;--muted:#aab;--violet:#7c3aed;--accent:#a78bfa;--cyan:#22d3ee;--green:#22c55e;--red:#ef4444}
-    *{box-sizing:border-box}
-    body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;overflow-x:hidden}
-    .container{max-width:74rem;margin-inline:auto;padding:1.25rem}
-    header{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden}
-    .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.6rem, 7.6vw, 6.6rem);font-weight:900;line-height:1.05;display:flex;flex-wrap:wrap;justify-content:center;gap:.08em .24em}
-    .btn-primary,.btn-secondary{display:inline-block;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;font-weight:700;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;}
-    .btn-primary{background:linear-gradient(135deg,var(--violet),var(--accent));color:#fff;}
-    .btn-secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18)}
-    
-    .skip-link { position: absolute; top: -100px; left: 0; background: var(--accent); color: var(--bg); padding: 10px; z-index: 10000; transition: top 0.3s; font-weight: 600; }
-    .skip-link:focus { top: 0; }
-    
-    #proof-banner { position: relative; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: center; margin-top: 2.5rem; }
-    #proof-banner span { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--muted); border: 1px solid rgba(170, 170, 187, 0.3); padding: 0.35rem 0.85rem; border-radius: 99px; letter-spacing: 0.05em; position: relative; overflow: hidden; }
-
-    .solution-card { padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
-    .solution-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.75rem; color: var(--cyan); line-height: 1.2; border-bottom: 2px solid var(--cyan); padding-bottom: 0.75rem; margin-bottom: 0.5rem; }
-    .solution-card strong { display: block; font-weight: 600; color: var(--accent); margin-bottom: 0.25rem; letter-spacing: 0.02em;}
-    .solution-card p { margin: 0; color: var(--muted); }
-    .solution-card .impact p { font-size: 1.25rem; font-weight: 700; color: var(--green); }
-    
-    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-    
-    @keyframes typewriter { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes progress-bar { from { width: 0%; } to { width: 100%; } }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .hero-title.typewriter-effect .char { opacity: 0; animation: typewriter 0.1s forwards; }
-      .hero-title.typewriter-effect .char:nth-child(1){animation-delay:0.50s}.hero-title.typewriter-effect .char:nth-child(2){animation-delay:0.65s}.hero-title.typewriter-effect .char:nth-child(3){animation-delay:0.80s}.hero-title.typewriter-effect .char:nth-child(4){animation-delay:0.95s}.hero-title.typewriter-effect .char:nth-child(6){animation-delay:1.10s}.hero-title.typewriter-effect .char:nth-child(7){animation-delay:1.25s}.hero-title.typewriter-effect .char:nth-child(9){animation-delay:1.40s}.hero-title.typewriter-effect .char:nth-child(10){animation-delay:1.55s}.hero-title.typewriter-effect .char:nth-child(11){animation-delay:1.70s}.hero-title.typewriter-effect .char:nth-child(12){animation-delay:1.85s}.hero-title.typewriter-effect .char:nth-child(13){animation-delay:2.00s}.hero-title.typewriter-effect .char:nth-child(14){animation-delay:2.15s}.hero-title.typewriter-effect .char:nth-child(15){animation-delay:2.30s}
-      
-      .progress-indicator { position: absolute; bottom: 0; left: 0; height: 2px; background: var(--cyan); width: 0; }
-      .proof-banner-visible .progress-indicator { animation: progress-bar 2s ease-out forwards; }
-      .proof-banner-visible .p1 { animation-delay: 0.2s; }
-      .proof-banner-visible .p2 { animation-delay: 0.4s; }
-      .proof-banner-visible .p3 { animation-delay: 0.6s; }
+    :root{
+      --bg:#030014;--text:#e6e6f0;--muted:#aab;--violet:#7c3aed;--accent:#a78bfa;--cyan:#22d3ee;--green:#22c55e;--red:#ef4444
     }
-  </style>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;500;600;700&display=swap"></noscript>
-  <style>
-    /* NON-CRITICAL CSS */
-    body{cursor:none} main.container{padding-bottom:6rem} .section{margin-bottom:6.5rem;position:relative} .block{background:rgba(16,14,31,.55);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;padding:1.25rem;box-shadow:0 0 40px rgba(124,58,237,.12);transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column} .block:hover{transform:translateY(-6px);box-shadow:0 30px 60px -12px rgba(124,58,237,.25)} .block p,.timeline p{line-height:1.7} .cursor-dot,.cursor-glow{position:fixed;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999} .cursor-dot{width:8px;height:8px;background:#fff;transition:transform .15s ease,background .15s ease} .cursor-glow{width:50px;height:50px;background:radial-gradient(circle,rgba(167,139,250,.8) 0%,rgba(167,139,250,0) 70%);z-index:9998;transition:transform .2s ease,opacity .2s} .cursor-dot.big{transform:translate(-50%,-50%) scale(5);background-color:rgba(255,255,255,.25)} #interactive-bg{position:fixed;inset:0;z-index:-2} .hero-title .word{display:flex} .hero-title .char{display:inline-block;transition:all .25s ease;text-shadow:0 0 6px rgba(165,180,252,.55),0 0 18px rgba(165,180,252,.55),0 0 34px rgba(124,58,237,.55)} .hero-title:hover .char{transform:translateY(-8px) rotateX(22deg) scale(1.08);color:#fff;text-shadow:0 0 10px #a78bfa,0 0 22px #a78bfa,0 0 44px #a78bfa} @keyframes breath{0%,100%{transform:translateZ(0) scale(1)}50%{transform:translateZ(0) scale(1.015)}} #data-word-cloud{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;pointer-events:none} #data-word-cloud span{position:absolute;color:rgba(167,139,250,0.08);font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4rem);animation:scroll-words linear infinite} @keyframes scroll-words{from{transform:translateY(100vh)}to{transform:translateY(-50vh)}} #data-word-cloud span:nth-of-type(1){left:10%;animation-duration:25s;animation-delay:0s} .btn-primary,.btn-secondary{position:relative;overflow:hidden;z-index:1;transition:all .25s ease} .btn-primary::before,.btn-secondary::before{content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0) 100%);transform:skewX(-25deg);opacity:0;transition:all .7s ease} .btn-primary:hover::before,.btn-secondary:hover::before{left:120%} .btn-primary:active,.btn-secondary:active{transform:translateY(1px) scale(.98) !important;transition-duration:.1s} .btn-primary:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 15px 4px rgba(167,139,250,0.5),0 0 40px 10px rgba(124,58,237,0.35)} .btn-secondary:hover{background:rgba(255,255,255,.16);transform:translateY(-2px) scale(1.04);box-shadow:0 0 12px 2px rgba(255,255,255,0.18)} .section h2{transition:opacity .6s ease,transform .6s ease;opacity:0;transform:translateY(20px);letter-spacing:.05em} .section h2.visible{opacity:1;transform:translateY(0)} #lang-switch{position:fixed;right:1rem;top:1rem;z-index:60;display:flex;gap:.4rem} #lang-switch button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(8px);padding:.35rem .65rem;border-radius:.6rem;font-weight:600} #lang-switch button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent} .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem} #availability-badge{position:fixed;bottom:1.1rem;right:1.1rem;z-index:50} @keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(49,196,141,.7)}70%{box-shadow:0 0 0 10px rgba(49,196,141,0)}} #availability-badge button{animation:pulse-badge 2s infinite} #floating-menu{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.7rem} #floating-menu a{width:12px;height:12px;background-color:rgba(255,255,255,.22);border-radius:9999px;transition:all .3s ease;position:relative} #floating-menu a.active{background-color:var(--accent);transform:scale(1.5)} #floating-menu a .tooltip{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background-color:rgba(16,14,31,.85);color:#fff;padding:.25rem .6rem;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease} #floating-menu a:hover .tooltip{opacity:1} #ia-agent{position:fixed;left:1rem;bottom:1rem;z-index:60;display:flex;align-items:center;gap:.6rem} #ia-avatar{width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,#9b8cfb,#6b4be6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(167,139,250,.6);transition:box-shadow .3s ease;cursor:pointer} @keyframes avatar-glow{0%,100%{box-shadow:0 0 16px rgba(167,139,250,.5)}50%{box-shadow:0 0 40px rgba(167,139,250,.85)}} #ia-bubble{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);color:#fff;font-size:.9rem;padding:.55rem .8rem;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;max-width:260px} .bubble-show{opacity:1 !important;transform:translateY(0)!important} .timeline{position:relative;padding-left:1rem} .timeline::before{content:"";position:absolute;left:0.4rem;top:.1rem;bottom:.4rem;width:2px;background:linear-gradient(180deg,rgba(167,139,250,.2),rgba(167,139,250,1),rgba(167,139,250,.2))} .t-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(167,139,250,.8)}
-    footer .footer-link{display:flex;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;color:var(--muted);transition:color .2s ease} footer .footer-link:hover{color:var(--accent)}
-    .mission-card{display:flex; flex-direction:column;} .mission-card a {margin-top: auto;}
-    @media(max-width:768px){.cta-buttons{flex-direction:column}#floating-menu{min-width:44px}#ia-agent{display:flex;flex-direction:column;align-items:flex-start}#ia-bubble{max-width:calc(100vw - 4rem)}}
+    *{box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;cursor:none;overflow-x:hidden}
+    .container{max-width:74rem;margin-inline:auto;padding:1.25rem}
+    main.container{padding-bottom:6rem}
+    .section{margin-bottom:6.5rem;position:relative}
+    .block{background:rgba(16,14,31,.55);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;padding:1.25rem;box-shadow:0 0 40px rgba(124,58,237,.12);transition:transform .3s ease, box-shadow .3s ease;display:flex;flex-direction:column}
+    .block:hover{transform:translateY(-6px);box-shadow:0 30px 60px -12px rgba(124,58,237,.25)}
+    .block p,.timeline p{line-height:1.7}
+
+    .cursor-dot,.cursor-glow{position:fixed;border-radius:9999px;pointer-events:none;transform:translate(-50%,-50%);z-index:9999}
+    .cursor-dot{width:8px;height:8px;background:#fff;transition:transform .15s ease,background .15s ease}
+    .cursor-glow{width:50px;height:50px;background:radial-gradient(circle,rgba(167,139,250,.8)0%,rgba(167,139,250,0)70%);z-index:9998;transition:transform .2s ease,opacity .2s}
+    .cursor-dot.big{transform:translate(-50%,-50%) scale(5);background-color:rgba(255,255,255,.25)}
+
+    header{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;padding-top:4.5rem}
+    #interactive-bg{position:fixed;inset:0;z-index:-2}
+    .hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.6rem,7.6vw,6.6rem);font-weight:900;line-height:1.05;position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:.08em .24em;perspective:1000px}
+    .hero-title .word{display:flex}
+    .hero-title .char{display:inline-block;transition:all .25s ease;text-shadow:0 0 6px rgba(165,180,252,.55),0 0 18px rgba(165,180,252,.55),0 0 34px rgba(124,58,237,.55);animation:flicker 3.2s infinite alternate}
+    .hero-title:hover .char{transform:translateY(-8px) rotateX(22deg) scale(1.08);color:#fff;text-shadow:0 0 10px #a78bfa,0 0 22px #a78bfa,0 0 44px #a78bfa}
+    .hero-breath{animation:breath 5.2s ease-in-out infinite}
+    @keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1}20%,24%,55%{opacity:.85;filter:brightness(1.15)}}
+    @keyframes breath{0%,100%{transform:translateZ(0) scale(1)}50%{transform:translateZ(0) scale(1.015)}}
+
+    #data-word-cloud{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;pointer-events:none}
+    #data-word-cloud span{position:absolute;color:rgba(167,139,250,0.08);font-family:'Orbitron',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4rem);animation:scroll-words linear infinite;}
+    @keyframes scroll-words{from{transform:translateY(100vh)}to{transform:translateY(-50vh)}}
+    #data-word-cloud span:nth-of-type(1){left:10%;animation-duration:25s;animation-delay:0s}
+
+    .btn-primary,.btn-secondary{position:relative;overflow:hidden;z-index:1;transition:all .25s ease}
+    .btn-primary::before,.btn-secondary::before{content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0) 100%);transform:skewX(-25deg);opacity:0;transition:all .7s ease}
+    .btn-primary:hover::before,.btn-secondary:hover::before{left:120%;opacity:1}
+    .btn-primary:active,.btn-secondary:active{transform:translateY(1px) scale(.98)!important;transition-duration:.1s}
+    .btn-primary{display:inline-block;background:linear-gradient(135deg,var(--violet),var(--accent));color:#fff;font-weight:700;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;box-shadow:0 8px 30px rgba(124,58,237,.45)}
+    .btn-primary:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 15px 4px rgba(167,139,250,.5),0 0 40px 10px rgba(124,58,237,.35)}
+    .btn-secondary{display:inline-block;background:rgba(255,255,255,.08);color:#fff;font-weight:600;padding:.9rem 1.25rem;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,.18)}
+    .btn-secondary:hover{background:rgba(255,255,255,.16);transform:translateY(-2px) scale(1.04);box-shadow:0 0 12px 2px rgba(255,255,255,.18)}
+
+    .section h2{transition:opacity .6s ease,transform .6s ease;opacity:0;transform:translateY(20px);letter-spacing:.05em}
+    .section h2.visible{opacity:1;transform:translateY(0)}
+
+    #lang-switch{position:fixed;right:1rem;top:1rem;z-index:60;display:flex;gap:.4rem}
+    #lang-switch button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(8px);padding:.35rem .65rem;border-radius:.6rem;font-weight:600}
+    #lang-switch button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent}
+
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+    .project-card{padding:1.5rem;text-align:left}
+    .project-card h3{font-family:'Orbitron',sans-serif}
+    .project-card .btn-secondary{margin-top:auto;text-align:center}
+
+    .mission-card{text-align:center;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-radius:16px;min-height:280px;padding:1.25rem}
+    .mission-card p{font-size:.9rem}
+    .mission-card .btn-secondary{margin-top:auto}
+
+    .card-3d-tilt{transform-style:preserve-3d}
+    .card-3d-tilt:hover{transition:transform .1s linear;transform:scale(1.05)}
+    @keyframes pulse-glow{0%,100%{box-shadow:0 0 30px -5px rgba(124,58,237,.3)}50%{box-shadow:0 0 50px 5px rgba(124,58,237,.5)}}
+    .ms-aria::before{content:"";position:absolute;inset:15%;border-radius:50%;background:conic-gradient(from 0deg,rgba(167,139,250,.55),transparent 60%),radial-gradient(circle at 50% 50%,transparent 55%,rgba(167,139,250,.45) 56%,transparent 58%);animation:radar-spin 6s linear infinite;mix-blend-mode:screen;opacity:.45}
+    @keyframes radar-spin{to{transform:rotate(360deg)}}
+
+    #availability-badge{position:fixed;bottom:1.1rem;right:1.1rem;z-index:50}
+    @keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(49,196,141,.7)}70%{box-shadow:0 0 0 10px rgba(49,196,141,0)}}
+    #availability-badge button{animation:pulse-badge 2s infinite}
+
+    #floating-menu{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:.7rem}
+    #floating-menu a{width:12px;height:12px;background-color:rgba(255,255,255,.22);border-radius:9999px;transition:all .3s ease;position:relative}
+    #floating-menu a.active{background-color:var(--accent);transform:scale(1.5)}
+    #floating-menu a .tooltip{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);background-color:rgba(16,14,31,.85);color:#fff;padding:.25rem .6rem;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
+    #floating-menu a:hover .tooltip{opacity:1}
+
+    #ia-agent{position:fixed;left:1rem;bottom:1rem;z-index:60;display:flex;align-items:center;gap:.6rem}
+    #ia-avatar{width:56px;height:56px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,#9b8cfb,#6b4be6);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(167,139,250,.6);transition:box-shadow .3s ease;cursor:pointer}
+    #ia-bubble{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);color:#fff;font-size:.9rem;padding:.55rem .8rem;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;max-width:260px}
+    .bubble-show{opacity:1!important;transform:translateY(0)!important}
+
+    .timeline{position:relative;padding-left:1rem}
+    .timeline::before{content:"";position:absolute;left:.4rem;top:.1rem;bottom:.4rem;width:2px;background:linear-gradient(180deg,rgba(167,139,250,.2),rgba(167,139,250,1),rgba(167,139,250,.2))}
+    .t-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(167,139,250,.8)}
+
+    @media (max-width:640px){
+      #ia-agent{flex-direction:column;align-items:flex-start}
+      #ia-bubble{max-width:calc(100vw - 4rem)}
+      footer p{font-size:.8rem}
+    }
     @media (pointer:coarse){body{cursor:auto}.cursor-dot,.cursor-glow{display:none}}
+    @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important}#interactive-bg{display:none}}
+
+    /* --- PATCH CSS ADD-ON --- */
+    .hero-title.title-wow .char{text-shadow:0 0 10px rgba(167,139,250,.9),0 0 22px rgba(167,139,250,.6),0 0 44px rgba(124,58,237,.55)}
+    .hero-title.title-wow:hover .char{filter:brightness(1.15)}
+    #missions-strategiques.ai-bg{isolation:isolate}
+    #missions-strategiques.ai-bg::before{content:"";position:absolute;inset:-2px;z-index:-1;pointer-events:none;background:radial-gradient(60rem 30rem at 110% 120%,rgba(167,139,250,.10),transparent 45%),radial-gradient(80rem 40rem at -10% -10%,rgba(124,58,237,.12),transparent 45%);animation:ai-aurora 10s ease-in-out infinite alternate;opacity:.9}
+    @keyframes ai-aurora{0%{filter:hue-rotate(0) brightness(1)}100%{filter:hue-rotate(20deg) brightness(1.08)}}
+    #projets-analyse.bi-anim .project-card{position:relative}
+    #projets-analyse.bi-anim .project-card.bi-armed::after{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),rgba(255,255,255,0));opacity:.85;transition:width .9s ease-out}
+    #projets-analyse.bi-anim .project-card.in::after{width:100%}
+    .etl-flow{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.15}
+    .etl-flow i{position:absolute;width:6px;height:6px;border-radius:9999px;background:var(--cyan);animation:etl-move 4.5s linear infinite}
+    @keyframes etl-move{0%{transform:translate(-10%,110%)}50%{transform:translate(50%,50%)}100%{transform:translate(110%,-10%)}}
+    a.btn-primary:hover,a.btn-secondary:hover,button:hover{box-shadow:0 0 14px rgba(167,139,250,.35),0 0 34px rgba(124,58,237,.25)}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+    /* Popup dispo */
+    #availability-badge .availability-popup{position:absolute;bottom:100%;right:0;margin-bottom:.5rem;background:rgba(22,19,46,.85);backdrop-filter:blur(10px);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.18);width:max-content;opacity:0;transform:translateY(10px) scale(.95);transition:all .3s ease;pointer-events:none}
+    #availability-badge .availability-popup.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    #availability-badge .availability-popup a{display:block;color:var(--muted);text-decoration:none;margin-top:.35rem;transition:color .2s}
+    #availability-badge .availability-popup a:hover{color:var(--accent)}
+
+    #missions-strategiques .mission-card p,#projets-analyse .project-card p,header p{max-inline-size:68ch;margin-inline:auto;text-wrap:pretty;hyphens:auto;line-height:1.75}
+    #missions-strategiques .mission-card h3,#projets-analyse .project-card h3{letter-spacing:.01em}
+
+    #ia-bubble{max-width:min(92vw,520px)}
+    @media (max-width:768px){
+      #ia-agent{left:.75rem;bottom:.75rem}
+      .hero-title.title-wow .char{text-shadow:0 0 8px rgba(167,139,250,.8),0 0 18px rgba(167,139,250,.5),0 0 28px rgba(124,58,237,.45)}
+      a.btn-primary,a.btn-secondary,button{min-height:44px}
+    }
+
+    /* Canvas de fond pour effets */
+    .project-bg-canvas,.mission-bg-canvas{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.95}
+
+    /* === SOLUTIONS PLAYBOOK === */
+    #solutions{position:relative}
+    .solutions-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
+    .solutions-tabs button{border:1px solid rgba(255,255,255,.15);background:rgba(16,14,31,.7);backdrop-filter:blur(6px);padding:.5rem .8rem;border-radius:.6rem;font-weight:600}
+    .solutions-tabs button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent}
+    .solutions-panels>article{display:none}
+    .solutions-panels>article.active{display:block}
+    .solutions-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
+    .solutions-kpis .k{padding:1rem;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(16,14,31,.55)}
+
+    /* === FILTER PROJETS === */
+    #project-filter{display:flex;gap:.5rem;justify-content:center;margin:-.5rem 0 1.25rem;flex-wrap:wrap}
+    #project-filter button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);padding:.45rem .7rem;border-radius:9999px;font-weight:600;font-size:.85rem}
+    #project-filter button.active{background:linear-gradient(135deg,var(--violet),var(--accent));border-color:transparent}
+
+    /* === CTA sticky recruteur === */
+    #sticky-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:60;background:linear-gradient(135deg,var(--violet),var(--accent));color:#fff;border-radius:9999px;padding:.55rem .9rem;display:flex;align-items:center;gap:.6rem;font-weight:800;box-shadow:0 12px 40px rgba(124,58,237,.45)}
+    #hire-modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);z-index:70}
+    #hire-modal.open{display:grid}
+    #hire-card{background:rgba(16,14,31,.9);border:1px solid rgba(255,255,255,.12);border-radius:16px;max-width:560px;width:92vw;padding:1.25rem}
+    #hire-card a{color:var(--accent)}
   </style>
 </head>
 <body>
-  <a href="#facettes" class="skip-link" data-lang-fr="Aller au contenu principal" data-lang-en="Skip to main content"></a>
-  <div id="data-word-cloud" aria-hidden="true"><span>SQL</span><span>Power BI</span><span>RLS</span><span>DAX</span><span>Azure</span></div>
+  <!-- word cloud de fond -->
+  <div id="data-word-cloud" aria-hidden="true">
+    <span>SQL</span> <span>Power BI</span> <span>Dashboard</span> <span>ETL</span> <span>Python</span> <span>Azure</span>
+  </div>
+
+  <!-- sons UI -->
   <audio id="hover-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-fast-thin-swish-3-435.mp3" preload="auto"></audio>
   <audio id="click-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-interface-device-click-2577.mp3" preload="auto"></audio>
-  <div id="lang-switch"><button data-lang="fr" class="active" aria-label="Passer en français">FR</button><button data-lang="en" aria-label="Switch to English">EN</button></div>
+
+  <!-- langue -->
+  <div id="lang-switch"><button data-lang="fr" class="active">FR</button><button data-lang="en">EN</button></div>
+
+  <!-- fond 3D + curseur custom -->
   <canvas id="interactive-bg" aria-hidden="true"></canvas>
   <div class="cursor-dot" aria-hidden="true"></div><div class="cursor-glow" aria-hidden="true"></div>
 
+  <!-- HERO -->
   <header id="header" class="hero-breath">
-    <h1 class="hero-title typewriter-effect" id="hero-title-interactive"></h1>
+    <h1 class="hero-title" id="hero-title-interactive"></h1>
     <p class="mt-6 text-lg text-white/70 max-w-2xl text-center"
-       data-lang-fr="Je suis Ivan Roger Nfinda, Architecte BI & Data Analyst. Je transforme les problèmes business complexes en solutions data sécurisées et performantes."
-       data-lang-en="I am Ivan Roger Nfinda, BI Architect & Data Analyst. I turn complex business problems into secure, high-performance data solutions.">
+       data-lang-fr="Je suis Ivan Roger Nfinda, Data Analyst. Je transforme les données complexes en insights clairs et actionnables."
+       data-lang-en="I am Ivan Roger Nfinda, Data Analyst. I turn complex data into clear, actionable insights.">
     </p>
     <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-      <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA_Architecte_BI.pdf" class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV"></a>
-      <a href="#projets-analyse" class="btn-secondary" data-lang-fr="🚀 Voir mes Solutions" data-lang-en="🚀 See my Solutions"></a>
-    </div>
-    <div id="proof-banner">
-        <span><span class="p1 progress-indicator"></span>RLS + Azure AD</span>
-        <span><span class="p2 progress-indicator"></span>Refresh &lt; 20min</span>
-        <span><span class="p3 progress-indicator"></span>UX Testée & Approuvée</span>
+      <a href="./CV+NFINDA-IVAN.pdf" download="CV_Ivan_Roger_NFINDA.pdf" class="btn-primary" data-lang-fr="📄 Télécharger mon CV" data-lang-en="📄 Download my CV"></a>
+      <a href="#projets-analyse" class="btn-secondary" data-lang-fr="🚀 Voir mes Projets" data-lang-en="🚀 See my Projects"></a>
     </div>
   </header>
 
   <main class="container">
+    <!-- Expertise -->
     <section id="facettes" class="section">
-      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Expertise Technique" data-lang-en="My Technical Expertise"></h2>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mon Expertise" data-lang-en="My Expertise"></h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <article class="block">
-          <h3 class="text-xl font-bold mb-1">Architecture BI & Sécurité</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Conception de solutions sécurisées (RLS, Azure AD) et performantes (modèles en étoile, aggregations) auditables et conformes RGPD."
-             data-lang-en="Designing secure (RLS, Azure AD) and high-performance BI solutions (star schemas, aggregations) that are auditable and GDPR-compliant."></p>
+          <h3 class="text-xl font-bold mb-1">Data Analyst & BI</h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Spécialiste de la collecte, nettoyage et visualisation pour créer des tableaux de bord percutants (Power BI, SQL, DAX)."
+             data-lang-en="Expert in collecting, cleaning, and visualizing data to create impactful dashboards (Power BI, SQL, DAX)."></p>
         </article>
         <article class="block">
-          <h3 class="text-xl font-bold mb-1">Performance & Optimisation</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Optimisation de la chaîne de données avec Power Query M et DAX Studio pour des refreshs ultra-rapides (actualisation incrémentielle)."
-             data-lang-en="Optimizing the data chain with Power Query M and DAX Studio for ultra-fast refreshes (incremental refresh)."></p>
+          <h3 class="text-xl font-bold mb-1">Data Quality</h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Mise en place de processus de fiabilisation pour garantir des analyses robustes et des recommandations fiables."
+             data-lang-en="Implementing data reliability processes to ensure robust analyses and trustworthy recommendations."></p>
         </article>
         <article class="block">
-          <h3 class="text-xl font-bold mb-1">UX Décisionnelle</h3>
-          <p class="text-white/70 text-sm" data-lang-fr="Application des principes de design (KISS, Règle des 3 KPI) pour créer des outils d'aide à la décision réellement adoptés (taux >95%)."
-             data-lang-en="Applying design principles (KISS, 3-KPI Rule) to create decision-support tools with high adoption rates (>95%)."></p>
+          <h3 class="text-xl font-bold mb-1">Analyse & Modélisation</h3>
+          <p class="text-white/70 text-sm" data-lang-fr="Utilisation de Python et R pour des analyses exploratoires et la construction de modèles prédictifs simples."
+             data-lang-en="Using Python and R for exploratory analysis and building simple predictive models."></p>
         </article>
       </div>
     </section>
-    
-    <section id="projets-analyse" class="section">
-        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Solutions Techniques Démontrées" data-lang-en="Demonstrated Technical Solutions"></h2>
-        <div class="project-grid">
-            <article class="block solution-card">
-                <h3 data-lang-fr="Sécurité & Conformité BI" data-lang-en="BI Security & Compliance"></h3>
-                <div class="problem">
-                    <strong data-lang-fr="Problème Business" data-lang-en="Business Problem"></strong>
-                    <p data-lang-fr="Garantir la confidentialité des données de 30+ cabinets dentaires, avec un audit RGPD imminent." data-lang-en="Ensuring data confidentiality for 30+ dental clinics, with an impending GDPR audit."></p>
-                </div>
-                <div class="decision">
-                    <strong data-lang-fr="Décision d'Architecture" data-lang-en="Architectural Decision"></strong>
-                    <p data-lang-fr="RLS dynamique via Azure AD. Pourquoi ? C'est plus performant et maintenable que des rôles custom, tout en offrant un audit trail complet." data-lang-en="Dynamic RLS via Azure AD. Why? It's more performant and maintainable than custom roles, while providing a complete audit trail."></p>
-                </div>
-                <div class="impact">
-                    <strong data-lang-fr="Impact Mesurable" data-lang-en="Measurable Impact"></strong>
-                    <p data-lang-fr="0 incident de sécurité. Audit RGPD validé." data-lang-en="Zero security incidents. GDPR audit passed."></p>
-                </div>
-            </article>
 
-            <article class="block solution-card">
-                <h3 data-lang-fr="Performance à Grande Échelle" data-lang-en="Large-Scale Performance"></h3>
-                <div class="problem">
-                    <strong data-lang-fr="Problème Business" data-lang-en="Business Problem"></strong>
-                    <p data-lang-fr="Un refresh de 8h sur 500k+ lignes rendait les dashboards financiers inutilisables le matin." data-lang-en="An 8-hour refresh on 500k+ rows made financial dashboards unusable in the morning."></p>
-                </div>
-                <div class="decision">
-                    <strong data-lang-fr="Décision d'Architecture" data-lang-en="Architectural Decision"></strong>
-                    <p data-lang-fr="Actualisation incrémentielle et modèle en étoile. Pourquoi ? Le modèle Import est plus rapide pour l'UX que DirectQuery, et le star schema minimise les jointures coûteuses." data-lang-en="Incremental refresh and a star schema model. Why? Import mode is faster for UX than DirectQuery, and the star schema minimizes costly joins."></p>
-                </div>
-                <div class="impact">
-                    <strong data-lang-fr="Impact Mesurable" data-lang-en="Measurable Impact"></strong>
-                    <p data-lang-fr="Refresh en 20 minutes. Interactions &lt; 2 secondes." data-lang-en="Refresh time: 20 minutes. Interactions &lt; 2 seconds."></p>
-                </div>
-            </article>
-
-            <article class="block solution-card">
-                <h3 data-lang-fr="UX & Adoption Utilisateur" data-lang-en="UX & User Adoption"></h3>
-                <div class="problem">
-                    <strong data-lang-fr="Problème Business" data-lang-en="Business Problem"></strong>
-                    <p data-lang-fr="Les managers étaient noyés sous 15+ métriques, menant à une paralysie de l'analyse." data-lang-en="Managers were drowning in 15+ metrics, leading to analysis paralysis."></p>
-                </div>
-                <div class="decision">
-                    <strong data-lang-fr="Décision d'Architecture" data-lang-en="Architectural Decision"></strong>
-                    <p data-lang-fr="La 'Règle des 3 KPI' par écran avec drill-down. Pourquoi ? La charge cognitive est limitée (principe KISS), ce qui a été validé par des tests utilisateurs." data-lang-en="The '3-KPI Rule' per screen with drill-downs. Why? It limits cognitive load (KISS principle), which was validated through user testing."></p>
-                </div>
-                <div class="impact">
-                    <strong data-lang-fr="Impact Mesurable" data-lang-en="Measurable Impact"></strong>
-                    <p data-lang-fr="Temps de décision divisé par trois. Taux d'adoption de 95%." data-lang-en="Decision-making time divided by three. 95% adoption rate."></p>
-                </div>
-            </article>
-        </div>
-    </section>
-
+    <!-- Résultats -->
     <section id="results" class="section">
-        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="KPIs Transverses" data-lang-en="Cross-Project KPIs"></h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-20">-0%</p><p class="text-white/70" data-lang-fr="temps d'analyse mensuel" data-lang-en="monthly analysis time"></p></div>
-            <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="40">0+</p><p class="text-white/70" data-lang-fr="utilisateurs formés" data-lang-en="users trained"></p></div>
-            <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-8">-0%</p><p class="text-white/70" data-lang-fr="taux de défaut PME" data-lang-en="SME default rate"></p></div>
-        </div>
-    </section>
-    <section id="parcours" class="section">
-        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
-        <div class="grid gap-4">
-            <div class="block"><h3 class="font-semibold">LOGWIRE · <span class="text-white/70">Data Analyst (2025)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers." data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p></div>
-            <div class="block"><h3 class="font-semibold">ENDO DATA · <span class="text-white/70">Data Analyst (2023–2024)</span></h3><p class="text-white/70 text-sm" data-lang-fr="BI dentaire pour +30 cabinets, -10% RDV annulés, formation de +40 utilisateurs." data-lang-en="Dental BI for +30 clinics, -10% no-shows, training for +40 users."></p></div>
-            <div class="block"><h3 class="font-semibold">Afriland First Bank · <span class="text-white/70">Data Analyst (2021–2022)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Scoring commercial, -8% taux de défaut sur portefeuille PME, reporting de risques automatisé." data-lang-en="Commercial scoring, -8% default rate on SME portfolio, automated risk reporting."></p></div>
-        </div>
-    </section>
-    <section id="missions-strategiques" class="section relative">
-        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Projets Complémentaires" data-lang-en="Complementary Projects"></h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <article class="block mission-card card-3d-tilt"><h3 class="text-xl font-bold mb-2 font-[Orbitron]">Agent IA « ARIA »</h3><p class="text-white/70 text-sm" data-lang-fr="Un agent conversationnel qui fournit des insights en temps réel pour accélérer la prise de décision." data-lang-en="A conversational agent providing real-time insights to accelerate decision-making."></p><a class="btn-secondary mt-auto" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="▶ Voir la Démo" data-lang-en="▶ View Demo"></a></article>
-            <article class="block mission-card card-3d-tilt"><h3 class="text-xl font-bold mb-2 font-[Orbitron]" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring"></h3><p class="text-white/70 text-sm" data-lang-fr="Un modèle ML pour scorer les leads et prioriser l'effort commercial." data-lang-en="An ML model to score leads and prioritize sales efforts."></p><a class="btn-secondary mt-auto" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="▶ Voir la Démo" data-lang-en="▶ View Demo"></a></article>
-            <article class="block mission-card card-3d-tilt"><h3 class="text-xl font-bold mb-2 font-[Orbitron]">Data Clean Tool</h3><p class="text-white/70 text-sm" data-lang-fr="Un outil web pour automatiser le nettoyage des données en un clic." data-lang-en="A web tool to automate data cleaning in one click."></p><a class="btn-secondary mt-auto" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Voir la Démo" data-lang-en="▶ View Demo"></a></article>
-        </div>
-    </section>
-    
-    <section id="cta-section" class="section text-center">
-        <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Discutons de vos défis" data-lang-en="Let's Discuss Your Challenges"></h2>
-        <div class="cta-buttons">
-            <a id="cta-audit" href="#" class="btn-primary" data-lang-fr="Audit architecture BI gratuit (15min)" data-lang-en="Free BI Architecture Audit (15min)"></a>
-            <a id="cta-perf" href="#" class="btn-secondary" data-lang-fr="Discuter de vos défis de performance" data-lang-en="Discuss Your Performance Challenges"></a>
-            <a href="./cas_etude_rls.pdf" target="_blank" class="btn-secondary" data-lang-fr="Télécharger mon cas d'étude RLS" data-lang-en="Download RLS Case Study"></a>
-        </div>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Mes Résultats Concrets" data-lang-en="Tangible Results"></h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="15">+0%</p><p class="text-white/70" data-lang-fr="précision des rapports" data-lang-en="reporting accuracy"></p></div>
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-20">0%</p><p class="text-white/70" data-lang-fr="temps d'analyse mensuel" data-lang-en="monthly analysis time"></p></div>
+        <div class="block p-8"><p class="text-5xl font-black mb-2" data-value="-10">0%</p><p class="text-white/70" data-lang-fr="de rendez-vous annulés" data-lang-en="cancelled appointments"></p></div>
+      </div>
     </section>
 
+    <!-- Parcours -->
+    <section id="parcours" class="section">
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Parcours Professionnel" data-lang-en="Professional Journey"></h2>
+      <div class="grid gap-4">
+        <div class="block"><h3 class="font-semibold">LOGWIRE · <span class="text-white/70">Data Analyst (2025)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Dashboards Power BI ventes & finances, -20% temps d'analyse, KPI financiers." data-lang-en="Power BI sales & finance dashboards, -20% analysis time, financial KPIs."></p></div>
+        <div class="block"><h3 class="font-semibold">ENDO DATA · <span class="text-white/70">Data Analyst (2023–2024)</span></h3><p class="text-white/70 text-sm" data-lang-fr="BI dentaire pour +30 cabinets, -10% RDV annulés, formation de +40 utilisateurs." data-lang-en="Dental BI for +30 clinics, -10% no-shows, training for +40 users."></p></div>
+        <div class="block"><h3 class="font-semibold">Afriland First Bank · <span class="text-white/70">Data Analyst (2021–2022)</span></h3><p class="text-white/70 text-sm" data-lang-fr="Scoring commercial, -8% taux de défaut sur portefeuille PME, reporting de risques automatisé." data-lang-en="Commercial scoring, -8% default rate on SME portfolio, automated risk reporting."></p></div>
+      </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets-analyse" class="section" data-project-bg="spotify">
+      <h2 class="text-4xl font-bold mb-4 text-center font-[Orbitron]" data-lang-fr="Projets d'Analyse & BI" data-lang-en="Analysis & BI Projects"></h2>
+
+      <!-- Filtre -->
+      <div id="project-filter" aria-label="Filtrer les projets">
+        <button class="active" data-tag="all" data-lang-fr="Tous" data-lang-en="All"></button>
+        <button data-tag="powerbi">Power BI</button>
+        <button data-tag="rshiny">R Shiny</button>
+        <button data-tag="ia">IA</button>
+      </div>
+
+      <div class="project-grid">
+        <article class="block project-card card-3d-tilt" data-tags="powerbi">
+          <h3 class="text-xl font-bold mb-2">Analyse Spotify 2024</h3>
+          <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-green-600/20 text-green-300 rounded-full">Power BI</span>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Dashboard interactif pour visualiser les tendances de streaming. Identification des artistes et des périodes les plus populaires (Bad Bunny, vendredis...) pour des insights marketing."
+             data-lang-en="Interactive dashboard to visualize streaming trends. Identified top artists and popular periods (Bad Bunny, Fridays...) for marketing insights."></p>
+          <a class="btn-secondary hover:bg-green-600/30" href="https://lnkd.in/epwcAy9U" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur LinkedIn" data-lang-en="▶ View on LinkedIn"></a>
+        </article>
+
+        <article class="block project-card card-3d-tilt" data-project-bg="dashboard-rh" data-tags="powerbi">
+          <h3 class="text-xl font-bold mb-2">Dashboard RH & Rétention</h3>
+          <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-violet-600/20 text-violet-300 rounded-full">Power BI / DAX</span>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Analyse de la performance et de la rétention des employés. Vue complète sur l'engagement, la diversité et l'absentéisme pour aider les équipes RH à prendre des décisions stratégiques."
+             data-lang-en="Analysis of employee performance and retention. Comprehensive view of engagement, diversity, and absenteeism to help HR teams make strategic decisions."></p>
+          <a class="btn-secondary hover:bg-violet-600/30" href="https://lnkd.in/eEwhc6-H" target="_blank" rel="noopener" data-lang-fr="▶ Voir sur GitHub" data-lang-en="▶ View on GitHub"></a>
+        </article>
+
+        <article class="block project-card card-3d-tilt" data-tags="rshiny ia">
+          <h3 class="text-xl font-bold mb-2">Analyse Attrition RH</h3>
+          <span class="inline-block self-start mb-3 px-2 py-1 text-[11px] font-semibold bg-cyan-600/20 text-cyan-300 rounded-full">R Shiny</span>
+          <p class="text-white/80 text-sm mb-4" data-lang-fr="Tableau de bord interactif pour analyser les données RH (taux d'attrition, satisfaction, équilibre pro/perso). Transformation de données métier en insights exploitables."
+             data-lang-en="Interactive dashboard to analyze HR data (attrition rate, satisfaction, work-life balance). Transforming business data into actionable insights."></p>
+          <a class="btn-secondary hover:bg-cyan-600/30" href="https://lnkd.in/eKs-Z5ax" target="_blank" rel="noopener" data-lang-fr="▶ Voir le Code Source" data-lang-en="▶ View Source Code"></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Missions Stratégiques -->
+    <section id="missions-strategiques" class="section relative">
+      <div class="absolute -inset-2 rounded-2xl border border-violet-500/20 pointer-events-none" style="animation:pulse-glow 6s infinite ease-in-out"></div>
+      <h2 class="text-4xl font-bold mb-8 text-center font-[Orbitron]" data-lang-fr="Missions Stratégiques & IA" data-lang-en="Strategic & AI Missions"></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <article class="block mission-card card-3d-tilt ms-aria">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Agent IA « ARIA »</h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : Les décideurs manquent de temps pour explorer les dashboards. **Action** : Conception d'un agent conversationnel qui fournit des insights en temps réel. **Résultat** : Un prototype fonctionnel qui accélère la prise de décision."
+             data-lang-en="**Situation**: Decision-makers lack time to explore dashboards. **Action**: Designed a conversational agent providing real-time insights. **Result**: A functional prototype that speeds up decision-making."></p>
+          <a class="btn-secondary hover:bg-violet-600/30" href="https://ariaagent-38syjv4yzv4qxvxiyw4ra8.streamlit.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+        <article class="block mission-card card-3d-tilt ms-scoring">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]" data-lang-fr="Scoring Prédictif" data-lang-en="Predictive Scoring"></h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : Une équipe commerciale devait mieux cibler ses prospects. **Action** : Développement d'un modèle ML pour scorer les leads. **Résultat** : Démonstration d'une priorisation qui pourrait augmenter la conversion de +30%."
+             data-lang-en="**Situation**: A sales team needed to better target its prospects. **Action**: Developed an ML model to score leads. **Result**: Demonstrated a prioritization that could increase conversion by +30%."></p>
+          <a class="btn-secondary hover:bg-green-600/30" href="https://ivan7889-credit-scorer.hf.space/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+        <article class="block mission-card card-3d-tilt ms-clean">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Data Clean</h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : Le nettoyage des données est chronophage et répétitif. **Action** : Création d'un outil web pour automatiser le nettoyage en un clic. **Résultat** : Un gain de temps potentiel de 90% sur la préparation des données."
+             data-lang-en="**Situation**: Data cleaning is time-consuming and repetitive. **Action**: Created a web tool to automate cleaning in one click. **Result**: A potential 90% time saving on data preparation."></p>
+          <a class="btn-secondary hover:bg-cyan-600/30" href="https://data-clean2.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+        <article class="block mission-card card-3d-tilt ms-contra">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">ContraScope</h3>
+          <p class="text-white/80" data-lang-fr="**Situation** : L'analyse manuelle de contrats légaux est lente et sujette à erreurs. **Action** : Conception d'un outil IA pour extraire les clauses clés. **Résultat** : Un prototype capable de synthétiser les risques et les points importants."
+             data-lang-en="**Situation**: Manual analysis of legal contracts is slow and error-prone. **Action**: Designed an AI tool to extract key clauses. **Result**: A prototype capable of summarizing risks and key points."></p>
+          <a class="btn-secondary hover:bg-red-600/30" href="https://contrat-c487.vercel.app/" target="_blank" rel="noopener" data-lang-fr="▶ Lancer Démo" data-lang-en="▶ Launch Demo"></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Solutions Playbook -->
+    <section id="solutions" class="section">
+      <h2 class="text-4xl font-bold mb-4 text-center font-[Orbitron]"
+          data-lang-fr="Playbook de Solutions (BI & IA)"
+          data-lang-en="Solutions Playbook (BI & AI)"></h2>
+
+      <p class="text-center text-white/70 mb-4"
+         data-lang-fr="Voici comment je résous des problèmes concrets côté Power BI, Data Quality et IA, avec des choix techniques expliqués et des résultats mesurés."
+         data-lang-en="Here’s how I solve real problems in Power BI, Data Quality and AI, with explained technical choices and measured outcomes."></p>
+
+      <div class="solutions-tabs" role="tablist" aria-label="Solutions">
+        <button class="active" data-tab="sec-2fa" role="tab" data-lang-fr="2FA & RLS" data-lang-en="2FA & RLS"></button>
+        <button data-tab="sec-refresh" role="tab" data-lang-fr="Refresh & Perf" data-lang-en="Refresh & Perf"></button>
+        <button data-tab="sec-dax" role="tab" data-lang-fr="Choix DAX" data-lang-en="DAX Choices"></button>
+        <button data-tab="sec-3kpi" role="tab" data-lang-fr="Règle des 3 KPI" data-lang-en="3-KPI Rule"></button>
+      </div>
+
+      <div class="solutions-panels">
+        <!-- 2FA & RLS -->
+        <article id="sec-2fa" class="block active" role="tabpanel">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">2FA + RLS sur Power BI</h3>
+          <p class="text-white/80">
+            <strong>Problème :</strong> Accès aux dashboards sensibles sans contrôle fort.<br>
+            <strong>Solution :</strong> Azure AD + MFA (2FA) côté tenant, groupes AAD synchronisés avec des <em>roles</em> Power BI (RLS),
+            <em>Row-Level Security</em> mappé aux entités (BU, pays, manager).
+            <strong>Plus :</strong> <em>Conditional Access</em> (IP/Device) et mode <em>App</em> Power BI pour publier proprement.<br>
+            <strong>Impact :</strong> conformité & sécurité durcies, zéro partage sauvage, traçabilité claire (Audit Logs).
+          </p>
+          <div class="solutions-kpis">
+            <div class="k"><strong data-lang-fr="⏱️ Délai d’accès" data-lang-en="⏱️ Access time"></strong><br><span>—30%</span></div>
+            <div class="k"><strong>SPOF</strong><br><span data-lang-fr="Réduit (groupes AAD)" data-lang-en="Reduced (AAD groups)"></span></div>
+            <div class="k"><strong>Adoption</strong><br><span>+15%</span></div>
+          </div>
+        </article>
+
+        <!-- Refresh & perf -->
+        <article id="sec-refresh" class="block" role="tabpanel">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Chargements rapides & à jour</h3>
+          <p class="text-white/80">
+            <strong>Problème :</strong> Modèles lents et coûteux à rafraîchir.<br>
+            <strong>Solution :</strong> <em>Incremental Refresh</em> (plage glissante),
+            <em>Aggregations</em> (+ tables résumées), <em>Composite models</em> (DirectQuery + Import),
+            <em>Partitions</em> quotidiennes, clés de dates <em>surrogate</em>, et <em>Query Folding</em> respecté (Power Query).<br>
+            <strong>Impact :</strong> coûts & temps de refresh divisés, latence analytique réduite, utilisateurs toujours “near-real-time”.
+          </p>
+          <div class="solutions-kpis">
+            <div class="k"><strong>Refresh</strong><br><span>—60%</span></div>
+            <div class="k"><strong>Coûts</strong><br><span>—30%</span></div>
+            <div class="k"><strong>Latence</strong><br><span>—40%</span></div>
+          </div>
+        </article>
+
+        <!-- Choix DAX -->
+        <article id="sec-dax" class="block" role="tabpanel">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Pourquoi X plutôt que Y en DAX</h3>
+          <p class="text-white/80">
+            <strong>Problème :</strong> Mesures instables ou lentes (erreurs de contexte).<br>
+            <strong>Mes choix :</strong>
+            <em>CALCULATE</em> pour piloter le contexte de filtre,
+            <em>SUMX</em> seulement quand l’itération est nécessaire (sinon <em>SUM</em>),
+            variables <em>VAR</em> pour la lisibilité et la perf,
+            colonnes calculées limitées (préférer mesures),
+            table calendrier unique (marquée), relations 1-* strictes,
+            mesures standardisées (<em>_Base</em>, <em>_MTD</em>, <em>_YTD</em>),
+            formatage & noms cohérents.<br>
+            <strong>Impact :</strong> mesures stables, modèles maintenables, temps de rendu en baisse.
+          </p>
+          <div class="solutions-kpis">
+            <div class="k"><strong>Perf visuals</strong><br><span>—25%</span></div>
+            <div class="k"><strong>Erreurs</strong><br><span>—50%</span></div>
+            <div class="k"><strong>Lisibilité</strong><br><span data-lang-fr="+ normes DAX" data-lang-en="+ DAX standards"></span></div>
+          </div>
+        </article>
+
+        <!-- Règle des 3 KPI -->
+        <article id="sec-3kpi" class="block" role="tabpanel">
+          <h3 class="text-2xl font-bold mb-2 font-[Orbitron]">Pourquoi seulement 3 KPI par vue</h3>
+          <p class="text-white/80">
+            <strong>Problème :</strong> Dashboards surchargés ⇒ décisions lentes.<br>
+            <strong>Cadre :</strong> 1) <em>Outcome</em> (résultat business), 2) <em>Leading</em> (indicateur précurseur),
+            3) <em>Guardrail</em> (garde-fou qualité).<br>
+            <strong>Exemple RH :</strong> Turnover% (Outcome), Délai de recrutement (Leading), Absence% (Guardrail).<br>
+            <strong>Impact :</strong> lecture en 5s, action en 1 clic (drill-through), adoption UX.
+          </p>
+          <div class="solutions-kpis">
+            <div class="k"><strong>Adoption</strong><br><span>+20%</span></div>
+            <div class="k"><strong>TTR décision</strong><br><span>—35%</span></div>
+            <div class="k"><strong>Clarté</strong><br><span data-lang-fr="Capacité à arbitrer ↑" data-lang-en="Better trade-offs"></span></div>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
-  
-  <footer id="contact" class="container text-center text-white/60 pb-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="footer-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-        <span data-lang-fr="Voir mes projets sur GitHub" data-lang-en="See my projects on GitHub"></span>
+
+  <!-- Footer -->
+  <footer id="contact" class="container text-center text-white/60 pb-20">
+    <div class="flex justify-center items-center space-x-6 mb-4">
+      <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
       </a>
-      <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="footer-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-        <span data-lang-fr="Mon parcours sur LinkedIn" data-lang-en="My career on LinkedIn"></span>
+      <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener" class="hover:text-violet-400 transition-colors" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
       </a>
-      <a href="mailto:nfindaroger@gmail.com" class="footer-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span data-lang-fr="Me contacter par Email" data-lang-en="Contact me by Email"></span>
+      <a href="mailto:nfindaroger@gmail.com" class="hover:text-violet-400 transition-colors" aria-label="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
       </a>
     </div>
-    <p class="mt-8">Créé avec ❤️ et IA – 2025</p>
+    <p>Créé avec ❤️ et IA – 2025</p>
   </footer>
 
+  <!-- Badge de disponibilité -->
   <div id="availability-badge">
-    <button class="bg-green-500/20 border border-green-400 text-green-300 text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2"><span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span><span data-lang-fr="Disponible" data-lang-en="Available"></span></button>
+    <button class="bg-green-500/20 border border-green-400 text-green-300 text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2">
+      <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
+      <span data-lang-fr="Disponible" data-lang-en="Available"></span>
+    </button>
   </div>
 
+  <!-- menu points -->
   <nav id="floating-menu"></nav>
+
+  <!-- Agent IA -->
   <div id="ia-agent" aria-live="polite">
     <div id="ia-avatar" class="avatar-pulse text-xl" title="Cliquez pour interagir">🤖</div>
     <div id="ia-bubble" role="status"></div>
   </div>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  
+
+  <!-- CTA sticky recruteur + modal -->
+  <button id="sticky-cta" aria-haspopup="dialog">💼 Discuter d’un besoin / Hire me</button>
+  <div id="hire-modal" role="dialog" aria-modal="true" aria-labelledby="hire-title">
+    <div id="hire-card" class="block">
+      <h3 id="hire-title" class="text-2xl font-bold mb-2 font-[Orbitron]"
+          data-lang-fr="Travaillons ensemble"
+          data-lang-en="Let’s work together"></h3>
+      <p class="text-white/80 mb-3"
+         data-lang-fr="Je conçois des solutions BI mesurables (Power BI, Data Quality, IA). Dites-moi votre objectif : je propose un plan clair, un pilote rapide, puis un déploiement solide."
+         data-lang-en="I design measurable BI solutions (Power BI, Data Quality, AI). Tell me your goal: I propose a clear plan, a fast pilot, then a robust rollout."></p>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <a href="mailto:nfindaroger@gmail.com" class="btn-primary">✉️ Email</a>
+        <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn-secondary">📅 15-min Call</a>
+      </div>
+      <button id="hire-close" class="btn-secondary mt-4" style="width:100%">Fermer / Close</button>
+    </div>
+  </div>
+
+  <!-- libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Script principal (langue, fond 3D, menu, sons, compteurs, tilt, agent IA) -->
   <script>
-    /* SCRIPT UNIFIÉ - FINAL VERSION */
-    document.addEventListener('DOMContentLoaded', () => {
-      const isDesktop = !/Mobi|Android/i.test(navigator.userAgent) && window.innerWidth > 768;
-      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
-      function applyLang(lang) {
-        document.documentElement.lang = lang;
-        localStorage.setItem('portfolio_lang', lang);
-        document.querySelectorAll('#lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-        document.querySelectorAll('[data-lang-fr]').forEach(el => {
-            const content = el.getAttribute(lang === 'fr' ? 'data-lang-fr' : 'data-lang-en');
-            if(content) el.innerHTML = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  document.addEventListener('DOMContentLoaded', () => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = matchMedia('(max-width: 768px)').matches;
+    const lang = (localStorage.getItem('portfolio_lang') || document.documentElement.lang || 'fr');
+    const L = (lang === 'en') ? 'en' : 'fr';
+
+    // Lang
+    const langButtons = document.querySelectorAll('#lang-switch button');
+    function applyLang(lang){
+      langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      document.documentElement.lang = lang;
+      localStorage.setItem('portfolio_lang', lang);
+      document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
+        const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
+        if(txt){ el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
+      });
+    }
+    langButtons.forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+    applyLang(lang);
+
+    // Hero title
+    const titleEl = document.getElementById('hero-title-interactive');
+    const titleText = "Data to Decision";
+    if (titleEl) {
+      titleText.split(' ').forEach(wordText => {
+        const wordDiv = document.createElement('div'); wordDiv.className = 'word';
+        wordText.split('').forEach(char => {
+          const span = document.createElement('span'); span.className = 'char';
+          span.textContent = char; wordDiv.appendChild(span);
         });
-      }
-      document.querySelectorAll('#lang-switch button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
-      applyLang(localStorage.getItem('portfolio_lang') || 'fr');
+        titleEl.appendChild(wordDiv);
+      });
+      titleEl.classList.add('title-wow');
+    }
 
-      const titleEl = document.getElementById('hero-title-interactive');
-      if (titleEl) {
-        "Data to Decision".split(' ').forEach(wordText => {
-            const wordDiv = document.createElement('div');
-            wordText.split('').forEach(char => {
-                const span = document.createElement('span'); span.className = 'char'; span.textContent = char; wordDiv.appendChild(span);
-            });
-            titleEl.appendChild(wordDiv);
-        });
-      }
-      
-      const countersObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                  const el = entry.target.querySelector('[data-value]');
-                  if (!el) return;
-                  const target = parseInt(el.dataset.value);
-                  let val = 0;
-                  const prefix = target > 0 ? '+' : '';
-                  const suffix = el.textContent.includes('+') ? '+' : (el.textContent.includes('%') ? '%' : '');
-                   const id = setInterval(() => {
-                      val += Math.sign(target);
-                      el.textContent = prefix + val + suffix;
-                      if (val === target) clearInterval(id);
-                  }, 2000 / Math.abs(target));
-                  countersObserver.unobserve(entry.target);
-              }
-          });
-      }, { threshold: 0.8 });
-      document.querySelectorAll('#results .block').forEach(c => countersObserver.observe(c));
+    // Compteurs
+    const countersObserver = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.value);
+        let val = 0;
+        const step = Math.sign(target) * Math.ceil(Math.abs(target)/60);
+        const id = setInterval(()=>{
+          val += step;
+          if ((step>0 && val>=target) || (step<0 && val<=target)) { val = target; clearInterval(id); }
+          el.textContent = (target>0?'+':'') + val + '%';
+        }, 16);
+        countersObserver.unobserve(el);
+      });
+    },{threshold:.6});
+    document.querySelectorAll('[data-value]').forEach(c=>countersObserver.observe(c));
 
-      const bannerObserver = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            document.getElementById('proof-banner')?.classList.add('proof-banner-visible');
-        }
-      }, { threshold: 0.8 });
-      bannerObserver.observe(document.getElementById('proof-banner'));
-      
-      if (isDesktop && !reduceMotion) {
-        const canvas = document.getElementById('interactive-bg');
-        if (canvas && window.THREE) {
-            let scene,camera,renderer,points;
-            try{scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,1e3);camera.position.z=300;renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:!0,alpha:!0});renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0,0);const count=800;const pos=new Float32Array(2400);for(let i=0;i<2400;i++)pos[i]=(Math.random()-.5)*1e3;const pGeo=new THREE.BufferGeometry;pGeo.setAttribute("position",new THREE.BufferAttribute(pos,3));const pMat=new THREE.PointsMaterial({size:1,color:0x9aa0aa,transparent:!0,opacity:.5});points=new THREE.Points(pGeo,pMat);scene.add(points);let mx=0,my=0;document.body.addEventListener("mousemove",e=>{mx=e.clientX-innerWidth/2;my=e.clientY-innerHeight/2},{passive:!0});window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)},{passive:!0});const animate=()=>{requestAnimationFrame(animate);const t=.001*Date.now();camera.position.x+=(mx-camera.position.x)*.02;camera.position.y+=(-my-camera.position.y)*.02;camera.lookAt(scene.position);if(points)points.rotation.y=.05*t;renderer.render(scene,camera)};animate()}catch(e){canvas.style.display="none"}
-        }
-      }
-
-      function setupCtas() {
-        const lang = document.documentElement.lang || 'fr';
-        const ctaAudit = document.getElementById('cta-audit');
-        const ctaPerf = document.getElementById('cta-perf');
-        const mailto = {
-            audit: { 
-                fr: { s: "Demande d'audit d'architecture BI", b: "Bonjour Ivan,%0D%0A%0D%0AJ'aimerais planifier un audit gratuit de 15 minutes de notre architecture BI.%0D%0A%0D%0ANos disponibilités : [Proposez vos créneaux]%0D%0A%0D%0ACordialement," }, 
-                en: { s: "BI Architecture Audit Request", b: "Hello Ivan,%0D%0A%0D%0AI would like to schedule a free 15-minute audit of our BI architecture.%0D%0A%0D%0AOur availability: [Suggest times]%0D%0A%0D%0ARegards," }
-            },
-            perf: { 
-                fr: { s: "Discussion sur la performance Power BI", b: "Bonjour Ivan,%0D%0A%0D%0AJ'aimerais discuter avec vous de nos défis actuels de performance sur Power BI.%0D%0A%0D%0ACordialement," }, 
-                en: { s: "Discussion on Power BI Performance", b: "Hello Ivan,%0D%0A%0D%0AI'd like to discuss our current performance challenges with Power BI.%0D%0A%0D%0ARegards," }
-            }
-        };
-        if(ctaAudit) ctaAudit.href = `mailto:nfindaroger@gmail.com?subject=${encodeURIComponent(mailto.audit[lang].s)}&body=${encodeURIComponent(mailto.audit[lang].b)}`;
-        if(ctaPerf) ctaPerf.href = `mailto:nfindaroger@gmail.com?subject=${encodeURIComponent(mailto.perf[lang].s)}&body=${encodeURIComponent(mailto.perf[lang].b)}`;
-      }
-      setupCtas();
-      new MutationObserver(() => setupCtas()).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    // Sons + curseur
+    const hoverSound = document.getElementById('hover-sound'); if (hoverSound) hoverSound.volume = 0.2;
+    const clickSound = document.getElementById('click-sound'); if (clickSound) clickSound.volume = 0.5;
+    const dot = document.querySelector('.cursor-dot');
+    const glow = document.querySelector('.cursor-glow');
+    if (dot && glow) {
+      window.addEventListener('mousemove', e => {
+        dot.style.left = glow.style.left = e.clientX + 'px';
+        dot.style.top  = glow.style.top  = e.clientY + 'px';
+      });
+    }
+    document.querySelectorAll('a, button, .block').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        try { hoverSound.currentTime = 0; hoverSound.play(); } catch(e){}
+        if (dot) dot.classList.add('big');
+      });
+      el.addEventListener('mouseleave', () => { if (dot) dot.classList.remove('big'); });
+      el.addEventListener('mousedown', () => { try { clickSound.currentTime = 0; clickSound.play(); } catch(e){} });
     });
+
+    // Menu flottant
+    const floatingMenu = document.getElementById('floating-menu');
+    const sections = document.querySelectorAll('.section');
+    if (floatingMenu && sections.length) {
+      sections.forEach(section=>{
+        const a = document.createElement('a'); a.href = `#${section.id}`;
+        const tip = document.createElement('span'); tip.className = 'tooltip';
+        const h2 = section.querySelector('h2');
+        tip.setAttribute('data-lang-fr', h2?.getAttribute('data-lang-fr') || '');
+        tip.setAttribute('data-lang-en', h2?.getAttribute('data-lang-en') || '');
+        a.appendChild(tip); floatingMenu.appendChild(a);
+      });
+      applyLang(lang);
+      const links = floatingMenu.querySelectorAll('a');
+      const menuObserver = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
+            entry.target.querySelector('h2')?.classList.add('visible');
+          }
+        });
+      },{rootMargin:'-45% 0px -55% 0px'});
+      sections.forEach(s=>menuObserver.observe(s));
+    }
+
+    // Tilt
+    document.querySelectorAll('.card-3d-tilt').forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;
+        const rx=(y/r.height-0.5)*-12;const ry=(x/r.width-0.5)*12;
+        card.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`
+      });
+      card.addEventListener('mouseleave',()=>{card.style.transform='perspective(900px) rotateX(0) rotateY(0) scale(1)'});
+    });
+
+    // Fond 3D
+    const canvas = document.getElementById('interactive-bg');
+    if (!reduce && canvas && window.THREE) {
+      let scene,camera,renderer,points;
+      (function init(){try{
+        scene=new THREE.Scene();
+        camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,2000);
+        camera.position.z=420;
+        renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+        renderer.setSize(innerWidth,innerHeight);
+        renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+        renderer.setClearColor(0x0,0);
+        const count=isMobile?650:1400;
+        const pos=new Float32Array(count*3);
+        for(let i=0;i<count*3;i++){pos[i]=(Math.random()-.5)*1200}
+        const pGeo=new THREE.BufferGeometry();
+        pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+        const pMat=new THREE.PointsMaterial({size:1.1,color:0x9aa0aa,transparent:true,opacity:.55,blending:THREE.AdditiveBlending});
+        points=new THREE.Points(pGeo,pMat);
+        scene.add(points);
+        let mx=0,my=0;
+        document.body.addEventListener('mousemove',e=>{mx=e.clientX-innerWidth/2;my=e.clientY-innerHeight/2});
+        window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+        const animate=()=>{requestAnimationFrame(animate);const t=Date.now()*.001;camera.position.x+=(mx-camera.position.x)*.03;camera.position.y+=(-my-camera.position.y)*.03;camera.lookAt(scene.position);if(points)points.rotation.y=t*.06;renderer.render(scene,camera)};animate()
+      }catch(e){canvas.style.display='none';}})()
+    }
+
+    // Badge dispo
+    const badge = document.getElementById('availability-badge');
+    if (badge){
+      const btn = badge.querySelector('button');
+      let popup = badge.querySelector('.availability-popup');
+      if (!popup){
+        popup = document.createElement('div');
+        popup.className = 'availability-popup';
+        badge.appendChild(popup);
+      }
+      popup.innerHTML = `
+        <strong style="display:block; margin-bottom:.35rem;">Ivan Roger Nfinda</strong>
+        <a href="mailto:nfindaroger@gmail.com">✉️ nfindaroger@gmail.com</a>
+        <a href="https://github.com/IvanRoger12" target="_blank" rel="noopener">🐙 GitHub</a>
+        <a href="https://www.linkedin.com/in/ivan-roger-nfinda/" target="_blank" rel="noopener">🔗 LinkedIn</a>`;
+      btn?.addEventListener('click', (e)=>{ e.stopPropagation(); popup.classList.toggle('open'); });
+      document.addEventListener('click', (e)=>{ if(!badge.contains(e.target)) popup.classList.remove('open'); });
+    }
+
+    // Agent IA (bubble + voice)
+    const avatar = document.getElementById('ia-avatar');
+    const bubble = document.getElementById('ia-bubble');
+    if (avatar && bubble && 'speechSynthesis' in window) {
+      let currentMsg = '';
+      const T = {
+        fr:{header:"Bienvenue ! Je suis l’agent IA d’Ivan. Cliquez-moi pour une visite guidée.", facettes:"Compétences clés d'Ivan : BI, Data Quality, Modélisation.", parcours:"Découvrez les expériences qui ont forgé son expertise.", 'projets-analyse':"Des projets concrets où la data prend vie.", 'missions-strategiques':"Sa vision stratégique avec l'intelligence artificielle.", solutions:"Ses playbooks pour résoudre des problèmes réels."},
+        en:{header:"Welcome! I'm Ivan's AI agent. Click me for a guided tour.", facettes:"Ivan’s core skills: BI, Data Quality, Modeling.", parcours:"Discover the experiences that built his expertise.", 'projets-analyse':"Concrete projects where data comes to life.", 'missions-strategiques':"His strategic vision with AI.", solutions:"Playbooks that solve real problems."}
+      };
+      const DICT = T[L];
+      function say(msg){
+        currentMsg = msg; bubble.textContent = msg;
+        bubble.classList.add('bubble-show'); setTimeout(()=> bubble.classList.remove('bubble-show'), 5000);
+      }
+      function speak(msg){
+        if (reduce) return;
+        try {
+          speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(msg);
+          u.lang = (L==='en') ? 'en-US' : 'fr-FR';
+          u.pitch = 1.08; u.rate = isMobile ? 0.98 : 1.06;
+          speechSynthesis.speak(u);
+        } catch(e){}
+      }
+      say(DICT.header);
+      avatar.addEventListener('click', () => currentMsg && speak(currentMsg));
+      const sectionMsgMap = [
+        { id:'facettes', msg: DICT.facettes },
+        { id:'parcours', msg: DICT.parcours },
+        { id:'projets-analyse', msg: DICT['projets-analyse'] },
+        { id:'missions-strategiques', msg: DICT['missions-strategiques'] },
+        { id:'solutions', msg: DICT['solutions'] }
+      ];
+      const voiceObserver = new IntersectionObserver(es => {
+        es.forEach(entry => {
+          if (entry.isIntersecting) {
+            const item = sectionMsgMap.find(x => x.id === entry.target.id);
+            if (item) say(item.msg);
+          }
+        });
+      }, { rootMargin:'-45% 0px -55% 0px' });
+      sectionMsgMap.forEach(x => { const el = document.getElementById(x.id); if (el) voiceObserver.observe(el); });
+    }
+  });
+  </script>
+
+  <!-- Add-on effets canvas (fonds animés) -->
+  <script>
+  (() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) { entry.target.render = true; obs.unobserve(entry.target); }
+      }
+    }, { threshold: 0.1 });
+
+    const createCanvas = (parent, className) => {
+      const canvas = document.createElement('canvas');
+      canvas.className = className;
+      parent.prepend(canvas);
+      const ctx = canvas.getContext('2d');
+      const resize = () => { canvas.width = parent.offsetWidth; canvas.height = parent.offsetHeight; };
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+      return { canvas, ctx, parent };
+    };
+
+    const effects = {
+      'spotify': (parent) => {
+        const { ctx, parent: p } = createCanvas(parent, 'project-bg-canvas');
+        const bars = 40; let t = 0;
+        function draw(){
+          if (!p.render) return requestAnimationFrame(draw);
+          t += 0.02; const w=p.offsetWidth,h=p.offsetHeight,bw=w/bars;
+          ctx.clearRect(0,0,w,h); ctx.fillStyle='rgba(34,211,238,0.2)';
+          for(let i=0;i<bars;i++){ const bh=(Math.sin(t+i*0.3)+1)/2*h*0.6+h*0.1; ctx.fillRect(i*bw,h-bh,bw*0.8,bh); }
+          requestAnimationFrame(draw);
+        } draw();
+      },
+      'dashboard-rh': (parent) => {
+        const { ctx, parent: p } = createCanvas(parent, 'project-bg-canvas');
+        const gridSize=30; let t=0;
+        function draw(){
+          if (!p.render) return requestAnimationFrame(draw);
+          t += 0.01; const w=p.offsetWidth,h=p.offsetHeight;
+          ctx.clearRect(0,0,w,h); ctx.strokeStyle='rgba(167,139,250,0.1)';
+          for(let i=0;i<=w;i+=gridSize) ctx.strokeRect(i,0,.5,h);
+          for(let j=0;j<=h;j+=gridSize) ctx.strokeRect(0,j,w,.5);
+          const scanY=(t*50)%(h+10); ctx.fillStyle='rgba(167,139,250,0.15)'; ctx.fillRect(0,scanY-5,w,5);
+          requestAnimationFrame(draw);
+        } draw();
+      },
+      'ms-contra': (parent) => {
+        const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas');
+        let angle=0;
+        function draw(){
+          if (!p.render) return requestAnimationFrame(draw);
+          angle+=0.02; const w=p.offsetWidth,h=p.offsetHeight,cx=w/2,cy=h/2,r=Math.min(cx,cy);
+          ctx.clearRect(0,0,w,h); ctx.strokeStyle='rgba(239,68,68,0.5)';
+          for(let i=1;i<=3;i++){ ctx.beginPath(); ctx.arc(cx,cy,r*(i/3)*0.8,0,2*Math.PI); ctx.stroke(); }
+          const grad=ctx.createLinearGradient(cx,cy,cx+r*Math.cos(angle),cy+r*Math.sin(angle));
+          grad.addColorStop(0,'rgba(239,68,68,0.4)'); grad.addColorStop(1,'rgba(239,68,68,0)');
+          ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx + r*0.8*Math.cos(angle), cy + r*0.8*Math.sin(angle));
+          ctx.strokeStyle=grad; ctx.stroke(); requestAnimationFrame(draw);
+        } draw();
+      },
+      'ms-clean': (parent) => {
+        const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas');
+        const particles = Array.from({length:50},()=>({a:Math.random()*2*Math.PI,s:0.01+Math.random()*0.02}));
+        function draw(){
+          if (!p.render) return requestAnimationFrame(draw);
+          const w=p.offsetWidth,h=p.offsetHeight,cx=w/2,cy=h/2,r=Math.min(cx,cy)*0.6;
+          ctx.clearRect(0,0,w,h); ctx.fillStyle='rgba(34,211,238,0.8)';
+          particles.forEach(pt=>{ pt.a+=pt.s; const x=cx+Math.cos(pt.a)*(r+Math.sin(pt.a*3)*10); const y=cy+Math.sin(pt.a)*(r+Math.cos(pt.a*2)*10); ctx.beginPath(); ctx.arc(x,y,1.5,0,2*Math.PI); ctx.fill(); });
+          requestAnimationFrame(draw);
+        } draw();
+      },
+      'ms-scoring': (parent) => {
+        const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas');
+        const nodes = Array.from({length:30},()=>({x:Math.random(),y:Math.random()})); let t=0;
+        function draw(){
+          if (!p.render) return requestAnimationFrame(draw);
+          t+=0.02; const w=p.offsetWidth,h=p.offsetHeight;
+          ctx.clearRect(0,0,w,h); ctx.fillStyle='rgba(34,197,94,0.8)'; ctx.strokeStyle='rgba(34,197,94,0.2)';
+          nodes.forEach((n,i)=>{ ctx.beginPath(); ctx.arc(n.x*w,n.y*h,2,0,2*Math.PI); ctx.fill();
+            const next=nodes[(i+1+Math.floor(Math.sin(t+i)*2))%nodes.length];
+            ctx.beginPath(); ctx.moveTo(n.x*w,n.y*h); ctx.lineTo(next.x*w,next.y*h); ctx.stroke();
+          });
+          requestAnimationFrame(draw);
+        } draw();
+      },
+      'ms-aria': (parent) => {
+        const { ctx, parent: p } = createCanvas(parent, 'mission-bg-canvas'); let t=0;
+        function draw(){
+          if (!p.render) return requestAnimationFrame(draw);
+          t+=0.05; const w=p.offsetWidth,h=p.offsetHeight,cx=w/2,cy=h/2;
+          ctx.clearRect(0,0,w,h); ctx.strokeStyle='rgba(167,139,250,0.5)'; ctx.lineWidth=2; ctx.beginPath();
+          for (let i=0;i<w;i++){ const y=cy + Math.sin(i*0.1+t)*Math.sin(i*0.02+t)*(h/4); ctx.lineTo(i,y); }
+          ctx.stroke(); requestAnimationFrame(draw);
+        } draw();
+      }
+    };
+
+    document.querySelectorAll('[data-project-bg]').forEach(el => { const effect = effects[el.dataset.projectBg]; if (effect){ effect(el); observer.observe(el); } });
+    Object.keys(effects).filter(k => k.startsWith('ms-')).forEach(className => {
+      document.querySelectorAll(`.${className}`).forEach(card => { effects[className](card); observer.observe(card); });
+    });
+  })();
+  </script>
+
+  <!-- Tabs Solutions, Filtre Projets, CTA modal, Ré-apply Lang -->
+  <script>
+  (function(){
+    // Tabs
+    const tabs = document.querySelectorAll('.solutions-tabs button');
+    const panels = document.querySelectorAll('.solutions-panels > article');
+    tabs.forEach(b=>{
+      b.addEventListener('click', ()=>{
+        tabs.forEach(x=>x.classList.remove('active'));
+        panels.forEach(p=>p.classList.remove('active'));
+        b.classList.add('active');
+        document.getElementById(b.dataset.tab)?.classList.add('active');
+      });
+    });
+
+    // Filtre projets
+    const pf = document.getElementById('project-filter');
+    if(pf){
+      const cards = document.querySelectorAll('#projets-analyse .project-card');
+      pf.querySelectorAll('button').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          pf.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+          btn.classList.add('active');
+          const tag = btn.dataset.tag;
+          cards.forEach(c=>{
+            if(tag==='all'){ c.style.display='flex'; return; }
+            const tags = (c.getAttribute('data-tags')||'').split(/\s+/);
+            c.style.display = tags.includes(tag) ? 'flex' : 'none';
+          });
+        });
+      });
+    }
+
+    // CTA modal
+    const cta = document.getElementById('sticky-cta');
+    const modal = document.getElementById('hire-modal');
+    const close = document.getElementById('hire-close');
+    if(cta && modal){
+      cta.addEventListener('click', ()=> modal.classList.add('open'));
+      close?.addEventListener('click', ()=> modal.classList.remove('open'));
+      modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('open'); });
+    }
+
+    // Réappliquer la langue (labels dynamiques)
+    (function reapplyLang(){
+      try{
+        const lang = (localStorage.getItem('portfolio_lang') || document.documentElement.lang || 'fr');
+        document.querySelectorAll('[data-lang-fr],[data-lang-en]').forEach(el=>{
+          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
+          if(txt){ el.innerHTML = txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>'); }
+        });
+        // labels boutons filtre & tabs solutions
+        document.querySelectorAll('#project-filter [data-lang-fr],[data-lang-en], .solutions-tabs [data-lang-fr],[data-lang-en]').forEach(el=>{
+          const txt = el.getAttribute(lang==='fr' ? 'data-lang-fr' : 'data-lang-en');
+          if(txt) el.textContent = txt.replace(/<[^>]+>/g,'');
+        });
+      }catch(e){}
+    })();
+  })();
   </script>
 </body>
 </html>
